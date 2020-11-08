@@ -1,6 +1,6 @@
-package footprintcalculator.fileOperations
+package main.fileOperations
 
-import footprintcalculator.FootPrintState
+import main.FootPrintState
 
 object FileOperations {
   def saveToFile(state: FootPrintState) = {}

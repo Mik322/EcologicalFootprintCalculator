@@ -1,6 +1,6 @@
-package footprintcalculator
+package main
 
-object FootprintCalculator extends App{
+object Application extends App{
 
   val footPrintState = FootPrintState(0);
   val calorieCounter = CalorieCounter(0);
