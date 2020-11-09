@@ -1,4 +1,6 @@
 package main
 
-case class FootPrintState(carbonFootPrint: Int)
+import main.footprint.TransportMean
+
+case class FootPrintState(carbonFootPrint: Int, transportation: List[TransportMean])
 case class CalorieCounter(calories: Int)
