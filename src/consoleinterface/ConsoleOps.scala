@@ -1,25 +1,28 @@
 package consoleinterface
 
 import scala.io.StdIn.readLine
-import consoleinterface.caloriecounter.Calories._
+import consoleinterface.caloriescouter.CaloriesConsoleOps._
+import consoleinterface.caloriescouter.CaloriesOptions
 
 object ConsoleOps {
   def printWelcome(): Unit = {
-    println("Welcome to The Ecological Footprint Calculator")
+    println("Welcome to The Ecological Footprint Calculator and Calorie Counter")
   }
 
   def printOptions() = {
-    println("SaveStates\nLoadStates\nAddFood\nAddSport\nQuit")
+    println("1. FootPrint Options\n2. CaloriesCounter Options\n 3. Save States \n4. LoadStates\n0. Quit")
   }
 
   def getUserChoice(foodList: List[String], sportList: List[String]): UserChoice = {
+    print("Insert Option Number")
     val input = readLine()
     input match {
+      case "2" => CaloriesOptions.caloriesCounterOptions(foodList, sportList)
       case "SaveStates" => SaveStates
       case "LoadStates" => LoadStates
       case "AddFood" => {
-        printFoodOptions(foodList)
-        val food = getFoodInput()
+        printList(foodList, 0)
+        val food = getFoodInput(foodList)
         food
       }
 

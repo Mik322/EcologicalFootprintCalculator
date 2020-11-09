@@ -3,6 +3,7 @@ package main.fileOperations
 import main.FootPrintState
 import main.CalorieCounter
 import java.io._
+import scala.io.Source
 
 
 case class States(footPrintState: FootPrintState, calorieCounter: CalorieCounter)
@@ -24,6 +25,20 @@ object FileOperations {
     } catch {
       case _ => None
     }
+  }
 
+  def processLines(lines: List[String]): Map[String, Int] = {
+    lines match {
+      case ::(head, next) =>{
+        val line = head.split(":")
+        processLines(next) + (line(0) -> line(1).toInt)
+      }
+      case Nil => Map()
+    }
+  }
+
+
+  def loadCaloriesMap(name: String): Map[String, Int] = {
+    processLines(Source.fromFile(name).getLines.toList)
   }
 }

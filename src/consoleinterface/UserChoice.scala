@@ -1,6 +1,7 @@
 package consoleinterface
 
-import main.caloriecounter.body.{Gender, Lifestyle}
+import main.calorieCounter.{Gender, Lifestyle}
+import main.calorieCounter.Body._
 
 trait UserChoice
 

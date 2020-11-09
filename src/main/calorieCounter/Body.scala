@@ -1,4 +1,4 @@
-package main.caloriecounter.body
+package main.calorieCounter
 
 case class Body(height: Int, weight: Int, age: Int, gender: Gender, lifestyle: Lifestyle)
 
