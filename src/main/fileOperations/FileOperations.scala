@@ -16,7 +16,7 @@ object FileOperations {
     }
   }
 
-  def loadFootPrintState(): Option[(FootPrintState, CalorieCounter)] = {
+  def loadStates(): Option[(FootPrintState, CalorieCounter)] = {
     try {
       val in = new ObjectInputStream(new FileInputStream(new File("States")))
       val states = in.readObject().asInstanceOf[States]
