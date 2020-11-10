@@ -1,3 +1,3 @@
 package main.calorieCounter
 
-case class CaloricMaps(foodMap: Map[String,Int], drinksMap: Map[String,Int], sportsMap: Option[Map[String,Int]])
+case class CaloricMaps(foodMap: Map[String,Int], drinksMap: Map[String,Int], exercisesMap: Map[String,Double])

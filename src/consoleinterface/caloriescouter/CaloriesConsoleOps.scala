@@ -1,6 +1,8 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.{AddDrink, AddFood, AddSport, UserChoice}
+import consoleinterface.{AddDrink, AddFood, AddExercise, UserChoice,SetBodyParams}
+import main.calorieCounter._
+import inputs.BodyInput
 
 import scala.io.StdIn.readLine
 
@@ -13,6 +15,17 @@ object CaloriesConsoleOps {
       }
       case Nil => {}
     }
+  }
+  def getBodyInput():UserChoice = {
+    print("Height(in cm): ")
+    val height=readLine().toInt
+    print("Weight(in kg): ")
+    val weight=readLine().toDouble
+    print("Age: ")
+    val age=readLine().toInt
+    val gender = BodyInput.genderInput()
+    val lifestyle = BodyInput.lifestyleInput()
+    SetBodyParams(height,weight,age,gender,lifestyle)
   }
 
   def getActivityInput(list: List[String], choice: (String)=> UserChoice): UserChoice = {
@@ -33,9 +46,11 @@ object CaloriesConsoleOps {
     AddDrink(drink, quantity)
   }
 
-  def addSportChoice(sport: String): AddSport = {
-    print("time: ")
+  def addExerciseChoice(exercise: String): AddExercise = {
+    print("time (minutes): ")
     val time = readLine().toInt
-    AddSport(sport, time)
+    AddExercise(exercise, time)
   }
+
 }
+
