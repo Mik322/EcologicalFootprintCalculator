@@ -1,8 +1,8 @@
 package main
 
+import main.calorieCounter.caloricstructures.Body
 import main.footprint.TransportMean
-import calorieCounter.Body
+import calorieCounter.caloricstructures.Historic
 
 case class FootPrintState(carbonFootPrint: Int, transportation: List[TransportMean])
-case class CalorieCounter(caloriesConsumed: Int, caloriesBurned: Int, body: Option[Body], foods: List[String], drinks: List[String], sports: List[String])
-
+case class CalorieCounter(caloriesConsumed: Int, caloriesBurned: Int, body: Option[Body], historic: Historic)

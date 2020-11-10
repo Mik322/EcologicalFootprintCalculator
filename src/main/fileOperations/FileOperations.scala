@@ -11,10 +11,9 @@ case class States(footPrintState: FootPrintState, calorieCounter: CalorieCounter
 object FileOperations {
   def saveStates(footPrintState: FootPrintState, calorieCounter: CalorieCounter) = {
     val states = States(footPrintState, calorieCounter)
-    try {
-      val out = new ObjectOutputStream(new FileOutputStream(new File("States")))
-      out.writeObject(states)
-    }
+    val out = new ObjectOutputStream(new FileOutputStream(new File("States")))
+    out.writeObject(states)
+
   }
 
   def loadStates(): Option[(FootPrintState, CalorieCounter)] = {

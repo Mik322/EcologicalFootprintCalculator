@@ -3,15 +3,17 @@ package main
 import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
+import consoleinterface.AddCaloricActivity
 import consoleinterface._
-import calorieCounter.{CaloricMaps, CalorieCounterOps, CalorieStateOps, CaloricImpure}
+import calorieCounter.{AddCaloricActivityOps, CaloricImpure, CaloricMaps, CalorieStateOps}
+import calorieCounter.caloricstructures.Historic
 
 
 
 object Application extends App{
 
   val f = FootPrintState(0, List());
-  val c = CalorieCounter(0, 0, None, List(), List(), List());
+  val c = CalorieCounter(0, 0, None, Historic(List(), List(), List()));
 
   val foodMap = FileOperations.loadCaloriesMap("Food.txt")
   val drinksMap = FileOperations.loadCaloriesMap("Drinks.txt")
@@ -39,13 +41,8 @@ object Application extends App{
         }
       }
 
-      case AddFood(food, quantity) => {
-        val newCalorieCounter = CalorieStateOps.addFoodCalories(calorieCounter, AddFood(food, quantity), foodMap)
-        main_loop(footPrintState, newCalorieCounter)
-      }
-
-      case AddDrink(drink, quantity) => {
-        val newCalorieCounter = CalorieStateOps.addDrinkCalories(calorieCounter, AddDrink(drink, quantity), drinksMap)
+      case activity: AddCaloricActivity => {
+        val newCalorieCounter = AddCaloricActivityOps.addCaloricActityToState(activity, calorieCounter, caloricMaps)
         main_loop(footPrintState, newCalorieCounter)
       }
 

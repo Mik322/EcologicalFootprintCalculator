@@ -1,6 +1,7 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.{AddDrink, AddFood, AddSport, UserChoice}
+import consoleinterface.{UserChoice}
+import consoleinterface.caloriescouter.CaloricActivitiesChoice._
 
 import scala.io.StdIn.readLine
 
