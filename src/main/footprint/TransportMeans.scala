@@ -10,7 +10,6 @@ object TransportMeans{
 
     case class Car(consumption: Double, fuel: Fuel) extends TransportMean
     case object Plane extends TransportMean
-    case object Boat extends TransportMean
     case object Bus extends TransportMean
     case object SubWay extends TransportMean
     case object Train extends TransportMean

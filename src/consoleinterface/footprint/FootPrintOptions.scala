@@ -30,12 +30,13 @@ object FootPrintOptions {
   }*/
 
   def transportationMenu(): UserChoice = {
-    println("1.Add Trip\n2.See total emissions\n0.Quit")
+    println("1.Add Trip\n2.See total emissions\n3.See Last Trips\n0.Quit")
     val input = readLine().toInt
 
     input match {
       case 1 => FootPrintConsoleOps.addTransportTrip()
       case 2 => GetTransportEmissions
+      case 3 => GetTransportHistory
     }
   }
 }

@@ -15,5 +15,6 @@ case class AddDrink(drink: String, quantity: Int) extends UserChoice
 case object GetCalories extends UserChoice
 case class AddTransportTrip(mean: TransportMean, km: Double) extends UserChoice
 case object GetTransportEmissions extends UserChoice
+case object GetTransportHistory extends UserChoice
 
 case object Quit extends UserChoice

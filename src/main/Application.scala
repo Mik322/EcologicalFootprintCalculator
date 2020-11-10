@@ -8,7 +8,7 @@ import calorieCounter.{CaloricImpure, CaloricMaps, CalorieCounterOps, CalorieSta
 import main.footprint.TransportMeans._
 import main.footprint._
 import main.footprint.FootPrintOps
-import main.footprint.footprintstructs.TransportEmissionImpure
+import main.footprint.footprintstructs.TransportationImpure
 
 
 
@@ -60,12 +60,19 @@ object Application extends App{
 
       case AddTransportTrip(mean: TransportMean, km: Double) => mean match{
         case Car(consumption, fuel) => val newFootPrint = FootPrintOps.addCarConsumption(footPrintState, consumption,km,fuel)
-        main_loop(newFootPrint,calorieCounter)
+        case publicTransport => val newFootPrint = FootPrintOps.addPublicTransportEmissions(footPrintState, publicTransport,km)
+          main_loop(newFootPrint,calorieCounter)
 
       }
 
       case GetTransportEmissions => {
-        TransportEmissionImpure.printTransportEmissions(footPrintState)
+        TransportationImpure.printTransportEmissions(footPrintState)
+        main_loop(footPrintState,calorieCounter)
+      }
+
+      case GetTransportHistory => {
+        TransportationImpure.history(footPrintState.transportTrips)
+        main_loop(footPrintState, calorieCounter)
       }
     }
   }
