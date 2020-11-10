@@ -4,20 +4,26 @@ import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface._
-import consoleinterface.caloriecounter.Calories
+import calorieCounter.{CaloricMaps, CalorieCounterOps, CalorieStateOps, CaloricImpure}
+
 
 
 object Application extends App{
 
-  val f = FootPrintState(0);
-  val c = CalorieCounter(0, 0, None);
+  val f = FootPrintState(0, List());
+  val c = CalorieCounter(0, 0, None, List(), List(), List());
 
-  printOptions()
+  val foodMap = FileOperations.loadCaloriesMap("Food.txt")
+  val drinksMap = FileOperations.loadCaloriesMap("Drinks.txt")
+
+  val caloricMaps = CaloricMaps(foodMap, drinksMap, None)
 
   @tailrec
   def main_loop(footPrintState: FootPrintState, calorieCounter: CalorieCounter): Unit = {
+    printOptions()
+    val userChoice = getUserChoice(caloricMaps)
 
-    getUserChoice(List("Water"), List()) match {
+    userChoice match {
       case Quit => {}
 
       case SaveStates => {
@@ -34,6 +40,18 @@ object Application extends App{
       }
 
       case AddFood(food, quantity) => {
+        val newCalorieCounter = CalorieStateOps.addFoodCalories(calorieCounter, AddFood(food, quantity), foodMap)
+        main_loop(footPrintState, newCalorieCounter)
+      }
+
+      case AddDrink(drink, quantity) => {
+        val newCalorieCounter = CalorieStateOps.addDrinkCalories(calorieCounter, AddDrink(drink, quantity), drinksMap)
+        main_loop(footPrintState, newCalorieCounter)
+      }
+
+      case GetCalories => {
+        CaloricImpure.printCaloricInformation(calorieCounter)
+        main_loop(footPrintState, calorieCounter)
       }
     }
   }

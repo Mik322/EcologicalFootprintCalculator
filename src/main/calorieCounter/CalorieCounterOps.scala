@@ -1,6 +1,6 @@
 package main.calorieCounter
 
-object CalorieCounter {
+object CalorieCounterOps {
   def calculateFoodCalories(caloriesPer100Gram:Int, quantity:Int ):Int = quantity*caloriesPer100Gram/100
 
   def calculateDrinkCalories(caloriesPer100Ml:Int, quantity:Int ):Int = quantity*caloriesPer100Ml/100
