@@ -1,6 +1,6 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.AddFood
+import consoleinterface.{AddDrink, AddFood, AddSport, UserChoice}
 
 import scala.io.StdIn.readLine
 
@@ -15,11 +15,27 @@ object CaloriesConsoleOps {
     }
   }
 
-  def getFoodInput(foodList: List[String]): AddFood = {
-    print("Select food number: ")
-    val food = readLine().toInt
+  def getActivityInput(list: List[String], choice: (String)=> UserChoice): UserChoice = {
+    print("Select number: ")
+    val input = readLine().toInt
+    choice(list(input))
+  }
+
+  def addFoodChoice(food: String): AddFood = {
     print("Quantity (in grams): ")
     val quantity = readLine().toInt
-    AddFood(foodList(food), quantity)
+    AddFood(food, quantity)
+  }
+
+  def addDrinkChoice(drink: String): AddDrink = {
+    print("Quantity (in mL): ")
+    val quantity = readLine().toInt
+    AddDrink(drink, quantity)
+  }
+
+  def addSportChoice(sport: String): AddSport = {
+    print("time: ")
+    val time = readLine().toInt
+    AddSport(sport, time)
   }
 }
