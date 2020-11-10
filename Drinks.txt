@@ -1,0 +1,30 @@
+7UP:45
+Coconut water:22
+Tonic water:18
+Beer:49
+Non-alcoholic beer:22
+Champagne:70
+Coca-cola:45
+Cognac:249
+Fanta:54
+Gin:230
+Guarana:32
+Liquor:343
+Lipton Ice Tea:28
+Whole milk:70
+Semi-skimmed milk:50
+Skimmed milk:38
+Soy milk:36
+Chocolate milk shake:115
+Strawberry milk shake:112
+Nestea:32
+Pleno:39
+Red Bull:45
+Rum:231
+Orange Juice:45
+Tomato Juice:11
+Sumol:43
+White wine:58
+Red wine:48
+Vodka:230
+Whisky:294

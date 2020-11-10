@@ -1,0 +1,160 @@
+Bagel:310
+Biscuit digestives:480
+Jaffa cake:370
+Bread white:240
+Bread wholemeal:220
+Chapatis:300
+Cornflakes:370
+Crackerbread:325
+Cream crackers:440
+Crumpets:198
+Flapjacks basic fruit mix:500
+Macaroni (boiled):95
+Muesli:390
+Naan bread:320
+Noodles (boiled):70
+Pasta ( normal boiled ):110
+Pasta (wholemeal boiled ):105
+Porridge oats:55
+Potatoes (boiled):70
+Potatoes (roast):140
+Rice (white boiled):140
+Rice (egg-fried):200
+Rice ( Brown ):135
+Rice cake:373
+Ryvita Multi grain:331
+Ryvita seed:362
+Ryvita Oats:362
+Spaghetti (boiled):101
+Anchovies tinned:300
+Bacon average fried:500
+Bacon average grilled:380
+Beef (roast):280
+Beef burgers frozen:280
+Chicken:200
+Cockles:50
+Cod fresh:100
+Cod chip shop food:200
+Crab fresh:110
+Duck roast:430
+Fish cake:200
+Fish fingers:220
+Gammon:280
+Haddock fresh:110
+Halibut fresh:125
+Ham:240
+Herring fresh grilled:200
+Kidney:160
+Kipper:120
+Liver:150
+Liver pate:300
+Lamb (roast):300
+Lobster boiled:100
+Luncheon meat:400
+Mackeral:300
+Mussels:90
+Pheasant roast:200
+Pilchards (tinned):140
+Prawns:100
+Pork:290
+Pork pie:450
+Rabbit:180
+Salmon fresh:180
+Sardines tinned in oil:220
+Sardines in tomato sauce:180
+Sausage pork fried:320
+Sausage pork grilled:280
+Sausage roll:480
+Scampi fried in oil:340
+Steak & kidney pie:350
+Taramasalata:490
+Trout fresh:120
+Tuna tinned water:100
+Tuna tinned oil:180
+Turkey:160
+Veal:240
+Apple:44
+Banana:65
+Baked beans:80
+Beans dried (boiled):130
+Blackberries:25
+Blackcurrant:30
+Broccoli:32
+Cabbage (boiled):20
+Carrot (boiled):25
+Cauliflower (boiled):30
+Celery (boiled):10
+Cherry:50
+Courgette:20
+Cucumber:10
+Dates:235
+Grapes:62
+Grapefruit:32
+Kiwi:50
+Leek (boiled):20
+Lentils (boiled):100
+Lettuce:15
+Melon:28
+Mushrooms raw one average:15
+Mushrooms (boiled):12
+Mushrooms (fried):145
+Olives:80
+Onion (boiled):18
+One red Onion:33
+Onions spring:25
+Onion (fried):155
+Orange:30
+Peas:148
+Peas dried & boiled:120
+Peach:30
+Pear:38
+Pepper yellow:16
+Pineapple:40
+Plum:39
+Spinach:8
+Strawberries:30
+Sweetcorn:130
+Sweetcorn on the cob:70
+Tomato:20
+Tomato cherry:17
+Tomato puree:70
+Watercress:20
+Cheese average:440
+Cheddar types average reduced fat:260
+Cheese spreads average:270
+Cottage cheese low fat:80
+Cottage cheese:98
+Cream cheese:428
+Cream fresh half:160
+Cream fresh single:200
+Cream fresh double:430
+Cream fresh clotted:600
+Custard:100
+Eggs:150
+Eggs fried:180
+Fromage frais:125
+Ice cream:180
+Mousse flavored:140
+Omelette with cheese:266
+Trifle with cream:190
+Yogurt natural:60
+Yogurt reduced fat:45
+PURE FAT:900
+Bombay mix:500
+Butter:750
+Chocolate:500
+Cod liver oil:900
+Corn snack:500
+Crisps (chips US) average:500
+Honey:280
+Jam:250
+Lard:890
+Low fat spread:400
+Margarine:750
+Mars:480
+Oils -corn, sunflower, olive:900
+Popcorn:460
+Sugar white table sugar:400
+Sweets (boiled):00
+Syrup:300
+Toffee:400
