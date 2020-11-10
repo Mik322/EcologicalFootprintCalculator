@@ -2,6 +2,7 @@ package consoleinterface
 
 import scala.io.StdIn.readLine
 import consoleinterface.caloriescouter.CaloriesOptions
+import consoleinterface.footprint.FootPrintOptions
 import main.calorieCounter.CaloricMaps
 
 object ConsoleOps {
@@ -17,6 +18,7 @@ object ConsoleOps {
     print("Insert Option Number")
     val input = readLine()
     input match {
+      case "1" => FootPrintOptions.footPrintOptions()
       case "2" => CaloriesOptions.caloriesCounterOptions(caloricMaps)
       case "3" => SaveStates
       case "4" => LoadStates

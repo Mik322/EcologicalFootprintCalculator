@@ -4,7 +4,11 @@ import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface._
-import calorieCounter.{CaloricMaps, CalorieCounterOps, CalorieStateOps, CaloricImpure}
+import calorieCounter.{CaloricImpure, CaloricMaps, CalorieCounterOps, CalorieStateOps}
+import main.footprint.TransportMeans._
+import main.footprint._
+import main.footprint.FootPrintOps
+import main.footprint.footprintstructs.TransportEmissionImpure
 
 
 
@@ -52,6 +56,16 @@ object Application extends App{
       case GetCalories => {
         CaloricImpure.printCaloricInformation(calorieCounter)
         main_loop(footPrintState, calorieCounter)
+      }
+
+      case AddTransportTrip(mean: TransportMean, km: Double) => mean match{
+        case Car(consumption, fuel) => val newFootPrint = FootPrintOps.addCarConsumption(footPrintState, consumption,km,fuel)
+        main_loop(newFootPrint,calorieCounter)
+
+      }
+
+      case GetTransportEmissions => {
+        TransportEmissionImpure.printTransportEmissions(footPrintState)
       }
     }
   }
