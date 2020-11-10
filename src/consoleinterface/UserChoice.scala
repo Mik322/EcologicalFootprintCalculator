@@ -11,5 +11,6 @@ case class SetBodyParams(height: Int, weight: Int, age: Int, gender: Gender, lif
 case class AddFood(food: String, quantity: Int) extends UserChoice
 case class AddSport(sport: String, time: Int) extends UserChoice
 case class AddDrink(drink: String, quantity: Int) extends UserChoice
+case object GetCalories extends UserChoice
 
 case object Quit extends UserChoice

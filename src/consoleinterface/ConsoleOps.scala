@@ -10,7 +10,7 @@ object ConsoleOps {
   }
 
   def printOptions() = {
-    println("1. FootPrint Options\n2. CaloriesCounter Options\n 3. Save States \n4. LoadStates\n0. Quit")
+    println("1. FootPrint Options\n2. CaloriesCounter Options\n3. Save States \n4. LoadStates\n0. Quit")
   }
 
   def getUserChoice(caloricMaps: CaloricMaps): UserChoice = {

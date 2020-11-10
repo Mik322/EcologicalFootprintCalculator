@@ -6,11 +6,12 @@ import main.calorieCounter.CaloricMaps
 
 object CaloriesOptions {
   def caloriesCounterOptions(caloricMaps: CaloricMaps): UserChoice = {
-    println("1. Add/Change\n0. Quit")
+    println("1. Add/Change\n2. Get CaloricInformation's\n0. Quit")
     val input = readLine()
 
     input match {
       case "1" => addMenu(caloricMaps)
+      case "2" => GetCalories
     }
   }
 

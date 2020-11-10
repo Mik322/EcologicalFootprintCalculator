@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface._
-import calorieCounter.{CaloricMaps, CalorieCounterOps, CalorieStateOps}
+import calorieCounter.{CaloricMaps, CalorieCounterOps, CalorieStateOps, CaloricImpure}
 
 
 
@@ -18,11 +18,9 @@ object Application extends App{
 
   val caloricMaps = CaloricMaps(foodMap, drinksMap, None)
 
-  printOptions()
-
   @tailrec
   def main_loop(footPrintState: FootPrintState, calorieCounter: CalorieCounter): Unit = {
-
+    printOptions()
     val userChoice = getUserChoice(caloricMaps)
 
     userChoice match {
@@ -49,6 +47,11 @@ object Application extends App{
       case AddDrink(drink, quantity) => {
         val newCalorieCounter = CalorieStateOps.addDrinkCalories(calorieCounter, AddDrink(drink, quantity), drinksMap)
         main_loop(footPrintState, newCalorieCounter)
+      }
+
+      case GetCalories => {
+        CaloricImpure.printCaloricInformation(calorieCounter)
+        main_loop(footPrintState, calorieCounter)
       }
     }
   }
