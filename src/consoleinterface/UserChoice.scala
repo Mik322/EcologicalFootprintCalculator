@@ -3,6 +3,7 @@ package consoleinterface
 import main.calorieCounter.{Gender, Lifestyle}
 import main.calorieCounter.Body._
 import main.footprint.TransportMeans.TransportMean
+import main.footprint.footprintstructs.TypeOfWaste
 
 trait UserChoice
 
@@ -16,5 +17,9 @@ case object GetCalories extends UserChoice
 case class AddTransportTrip(mean: TransportMean, km: Double) extends UserChoice
 case object GetTransportEmissions extends UserChoice
 case object GetTransportHistory extends UserChoice
+case class AddWaste(kg: Int, typeOfWaste: TypeOfWaste) extends UserChoice
+case object GetWasteEmissions extends UserChoice
+
+
 
 case object Quit extends UserChoice

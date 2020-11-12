@@ -2,7 +2,7 @@ package main.footprint
 
 import main.FootPrintState
 import main.footprint.TransportMeans.{Car, TransportMean}
-import main.footprint.footprintstructs.{Diesel, Fuel, Petrol, TransportTrip}
+import main.footprint.footprintstructs._
 import main.footprint.TransportMeans._
 
 object FootPrintOps {
@@ -38,4 +38,42 @@ object FootPrintOps {
     //An average consumption of 5 liters/100 km then corresponds to 5 l x 2392 g/l / 100 (per km) = 120 g CO2/km.
     case Petrol => consumption * 2392 / 100 * km
   }
+
+
+  def addWaste(footPrintState: FootPrintState, kg: Int, typeOfWaste: TypeOfWaste): FootPrintState ={
+    val emissions = getEmissionsOfType(typeOfWaste, kg)
+    val totalEmissions = emissions + footPrintState.carbonFootPrint
+    val w = getWasteObject(footPrintState,kg,typeOfWaste)
+    footPrintState.copy(carbonFootPrint = totalEmissions, waste = Some(w))
+  }
+
+  def getEmissionsOfType(typeOfWaste: TypeOfWaste, kg: Double): Double ={
+    typeOfWaste match {
+      case Food => 1900 * kg
+      case Recycled => 100 * kg //A alterar
+    }
+  }
+
+  def getWasteObject(footPrintState: FootPrintState, kg:Int, typeOfWaste: TypeOfWaste): Waste ={
+    typeOfWaste match {
+      case Food => foodWaste(footPrintState, kg)
+      case Recycled => recycledWaste(footPrintState,kg)
+    }
+  }
+
+  def foodWaste(footPrintState: FootPrintState, kg: Int): Waste = {
+    footPrintState.waste match {
+      case None => Waste(kg, 0)
+      case Some(value) => value.copy(foodWaste = value.foodWaste + kg)
+    }
+  }
+
+  def recycledWaste(footPrintState: FootPrintState, kg: Int): Waste ={
+    footPrintState.waste match {
+      case None => Waste(0, kg)
+      case Some(value) => value.copy(recycledWaste = value.recycledWaste + kg)
+    }
+  }
+
+
 }

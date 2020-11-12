@@ -3,8 +3,6 @@ package main.footprint
 import main.footprint.TransportMeans.TransportMean
 import main.footprint.footprintstructs.Fuel
 
-
-
 object TransportMeans{
     trait TransportMean
 

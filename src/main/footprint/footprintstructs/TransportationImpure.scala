@@ -25,6 +25,5 @@ object TransportationImpure {
 
   def printTransportHistory(trip: TransportTrip) = {
     println(s"${trip.km} km travelled by ${trip.mean} with a total emission of ${trip.emissions} g/CO2")
-
   }
 }
