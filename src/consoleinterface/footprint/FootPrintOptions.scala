@@ -16,12 +16,13 @@ object FootPrintOptions {
   }
 
   def addMenu(): UserChoice = {
-    println("1.Transportation\n2.Waste\n3.Electricity\n4.Water\n5.Gas\n0.Quit")
+    println("1.Transportation\n2.Waste\n3.Energy\n4.Water\n5.Gas\n0.Quit")
     val input = readLine()
 
     input match{
       case "1" => transportationMenu()
       case "2" => wasteMenu()
+      case "3" => energyMenu()
     }
 
   }
@@ -47,4 +48,15 @@ object FootPrintOptions {
       case 3 => GetWasteEmissions
     }
   }
+
+  def energyMenu(): UserChoice ={
+    println("1.Set energy sources\n2.See your total emissions from energy use\n0.Quit")
+    val input = readLine().toInt
+
+    input match {
+      case 1 => FootPrintConsoleOps.setEnergySources()
+      case 2 => GetEnergyEmissions
+    }
+  }
+
 }

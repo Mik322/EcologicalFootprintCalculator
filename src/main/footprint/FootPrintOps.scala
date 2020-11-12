@@ -2,8 +2,12 @@ package main.footprint
 
 import main.FootPrintState
 import main.footprint.TransportMeans.{Car, TransportMean}
-import main.footprint.footprintstructs._
+import main.footprint.footprintstructs.{transport, _}
 import main.footprint.TransportMeans._
+import main.footprint.footprintstructs.energy.{Electricity, EnergySource, Gas}
+import main.footprint.footprintstructs.transport.{Diesel, Fuel, Petrol, TransportTrip}
+import _root_.Waste._
+import main.footprint.footprintstructs.waste.Waste
 
 object FootPrintOps {
   def addPublicTransportEmissions(footPrintState: FootPrintState, publicTransport: TransportMean, km: Double): FootPrintState = {
@@ -27,7 +31,7 @@ object FootPrintOps {
   def addCarConsumption(footPrintState: FootPrintState, consumption: Double, km: Double, fuel: Fuel): FootPrintState ={
     val emissions = calcFuelEmissions(fuel,consumption,km)
     val totalEmissions = emissions + footPrintState.carbonFootPrint
-    val trip = TransportTrip(Car(consumption,fuel),km, emissions)
+    val trip = transport.TransportTrip(Car(consumption,fuel),km, emissions)
     val trips = footPrintState.transportTrips.appended(trip)
     footPrintState.copy(carbonFootPrint = totalEmissions, transportTrips = trips)
   }
@@ -41,13 +45,13 @@ object FootPrintOps {
 
 
   def addWaste(footPrintState: FootPrintState, kg: Int, typeOfWaste: TypeOfWaste): FootPrintState ={
-    val emissions = getEmissionsOfType(typeOfWaste, kg)
+    val emissions = getFoodEmissionsOfType(typeOfWaste, kg)
     val totalEmissions = emissions + footPrintState.carbonFootPrint
     val w = getWasteObject(footPrintState,kg,typeOfWaste)
     footPrintState.copy(carbonFootPrint = totalEmissions, waste = Some(w))
   }
 
-  def getEmissionsOfType(typeOfWaste: TypeOfWaste, kg: Double): Double ={
+  def getFoodEmissionsOfType(typeOfWaste: TypeOfWaste, kg: Double): Double ={
     typeOfWaste match {
       case Food => 1900 * kg
       case Recycled => 100 * kg //A alterar
@@ -75,5 +79,18 @@ object FootPrintOps {
     }
   }
 
+  def setEnergySource(footPrintState: FootPrintState, source: EnergySource): FootPrintState ={
+    val emissions = getEnergyEmissionsOfType(source)
+    val totalEmissions = emissions + footPrintState.carbonFootPrint
+    val newSource = source.copy(emissions = emissions)
+    val energySources = footPrintState.energySources.appended(newSource)
+    footPrintState.copy(carbonFootPrint = totalEmissions,energySources = energySources)
+  }
 
+  def getEnergyEmissionsOfType(source: EnergySource): Double ={
+    source.TypeOfSource match {
+      case Electricity => 256 * source.amount
+      case Gas => 184 * source.amount
+    }
+  }
 }

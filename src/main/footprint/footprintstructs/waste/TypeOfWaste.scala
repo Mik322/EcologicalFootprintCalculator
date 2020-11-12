@@ -1,4 +1,4 @@
-package main.footprint.footprintstructs
+package Waste
 
 trait TypeOfWaste
 

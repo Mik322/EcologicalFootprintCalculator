@@ -1,6 +1,6 @@
 package consoleinterface.footprint.inputs
 
-import main.footprint.footprintstructs.{Diesel, Fuel, Petrol}
+import main.footprint.footprintstructs.transport.{Diesel, Fuel, Petrol}
 
 import scala.io.StdIn.readLine
 

@@ -1,3 +1,3 @@
-package main.footprint.footprintstructs
+package main.footprint.footprintstructs.waste
 
 case class Waste(foodWaste: Int, recycledWaste: Int)

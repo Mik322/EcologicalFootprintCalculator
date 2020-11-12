@@ -8,13 +8,17 @@ import calorieCounter.{CaloricImpure, CaloricMaps, CalorieCounterOps, CalorieSta
 import main.footprint.TransportMeans._
 import main.footprint._
 import main.footprint.FootPrintOps
+import main.footprint.footprintstructs.energy.{EnergyImpure, EnergySource}
+import main.footprint.footprintstructs.transport.TransportationImpure
+import main.footprint.footprintstructs.waste.WasteImpure
 import main.footprint.footprintstructs._
+import _root_.Waste.TypeOfWaste
 
 
 
 object Application extends App{
 
-  val f = FootPrintState(0, List(), None);
+  val f = FootPrintState(0, List(), None, List());
   val c = CalorieCounter(0, 0, None, List(), List(), List());
 
   val foodMap = FileOperations.loadCaloriesMap("Food.txt")
@@ -89,7 +93,15 @@ object Application extends App{
         main_loop(footPrintState,calorieCounter)
       }
 
+      case SetEnergySource(source: EnergySource) => {
+        val newFootPrintState = FootPrintOps.setEnergySource(footPrintState, source)
+        main_loop(newFootPrintState, calorieCounter)
+      }
 
+      case GetEnergyEmissions => {
+        EnergyImpure.getEnergyEmissions(footPrintState)
+        main_loop(footPrintState,calorieCounter)
+      }
     }
   }
 

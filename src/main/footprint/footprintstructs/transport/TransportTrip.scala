@@ -1,4 +1,4 @@
-package main.footprint.footprintstructs
+package main.footprint.footprintstructs.transport
 
 import main.footprint.TransportMeans.TransportMean
 

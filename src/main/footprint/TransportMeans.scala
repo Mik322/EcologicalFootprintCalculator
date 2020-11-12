@@ -1,7 +1,7 @@
 package main.footprint
 
 import main.footprint.TransportMeans.TransportMean
-import main.footprint.footprintstructs.Fuel
+import main.footprint.footprintstructs.transport.Fuel
 
 object TransportMeans{
     trait TransportMean
