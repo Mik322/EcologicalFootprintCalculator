@@ -50,6 +50,11 @@ object Application extends App{
         CaloricImpureFunctions.printCaloricInformation(calories._1, calories._2)
         main_loop(footPrintState, calorieCounter)
       }
+
+      case GetListCaloricActivities => {
+        CaloricImpureFunctions.printListOfActivities(calorieCounter.activities)
+        main_loop(footPrintState, calorieCounter)
+      }
     }
   }
 

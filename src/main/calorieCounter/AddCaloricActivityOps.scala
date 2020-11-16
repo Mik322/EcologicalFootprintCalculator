@@ -3,15 +3,15 @@ package main.calorieCounter
 import consoleinterface._
 import main.CalorieCounter
 import consoleinterface.caloriescouter.CaloricActivitiesChoice._
-import CalorieStateOps.{addCaloricActivity}
+import CalorieStateOps.addCaloricActivity
 import main.calorieCounter.caloricstructures.{CaloricMaps, Drink, Food, Sport}
 
 object AddCaloricActivityOps {
 
   def addCaloricActityToState(activity: AddCaloricActivity, state: CalorieCounter, maps: CaloricMaps): CalorieCounter = activity match {
-    case AddDrink(_,_) => addCaloricActivity(state, activity , foodDensity(activity, maps), drinkAttributes)
-    case AddFood(_,_) => addCaloricActivity(state, activity, drinkDensity(activity, maps), foodAttributes)
-    case AddSport(_,_) => state
+    case AddDrink(_,_,_) => addCaloricActivity(state, activity , drinkDensity(activity, maps), drinkAttributes)
+    case AddFood(_,_,_) => addCaloricActivity(state, activity, foodDensity(activity, maps), foodAttributes)
+    case AddSport(_,_,_) => state
   }
 
   def drinkDensity(activity: AddCaloricActivity, maps: CaloricMaps): Option[Float] = {
@@ -40,17 +40,17 @@ object AddCaloricActivityOps {
 
   def foodAttributes(activity: AddCaloricActivity) = {
     val food = activity.asInstanceOf[AddFood]
-    (food.food, food.quantity, Food)
+    (food.food, food.quantity, Food, food.date)
   }
 
   def drinkAttributes(activity: AddCaloricActivity) = {
     val drink = activity.asInstanceOf[AddDrink]
-    (drink.drink, drink.quantity, Drink)
+    (drink.drink, drink.quantity, Drink, drink.date)
   }
 
   def sportAttributes(activity: AddCaloricActivity) = {
     val sport = activity.asInstanceOf[AddSport]
-    (sport.sport, sport.minutes, Sport)
+    (sport.sport, sport.minutes, Sport, sport.date)
   }
 
 }

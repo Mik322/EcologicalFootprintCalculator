@@ -1,13 +1,36 @@
 package main
 
-case class Date(day: Int, month: Int, year: Int)
+import java.time.LocalDate
+
+case class Date(localDate: LocalDate) {
+  def getDay() = Date.getDay(this)
+
+  def getMonth() = Date.getMonth(this)
+
+  def getYear() = Date.getYear(this)
+
+  override def equals(obj: Any): Boolean = {
+    obj match {
+      case date: Date => this.localDate.equals(date.localDate)
+      case _ => false
+    }
+  }
+
+  def <(date: Date): Boolean = this.localDate.compareTo(date.localDate) < 0
+
+  def >(date: Date): Boolean = this.localDate.compareTo(date.localDate) > 0
+
+  override def toString: String = s"${this.getDay()}/${this.getMonth()}/${this.getYear()}"
+}
 
 object Date {
+  def createDate(day: Int, month: Int, year: Int): Date = Date(LocalDate.of(year, month, day))
 
-  val monthDays = List(31,29,31,30,31,30,31,31,30,31,30,31)
+  def today(): Date = Date(LocalDate.now())
 
-  def newDate(day: Int, month: Int, year: Int): Option[Date] = {
-    if (month > 0 && month < 13 && day > 0 && day <= monthDays(month)) Some(Date(day, month, year))
-    else None
-  }
+  def getDay(date: Date) = date.localDate.getDayOfMonth
+
+  def getMonth(date: Date) = date.localDate.getMonthValue
+
+  def getYear(date: Date) = date.localDate.getYear
 }

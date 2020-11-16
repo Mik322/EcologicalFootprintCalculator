@@ -1,7 +1,8 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.{UserChoice}
+import consoleinterface.UserChoice
 import consoleinterface.caloriescouter.CaloricActivitiesChoice._
+import main.Date
 
 import scala.io.StdIn.readLine
 
@@ -16,27 +17,27 @@ object CaloriesConsoleOps {
     }
   }
 
-  def getActivityInput(list: List[String], choice: (String)=> UserChoice): UserChoice = {
+  def getActivityInput(list: List[String], choice: (String, Date)=> UserChoice, date: Date): UserChoice = {
     print("Select number: ")
     val input = readLine().toInt
-    choice(list(input))
+    choice(list(input), date)
   }
 
-  def addFoodChoice(food: String): AddFood = {
+  def addFoodChoice(food: String, date: Date): AddFood = {
     print("Quantity (in grams): ")
     val quantity = readLine().toInt
-    AddFood(food, quantity)
+    AddFood(food, quantity, date)
   }
 
-  def addDrinkChoice(drink: String): AddDrink = {
+  def addDrinkChoice(drink: String, date: Date): AddDrink = {
     print("Quantity (in mL): ")
     val quantity = readLine().toInt
-    AddDrink(drink, quantity)
+    AddDrink(drink, quantity, date)
   }
 
-  def addSportChoice(sport: String): AddSport = {
+  def addSportChoice(sport: String, date: Date): AddSport = {
     print("time: ")
     val time = readLine().toInt
-    AddSport(sport, time)
+    AddSport(sport, time, date)
   }
 }

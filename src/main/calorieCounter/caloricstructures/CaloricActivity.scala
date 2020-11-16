@@ -1,6 +1,8 @@
 package main.calorieCounter.caloricstructures
 
-case class CaloricActivity(activityType: ActivityType, name: String, quantity: Int, caloricChange: Int)
+import  main.Date
+
+case class CaloricActivity(activityType: ActivityType, name: String, quantity: Int, caloricChange: Int, date: Date)
 
 trait ActivityType;
 case object Food extends ActivityType
