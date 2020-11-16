@@ -1,12 +1,8 @@
 package main.fileOperations
 
-import main.FootPrintState
-import main.CalorieCounter
+import main.{FootPrintState, CalorieCounter, States}
 import java.io._
 import scala.io.Source
-
-
-case class States(footPrintState: FootPrintState, calorieCounter: CalorieCounter)
 
 object FileOperations {
   def saveStates(footPrintState: FootPrintState, calorieCounter: CalorieCounter) = {
@@ -22,7 +18,7 @@ object FileOperations {
       val states = in.readObject().asInstanceOf[States]
       Some((states.footPrintState, states.calorieCounter))
     } catch {
-      case _ => None
+      case _ : Throwable => None
     }
   }
 

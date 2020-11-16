@@ -5,15 +5,14 @@ import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface.AddCaloricActivity
 import consoleinterface._
-import calorieCounter.{AddCaloricActivityOps, CaloricImpure, CaloricMaps, CalorieStateOps}
-import calorieCounter.caloricstructures.Historic
-
-
+import calorieCounter.{AddCaloricActivityOps, CaloricImpureFunctions}
+import calorieCounter.CalorieCounterOps.{calculateBurnedCalories, calculateConsumedCalories}
+import calorieCounter.caloricstructures.{CaloricMaps, CaloricActivity}
 
 object Application extends App{
 
   val f = FootPrintState(0, List());
-  val c = CalorieCounter(0, 0, None, Historic(List(), List(), List()));
+  val c = CalorieCounter(None, List());
 
   val foodMap = FileOperations.loadCaloriesMap("Food.txt")
   val drinksMap = FileOperations.loadCaloriesMap("Drinks.txt")
@@ -47,7 +46,8 @@ object Application extends App{
       }
 
       case GetCalories => {
-        CaloricImpure.printCaloricInformation(calorieCounter)
+        val calories = (calculateConsumedCalories(calorieCounter), calculateBurnedCalories(calorieCounter))
+        CaloricImpureFunctions.printCaloricInformation(calories._1, calories._2)
         main_loop(footPrintState, calorieCounter)
       }
     }

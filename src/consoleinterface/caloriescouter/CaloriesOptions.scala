@@ -2,7 +2,7 @@ package consoleinterface.caloriescouter
 
 import scala.io.StdIn.readLine
 import consoleinterface._
-import main.calorieCounter.CaloricMaps
+import main.calorieCounter.caloricstructures.CaloricMaps
 
 object CaloriesOptions {
   def caloriesCounterOptions(caloricMaps: CaloricMaps): UserChoice = {

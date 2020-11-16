@@ -2,7 +2,7 @@ package consoleinterface
 
 import scala.io.StdIn.readLine
 import consoleinterface.caloriescouter.CaloriesOptions
-import main.calorieCounter.CaloricMaps
+import main.calorieCounter.caloricstructures.CaloricMaps
 
 object ConsoleOps {
   def printWelcome(): Unit = {

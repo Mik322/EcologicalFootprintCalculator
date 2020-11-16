@@ -3,14 +3,54 @@ package main.calorieCounter
 import consoleinterface._
 import main.CalorieCounter
 import consoleinterface.caloriescouter.CaloricActivitiesChoice._
-import CalorieStateOps.{addDrinkCalories, addFoodCalories}
+import CalorieStateOps.{addCaloricActivity}
+import main.calorieCounter.caloricstructures.{CaloricMaps, Drink, Food, Sport}
 
 object AddCaloricActivityOps {
 
   def addCaloricActityToState(activity: AddCaloricActivity, state: CalorieCounter, maps: CaloricMaps): CalorieCounter = activity match {
-    case AddDrink(_,_) => addDrinkCalories(state, activity.asInstanceOf[AddDrink], maps.drinksMap)
-    case AddFood(_,_) => addFoodCalories(state, activity.asInstanceOf[AddFood], maps.foodMap)
+    case AddDrink(_,_) => addCaloricActivity(state, activity , foodDensity(activity, maps), drinkAttributes)
+    case AddFood(_,_) => addCaloricActivity(state, activity, drinkDensity(activity, maps), foodAttributes)
     case AddSport(_,_) => state
+  }
+
+  def drinkDensity(activity: AddCaloricActivity, maps: CaloricMaps): Option[Float] = {
+    val density = maps.drinksMap get activity.asInstanceOf[AddDrink].drink
+    density match {
+      case None => None
+      case Some(value) => Some(value.asInstanceOf[Float]/100)
+    }
+  }
+
+  def foodDensity(activity: AddCaloricActivity, maps: CaloricMaps): Option[Float] = {
+    val density = maps.foodMap get activity.asInstanceOf[AddFood].food
+    density match {
+      case None => None
+      case Some(value) => Some(value.asInstanceOf[Float]/100)
+    }
+  }
+/*
+  def sportDensity(activity: AddCaloricActivity, maps: CaloricMaps): Option[Float] = {
+    val density = maps.sportsMap get activity.asInstanceOf[AddSport].sport
+    density match {
+      case None => None
+      case Some(value) => Some(-value.asInstanceOf[Float])
+    }
+  }*/
+
+  def foodAttributes(activity: AddCaloricActivity) = {
+    val food = activity.asInstanceOf[AddFood]
+    (food.food, food.quantity, Food)
+  }
+
+  def drinkAttributes(activity: AddCaloricActivity) = {
+    val drink = activity.asInstanceOf[AddDrink]
+    (drink.drink, drink.quantity, Drink)
+  }
+
+  def sportAttributes(activity: AddCaloricActivity) = {
+    val sport = activity.asInstanceOf[AddSport]
+    (sport.sport, sport.minutes, Sport)
   }
 
 }
