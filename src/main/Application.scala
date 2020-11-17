@@ -6,16 +6,22 @@ import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface.AddCaloricActivity
 import consoleinterface._
 import calorieCounter.{AddCaloricActivityOps, CaloricInformationOps}
-import calorieCounter.CalorieCounterOps.{calculateBurnedCalories, calculateConsumedCalories}
 import calorieCounter.caloricstructures.{Body, CaloricMaps}
 import calorieCounter.caloricstructures.GoalType.KeepWeight
-import calorieCounter.{CaloricImpure, CalorieStateOps}
+import calorieCounter.CaloricImpure
+import main.footprint.TransportMeans._
+import main.footprint._
+import main.footprint.FootPrintOps
+import main.footprint.footprintstructs.energy.{EnergyImpure, EnergySource}
+import main.footprint.footprintstructs.transport.TransportationImpure
+import main.footprint.footprintstructs.waste.WasteImpure
+import footprintstructs.waste.TypeOfWaste
 
 
 object Application extends App {
 
-  val f = FootPrintState(0, List());
   val c = CalorieCounter(None, List(), KeepWeight);
+  val f = FootPrintState(0, List(), None, List());
 
   val foodMap = FileOperations.loadCaloriesMap("Food.txt")
   val drinksMap = FileOperations.loadCaloriesMap("Drinks.txt")
@@ -73,6 +79,47 @@ object Application extends App {
       case GetBody => {
         CaloricImpure.printBodyInformation(calorieCounter)
         main_loop(footPrintState, calorieCounter)
+      }
+
+      case AddTransportTrip(mean: TransportMean, km: Double) => mean match{
+        case Car(consumption, fuel) => {
+          val newFootPrint = FootPrintOps.addCarConsumption(footPrintState, consumption,km,fuel)
+          main_loop(newFootPrint,calorieCounter)
+        }
+        case publicTransport => {
+          val newFootPrint = FootPrintOps.addPublicTransportEmissions(footPrintState, publicTransport,km)
+          main_loop(newFootPrint,calorieCounter)
+        }
+      }
+
+      case GetTransportEmissions => {
+        TransportationImpure.printTransportEmissions(footPrintState)
+        main_loop(footPrintState,calorieCounter)
+      }
+
+      case GetTransportHistory => {
+        TransportationImpure.history(footPrintState.transportTrips)
+        main_loop(footPrintState, calorieCounter)
+      }
+
+      case AddWaste(kg: Int, typeOfWaste: TypeOfWaste) => {
+        val newFootPrint = FootPrintOps.addWaste(footPrintState, kg, typeOfWaste)
+        main_loop(newFootPrint, calorieCounter)
+    }
+
+      case GetWasteEmissions => {
+        WasteImpure.printWasteEmissions(footPrintState)
+        main_loop(footPrintState,calorieCounter)
+      }
+
+      case SetEnergySource(source: EnergySource) => {
+        val newFootPrintState = FootPrintOps.setEnergySource(footPrintState, source)
+        main_loop(newFootPrintState, calorieCounter)
+      }
+
+      case GetEnergyEmissions => {
+        EnergyImpure.getEnergyEmissions(footPrintState)
+        main_loop(footPrintState,calorieCounter)
       }
     }
   }
