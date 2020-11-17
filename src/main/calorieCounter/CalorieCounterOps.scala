@@ -17,10 +17,10 @@ object CalorieCounterOps {
   def getSumOfCalories(list: List[CaloricActivity]): Int = list.foldLeft(0)((a, b) => a + b.caloricChange)
 
 
-  def calculateConsumedCalories(calorieCounter: CalorieCounter): Int = {
-    val list = calorieCounter.activities.filter((a) => a.activityType == Food || a.activityType == Drink)
+  def calculateConsumedCalories(activities: List[CaloricActivity]): Int = {
+    val list = activities.filter((a) => a.activityType == Food || a.activityType == Drink)
     getSumOfCalories(list)
   }
 
-  def calculateBurnedCalories(calorieCounter: CalorieCounter): Int = getSumOfCalories(calorieCounter.activities.filter(a => a.activityType == Sport))
+  def calculateBurnedCalories(activities: List[CaloricActivity]): Int = getSumOfCalories(activities.filter(a => a.activityType == Sport))
 }

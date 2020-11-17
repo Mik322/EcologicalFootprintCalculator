@@ -1,8 +1,9 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.UserChoice
+import consoleinterface.{UserChoice,SetGoal}
 import consoleinterface.caloriescouter.CaloricActivitiesChoice._
 import main.Date
+import main.calorieCounter.caloricstructures.GoalType._
 
 import scala.io.StdIn.readLine
 
@@ -39,5 +40,18 @@ object CaloriesConsoleOps {
     print("time: ")
     val time = readLine().toInt
     AddSport(sport, time, date)
+  }
+
+  def getUserGoal(): UserChoice = {
+    println("1. Lose A Lot Of Weight\n2. Lose Weight\n3. Keep Weight\n4. Gain Weight\n5. Gain A Lot Of Weight")
+
+    readLine() match {
+      case "1" => SetGoal(LoseALotOfWeight)
+      case "2" => SetGoal(LoseWeight)
+      case "3" => SetGoal(KeepWeight)
+      case "4" => SetGoal(GainWeight)
+      case "5" => SetGoal(GainALotOfWeight)
+      case _ => getUserGoal()
+    }
   }
 }

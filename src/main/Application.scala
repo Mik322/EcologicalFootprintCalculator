@@ -5,14 +5,16 @@ import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface.AddCaloricActivity
 import consoleinterface._
-import calorieCounter.{AddCaloricActivityOps, CaloricImpureFunctions}
+import calorieCounter.{AddCaloricActivityOps, CaloricInformationOps}
 import calorieCounter.CalorieCounterOps.{calculateBurnedCalories, calculateConsumedCalories}
-import calorieCounter.caloricstructures.{CaloricMaps, CaloricActivity}
+import calorieCounter.caloricstructures.CaloricMaps
+import calorieCounter.caloricstructures.GoalType.KeepWeight
 
-object Application extends App{
+
+object Application extends App {
 
   val f = FootPrintState(0, List());
-  val c = CalorieCounter(None, List());
+  val c = CalorieCounter(None, List(), KeepWeight);
 
   val foodMap = FileOperations.loadCaloriesMap("Food.txt")
   val drinksMap = FileOperations.loadCaloriesMap("Drinks.txt")
@@ -27,11 +29,13 @@ object Application extends App{
     userChoice match {
       case Quit => {}
 
+      // Saves the current states to a file
       case SaveStates => {
         FileOperations.saveStates(footPrintState, calorieCounter)
         main_loop(footPrintState, calorieCounter)
       }
 
+      // Loads the states that are in the file States in the project directory
       case LoadStates => {
         val states = FileOperations.loadStates()
         states match {
@@ -40,19 +44,21 @@ object Application extends App{
         }
       }
 
+      // Adds a caloric activity (Food, Drink or Sport) to the calorie counter
       case activity: AddCaloricActivity => {
         val newCalorieCounter = AddCaloricActivityOps.addCaloricActityToState(activity, calorieCounter, caloricMaps)
         main_loop(footPrintState, newCalorieCounter)
       }
 
-      case GetCalories => {
-        val calories = (calculateConsumedCalories(calorieCounter), calculateBurnedCalories(calorieCounter))
-        CaloricImpureFunctions.printCaloricInformation(calories._1, calories._2)
-        main_loop(footPrintState, calorieCounter)
+      // Sets the Weight goal
+      case SetGoal(goal) => {
+        val newCalorieCounter = calorieCounter.copy(goal = goal)
+        main_loop(footPrintState, newCalorieCounter)
       }
 
-      case GetListCaloricActivities => {
-        CaloricImpureFunctions.printListOfActivities(calorieCounter.activities)
+      // Handles all types of caloric Information requests
+      case information: CaloricInformation => {
+        CaloricInformationOps.getCaloricInformation(information, calorieCounter)
         main_loop(footPrintState, calorieCounter)
       }
     }
