@@ -1,6 +1,6 @@
 package main.calorieCounter.caloricstructures
 
-case class Body(height: Int, weight: Int, age: Int, gender: Gender, lifestyle: Lifestyle)
+case class Body(height: Int, weight: Double, age: Int, gender: Gender, lifestyle: Lifestyle)
 
 trait Gender
 case object Male extends Gender
@@ -10,4 +10,5 @@ trait Lifestyle
 case object Sedentary extends Lifestyle
 case object Moderated extends Lifestyle
 case object Active extends Lifestyle
-case object Athlete extends Lifestyle
+case object VeryActive extends Lifestyle
+case object ExtremelyActive extends Lifestyle

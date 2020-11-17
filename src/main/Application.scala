@@ -7,8 +7,9 @@ import consoleinterface.AddCaloricActivity
 import consoleinterface._
 import calorieCounter.{AddCaloricActivityOps, CaloricInformationOps}
 import calorieCounter.CalorieCounterOps.{calculateBurnedCalories, calculateConsumedCalories}
-import calorieCounter.caloricstructures.CaloricMaps
+import calorieCounter.caloricstructures.{Body, CaloricMaps}
 import calorieCounter.caloricstructures.GoalType.KeepWeight
+import calorieCounter.{CaloricImpure, CalorieStateOps}
 
 
 object Application extends App {
@@ -18,8 +19,9 @@ object Application extends App {
 
   val foodMap = FileOperations.loadCaloriesMap("Food.txt")
   val drinksMap = FileOperations.loadCaloriesMap("Drinks.txt")
+  val exercisesMap = FileOperations.loadCaloriesMapDouble("Exercises.txt")
 
-  val caloricMaps = CaloricMaps(foodMap, drinksMap, None)
+  val caloricMaps = CaloricMaps(foodMap, drinksMap, exercisesMap)
 
   @tailrec
   def main_loop(footPrintState: FootPrintState, calorieCounter: CalorieCounter): Unit = {
@@ -59,6 +61,17 @@ object Application extends App {
       // Handles all types of caloric Information requests
       case information: CaloricInformation => {
         CaloricInformationOps.getCaloricInformation(information, calorieCounter)
+        main_loop(footPrintState, calorieCounter)
+      }
+
+      case SetBodyParams(height, weight, age, gender, lifestyle) => {
+        val body = Body(height,weight,age,gender,lifestyle)
+        val newCalorieCounter = calorieCounter.copy(body=Some(body))
+        main_loop(footPrintState,newCalorieCounter)
+      }
+
+      case GetBody => {
+        CaloricImpure.printBodyInformation(calorieCounter)
         main_loop(footPrintState, calorieCounter)
       }
     }

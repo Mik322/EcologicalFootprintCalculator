@@ -32,8 +32,24 @@ object FileOperations {
     }
   }
 
+  def processLinesDouble(lines:List[String]): Map[String,Double]={
+    lines match {
+      case ::(head, next) =>{
+        val line = head.split(":")
+        processLinesDouble(next) + (line(0) -> line(1).toDouble)
+      }
+      case Nil => Map()
+    }
+  }
+
 
   def loadCaloriesMap(name: String): Map[String, Int] = {
     processLines(Source.fromFile(name).getLines.toList)
   }
+
+  def loadCaloriesMapDouble(name: String): Map[String, Double] = {
+    processLinesDouble(Source.fromFile(name).getLines.toList)
+  }
+
+
 }

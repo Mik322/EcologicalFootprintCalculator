@@ -1,9 +1,10 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.{UserChoice,SetGoal}
+import consoleinterface.{SetBodyParams, SetGoal, UserChoice}
 import consoleinterface.caloriescouter.CaloricActivitiesChoice._
 import main.Date
 import main.calorieCounter.caloricstructures.GoalType._
+import inputs.BodyInput
 
 import scala.io.StdIn.readLine
 
@@ -16,6 +17,17 @@ object CaloriesConsoleOps {
       }
       case Nil => {}
     }
+  }
+  def getBodyInput():UserChoice = {
+    print("Height(in cm): ")
+    val height=readLine().toInt
+    print("Weight(in kg): ")
+    val weight=readLine().toDouble
+    print("Age: ")
+    val age=readLine().toInt
+    val gender = BodyInput.genderInput()
+    val lifestyle = BodyInput.lifestyleInput()
+    SetBodyParams(height,weight,age,gender,lifestyle)
   }
 
   def getActivityInput(list: List[String], choice: (String, Date)=> UserChoice, date: Date): UserChoice = {
@@ -55,3 +67,4 @@ object CaloriesConsoleOps {
     }
   }
 }
+
