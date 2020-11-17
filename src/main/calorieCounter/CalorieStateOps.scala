@@ -20,19 +20,5 @@ object CalorieStateOps {
       }
     }
   }
-  /*
-  def addExerciseCalories(calorieCounter: CalorieCounter, exercise: AddExercise, exerciseMap: Map[String, Double], weight:Double): CalorieCounter = {
-    val caloricDensity = exerciseMap get exercise.exercise
-    caloricDensity match {
-
-      case None => calorieCounter
-
-      case Some(value) => {
-        val burnedCalories =  CalorieCounterOps.calculateExerciseCalories(value, exercise.time, weight)
-        val newTotalBurnedCalories = burnedCalories + calorieCounter.caloriesBurned
-        calorieCounter.copy(caloriesBurned = newTotalBurnedCalories, exercises = calorieCounter.exercises.appended(exercise.exercise))
-      }
-    }
-  }*/
 
 }

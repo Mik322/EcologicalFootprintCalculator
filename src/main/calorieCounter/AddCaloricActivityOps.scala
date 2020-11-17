@@ -8,10 +8,10 @@ import main.calorieCounter.caloricstructures.{CaloricMaps, Drink, Food, Sport}
 
 object AddCaloricActivityOps {
 
-  def addCaloricActityToState(activity: AddCaloricActivity, state: CalorieCounter, maps: CaloricMaps): CalorieCounter = activity match {
+  def addCaloricActivityToState(activity: AddCaloricActivity, state: CalorieCounter, maps: CaloricMaps): CalorieCounter = activity match {
     case AddDrink(_,_,_) => addCaloricActivity(state, activity , drinkDensity(activity, maps), drinkAttributes)
     case AddFood(_,_,_) => addCaloricActivity(state, activity, foodDensity(activity, maps), foodAttributes)
-    case AddSport(_,_,_) => state
+    case AddSport(_,_,_) => addCaloricActivity(state, activity, sportDensity(activity, maps), sportAttributes)
   }
 
   def drinkDensity(activity: AddCaloricActivity, maps: CaloricMaps): Option[Float] = {
@@ -29,14 +29,14 @@ object AddCaloricActivityOps {
       case Some(value) => Some(value.asInstanceOf[Float]/100)
     }
   }
-/*
+
   def sportDensity(activity: AddCaloricActivity, maps: CaloricMaps): Option[Float] = {
-    val density = maps.sportsMap get activity.asInstanceOf[AddSport].sport
+    val density = maps.exercisesMap get activity.asInstanceOf[AddSport].sport
     density match {
       case None => None
       case Some(value) => Some(-value.asInstanceOf[Float])
     }
-  }*/
+  }
 
   def foodAttributes(activity: AddCaloricActivity) = {
     val food = activity.asInstanceOf[AddFood]
