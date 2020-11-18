@@ -16,12 +16,13 @@ import main.footprint.footprintstructs.energy.{EnergyImpure, EnergySource}
 import main.footprint.footprintstructs.transport.TransportationImpure
 import main.footprint.footprintstructs.waste.WasteImpure
 import footprintstructs.waste.TypeOfWaste
+import main.footprint.footprintstructs.WaterImpure
 
 
 object Application extends App {
 
   val c = CalorieCounter(None, List(), KeepWeight);
-  val f = FootPrintState(0, List(), None, List());
+  val f = FootPrintState(0, List(), None, List(), None);
 
   val foodMap = FileOperations.loadCaloriesMap("Food.txt")
   val drinksMap = FileOperations.loadCaloriesMap("Drinks.txt")
@@ -119,6 +120,16 @@ object Application extends App {
 
       case GetEnergyEmissions => {
         EnergyImpure.getEnergyEmissions(footPrintState)
+        main_loop(footPrintState,calorieCounter)
+      }
+
+      case SetWaterConsumption(amount: Double) => {
+        val newFootPrintState = FootPrintOps.setWaterConsumption(footPrintState, amount)
+        main_loop(newFootPrintState, calorieCounter)
+      }
+
+      case GetWaterEmissions => {
+        WaterImpure.printWaterImpure(footPrintState)
         main_loop(footPrintState,calorieCounter)
       }
     }

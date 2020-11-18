@@ -4,7 +4,7 @@ import main.FootPrintState
 import main.footprint.TransportMeans.{Car, TransportMean}
 import main.footprint.footprintstructs.{transport, _}
 import main.footprint.TransportMeans._
-import main.footprint.footprintstructs.energy.{Electricity, EnergySource, Gas}
+import main.footprint.footprintstructs.energy.{Electricity, EnergySource, Gas, Coal, Wood, Oil}
 import main.footprint.footprintstructs.transport.{Diesel, Fuel, Petrol, TransportTrip}
 import main.footprint.footprintstructs.waste.{TypeOfWaste, Waste, Food, Recycled}
 
@@ -46,7 +46,7 @@ object FootPrintOps {
   def addWaste(footPrintState: FootPrintState, kg: Int, typeOfWaste: TypeOfWaste): FootPrintState ={
     val emissions = getFoodEmissionsOfType(typeOfWaste, kg)
     val totalEmissions = emissions + footPrintState.carbonFootPrint
-    val w = getWasteObject(footPrintState,kg,typeOfWaste)
+    val w = getWasteObject(footPrintState,kg,typeOfWaste,emissions)
     footPrintState.copy(carbonFootPrint = totalEmissions, waste = Some(w))
   }
 
@@ -57,24 +57,24 @@ object FootPrintOps {
     }
   }
 
-  def getWasteObject(footPrintState: FootPrintState, kg:Int, typeOfWaste: TypeOfWaste): Waste ={
+  def getWasteObject(footPrintState: FootPrintState, kg:Int, typeOfWaste: TypeOfWaste, emissions: Double): Waste ={
     typeOfWaste match {
-      case Food => foodWaste(footPrintState, kg)
-      case Recycled => recycledWaste(footPrintState,kg)
+      case Food => foodWaste(footPrintState, kg, emissions)
+      case Recycled => recycledWaste(footPrintState,kg,emissions)
     }
   }
 
-  def foodWaste(footPrintState: FootPrintState, kg: Int): Waste = {
+  def foodWaste(footPrintState: FootPrintState, kg: Int, emissions: Double): Waste = {
     footPrintState.waste match {
-      case None => Waste(kg, 0)
-      case Some(value) => value.copy(foodWaste = value.foodWaste + kg)
+      case None => Waste(kg, 0, emissions)
+      case Some(value) => value.copy(foodWaste = value.foodWaste + kg, totalEmissions = value.totalEmissions + emissions)
     }
   }
 
-  def recycledWaste(footPrintState: FootPrintState, kg: Int): Waste ={
+  def recycledWaste(footPrintState: FootPrintState, kg: Int, emissions: Double): Waste ={
     footPrintState.waste match {
-      case None => Waste(0, kg)
-      case Some(value) => value.copy(recycledWaste = value.recycledWaste + kg)
+      case None => Waste(0, kg, emissions)
+      case Some(value) => value.copy(recycledWaste = value.recycledWaste + kg, totalEmissions = value.totalEmissions + emissions)
     }
   }
 
@@ -90,6 +90,15 @@ object FootPrintOps {
     source.TypeOfSource match {
       case Electricity => 256 * source.amount
       case Gas => 184 * source.amount
+      case Oil => 314 * source.amount
+      case Wood => 7 * source.amount
+      case Coal => 414 * source.amount
     }
+  }
+
+  def setWaterConsumption(footPrintState: FootPrintState, amount: Double): FootPrintState ={
+    val emissions = amount * 9
+    val totalEmissions = emissions + footPrintState.carbonFootPrint
+    footPrintState.copy(carbonFootPrint = totalEmissions , water = Some(emissions))
   }
 }

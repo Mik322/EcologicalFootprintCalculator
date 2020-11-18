@@ -1,11 +1,10 @@
 package consoleinterface.footprint
 
-import main.footprint.footprintstructs.waste.{Waste, Food, Recycled}
+import main.footprint.footprintstructs.waste.{Food, Recycled, Waste}
 import consoleinterface.footprint.inputs.TransportationInput.fuelInput
-import consoleinterface.{AddTransportTrip, AddWaste, SetEnergySource, UserChoice}
+import consoleinterface.{AddTransportTrip, AddWaste, SetEnergySource, SetWaterConsumption, UserChoice}
 import main.footprint.TransportMeans._
-import main.footprint.footprintstructs.energy.{Electricity, EnergySource, Gas, TypeOfEnergySource}
-import main.footprint.footprintstructs._
+import main.footprint.footprintstructs.energy.{Electricity, EnergySource, TypeOfEnergySource, Gas, Oil, Wood, Coal}
 
 import scala.io.StdIn.readLine
 
@@ -44,8 +43,15 @@ object FootPrintConsoleOps{
     AddWaste(kg,Recycled)
   }
 
+  def setElectricity(): UserChoice ={
+    println("Type the amount of KhW of electricity you use on average per month")
+    val amount = readLine().toDouble
+    val energySource = EnergySource(Electricity,amount, 0)
+    SetEnergySource(energySource)
+  }
+
   def setEnergySources(): UserChoice ={
-    println("Select what type of energy do you use at your household: \n1.Electricity\n2.Gas")
+    println("Select what type of energy do you use at your household: \n1.Gas\n2.Oil\n3.Wood\n4.Coal")
     val source = readLine().toInt
     println("Type the amount of KhW of the source you use on average per month")
     val amount = readLine().toDouble
@@ -55,9 +61,17 @@ object FootPrintConsoleOps{
 
   def getEnergySourceType(source: Int): TypeOfEnergySource ={
     source match {
-      case 1 => Electricity
-      case 2 => Gas
+      case 1 => Gas
+      case 2 => Oil
+      case 3 => Wood
+      case 4 => Coal
     }
+  }
+
+  def setWaterConsumption(): UserChoice ={
+    println("How many liters do you spend on average per month")
+    val amount = readLine().toDouble
+    SetWaterConsumption(amount)
   }
 
 }
