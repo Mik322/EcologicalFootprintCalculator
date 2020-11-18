@@ -16,14 +16,22 @@ case class Date(localDate: LocalDate) {
     }
   }
 
+  def minusDays(days: Int): Date = Date.minusDays(this, days)
+
   def <(date: Date): Boolean = this.localDate.compareTo(date.localDate) < 0
 
   def >(date: Date): Boolean = this.localDate.compareTo(date.localDate) > 0
 
   override def toString: String = s"${this.getDay()}/${this.getMonth()}/${this.getYear()}"
+
+  def >=(date: Date) = this > date || this == date
+
+  def <=(date: Date) = this < date || this == date
 }
 
 object Date {
+  def minusDays(date: Date, days: Int): Date = Date(date.localDate.minusDays(days.toLong))
+
   def createDate(day: Int, month: Int, year: Int): Date = Date(LocalDate.of(year, month, day))
 
   def today(): Date = Date(LocalDate.now())

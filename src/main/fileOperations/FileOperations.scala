@@ -1,7 +1,9 @@
 package main.fileOperations
 
-import main.{FootPrintState, CalorieCounter, States}
+import main.{CalorieCounter, FootPrintState, States}
 import java.io._
+
+import scala.annotation.tailrec
 import scala.io.Source
 
 object FileOperations {
@@ -22,34 +24,24 @@ object FileOperations {
     }
   }
 
-  def processLines(lines: List[String]): Map[String, Int] = {
-    lines match {
-      case ::(head, next) =>{
-        val line = head.split(":")
-        processLines(next) + (line(0) -> line(1).toInt)
+  def processLines[A](lines: List[String], convert: String => A): Map[String, A] = {
+    @tailrec
+    def loop(lines: List[String], map: Map[String, A]): Map[String, A] = {
+      lines match {
+        case ::(head, next) => {
+          val line = head.split(":")
+          loop(next, map + (line(0) -> convert(line(1))))
+        }
+        case Nil => map
       }
-      case Nil => Map()
     }
+    loop(lines, Map())
   }
 
-  def processLinesDouble(lines:List[String]): Map[String,Double]={
-    lines match {
-      case ::(head, next) =>{
-        val line = head.split(":")
-        processLinesDouble(next) + (line(0) -> line(1).toDouble)
-      }
-      case Nil => Map()
-    }
+  def loadCaloriesMap[A](name: String, convert: String => A): Map[String, A] = {
+    val file = Source.fromFile(name)
+    val map = processLines(file.getLines.toList, convert)
+    file.close()
+    map
   }
-
-
-  def loadCaloriesMap(name: String): Map[String, Int] = {
-    processLines(Source.fromFile(name).getLines.toList)
-  }
-
-  def loadCaloriesMapDouble(name: String): Map[String, Double] = {
-    processLinesDouble(Source.fromFile(name).getLines.toList)
-  }
-
-
 }

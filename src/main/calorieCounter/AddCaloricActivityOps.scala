@@ -2,16 +2,17 @@ package main.calorieCounter
 
 import consoleinterface._
 import main.CalorieCounter
+import CalorieCounterOps.calculateExerciseCalories
 import consoleinterface.caloriescouter.CaloricActivitiesChoice._
 import CalorieStateOps.addCaloricActivity
-import main.calorieCounter.caloricstructures.{CaloricMaps, Drink, Food, Sport}
+import main.calorieCounter.caloricstructures.{Body, CaloricMaps, Drink, Food, Sport}
 
 object AddCaloricActivityOps {
 
   def addCaloricActivityToState(activity: AddCaloricActivity, state: CalorieCounter, maps: CaloricMaps): CalorieCounter = activity match {
     case AddDrink(_,_,_) => addCaloricActivity(state, activity , drinkDensity(activity, maps), drinkAttributes)
     case AddFood(_,_,_) => addCaloricActivity(state, activity, foodDensity(activity, maps), foodAttributes)
-    case AddSport(_,_,_) => addCaloricActivity(state, activity, sportDensity(activity, maps), sportAttributes)
+    case AddSport(_,_,_) => addCaloricActivity(state, activity, sportDensity(activity, maps, state.body), sportAttributes)
   }
 
   def drinkDensity(activity: AddCaloricActivity, maps: CaloricMaps): Option[Float] = {
@@ -30,11 +31,14 @@ object AddCaloricActivityOps {
     }
   }
 
-  def sportDensity(activity: AddCaloricActivity, maps: CaloricMaps): Option[Float] = {
+  def sportDensity(activity: AddCaloricActivity, maps: CaloricMaps, body: Option[Body]): Option[Float] = {
     val density = maps.exercisesMap get activity.asInstanceOf[AddSport].sport
     density match {
       case None => None
-      case Some(value) => Some(-value.asInstanceOf[Float])
+      case Some(exerciseMET) => body match {
+        case None => None
+        case Some(bodyParams) => Some(-calculateExerciseCalories(exerciseMET, 1, bodyParams.weight))
+      }
     }
   }
 
