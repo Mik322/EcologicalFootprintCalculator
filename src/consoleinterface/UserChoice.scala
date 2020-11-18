@@ -1,7 +1,7 @@
 package consoleinterface
 
-import main.calorieCounter.caloricstructures.{Gender, Lifestyle}
-import main.calorieCounter.caloricstructures.GoalType.Goal
+import main.Date
+import main.calorieCounter.caloricstructures.Goal.Goal
 import main.footprint.TransportMeans.TransportMean
 import main.footprint.footprintstructs.energy.EnergySource
 import main.footprint.footprintstructs.waste.TypeOfWaste
@@ -9,8 +9,7 @@ import main.footprint.footprintstructs.waste.TypeOfWaste
 trait UserChoice
 
 case object SaveStates extends UserChoice
-case object LoadStates extends UserChoice
-case class SetBodyParams(height: Int, weight: Double, age: Int, gender: Gender, lifestyle: Lifestyle) extends UserChoice
+case class ChangeWeight(weight: Double, date: Date) extends UserChoice
 trait AddCaloricActivity extends UserChoice
 case class SetGoal(goal: Goal) extends UserChoice
 trait CaloricInformation extends UserChoice

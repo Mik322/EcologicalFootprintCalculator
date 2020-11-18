@@ -1,9 +1,10 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.{SetBodyParams, SetGoal, UserChoice}
+import consoleinterface.StartOptions.{SetBodyParams, StartOptions}
+import consoleinterface.{ChangeWeight, DateChoice, SetGoal, UserChoice}
 import consoleinterface.caloriescouter.CaloricActivitiesChoice._
 import main.Date
-import main.calorieCounter.caloricstructures.GoalType._
+import main.calorieCounter.caloricstructures.Goal._
 import inputs.BodyInput
 
 import scala.io.StdIn.readLine
@@ -18,7 +19,7 @@ object CaloriesConsoleOps {
       case Nil => {}
     }
   }
-  def getBodyInput():UserChoice = {
+  def getBodyInput(): SetBodyParams = {
     print("Height(in cm): ")
     val height=readLine().toInt
     print("Weight(in kg): ")
@@ -27,7 +28,7 @@ object CaloriesConsoleOps {
     val age=readLine().toInt
     val gender = BodyInput.genderInput()
     val lifestyle = BodyInput.lifestyleInput()
-    SetBodyParams(height,weight,age,gender,lifestyle)
+    SetBodyParams(height,weight,age,gender,lifestyle, Date.today())
   }
 
   def getActivityInput(list: List[String], choice: (String, Date)=> UserChoice, date: Date): UserChoice = {
@@ -55,7 +56,7 @@ object CaloriesConsoleOps {
   }
 
   def getUserGoal(): UserChoice = {
-    println("1. Lose A Lot Of Weight\n2. Lose Weight\n3. Keep Weight\n4. Gain Weight\n5. Gain A Lot Of Weight")
+    println("1. Lose 1kg per week\n2. Lose 0.5kg per week\n3. Keep Weight\n4. Gain 0.5kg per week\n5. Gain 1kg per week")
 
     readLine() match {
       case "1" => SetGoal(LoseALotOfWeight)
@@ -64,6 +65,21 @@ object CaloriesConsoleOps {
       case "4" => SetGoal(GainWeight)
       case "5" => SetGoal(GainALotOfWeight)
       case _ => getUserGoal()
+    }
+  }
+
+  def getNewWeight(): ChangeWeight = {
+    try {
+      println("How much do you weight?")
+      val weight = readLine().toDouble
+      println("When did you measured it?")
+      val date = DateChoice.getUserDate()
+      ChangeWeight(weight, date)
+    } catch {
+      case e: NumberFormatException => {
+        println("Number is invalid please try again")
+        getNewWeight()
+      }
     }
   }
 }
