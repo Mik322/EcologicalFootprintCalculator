@@ -1,8 +1,11 @@
 package main.calorieCounter
 
-import main.{CalorieCounter, Date}
+import main.{CalorieCounter, Date, FootPrintState, States}
 import consoleinterface.AddCaloricActivity
-import main.calorieCounter.caloricstructures.{ActivityType, CaloricActivity, Drink, Food, Sport}
+import consoleinterface.StartOptions.SetBodyParams
+import CalorieCounterOps.createBody
+import main.calorieCounter.caloricstructures.Goal.KeepWeight
+import main.calorieCounter.caloricstructures.{ActivityType, CaloricActivity}
 
 object CalorieStateOps {
   def addCaloricActivity(counter: CalorieCounter,
@@ -21,4 +24,15 @@ object CalorieStateOps {
     }
   }
 
+  def changeWeight(counter: CalorieCounter, weight: Double, date: Date): CalorieCounter = {
+    val newBody = counter.body.copy(weight = weight)
+    counter.copy(body = newBody, weightHistoric = counter.weightHistoric.appended((weight, date)))
+  }
+
+  def createStates(bodyParams: SetBodyParams): States = {
+    val body = createBody(bodyParams.height, bodyParams.height, bodyParams.age, bodyParams.gender, bodyParams.lifestyle)
+    val footPrint = FootPrintState(0, List(), None, List())
+    val calorieCounter = CalorieCounter(body, List(), KeepWeight, List((bodyParams.weight, bodyParams.date)))
+    States(footPrint, calorieCounter)
+  }
 }

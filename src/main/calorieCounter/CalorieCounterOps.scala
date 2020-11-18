@@ -39,4 +39,6 @@ object CalorieCounterOps {
     val bmr = calculateBMR(body)
     goal.id + bmr
   }
+
+  def createBody(height: Int, weight: Double, age: Int, gender: Gender, lifestyle: Lifestyle): Body = Body(height, weight, age, gender, lifestyle)
 }

@@ -14,11 +14,11 @@ object FileOperations {
 
   }
 
-  def loadStates(): Option[(FootPrintState, CalorieCounter)] = {
+  def loadStates(): Option[States] = {
     try {
       val in = new ObjectInputStream(new FileInputStream(new File("States")))
       val states = in.readObject().asInstanceOf[States]
-      Some((states.footPrintState, states.calorieCounter))
+      Some(states)
     } catch {
       case _ : Throwable => None
     }
@@ -44,4 +44,6 @@ object FileOperations {
     file.close()
     map
   }
+
+  def printLoadError() = println("There is no saved profile. Create a new One")
 }

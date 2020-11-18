@@ -18,7 +18,7 @@ object CaloriesOptions {
   }
 
   def addMenu(caloricMaps: CaloricMaps): UserChoice = {
-    println("1. Add Food\n2. Add Drink\n3. Add Exercise\n4. Set Goal\n5. Set Body Parameters\n0. Quit")
+    println("1. Add Food\n2. Add Drink\n3. Add Exercise\n4. Set Goal\n5. Changed Weight\n0. Quit")
     val input = readLine()
 
     input match {
@@ -46,7 +46,8 @@ object CaloriesOptions {
       }
       case "4" => CaloriesConsoleOps.getUserGoal()
 
-      case "5" => CaloriesConsoleOps.getBodyInput()
+      case "6" => CaloriesConsoleOps.getNewWeight()
+
       case _ => Quit
     }
   }

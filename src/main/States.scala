@@ -10,4 +10,4 @@ import main.footprint.footprintstructs.waste.Waste
 case class States(footPrintState: FootPrintState, calorieCounter: CalorieCounter)
 
 case class FootPrintState(carbonFootPrint: Double, transportTrips: List[TransportTrip], waste: Option[Waste], energySources: List[EnergySource])
-case class CalorieCounter(body: Option[Body], activities: List[CaloricActivity], goal: Goal, weightHistoric: List[(Double, Date)])
+case class CalorieCounter(body: Body, activities: List[CaloricActivity], goal: Goal, weightHistoric: List[(Double, Date)])

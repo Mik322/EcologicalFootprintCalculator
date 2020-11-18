@@ -35,18 +35,12 @@ object CaloricInformationOps {
         Impure.printListOfActivities(activities)
       }
 
-      case CaloricInformation.GetGoalInformation => counter.body match {
-        case None => Impure.printNoBodyError()
-        case Some(value) => Impure.printGoalInformation(counter.goal, calculateCaloriesToGoal(value, counter.goal))
-      }
+      case CaloricInformation.GetGoalInformation => Impure.printGoalInformation(counter.goal, calculateCaloriesToGoal(counter.body, counter.goal))
     }
   }
 
   def getCalories(counter: CalorieCounter, activities: List[CaloricActivity]): (Int, Int, Int) = {
-    val goalCalories = counter.body match {
-      case None => 0
-      case Some(value) => calculateCaloriesToGoal(value, counter.goal)
-    }
+    val goalCalories =  calculateCaloriesToGoal(counter.body, counter.goal)
     (calculateConsumedCalories(activities), calculateBurnedCalories(activities), goalCalories)
   }
 
@@ -72,8 +66,6 @@ object CaloricInformationOps {
 
       println(s"To ${goalFrase} you need to have a net caloric intake of ${calories} per week")
     }
-
-    def printNoBodyError() = println(s"Please set your body parameters first")
 
     @tailrec
     def printListOfActivities(activities: List[CaloricActivity]): Unit = {

@@ -31,14 +31,11 @@ object AddCaloricActivityOps {
     }
   }
 
-  def sportDensity(activity: AddCaloricActivity, maps: CaloricMaps, body: Option[Body]): Option[Float] = {
+  def sportDensity(activity: AddCaloricActivity, maps: CaloricMaps, body: Body): Option[Float] = {
     val density = maps.exercisesMap get activity.asInstanceOf[AddSport].sport
     density match {
       case None => None
-      case Some(exerciseMET) => body match {
-        case None => None
-        case Some(bodyParams) => Some(-calculateExerciseCalories(exerciseMET, 1, bodyParams.weight))
-      }
+      case Some(exerciseMET) => Some(-calculateExerciseCalories(exerciseMET, 1, body.weight))
     }
   }
 

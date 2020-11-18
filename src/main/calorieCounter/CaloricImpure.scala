@@ -1,17 +1,14 @@
 package main.calorieCounter
 
-import main.CalorieCounter
+import main.calorieCounter.caloricstructures.Body
 
 case object CaloricImpure {
-  def printBodyInformation(calorieCounter: CalorieCounter) = calorieCounter.body match {
-    case None => println("Please insert your body parameters")
-    case Some(value) => {
-      println(s"Your height: ${value.height}cm")
-      println(s"Your weight: ${value.weight}kg")
-      println(s"Your age: ${value.age}")
-      println(s"Your gender: ${value.gender}")
-      println(s"Your lifestyle: ${value.lifestyle}")
-    }
+  def printBodyInformation(body: Body): Unit = {
+    println(s"Your height: ${body.height}cm")
+    println(s"Your weight: ${body.weight}kg")
+    println(s"Your age: ${body.age}")
+    println(s"Your gender: ${body.gender}")
+    println(s"Your lifestyle: ${body.lifestyle}")
   }
 
 }
