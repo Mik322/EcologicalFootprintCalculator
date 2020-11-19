@@ -47,8 +47,8 @@ object Application extends App {
       }
 
       // Sets the Weight goal
-      case SetGoal(goal) => {
-        val newCalorieCounter = calorieCounter.copy(goal = goal)
+      case SetGoal(goal,date) => {
+        val newCalorieCounter = calorieCounter.copy(goal = (goal,date))
         main_loop(footPrintState, newCalorieCounter)
       }
 
@@ -142,4 +142,5 @@ object Application extends App {
 
     main_loop(states.footPrintState, states.calorieCounter)
   }
+  start()
 }

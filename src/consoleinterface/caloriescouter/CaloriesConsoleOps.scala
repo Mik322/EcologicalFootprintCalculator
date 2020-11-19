@@ -57,16 +57,19 @@ object CaloriesConsoleOps {
 
   def getUserGoal(): UserChoice = {
     println("1. Lose 1kg per week\n2. Lose 0.5kg per week\n3. Keep Weight\n4. Gain 0.5kg per week\n5. Gain 1kg per week")
-
-    readLine() match {
-      case "1" => SetGoal(LoseALotOfWeight)
-      case "2" => SetGoal(LoseWeight)
-      case "3" => SetGoal(KeepWeight)
-      case "4" => SetGoal(GainWeight)
-      case "5" => SetGoal(GainALotOfWeight)
-      case _ => getUserGoal()
-    }
+    SetGoal(getGoalInput(),Date.today())
   }
+
+  private def getGoalInput(): Goal = readLine() match {
+      case "1" => LoseALotOfWeight
+      case "2" => LoseWeight
+      case "3" => KeepWeight
+      case "4" => GainWeight
+      case "5" => GainALotOfWeight
+      case _ =>
+        println("Invalid number. Please try again.")
+        getGoalInput()
+    }
 
   def getNewWeight(): ChangeWeight = {
     try {

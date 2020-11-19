@@ -35,13 +35,14 @@ object CaloricInformationOps {
         Impure.printListOfActivities(activities)
       }
 
-      case CaloricInformation.GetGoalInformation => Impure.printGoalInformation(counter.goal, calculateCaloriesToGoal(counter.body, counter.goal))
-      case CaloricInformation.GetWeightHistory => Impure.printWeightHistory(counter.weightHistory)
+      case CaloricInformation.GetGoalInformation => Impure.printGoalInformation(counter.goal._1, calculateCaloriesToGoal(counter.body, counter.goal._1))
+      case CaloricInformation.GetWeightHistory => Impure.printWeightHistory(counter.weightHistory.sortBy(_._2))
+      case CaloricInformation.GetWeightTrack => Impure.printWeightTrack(counter.weightHistory.sortBy(_._2),counter.goal)
     }
   }
 
   def getCalories(counter: CalorieCounter, activities: List[CaloricActivity]): (Int, Int, Int) = {
-    val goalCalories =  calculateCaloriesToGoal(counter.body, counter.goal)
+    val goalCalories =  calculateCaloriesToGoal(counter.body, counter.goal._1)
     (calculateConsumedCalories(activities), calculateBurnedCalories(activities), goalCalories)
   }
 
@@ -57,15 +58,15 @@ object CaloricInformationOps {
     }
 
     def printGoalInformation(goal: Goal, calories: Int): Unit = {
-      val goalFrase = goal match {
-        case Goal.LoseALotOfWeight => "lose 1kg per week"
-        case Goal.LoseWeight => "lose 0.5kg per week"
-        case Goal.KeepWeight => "keep weight"
-        case Goal.GainWeight => "gain 0.5kg per week"
-        case Goal.GainALotOfWeight => "gain 1kg per week"
-      }
+      println(s"To ${goalFrase(goal)} you need to have a net caloric intake of ${calories} per week")
+    }
 
-      println(s"To ${goalFrase} you need to have a net caloric intake of ${calories} per week")
+    def goalFrase(goal: Goal): String = goal match {
+      case Goal.LoseALotOfWeight => "lose 1kg per week"
+      case Goal.LoseWeight => "lose 0.5kg per week"
+      case Goal.KeepWeight => "keep weight"
+      case Goal.GainWeight => "gain 0.5kg per week"
+      case Goal.GainALotOfWeight => "gain 1kg per week"
     }
 
     @tailrec
@@ -83,12 +84,26 @@ object CaloricInformationOps {
     def printWeightHistory(weightHistory: List[(Double, Date)]):Unit = {
       weightHistory match {
         case ::(head,next)=> {
-          println(s"You had ${head._1} in ${head._2}")
+          println(s"You had ${head._1}kg in ${head._2}")
           printWeightHistory(next)
         }
         case Nil =>
       }
     }
+    def printWeightTrack(weightHistory: List[(Double,Date)], goal: (Goal,Date)): Unit = {
+      val temp=weightHistory.filter{case(_,d) => d >= goal._2}
+      val avg =(temp.head._1 - temp.last._1)/(temp.last._2 - temp.head._2)*7
+      if (avg<0.0) {
+        println(s"You lost an average of ${avg.abs}kg per week since ${temp.head._2} until ${temp.last._2}")
+      }
+      else if(avg==0.0){
+        println(s"Your weight now is equal to the weight when you started your goal")
+      }else{
+        println(s"You gained an average of ${avg.abs}kg per week since ${temp.head._2} until ${temp.last._2}")
+      }
+      println(s"Your goal is to ${goalFrase(goal._1)}")
+    }
+
   }
 
 }

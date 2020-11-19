@@ -2,6 +2,8 @@ package main
 
 import java.time.LocalDate
 
+import main.Date.subtractDates
+
 case class Date(localDate: LocalDate) {
   def getDay() = Date.getDay(this)
 
@@ -27,9 +29,16 @@ case class Date(localDate: LocalDate) {
   def >=(date: Date) = this > date || this == date
 
   def <=(date: Date) = this < date || this == date
+
+  def -(date: Date): Int = Date.subtractDates(this, date)
 }
 
 object Date {
+
+  implicit object DefaultOrder extends Ordering[Date] {
+    override def compare(x: Date, y: Date): Int = x.localDate.compareTo(y.localDate)
+  }
+
   def minusDays(date: Date, days: Int): Date = Date(date.localDate.minusDays(days.toLong))
 
   def createDate(day: Int, month: Int, year: Int): Date = Date(LocalDate.of(year, month, day))
@@ -41,4 +50,6 @@ object Date {
   def getMonth(date: Date) = date.localDate.getMonthValue
 
   def getYear(date: Date) = date.localDate.getYear
+
+  def subtractDates(date1: Date, date2: Date): Int = (date2.localDate.toEpochDay-date1.localDate.toEpochDay).toInt
 }

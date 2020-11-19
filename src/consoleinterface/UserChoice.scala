@@ -11,7 +11,7 @@ trait UserChoice
 case object SaveStates extends UserChoice
 case class ChangeWeight(weight: Double, date: Date) extends UserChoice
 trait AddCaloricActivity extends UserChoice
-case class SetGoal(goal: Goal) extends UserChoice
+case class SetGoal(goal: Goal,date: Date) extends UserChoice
 trait CaloricInformation extends UserChoice
 case object GetBody extends UserChoice
 
