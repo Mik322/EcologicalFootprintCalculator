@@ -26,7 +26,7 @@ object CalorieStateOps {
 
   def changeWeight(counter: CalorieCounter, weight: Double, date: Date): CalorieCounter = {
     val newBody = counter.body.copy(weight = weight)
-    counter.copy(body = newBody, weightHistoric = counter.weightHistoric.appended((weight, date)))
+    counter.copy(body = newBody, weightHistory = counter.weightHistory.appended((weight, date)))
   }
 
   def createStates(bodyParams: SetBodyParams): States = {

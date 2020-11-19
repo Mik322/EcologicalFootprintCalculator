@@ -9,4 +9,5 @@ object CaloricInformation {
   case class GetLastDaysCalories(days: Int) extends CaloricInformation
   case class GetListCaloricActivitiesInDays(startDate: Date,endDate: Date) extends CaloricInformation
   case object GetGoalInformation extends CaloricInformation
+  case object GetWeightHistory  extends CaloricInformation
 }

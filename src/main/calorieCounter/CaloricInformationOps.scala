@@ -36,6 +36,7 @@ object CaloricInformationOps {
       }
 
       case CaloricInformation.GetGoalInformation => Impure.printGoalInformation(counter.goal, calculateCaloriesToGoal(counter.body, counter.goal))
+      case CaloricInformation.GetWeightHistory => Impure.printWeightHistory(counter.weightHistory)
     }
   }
 
@@ -73,6 +74,17 @@ object CaloricInformationOps {
         case ::(head, next) => {
           println(s"${head.name}, ${head.quantity}, date: ${head.date}")
           printListOfActivities(next)
+        }
+        case Nil =>
+      }
+    }
+
+    @tailrec
+    def printWeightHistory(weightHistory: List[(Double, Date)]):Unit = {
+      weightHistory match {
+        case ::(head,next)=> {
+          println(s"You had ${head._1} in ${head._2}")
+          printWeightHistory(next)
         }
         case Nil =>
       }

@@ -9,13 +9,14 @@ import scala.io.StdIn.readLine
 object CaloricInformationConsole {
   def caloricInformationMenu(): CaloricInformation = {
     println("1. Get total calories in a day\n2. Get list of caloric activities\n3. Get the net calories in the last number of days")
-    println("4. See the list of caloric activities in a date range")
+    println("4. See the list of caloric activities in a date range\n5. See your weight evolution")
 
     readLine() match {
       case "1" => GetCaloriesInDay(getUserDate())
       case "2" => GetListCaloricActivities
       case "3" => caloriesInTheLastNDays()
       case "4" => getListCaloricActivitiesDateRange()
+      case "5" => GetWeightHistory
       case _ => caloricInformationMenu()
     }
   }

@@ -72,7 +72,7 @@ object CaloriesConsoleOps {
     try {
       println("How much do you weight?")
       val weight = readLine().toDouble
-      println("When did you measured it?")
+      println("When did you measure it?")
       val date = DateChoice.getUserDate()
       ChangeWeight(weight, date)
     } catch {
