@@ -2,7 +2,7 @@ package consoleinterface.caloriescouter.options
 
 import consoleinterface.UserChoice
 import main.Date
-import main.calorieCounter.caloricstructures.Lifestyle
+import main.calorieCounter.caloricstructures.Body.Lifestyle
 
 trait BodyChange extends UserChoice
 

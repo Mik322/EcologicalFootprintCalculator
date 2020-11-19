@@ -1,6 +1,5 @@
 package main.calorieCounter
 
-import consoleinterface.CaloricInformation
 import consoleinterface.caloriescouter.options.CaloricInformation._
 import consoleinterface.caloriescouter.options.CaloricInformation
 import main.{CalorieCounter, Date}

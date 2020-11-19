@@ -5,6 +5,7 @@ import main.CalorieCounter
 import CalorieCounterOps.calculateExerciseCalories
 import consoleinterface.caloriescouter.options.AddCaloricActivity._
 import CalorieStateOps.addCaloricActivity
+import consoleinterface.caloriescouter.options.AddCaloricActivity
 import main.calorieCounter.caloricstructures.{Body, CaloricMaps, Drink, Food, Sport, Water}
 
 object AddCaloricActivityOps {

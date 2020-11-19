@@ -1,8 +1,9 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.StartOptions.{SetBodyParams}
-import consoleinterface.{ChangeWeight, SetGoal, UserChoice}
+import consoleinterface.StartOptions.SetBodyParams
+import consoleinterface.{SetGoal, UserChoice}
 import consoleinterface.caloriescouter.options.AddCaloricActivity._
+import consoleinterface.caloriescouter.options.BodyChange.ChangeWeight
 import main.Date
 import main.calorieCounter.caloricstructures.Goal._
 import inputs.BodyInput
@@ -66,19 +67,6 @@ object CaloriesConsoleOps {
       case "4" => SetGoal(GainWeight)
       case "5" => SetGoal(GainALotOfWeight)
       case _ => getUserGoal()
-    }
-  }
-
-  def getNewWeight(): ChangeWeight = {
-    try {
-      println("How much do you weight?")
-      val weight = readLine().toDouble
-      ChangeWeight(weight, Date.today())
-    } catch {
-      case e: NumberFormatException => {
-        println("Number is invalid please try again")
-        getNewWeight()
-      }
     }
   }
 }

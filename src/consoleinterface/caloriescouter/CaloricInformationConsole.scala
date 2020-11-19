@@ -1,8 +1,8 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.CaloricInformation
 import consoleinterface.caloriescouter.options.CaloricInformation._
 import consoleinterface.DateChoice.getUserDate
+import consoleinterface.caloriescouter.options.CaloricInformation
 import main.Date
 
 import scala.io.StdIn.readLine

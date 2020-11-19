@@ -1,7 +1,7 @@
 package consoleinterface
 
 import main.Date
-import main.calorieCounter.caloricstructures.{Gender, Lifestyle}
+import main.calorieCounter.caloricstructures.Body.{Gender, Lifestyle}
 
 object StartOptions {
   trait StartOptions
