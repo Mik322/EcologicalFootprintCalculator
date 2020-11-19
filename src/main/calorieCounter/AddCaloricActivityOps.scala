@@ -3,7 +3,7 @@ package main.calorieCounter
 import consoleinterface._
 import main.CalorieCounter
 import CalorieCounterOps.calculateExerciseCalories
-import consoleinterface.caloriescouter.CaloricActivitiesChoice._
+import consoleinterface.caloriescouter.options.AddCaloricActivity._
 import CalorieStateOps.addCaloricActivity
 import main.calorieCounter.caloricstructures.{Body, CaloricMaps, Drink, Food, Sport, Water}
 

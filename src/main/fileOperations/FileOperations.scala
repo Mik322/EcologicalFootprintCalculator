@@ -11,7 +11,6 @@ object FileOperations {
     val states = States(footPrintState, calorieCounter)
     val out = new ObjectOutputStream(new FileOutputStream(new File("States")))
     out.writeObject(states)
-
   }
 
   def loadStates(): Option[States] = {
@@ -20,7 +19,7 @@ object FileOperations {
       val states = in.readObject().asInstanceOf[States]
       Some(states)
     } catch {
-      case _ : Throwable => None
+      case _: Throwable => None
     }
   }
 
@@ -35,6 +34,7 @@ object FileOperations {
         case Nil => map
       }
     }
+
     loop(lines, Map())
   }
 

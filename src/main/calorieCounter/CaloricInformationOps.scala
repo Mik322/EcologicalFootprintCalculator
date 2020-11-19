@@ -1,8 +1,8 @@
 package main.calorieCounter
 
 import consoleinterface.CaloricInformation
-import consoleinterface.caloriescouter.CaloricInformation
-import consoleinterface.caloriescouter.CaloricInformation._
+import consoleinterface.caloriescouter.options.CaloricInformation._
+import consoleinterface.caloriescouter.options.CaloricInformation
 import main.{CalorieCounter, Date}
 import main.calorieCounter.CalorieCounterOps.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
 import main.calorieCounter.caloricstructures.{CaloricActivity, Goal}
@@ -38,8 +38,8 @@ object CaloricInformationOps {
       case CaloricInformation.GetGoalInformation => Impure.printGoalInformation(counter.goal, calculateCaloriesToGoal(counter.body, counter.goal))
 
       case GetWaterNeeds(date) =>
-        val waterNeeds = CalorieCounterOps.calcWaterIntake(counter.body, date, counter.activities)
-        println(s"You need to drink ${waterNeeds} mL today")
+        val waterNeeds = Recommendations.cupsOfWaterToDrink(counter, date)
+        CaloricImpure.printCupsOfWaterToDrink(waterNeeds)
     }
   }
 

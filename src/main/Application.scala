@@ -3,11 +3,11 @@ package main
 import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
-import consoleinterface.AddCaloricActivity
 import consoleinterface._
-import calorieCounter.{AddCaloricActivityOps, CaloricImpure, CaloricInformationOps, CalorieStateOps}
+import calorieCounter.{AddCaloricActivityOps, CaloricImpure, CaloricInformationOps, CalorieStateOps, ChangeBody}
 import calorieCounter.caloricstructures.CaloricMaps
 import consoleinterface.caloriescouter.CaloriesConsoleOps
+import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
 import main.footprint.TransportMeans._
 import main.footprint._
 import main.footprint.FootPrintOps
@@ -59,8 +59,9 @@ object Application extends App {
         CaloricImpure.printBodyInformation(calorieCounter.body)
         main_loop(footPrintState, calorieCounter)
 
-      case ChangeWeight(weight, date) =>
-        val newCalorieCounter = CalorieStateOps.changeWeight(calorieCounter, weight, date)
+        //Handles all types of body change
+      case bodyParam: BodyChange =>
+        val newCalorieCounter = ChangeBody.changeBody(bodyParam, calorieCounter)
         main_loop(footPrintState, newCalorieCounter)
 
       case AddTransportTrip(mean: TransportMean, km: Double) => mean match {

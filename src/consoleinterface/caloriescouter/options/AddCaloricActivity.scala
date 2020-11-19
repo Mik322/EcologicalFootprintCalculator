@@ -1,9 +1,11 @@
-package consoleinterface.caloriescouter
+package consoleinterface.caloriescouter.options
 
-import consoleinterface.AddCaloricActivity
+import consoleinterface.UserChoice
 import main.Date
 
-object CaloricActivitiesChoice {
+trait AddCaloricActivity extends UserChoice
+
+object AddCaloricActivity {
   case class AddFood(food: String, quantity: Int, date: Date) extends AddCaloricActivity
   case class AddSport(sport: String, minutes: Int, date: Date) extends AddCaloricActivity
   case class AddDrink(drink: String, quantity: Int, date: Date) extends AddCaloricActivity

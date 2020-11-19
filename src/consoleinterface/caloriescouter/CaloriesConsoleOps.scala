@@ -2,7 +2,7 @@ package consoleinterface.caloriescouter
 
 import consoleinterface.StartOptions.{SetBodyParams}
 import consoleinterface.{ChangeWeight, SetGoal, UserChoice}
-import consoleinterface.caloriescouter.CaloricActivitiesChoice._
+import consoleinterface.caloriescouter.options.AddCaloricActivity._
 import main.Date
 import main.calorieCounter.caloricstructures.Goal._
 import inputs.BodyInput

@@ -11,4 +11,9 @@ case object CaloricImpure {
     println(s"Your lifestyle: ${body.lifestyle}")
   }
 
+  def printCupsOfWaterToDrink(cups: Int) = {
+    if (cups > 0) println(s"You still need to drink at least ${cups} cups of water")
+    else println("You've drink the recommended water already")
+  }
+
 }

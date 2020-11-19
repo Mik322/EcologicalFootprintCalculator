@@ -1,7 +1,7 @@
 package consoleinterface.caloriescouter
 
 import consoleinterface.CaloricInformation
-import consoleinterface.caloriescouter.CaloricInformation._
+import consoleinterface.caloriescouter.options.CaloricInformation._
 import consoleinterface.DateChoice.getUserDate
 import main.Date
 
