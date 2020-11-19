@@ -1,6 +1,7 @@
 package main.calorieCounter
 
 import caloricstructures.{CaloricActivity, Drink, Food, Sport}
+import main.Date
 import main.calorieCounter.caloricstructures.Goal.Goal
 import main.calorieCounter.caloricstructures._
 
@@ -41,4 +42,33 @@ object CalorieCounterOps {
   }
 
   def createBody(height: Int, weight: Double, age: Int, gender: Gender, lifestyle: Lifestyle): Body = Body(height, weight, age, gender, lifestyle)
+
+  def calcWaterIntake(body: Body, date: Date, activities: List[CaloricActivity]): Double = {
+    import WaterAuxiliaries._
+    val baseNeed = kgToPound(body.weight) * 2/3
+    println(s"${baseNeed}, kg: ${body.weight}")
+    val lifestyleWaterNeeds = waterOuncesPerExerciseTime(lifeStyleSportTime(body.lifestyle))
+    val dayExerciseWater = waterOuncesPerExerciseTime(getTotalTimeOfSportInDay(activities, date))
+    ouncesToMLiters(baseNeed + lifestyleWaterNeeds + dayExerciseWater)
+  }
+
+  def getTotalTimeOfSportInDay(activities: List[CaloricActivity], date: Date): Int = {
+    activities.filter(a => a.activityType==Sport && a.date == date).foldLeft(0)((c , a) => c + a.quantity)
+  }
+
+  object WaterAuxiliaries {
+    def waterOuncesPerExerciseTime(time: Int): Double = 12 * time / 30
+
+    def kgToPound(kg: Double): Double = kg * 2.2
+
+    def ouncesToMLiters(ounces: Double): Double = ounces / 33.8 * 1000
+
+    def lifeStyleSportTime(lifestyle: Lifestyle): Int = lifestyle match {
+      case Sedentary => 0
+      case Moderated => 10
+      case Active => 30
+      case VeryActive => 60
+      case ExtremelyActive => 120
+    }
+  }
 }

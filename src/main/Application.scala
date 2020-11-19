@@ -32,93 +32,77 @@ object Application extends App {
     val userChoice = getUserChoice(caloricMaps)
 
     userChoice match {
-      case Quit => {}
+      case Quit =>
 
       // Saves the current states to a file
-      case SaveStates => {
+      case SaveStates =>
         FileOperations.saveStates(footPrintState, calorieCounter)
         main_loop(footPrintState, calorieCounter)
-      }
 
       // Adds a caloric activity (Food, Drink or Sport) to the calorie counter
-      case activity: AddCaloricActivity => {
+      case activity: AddCaloricActivity =>
         val newCalorieCounter = AddCaloricActivityOps.addCaloricActivityToState(activity, calorieCounter, caloricMaps)
         main_loop(footPrintState, newCalorieCounter)
-      }
 
       // Sets the Weight goal
-      case SetGoal(goal) => {
+      case SetGoal(goal) =>
         val newCalorieCounter = calorieCounter.copy(goal = goal)
         main_loop(footPrintState, newCalorieCounter)
-      }
 
       // Handles all types of caloric Information requests
-      case information: CaloricInformation => {
+      case information: CaloricInformation =>
         CaloricInformationOps.getCaloricInformation(information, calorieCounter)
         main_loop(footPrintState, calorieCounter)
-      }
 
       // Prints the body params
-      case GetBody => {
+      case GetBody =>
         CaloricImpure.printBodyInformation(calorieCounter.body)
         main_loop(footPrintState, calorieCounter)
-      }
 
-      case ChangeWeight(weight, date) => {
+      case ChangeWeight(weight, date) =>
         val newCalorieCounter = CalorieStateOps.changeWeight(calorieCounter, weight, date)
         main_loop(footPrintState, newCalorieCounter)
-      }
 
       case AddTransportTrip(mean: TransportMean, km: Double) => mean match {
-        case Car(consumption, fuel) => {
+        case Car(consumption, fuel) =>
           val newFootPrint = FootPrintOps.addCarConsumption(footPrintState, consumption, km, fuel)
           main_loop(newFootPrint, calorieCounter)
-        }
-        case publicTransport => {
+        case publicTransport =>
           val newFootPrint = FootPrintOps.addPublicTransportEmissions(footPrintState, publicTransport, km)
           main_loop(newFootPrint, calorieCounter)
-        }
       }
 
-      case GetTransportEmissions => {
+      case GetTransportEmissions =>
         TransportationImpure.printTransportEmissions(footPrintState)
         main_loop(footPrintState, calorieCounter)
-      }
 
-      case GetTransportHistory => {
+      case GetTransportHistory =>
         TransportationImpure.history(footPrintState.transportTrips)
         main_loop(footPrintState, calorieCounter)
-      }
 
-      case AddWaste(kg: Int, typeOfWaste: TypeOfWaste) => {
+      case AddWaste(kg: Int, typeOfWaste: TypeOfWaste) =>
         val newFootPrint = FootPrintOps.addWaste(footPrintState, kg, typeOfWaste)
         main_loop(newFootPrint, calorieCounter)
-      }
 
-      case GetWasteEmissions => {
+      case GetWasteEmissions =>
         WasteImpure.printWasteEmissions(footPrintState)
         main_loop(footPrintState, calorieCounter)
-      }
 
-      case SetEnergySource(source: EnergySource) => {
+      case SetEnergySource(source: EnergySource) =>
         val newFootPrintState = FootPrintOps.setEnergySource(footPrintState, source)
         main_loop(newFootPrintState, calorieCounter)
-      }
 
-      case GetEnergyEmissions => {
+      case GetEnergyEmissions =>
         EnergyImpure.getEnergyEmissions(footPrintState)
         main_loop(footPrintState, calorieCounter)
-      }
 
-      case SetWaterConsumption(amount: Double) => {
+      case SetWaterConsumption(amount: Double) =>
         val newFootPrintState = FootPrintOps.setWaterConsumption(footPrintState, amount)
         main_loop(newFootPrintState, calorieCounter)
-      }
 
-      case GetWaterEmissions => {
+      case GetWaterEmissions =>
         WaterImpure.printWaterImpure(footPrintState)
         main_loop(footPrintState,calorieCounter)
-      }
     }
   }
 
@@ -142,4 +126,6 @@ object Application extends App {
 
     main_loop(states.footPrintState, states.calorieCounter)
   }
+
+  start()
 }

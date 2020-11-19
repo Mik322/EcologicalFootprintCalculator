@@ -8,3 +8,4 @@ trait ActivityType;
 case object Food extends ActivityType
 case object Drink extends ActivityType
 case object Sport extends ActivityType
+case object Water extends ActivityType

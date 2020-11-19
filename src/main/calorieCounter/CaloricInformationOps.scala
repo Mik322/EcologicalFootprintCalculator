@@ -36,6 +36,10 @@ object CaloricInformationOps {
       }
 
       case CaloricInformation.GetGoalInformation => Impure.printGoalInformation(counter.goal, calculateCaloriesToGoal(counter.body, counter.goal))
+
+      case GetWaterNeeds(date) =>
+        val waterNeeds = CalorieCounterOps.calcWaterIntake(counter.body, date, counter.activities)
+        println(s"You need to drink ${waterNeeds} mL today")
     }
   }
 
