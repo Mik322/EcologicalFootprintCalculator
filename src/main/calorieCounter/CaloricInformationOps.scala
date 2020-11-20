@@ -1,12 +1,12 @@
 package main.calorieCounter
 
-import consoleinterface.CaloricInformation
-import consoleinterface.caloriescouter.CaloricInformation
-import consoleinterface.caloriescouter.CaloricInformation._
-import main.{CalorieCounter, Date}
-import main.calorieCounter.CalorieCounterOps.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
+import consoleinterface.caloriescouter.options.CaloricInformation._
+import consoleinterface.caloriescouter.options.CaloricInformation
+import main.Date
+import main.States.CalorieCounter
+import main.calorieCounter.CalorieCalculations.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
 import main.calorieCounter.caloricstructures.{CaloricActivity, Goal}
-import main.calorieCounter.caloricstructures.Goal.Goal
+import main.calorieCounter.caloricstructures.Goal
 
 import scala.annotation.tailrec
 
@@ -38,6 +38,10 @@ object CaloricInformationOps {
       case CaloricInformation.GetGoalInformation => Impure.printGoalInformation(counter.goal._1, calculateCaloriesToGoal(counter.body, counter.goal._1))
       case CaloricInformation.GetWeightHistory => Impure.printWeightHistory(counter.weightHistory.sortBy(_._2))
       case CaloricInformation.GetWeightTrack => Impure.printWeightTrack(counter.weightHistory.sortBy(_._2),counter.goal)
+
+      case GetWaterNeeds(date) =>
+        val waterNeeds = Recommendations.cupsOfWaterToDrink(counter, date)
+        ImpureFunctions.printCupsOfWaterToDrink(waterNeeds)
     }
   }
 

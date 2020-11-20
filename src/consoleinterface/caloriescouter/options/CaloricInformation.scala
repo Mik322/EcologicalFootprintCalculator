@@ -1,7 +1,9 @@
-package consoleinterface.caloriescouter
+package consoleinterface.caloriescouter.options
 
-import consoleinterface.{CaloricInformation, UserChoice}
+import consoleinterface.UserChoice
 import main.Date
+
+trait CaloricInformation extends UserChoice
 
 object CaloricInformation {
   case object GetListCaloricActivities extends CaloricInformation
@@ -11,4 +13,5 @@ object CaloricInformation {
   case object GetGoalInformation extends CaloricInformation
   case object GetWeightHistory  extends CaloricInformation
   case object GetWeightTrack extends CaloricInformation
+  case class GetWaterNeeds(date: Date) extends CaloricInformation
 }

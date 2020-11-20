@@ -1,6 +1,7 @@
 package consoleinterface.footprint
 
 import consoleinterface._
+import main.footprint.footprintstructs.FootPrintData
 
 import scala.io.StdIn.readLine
 
@@ -11,7 +12,9 @@ object FootPrintOptions {
     val input = readLine()
     input match {
       case "1" => addMenu()
-      //case "2" => calcMenu()
+      case "2" => visualizeMenu()
+      case "0" => Quit
+      case _ => footPrintOptions()
     }
   }
 
@@ -24,8 +27,19 @@ object FootPrintOptions {
       case "2" => wasteMenu()
       case "3" => energyMenu()
       case "4" => waterMenu()
+      case "0" => Quit
+      case _ => addMenu()
     }
+  }
 
+  def visualizeMenu(): UserChoice ={
+    println("1.See how many Earths would we need if everybody lived like you\n0.Quit")
+    val input = readLine().toInt
+    input match {
+      case 1 => GetEcologicalFootPrint
+      case 0 => Quit
+      case _ => visualizeMenu()
+    }
   }
 
   def transportationMenu(): UserChoice = {
@@ -36,6 +50,8 @@ object FootPrintOptions {
       case 1 => FootPrintConsoleOps.addTransportTrip()
       case 2 => GetTransportEmissions
       case 3 => GetTransportHistory
+      case 0 => Quit
+      case _ => transportationMenu()
     }
   }
 
@@ -47,6 +63,8 @@ object FootPrintOptions {
       case 1 => FootPrintConsoleOps.addFoodWaste()
       case 2 => FootPrintConsoleOps.addRecycledWaste()
       case 3 => GetWasteEmissions
+      case 0 => Quit
+      case _ => wasteMenu()
     }
   }
 
@@ -58,6 +76,8 @@ object FootPrintOptions {
       case 1 => FootPrintConsoleOps.setElectricity()
       case 2 => FootPrintConsoleOps.setEnergySources()
       case 3 => GetEnergyEmissions
+      case 0 => Quit
+      case _ => energyMenu()
     }
   }
 
@@ -68,6 +88,8 @@ object FootPrintOptions {
     input match {
       case 1 => FootPrintConsoleOps.setWaterConsumption()
       case 2 => GetWaterEmissions
+      case 0 => Quit
+      case _ => waterMenu()
     }
   }
 

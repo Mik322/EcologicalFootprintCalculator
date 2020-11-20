@@ -1,6 +1,6 @@
 package main.footprint.footprintstructs
 
-import main.FootPrintState
+import main.States.FootPrintState
 
 object WaterImpure {
 

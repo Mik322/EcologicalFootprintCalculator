@@ -1,8 +1,8 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.StartOptions.{SetBodyParams, StartOptions}
-import consoleinterface.{ChangeWeight, DateChoice, SetGoal, UserChoice}
-import consoleinterface.caloriescouter.CaloricActivitiesChoice._
+import consoleinterface.caloriescouter.options.AddCaloricActivity._
+import consoleinterface.StartOptions.BodyParams
+import consoleinterface.{SetGoal, UserChoice}
 import main.Date
 import main.calorieCounter.caloricstructures.Goal._
 import inputs.BodyInput
@@ -19,17 +19,17 @@ object CaloriesConsoleOps {
       case Nil => {}
     }
   }
-  def getBodyInput(): SetBodyParams = {
+  def getBodyInput(): BodyParams = {
+  println("Insert your body parameters")
     print("Height(in cm): ")
     val height=readLine().toInt
     print("Weight(in kg): ")
     val weight=readLine().toDouble
-    print("Age: ")
-    val age=readLine().toInt
+    val age=BodyInput.ageInput()
     val biologicalSex = BodyInput.biologicalSexInput()
     val lifestyle = BodyInput.lifestyleInput()
-    SetBodyParams(height,weight,age,biologicalSex,lifestyle, Date.today())
-  }
+    BodyParams(height,weight,age,biologicalSex,lifestyle, Date.today())
+ }
 
   def getActivityInput(list: List[String], choice: (String, Date)=> UserChoice, date: Date): UserChoice = {
     print("Select number: ")
@@ -69,21 +69,7 @@ object CaloriesConsoleOps {
       case _ =>
         println("Invalid number. Please try again.")
         getGoalInput()
-    }
-
-  def getNewWeight(): ChangeWeight = {
-    try {
-      println("How much do you weight?")
-      val weight = readLine().toDouble
-      println("When did you measure it?")
-      val date = DateChoice.getUserDate()
-      ChangeWeight(weight, date)
-    } catch {
-      case e: NumberFormatException => {
-        println("Number is invalid please try again")
-        getNewWeight()
-      }
-    }
   }
 }
+
 

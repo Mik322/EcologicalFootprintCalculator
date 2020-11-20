@@ -1,6 +1,6 @@
 package main.footprint
 
-import main.FootPrintState
+import main.States.FootPrintState
 import main.footprint.TransportMeans.{Car, TransportMean}
 import main.footprint.footprintstructs.{transport, _}
 import main.footprint.TransportMeans._
