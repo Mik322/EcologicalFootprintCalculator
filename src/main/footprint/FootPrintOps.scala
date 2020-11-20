@@ -1,18 +1,19 @@
 package main.footprint
 
+import main.Date
 import main.States.FootPrintState
 import main.footprint.TransportMeans.{Car, TransportMean}
 import main.footprint.footprintstructs.{transport, _}
 import main.footprint.TransportMeans._
-import main.footprint.footprintstructs.energy.{Electricity, EnergySource, Gas, Coal, Wood, Oil}
+import main.footprint.footprintstructs.energy.{Coal, Electricity, EnergySource, Gas, Oil, Wood}
 import main.footprint.footprintstructs.transport.{Diesel, Fuel, Petrol, TransportTrip}
-import main.footprint.footprintstructs.waste.{TypeOfWaste, Waste, Food, Recycled}
+import main.footprint.footprintstructs.waste.{Food, Recycled, TypeOfWaste, Waste}
 
 object FootPrintOps {
-  def addPublicTransportEmissions(footPrintState: FootPrintState, publicTransport: TransportMean, km: Double): FootPrintState = {
+  def addPublicTransportEmissions(footPrintState: FootPrintState, publicTransport: TransportMean, km: Double,date: Date): FootPrintState = {
     val emissions = calcPublicTransportEmissions(publicTransport,km)
     val totalEmissions = emissions + footPrintState.carbonFootPrint
-    val trip = TransportTrip(publicTransport,km, emissions)
+    val trip = TransportTrip(publicTransport,km, emissions,date)
     val trips = footPrintState.transportTrips.appended(trip)
     footPrintState.copy(carbonFootPrint = totalEmissions, transportTrips = trips)
   }
@@ -27,10 +28,10 @@ object FootPrintOps {
     case Train => 28 * km
   }
 
-  def addCarConsumption(footPrintState: FootPrintState, consumption: Double, km: Double, fuel: Fuel): FootPrintState ={
+  def addCarConsumption(footPrintState: FootPrintState, consumption: Double, km: Double, fuel: Fuel, date: Date): FootPrintState ={
     val emissions = calcFuelEmissions(fuel,consumption,km)
     val totalEmissions = emissions + footPrintState.carbonFootPrint
-    val trip = transport.TransportTrip(Car(consumption,fuel),km, emissions)
+    val trip = transport.TransportTrip(Car(consumption,fuel),km, emissions,date)
     val trips = footPrintState.transportTrips.appended(trip)
     footPrintState.copy(carbonFootPrint = totalEmissions, transportTrips = trips)
   }

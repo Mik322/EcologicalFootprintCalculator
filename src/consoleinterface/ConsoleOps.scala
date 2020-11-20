@@ -23,7 +23,9 @@ object ConsoleOps {
   }
 
   def newProfile(): NewProfile = {
-    NewProfile("Some Profile", CaloriesConsoleOps.getBodyInput(),FootPrintQuestions.setFootPrintData())
+    println("Please enter your username:")
+    val username = readLine()
+    NewProfile(username, CaloriesConsoleOps.getBodyInput(),FootPrintQuestions.setFootPrintData())
   }
 
   def printOptions() = {

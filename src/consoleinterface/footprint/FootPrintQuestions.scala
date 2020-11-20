@@ -27,6 +27,10 @@ object FootPrintQuestions {
     (points, kms, consumption)
   }
 
+  def printTryAgain(): Unit ={
+    println("Please type again one of the available options")
+  }
+
   def distance_publicT(): Int = {
     println("Distance travelled anually by public transport:\n")
     println("1.More than 32000 km\n2.Between 25000 and 32000 km\n3.Between 15000 and 25000 km\n4.Between 1500 and 15000 km\n5.Less than 1500 km\n6.No km")
@@ -38,6 +42,10 @@ object FootPrintQuestions {
       case 4 => 4
       case 5 => 2
       case 6 => 0
+      case _ => {
+        printTryAgain()
+        distance_publicT()
+      }
     }
   }
 
@@ -49,6 +57,10 @@ object FootPrintQuestions {
       case 1 => 2
       case 2 => 6
       case 3 => 20
+      case _ => {
+        printTryAgain()
+        holidayDest()
+      }
     }
   }
 
@@ -61,6 +73,10 @@ object FootPrintQuestions {
       case 2 => 5
       case 3 => 3
       case 4 => 1
+      case _ => {
+        printTryAgain()
+        averageGasBill()
+      }
     }
   }
 
@@ -83,6 +99,10 @@ object FootPrintQuestions {
     input match {
       case 1 => 2
       case 2 => 15
+      case _ => {
+        printTryAgain()
+        sourceOfEnergy()
+      }
     }
   }
 
@@ -95,6 +115,10 @@ object FootPrintQuestions {
       case 2 => 4
       case 3 => 8
       case 4 => 10
+      case _ => {
+        printTryAgain()
+        typeOfEater()
+      }
     }
   }
 
@@ -106,6 +130,10 @@ object FootPrintQuestions {
       case 1 => 2
       case 2 => 6
       case 3 => 12
+      case _ => {
+        printTryAgain()
+        typeOfFood()
+      }
     }
   }
 
@@ -118,6 +146,10 @@ object FootPrintQuestions {
       case 2 => 6
       case 3 => 4
       case 4 => 0
+      case _ => {
+        printTryAgain()
+        magazines()
+      }
     }
   }
 
@@ -131,6 +163,10 @@ object FootPrintQuestions {
       case 3 => 6
       case 4 => 4
       case 5 => 2
+      case _ => {
+        printTryAgain()
+        purchases()
+      }
     }
   }
 
@@ -143,6 +179,10 @@ object FootPrintQuestions {
       case 2 => 7
       case 3 => 4
       case 4 => 2
+      case _ => {
+        printTryAgain()
+        typeOfProperty()
+      }
     }
   }
 
@@ -158,6 +198,10 @@ object FootPrintQuestions {
       case 5 => 6
       case 6 => 4
       case 7 => 2
+      case _ => {
+        printTryAgain()
+        household()
+      }
     }
   }
 
@@ -172,6 +216,10 @@ object FootPrintQuestions {
       case 4 => 8
       case 5 => 10
       case 6 => 12
+      case _ => {
+        printTryAgain()
+        childrenHousehold()
+      }
     }
   }
 
@@ -186,6 +234,10 @@ object FootPrintQuestions {
       case 4 => 20
       case 5 => 10
       case 6 => 5
+      case _ => {
+        printTryAgain()
+        amountOfWaste()
+      }
     }
   }
 
@@ -198,6 +250,10 @@ object FootPrintQuestions {
       case 2 => 2
       case 3 => 1
       case 4 => 0
+      case _ => {
+        printTryAgain()
+        dishwasher()
+      }
     }
   }
 
@@ -210,48 +266,54 @@ object FootPrintQuestions {
       case 2 => 2
       case 3 => 1
       case 4 => 0
+      case _ => {
+        printTryAgain()
+        washingMachine()
+      }
     }
   }
 
   def recycledWaste(): Int = {
     println("Do dispose of waste, you're going to use up valuable land. So, start this section with 24 points. Do you recycle the following items?\n")
-    val points = 24
+    var points = 24
+
     println("Glass (Y or N)")
-    val glass = readLine()
-    glass match {
-      case "Y" => points - 4
-      case "N" => points
-    }
+    var input = readLine()
+    points = dealPoints(points, input)
+
     println("Plastic (Y or N)")
-    val plastic = readLine()
-    plastic match {
-      case "Y" => points - 4
-      case "N" => points
-    }
+    input = readLine()
+    points = dealPoints(points, input)
+
     println("Paper (Y or N)")
-    val paper = readLine()
-    paper match {
-      case "Y" => points - 4
-      case "N" => points
-    }
+    input = readLine()
+    points = dealPoints(points, input)
+
     println("Aluminium (Y or N)")
-    val aluminium = readLine()
-    aluminium match {
-      case "Y" => points - 4
-      case "N" => points
-    }
+    input = readLine()
+    points = dealPoints(points, input)
+
     println("Steel cans (Y or N)")
-    val steel_cans = readLine()
-    steel_cans match {
-      case "Y" => points - 4
-      case "N" => points
-    }
+    input = readLine()
+    points = dealPoints(points, input)
+
     println("Food waste (Y or N)")
-    val food_waste = readLine()
-    food_waste match {
-      case "Y" => points - 4
-      case "N" => points
-    }
+    input = readLine()
+    points = dealPoints(points, input)
+
     points
+  }
+
+  def dealPoints(points: Int, input : String): Int ={
+    var input2 = input
+    if(input2 == "Y" || input2 == "y") points - 4
+    else {
+      if (input2 == "N" || input2 == "n") points
+      else {
+        println("Please answer yes or no")
+        input2 = readLine()
+        dealPoints(points, input2)
+      }
+    }
   }
 }
