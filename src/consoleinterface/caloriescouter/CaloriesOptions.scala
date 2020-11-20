@@ -1,25 +1,25 @@
 package consoleinterface.caloriescouter
 
 import consoleinterface.caloriescouter.CaloricInformationConsole.caloricInformationMenu
-import consoleinterface.{DateChoice, Quit, UserChoice}
+import consoleinterface.{DateChoice, GoToMainMenu, Quit, UserChoice}
 import main.calorieCounter.caloricstructures.CaloricMaps
 
 import scala.io.StdIn.readLine
 
 object CaloriesOptions {
   def caloriesCounterOptions(caloricMaps: CaloricMaps): UserChoice = {
-    println("1. Add/Change\n2. Caloric Information Menu\n0. Quit")
+    println("1. Add/Change\n2. Caloric Information Menu\n0. Go back")
     val input = readLine()
 
     input match {
       case "1" => addMenu(caloricMaps)
       case "2" => caloricInformationMenu()
-      case "0" => Quit
+      case "0" => GoToMainMenu
     }
   }
 
   def addMenu(caloricMaps: CaloricMaps): UserChoice = {
-    println("1. Add Food\n2. Add Drink\n3. Add Exercise\n4. Set Goal\n5. Changed Body Parameters Menu\n0. Quit")
+    println("1. Add Food\n2. Add Drink\n3. Add Exercise\n4. Set Goal\n5. Changed Body Parameters Menu\n6.Add Sleep\n0. Quit")
     val input = readLine()
 
     input match {
@@ -48,6 +48,8 @@ object CaloriesOptions {
       case "4" => CaloriesConsoleOps.getUserGoal()
 
       case "5" => BodyChangeMenu.menu()
+
+      case "6" => CaloriesConsoleOps.getSleep()
 
       case _ => Quit
     }

@@ -2,7 +2,7 @@ package consoleinterface.caloriescouter
 
 import consoleinterface.caloriescouter.options.AddCaloricActivity._
 import consoleinterface.StartOptions.BodyParams
-import consoleinterface.{SetGoal, UserChoice}
+import consoleinterface.{AddSleep, DateChoice, SetGoal, UserChoice}
 import main.Date
 import main.calorieCounter.caloricstructures.Goal._
 import inputs.BodyInput
@@ -70,6 +70,21 @@ object CaloriesConsoleOps {
       case _ =>
         println("Invalid number. Please try again.")
         getGoalInput()
+  }
+
+  def getSleep(): UserChoice = {
+    try{
+      println("Type in the amount of hours of your sleep:")
+      val hours = readLine().toInt
+      println("Please enter the date of your sleep:")
+      val date = DateChoice.getUserDate()
+      AddSleep(hours,date)
+    }catch{
+      case _: NumberFormatException => {
+        println("Invalid input")
+        getSleep()
+      }
+    }
   }
 }
 

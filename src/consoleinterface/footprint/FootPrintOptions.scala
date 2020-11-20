@@ -1,5 +1,6 @@
 package consoleinterface.footprint
 
+import consoleinterface.ConsoleOps.getUserChoice
 import consoleinterface._
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
 import main.footprint.footprintstructs.FootPrintData
@@ -8,13 +9,13 @@ import scala.io.StdIn.readLine
 
 object FootPrintOptions {
   def footPrintOptions(): UserChoice = {
-    println("1.Add/Change\n2.Visualization/Calculation\n0.Quit")
+    println("1.Add/Change\n2.Visualization/Calculation\n0.Go back")
 
     val input = readLine()
     input match {
       case "1" => addMenu()
       case "2" => visualizeMenu()
-      case "0" => Quit
+      case "0" => GoToMainMenu
       case _ => {
         printTryAgain()
         footPrintOptions()
