@@ -45,8 +45,8 @@ object Application extends App {
 
       // Sets the Weight goal
       case SetGoal(goal,date) => {
-        val newCalorieCounter = calorieCounter.copy(goal = (goal,date))
-        main_loop(footPrintState, newCalorieCounter)
+        val newCalorieCounter = states.calorieCounter.copy(goal = (goal,date))
+        main_loop(states.copy(calorieCounter = newCalorieCounter))
       }
 
       // Handles all types of caloric Information requests
@@ -118,7 +118,7 @@ object Application extends App {
 
     //Gets the states
     val states = choice match {
-      case StartOptions.LoadState => FileOperations.loadStates("SomeProfile") match {
+      case StartOptions.LoadState => FileOperations.loadStates("Some Profile") match {
         //If there is no state saved loadStates returns None so it asks for a new Profile
         case None => {
           FileOperations.printLoadError

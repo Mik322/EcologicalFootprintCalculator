@@ -1,10 +1,7 @@
 package consoleinterface.caloriescouter.inputs
 
-import main.calorieCounter.caloricstructures._
-
 import scala.io.StdIn.readLine
-import main.calorieCounter._
-import main.calorieCounter.caloricstructures.Body.{Active, ExtremelyActive, Female, Gender, Lifestyle, Male, Moderated, Sedentary, VeryActive}
+import main.calorieCounter.caloricstructures.Body.{Active, BiologicalSex, ExtremelyActive, Female, Lifestyle, Male, Moderated, Sedentary, VeryActive}
 
 object BodyInput {
   def biologicalSexInput():BiologicalSex={

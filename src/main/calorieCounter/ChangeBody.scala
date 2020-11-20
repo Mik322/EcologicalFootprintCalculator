@@ -14,6 +14,6 @@ object ChangeBody {
 
     case BodyChange.ChangeWeight(weight, date) =>
       val newBody = counter.body.copy(weight = weight)
-      counter.copy(body = newBody, weightHistoric = counter.weightHistoric.appended((weight, date)))
+      counter.copy(body = newBody, weightHistory = counter.weightHistory.appended((weight, date)))
   }
 }

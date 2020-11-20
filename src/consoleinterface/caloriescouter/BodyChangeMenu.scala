@@ -16,7 +16,7 @@ object BodyChangeMenu {
     try {
       readLine().toInt match {
         case 1 => changeHeight()
-        case 2 => changeHeight()
+        case 2 => changeWeight()
         case 3 => changeAge()
         case 4 => changeLifestyle()
         case _ => menu()

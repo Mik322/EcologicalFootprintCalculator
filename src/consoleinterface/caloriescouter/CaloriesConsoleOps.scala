@@ -6,6 +6,7 @@ import consoleinterface.{SetGoal, UserChoice}
 import main.Date
 import main.calorieCounter.caloricstructures.Goal._
 import inputs.BodyInput
+import main.calorieCounter.caloricstructures.Goal
 
 import scala.io.StdIn.readLine
 
@@ -60,7 +61,7 @@ object CaloriesConsoleOps {
     SetGoal(getGoalInput(),Date.today())
   }
 
-  private def getGoalInput(): Goal = readLine() match {
+  private def getGoalInput(): Goal.Value = readLine() match {
       case "1" => LoseALotOfWeight
       case "2" => LoseWeight
       case "3" => KeepWeight

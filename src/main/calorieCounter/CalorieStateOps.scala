@@ -27,7 +27,7 @@ object CalorieStateOps {
   def createStates(newProfile: NewProfile): States = {
     val bodyParams = newProfile.bodyParams
     val footPrintData = newProfile.footPrintData
-    val body = createBody(bodyParams.height, bodyParams.height, bodyParams.age, bodyParams.gender, bodyParams.lifestyle)
+    val body = createBody(bodyParams.height, bodyParams.height, bodyParams.age, bodyParams.biologicalSex, bodyParams.lifestyle)
     val footPrint = FootPrintState(0, List(), None, List(), None, footPrintData)
     val calorieCounter = CalorieCounter(body, List(), (KeepWeight,Date.today()), List((bodyParams.weight, bodyParams.date)), Map())
     States(newProfile.profileName, footPrint, calorieCounter)

@@ -1,7 +1,6 @@
 package main.calorieCounter.caloricstructures
 
 object Goal extends Enumeration {
-
   protected case class Val(caloricChange: Int, kgChanged: Double) extends super.Val
 
   import scala.language.implicitConversions

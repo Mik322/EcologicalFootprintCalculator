@@ -52,7 +52,7 @@ object CaloricInformationOps {
 
   object Impure {
     def printCaloricInformation(caloriesConsumed: Int, caloriesBurned: Int, goalCalories: Int, date: Date) = {
-      println(s"In day ${date} you consume a total of ${caloriesConsumed} calories and burned a total of ${caloriesBurned} calories.")
+      println(s"In day ${date} you consumed a total of ${caloriesConsumed} calories and burned a total of ${caloriesBurned} calories.")
       println(s"To reach your goal you need a daily net intake of ${goalCalories} calories and you have a net of ${caloriesConsumed - caloriesBurned}")
     }
 
@@ -61,16 +61,13 @@ object CaloricInformationOps {
       println(s"To reach your goal you need a daily net intake of ${goalCalories} calories, your average net calories is ${(caloriesConsumed - caloriesBurned) / days} calories p/day.")
     }
 
-    def printGoalInformation(goal: Goal, calories: Int): Unit = {
-      println(s"To ${goalFrase(goal)} you need to have a net caloric intake of ${calories} per week")
+    def printGoalInformation(goal: Goal.Value, calories: Int): Unit = {
+      println(s"To ${goalPhrase(goal)} you need to have a net caloric intake of ${calories} per week")
     }
 
-    def goalFrase(goal: Goal): String = goal match {
-      case Goal.LoseALotOfWeight => "lose 1kg per week"
-      case Goal.LoseWeight => "lose 0.5kg per week"
+    def goalPhrase(goal: Goal.Value): String = goal match {
       case Goal.KeepWeight => "keep weight"
-      case Goal.GainWeight => "gain 0.5kg per week"
-      case Goal.GainALotOfWeight => "gain 1kg per week"
+      case _ => s"${if (goal.kgChanged > 0) "gain" else "lose"} ${goal.kgChanged.abs} per week"
     }
 
     @tailrec
@@ -94,9 +91,9 @@ object CaloricInformationOps {
         case Nil =>
       }
     }
-    def printWeightTrack(weightHistory: List[(Double,Date)], goal: (Goal,Date)): Unit = {
+    def printWeightTrack(weightHistory: List[(Double,Date)], goal: (Goal.Value,Date)): Unit = {
       val temp=weightHistory.filter{case(_,d) => d >= goal._2}
-      val avg =(temp.head._1 - temp.last._1)/(temp.last._2 - temp.head._2)*7
+      val avg =(temp.last._1 - temp.head._1)/(temp.last._2 - temp.head._2)*7
       if (avg<0.0) {
         println(s"You lost an average of ${avg.abs}kg per week since ${temp.head._2} until ${temp.last._2}")
       }
@@ -105,7 +102,7 @@ object CaloricInformationOps {
       }else{
         println(s"You gained an average of ${avg.abs}kg per week since ${temp.head._2} until ${temp.last._2}")
       }
-      println(s"Your goal is to ${goalFrase(goal._1)}")
+      println(s"Your goal is to ${goalPhrase(goal._1)}")
     }
 
   }
