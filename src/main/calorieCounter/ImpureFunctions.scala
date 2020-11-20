@@ -16,4 +16,8 @@ case object ImpureFunctions {
     else println("You've drink the recommended water already")
   }
 
+  def printHoursOfSleep(hours: (Int,Int)): Unit = {
+    println(s"You need to sleep between ${hours._1} and ${hours._2} for you to sleep well")
+  }
+
 }

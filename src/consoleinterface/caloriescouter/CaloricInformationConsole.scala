@@ -11,6 +11,7 @@ object CaloricInformationConsole {
   def caloricInformationMenu(): CaloricInformation = {
     println("1. Get total calories in a day\n2. Get list of caloric activities\n3. Get the net calories in the last number of days")
     println("4. See the list of caloric activities in a date range\n5. See your water needs\n6. See your weight evolution\n7.See how you are keeping up to your goal")
+    println("8.See the time necessary for you to sleep well")
 
     readLine() match {
       case "1" => GetCaloriesInDay(getUserDate())
@@ -20,6 +21,7 @@ object CaloricInformationConsole {
       case "5" => GetWaterNeeds(Date.today())
       case "6" => GetWeightHistory
       case "7" => GetWeightTrack
+      case "8" => GetNecessarySleep
       case _ => caloricInformationMenu()
     }
   }

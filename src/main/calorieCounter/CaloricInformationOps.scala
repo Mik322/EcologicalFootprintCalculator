@@ -7,6 +7,7 @@ import main.States.CalorieCounter
 import main.calorieCounter.CalorieCalculations.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
 import main.calorieCounter.caloricstructures.{CaloricActivity, Goal}
 import main.calorieCounter.caloricstructures.Goal
+import main.calorieCounter.sleepTracker.SleepTracker
 
 import scala.annotation.tailrec
 
@@ -42,7 +43,13 @@ object CaloricInformationOps {
       case GetWaterNeeds(date) =>
         val waterNeeds = Recommendations.cupsOfWaterToDrink(counter, date)
         ImpureFunctions.printCupsOfWaterToDrink(waterNeeds)
+
+      case GetNecessarySleep => {
+        val necessarySleep = SleepTracker.getNecessarySleep(counter.body.age)
+        ImpureFunctions.printHoursOfSleep(necessarySleep)
+      }
     }
+
   }
 
   def getCalories(counter: CalorieCounter, activities: List[CaloricActivity]): (Int, Int, Int) = {
