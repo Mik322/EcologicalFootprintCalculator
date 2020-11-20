@@ -1,11 +1,11 @@
 package consoleinterface
 
-import consoleinterface.StartOptions.{LoadState, StartOptions}
+import consoleinterface.StartOptions.{LoadState, NewProfile, StartOptions}
 
 import scala.io.StdIn.readLine
 import consoleinterface.caloriescouter.{CaloriesConsoleOps, CaloriesOptions}
 import main.calorieCounter.caloricstructures.CaloricMaps
-import consoleinterface.footprint.FootPrintOptions
+import consoleinterface.footprint.{FootPrintOptions, FootPrintQuestions}
 
 object ConsoleOps {
   def printWelcome(): Unit = {
@@ -17,10 +17,13 @@ object ConsoleOps {
     println("1. New Profile\n2. Load Profile")
 
     readLine() match {
-      case "1" => CaloriesConsoleOps.getBodyInput()
+      case "1" => newProfile()
       case "2" => LoadState
     }
+  }
 
+  def newProfile(): NewProfile = {
+    NewProfile("Some Profile", CaloriesConsoleOps.getBodyInput(),FootPrintQuestions.setFootPrintData())
   }
 
   def printOptions() = {
@@ -34,7 +37,6 @@ object ConsoleOps {
       case "1" => FootPrintOptions.footPrintOptions()
       case "2" => CaloriesOptions.caloriesCounterOptions(caloricMaps)
       case "3" => SaveStates
-
       case "0" => Quit
       case _ => {
         println("Choice not available")

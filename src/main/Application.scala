@@ -6,7 +6,6 @@ import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface._
 import calorieCounter.{AddCaloricActivityToState, ImpureFunctions, CaloricInformationOps, CalorieStateOps, ChangeBody}
 import calorieCounter.caloricstructures.CaloricMaps
-import consoleinterface.caloriescouter.CaloriesConsoleOps
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
 import main.footprint.TransportMeans._
 import main.footprint._
@@ -15,7 +14,7 @@ import main.footprint.footprintstructs.energy.{EnergyImpure, EnergySource}
 import main.footprint.footprintstructs.transport.TransportationImpure
 import main.footprint.footprintstructs.waste.WasteImpure
 import footprintstructs.waste.TypeOfWaste
-import main.footprint.footprintstructs.WaterImpure
+import main.footprint.footprintstructs.{FootPrintData, FootPrintDataImpure, WaterImpure}
 
 
 object Application extends App {
@@ -104,6 +103,11 @@ object Application extends App {
       case GetWaterEmissions =>
         WaterImpure.printWaterImpure(states.footPrintState)
         main_loop(states)
+
+      case GetEcologicalFootPrint => {
+        FootPrintDataImpure.printResults(states.footPrintState)
+        main_loop(states)
+      }
     }
   }
 
@@ -117,12 +121,12 @@ object Application extends App {
         //If there is no state saved loadStates returns None so it asks for a new Profile
         case None => {
           FileOperations.printLoadError
-          val bodyParams = CaloriesConsoleOps.getBodyInput()
-          CalorieStateOps.createStates(bodyParams, "SomeProfile")
+          val profileData = ConsoleOps.newProfile()
+          CalorieStateOps.createStates(profileData)
         }
         case Some(states) => states
       }
-      case bodyParams: StartOptions.SetBodyParams => CalorieStateOps.createStates(bodyParams, "SomeProfile")
+      case profileData: StartOptions.NewProfile => CalorieStateOps.createStates(profileData)
     }
 
     main_loop(states)

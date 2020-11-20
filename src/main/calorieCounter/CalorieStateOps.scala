@@ -1,9 +1,9 @@
 package main.calorieCounter
 
 import main.{Date, States}
-import consoleinterface.StartOptions.SetBodyParams
 import CalorieCalculations.createBody
 import consoleinterface.caloriescouter.options.AddCaloricActivity
+import consoleinterface.StartOptions.NewProfile
 import main.States.{CalorieCounter, FootPrintState}
 import main.calorieCounter.caloricstructures.Goal.KeepWeight
 import main.calorieCounter.caloricstructures.{ActivityType, CaloricActivity}
@@ -20,10 +20,12 @@ object CalorieStateOps {
     counter.copy(activities = newActivities)
   }
 
-  def createStates(bodyParams: SetBodyParams, profileName: String): States = {
-    val body = createBody(bodyParams.height, bodyParams.weight, bodyParams.age, bodyParams.gender, bodyParams.lifestyle)
-    val footPrint = FootPrintState(0, List(), None, List(), None)
+  def createStates(newProfile: NewProfile): States = {
+    val bodyParams = newProfile.bodyParams
+    val footPrintData = newProfile.footPrintData
+    val body = createBody(bodyParams.height, bodyParams.height, bodyParams.age, bodyParams.gender, bodyParams.lifestyle)
+    val footPrint = FootPrintState(0, List(), None, List(), None, footPrintData)
     val calorieCounter = CalorieCounter(body, List(), KeepWeight, List((bodyParams.weight, bodyParams.date)), Map())
-    States(profileName, footPrint, calorieCounter)
+    States(newProfile.profileName, footPrint, calorieCounter)
   }
 }

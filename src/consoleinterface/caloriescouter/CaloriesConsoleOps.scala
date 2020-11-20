@@ -1,9 +1,8 @@
 package consoleinterface.caloriescouter
 
-import consoleinterface.StartOptions.SetBodyParams
-import consoleinterface.{SetGoal, UserChoice}
 import consoleinterface.caloriescouter.options.AddCaloricActivity._
-import consoleinterface.caloriescouter.options.BodyChange.ChangeWeight
+import consoleinterface.StartOptions.BodyParams
+import consoleinterface.{SetGoal, UserChoice}
 import main.Date
 import main.calorieCounter.caloricstructures.Goal._
 import inputs.BodyInput
@@ -20,8 +19,8 @@ object CaloriesConsoleOps {
       case Nil => {}
     }
   }
-  def getBodyInput(): SetBodyParams = {
-    println("Insert your body parameters")
+  def getBodyInput(): BodyParams = {
+  println("Insert your body parameters")
     print("Height(in cm): ")
     val height=readLine().toInt
     print("Weight(in kg): ")
@@ -29,7 +28,7 @@ object CaloriesConsoleOps {
     val age=BodyInput.ageInput()
     val gender = BodyInput.genderInput()
     val lifestyle = BodyInput.lifestyleInput()
-    SetBodyParams(height,weight,age,gender,lifestyle, Date.today())
+    BodyParams(height,weight,age,gender,lifestyle, Date.today())
   }
 
   def getActivityInput(list: List[String], choice: (String, Date)=> UserChoice, date: Date): UserChoice = {
