@@ -79,4 +79,8 @@ object FootPrintConsoleOps{
     SetWaterConsumption(amount)
   }
 
+  def printTryAgain(): Unit ={
+    println("Please type again one of the available options")
+  }
+
 }
