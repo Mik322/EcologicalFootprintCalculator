@@ -4,7 +4,8 @@ import main.footprint.footprintstructs.waste.{Food, Recycled, Waste}
 import consoleinterface.footprint.inputs.TransportationInput.fuelInput
 import consoleinterface.{AddTransportTrip, AddWaste, SetEnergySource, SetWaterConsumption, UserChoice}
 import main.footprint.TransportMeans._
-import main.footprint.footprintstructs.energy.{Electricity, EnergySource, TypeOfEnergySource, Gas, Oil, Wood, Coal}
+import main.footprint.footprintstructs.FootPrintData
+import main.footprint.footprintstructs.energy.{Coal, Electricity, EnergySource, Gas, Oil, TypeOfEnergySource, Wood}
 
 import scala.io.StdIn.readLine
 
@@ -12,10 +13,11 @@ object FootPrintConsoleOps{
 
   def addTransportTrip(): UserChoice ={
     println("Select Mean of Transport:\n1.Car\n2.Plane\n3.Bus\n4.Subway\n5.Train")
-    val mean = readLine().toInt
+    val input = readLine().toInt
+    val mean = getTransportMean(input)
     println("Type number of Km:")
     val km = readLine().toDouble
-    AddTransportTrip(getTransportMean(mean),km)
+    AddTransportTrip(mean,km)
   }
 
   def getTransportMean(mean: Int): TransportMean = mean match{

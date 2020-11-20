@@ -2,10 +2,12 @@ package main.calorieCounter
 
 import main.{CalorieCounter, Date, FootPrintState, States}
 import consoleinterface.AddCaloricActivity
-import consoleinterface.StartOptions.SetBodyParams
+import consoleinterface.StartOptions.{NewProfile}
 import CalorieCounterOps.createBody
 import main.calorieCounter.caloricstructures.Goal.KeepWeight
 import main.calorieCounter.caloricstructures.{ActivityType, CaloricActivity}
+import main.footprint.footprintstructs.FootPrintData
+import sun.jvm.hotspot.oops.ProfileData
 
 object CalorieStateOps {
   def addCaloricActivity(counter: CalorieCounter,
@@ -29,9 +31,11 @@ object CalorieStateOps {
     counter.copy(body = newBody, weightHistoric = counter.weightHistoric.appended((weight, date)))
   }
 
-  def createStates(bodyParams: SetBodyParams): States = {
+  def createStates(newProfile: NewProfile): States = {
+    val bodyParams = newProfile.bodyParams
+    val footPrintData = newProfile.footPrintData
     val body = createBody(bodyParams.height, bodyParams.height, bodyParams.age, bodyParams.gender, bodyParams.lifestyle)
-    val footPrint = FootPrintState(0, List(), None, List(), None)
+    val footPrint = FootPrintState(0, List(), None, List(), None, footPrintData)
     val calorieCounter = CalorieCounter(body, List(), KeepWeight, List((bodyParams.weight, bodyParams.date)))
     States(footPrint, calorieCounter)
   }
