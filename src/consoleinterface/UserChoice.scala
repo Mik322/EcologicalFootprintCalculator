@@ -1,7 +1,7 @@
 package consoleinterface
 
 import main.Date
-import main.calorieCounter.caloricstructures.Goal.Goal
+import main.calorieCounter.caloricstructures.Goal
 import main.footprint.TransportMeans.TransportMean
 import main.footprint.footprintstructs.energy.EnergySource
 import main.footprint.footprintstructs.waste.TypeOfWaste
@@ -9,7 +9,7 @@ import main.footprint.footprintstructs.waste.TypeOfWaste
 trait UserChoice
 
 case object SaveStates extends UserChoice
-case class SetGoal(goal: Goal) extends UserChoice
+case class SetGoal(goal: Goal.Value) extends UserChoice
 case object GetBody extends UserChoice
 
 case class AddTransportTrip(mean: TransportMean, km: Double) extends UserChoice

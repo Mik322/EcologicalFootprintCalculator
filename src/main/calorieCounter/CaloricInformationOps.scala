@@ -3,9 +3,9 @@ package main.calorieCounter
 import consoleinterface.caloriescouter.options.CaloricInformation._
 import consoleinterface.caloriescouter.options.CaloricInformation
 import main.{CalorieCounter, Date}
-import main.calorieCounter.CalorieCounterOps.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
+import main.calorieCounter.CalorieCalculations.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
 import main.calorieCounter.caloricstructures.{CaloricActivity, Goal}
-import main.calorieCounter.caloricstructures.Goal.Goal
+import main.calorieCounter.caloricstructures.Goal
 
 import scala.annotation.tailrec
 
@@ -38,7 +38,7 @@ object CaloricInformationOps {
 
       case GetWaterNeeds(date) =>
         val waterNeeds = Recommendations.cupsOfWaterToDrink(counter, date)
-        CaloricImpure.printCupsOfWaterToDrink(waterNeeds)
+        ImpureFunctions.printCupsOfWaterToDrink(waterNeeds)
     }
   }
 
@@ -58,16 +58,14 @@ object CaloricInformationOps {
       println(s"To reach your goal you need a daily net intake of ${goalCalories} calories, your average net calories is ${(caloriesConsumed - caloriesBurned) / days} calories p/day.")
     }
 
-    def printGoalInformation(goal: Goal, calories: Int): Unit = {
-      val goalFrase = goal match {
-        case Goal.LoseALotOfWeight => "lose 1kg per week"
-        case Goal.LoseWeight => "lose 0.5kg per week"
+    def printGoalInformation(goal: Goal.Value, calories: Int): Unit = {
+      val goalPhrase = goal match {
         case Goal.KeepWeight => "keep weight"
-        case Goal.GainWeight => "gain 0.5kg per week"
-        case Goal.GainALotOfWeight => "gain 1kg per week"
+
+        case _ => s"${if (goal.kgChanged > 0) "gain" else "lose"} ${goal.kgChanged.abs} per week"
       }
 
-      println(s"To ${goalFrase} you need to have a net caloric intake of ${calories} per week")
+      println(s"To ${goalPhrase} you need to have a net caloric intake of ${calories} per week")
     }
 
     @tailrec

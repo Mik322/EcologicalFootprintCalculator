@@ -3,11 +3,11 @@ package main.calorieCounter
 import caloricstructures.{CaloricActivity, Drink, Food, Sport}
 import main.calorieCounter.caloricstructures.Body.{Active, ExtremelyActive, Female, Gender, Lifestyle, Male, Moderated, Sedentary, VeryActive}
 import main.{CalorieCounter, Date}
-import main.calorieCounter.caloricstructures.Goal.Goal
+import main.calorieCounter.caloricstructures.Goal
 import main.calorieCounter.caloricstructures._
 
 
-object CalorieCounterOps {
+object CalorieCalculations {
 
   def calculateExerciseCalories(MET: Double, time: Int, weight: Double): Float = (time * (MET * 3.5 * weight) / 200).asInstanceOf[Float]
 
@@ -37,9 +37,9 @@ object CalorieCounterOps {
 
   def calculateBurnedCalories(activities: List[CaloricActivity]): Int = getSumOfCalories(activities.filter(a => a.activityType == Sport))
 
-  def calculateCaloriesToGoal(body: Body, goal: Goal): Int = {
+  def calculateCaloriesToGoal(body: Body, goal: Goal.Value): Int = {
     val bmr = calculateBMR(body)
-    goal.id + bmr
+    goal.caloricChange + bmr
   }
 
   def createBody(height: Int, weight: Double, age: Int, gender: Gender, lifestyle: Lifestyle): Body = Body(height, weight, age, gender, lifestyle)

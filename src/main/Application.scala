@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface._
-import calorieCounter.{AddCaloricActivityOps, CaloricImpure, CaloricInformationOps, CalorieStateOps, ChangeBody}
+import calorieCounter.{AddCaloricActivityToState, ImpureFunctions, CaloricInformationOps, CalorieStateOps, ChangeBody}
 import calorieCounter.caloricstructures.CaloricMaps
 import consoleinterface.caloriescouter.CaloriesConsoleOps
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
@@ -41,7 +41,7 @@ object Application extends App {
 
       // Adds a caloric activity (Food, Drink or Sport) to the calorie counter
       case activity: AddCaloricActivity =>
-        val newCalorieCounter = AddCaloricActivityOps.addCaloricActivityToState(activity, calorieCounter, caloricMaps)
+        val newCalorieCounter = AddCaloricActivityToState.addCaloricActivityToState(activity, calorieCounter, caloricMaps)
         main_loop(footPrintState, newCalorieCounter)
 
       // Sets the Weight goal
@@ -56,7 +56,7 @@ object Application extends App {
 
       // Prints the body params
       case GetBody =>
-        CaloricImpure.printBodyInformation(calorieCounter.body)
+        ImpureFunctions.printBodyInformation(calorieCounter.body)
         main_loop(footPrintState, calorieCounter)
 
         //Handles all types of body change

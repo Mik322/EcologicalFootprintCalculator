@@ -2,7 +2,7 @@ package main.calorieCounter
 
 import main.calorieCounter.caloricstructures.Body
 
-case object CaloricImpure {
+case object ImpureFunctions {
   def printBodyInformation(body: Body): Unit = {
     println(s"Your height: ${body.height}cm")
     println(s"Your weight: ${body.weight}kg")

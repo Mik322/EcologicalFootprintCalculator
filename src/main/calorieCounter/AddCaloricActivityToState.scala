@@ -2,13 +2,13 @@ package main.calorieCounter
 
 import consoleinterface._
 import main.CalorieCounter
-import CalorieCounterOps.calculateExerciseCalories
+import CalorieCalculations.calculateExerciseCalories
 import consoleinterface.caloriescouter.options.AddCaloricActivity._
 import CalorieStateOps.addCaloricActivity
 import consoleinterface.caloriescouter.options.AddCaloricActivity
 import main.calorieCounter.caloricstructures.{Body, CaloricMaps, Drink, Food, Sport, Water}
 
-object AddCaloricActivityOps {
+object AddCaloricActivityToState {
 
   def addCaloricActivityToState(activity: AddCaloricActivity, state: CalorieCounter, maps: CaloricMaps): CalorieCounter = activity match {
     case AddDrink(_,_,_) => addCaloricActivity(state, activity , drinkDensity(activity, maps), drinkAttributes)

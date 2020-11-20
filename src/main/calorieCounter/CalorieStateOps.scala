@@ -2,7 +2,7 @@ package main.calorieCounter
 
 import main.{CalorieCounter, Date, FootPrintState, States}
 import consoleinterface.StartOptions.SetBodyParams
-import CalorieCounterOps.createBody
+import CalorieCalculations.createBody
 import consoleinterface.caloriescouter.options.AddCaloricActivity
 import main.calorieCounter.caloricstructures.Goal.KeepWeight
 import main.calorieCounter.caloricstructures.{ActivityType, CaloricActivity}
