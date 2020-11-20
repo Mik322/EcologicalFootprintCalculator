@@ -1,5 +1,6 @@
 package consoleinterface.footprint
 
+import consoleinterface.DateChoice.getUserDate
 import main.footprint.footprintstructs.waste.{Food, Recycled, Waste}
 import consoleinterface.footprint.inputs.TransportationInput.fuelInput
 import consoleinterface.{AddTransportTrip, AddWaste, SetEnergySource, SetWaterConsumption, UserChoice}
@@ -17,7 +18,9 @@ object FootPrintConsoleOps{
     val mean = getTransportMean(input)
     println("Type number of Km:")
     val km = readLine().toDouble
-    AddTransportTrip(mean,km)
+    println("Date of the trip:")
+    val date = getUserDate()
+    AddTransportTrip(mean,km,date)
   }
 
   def getTransportMean(mean: Int): TransportMean = mean match{

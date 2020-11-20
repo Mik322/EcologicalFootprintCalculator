@@ -16,7 +16,7 @@ trait CaloricInformation extends UserChoice
 case object GetBody extends UserChoice
 case class AddSleep(hours: Int, date: Date) extends UserChoice
 
-case class AddTransportTrip(mean: TransportMean, km: Double) extends UserChoice
+case class AddTransportTrip(mean: TransportMean, km: Double, date: Date) extends UserChoice
 case object GetTransportEmissions extends UserChoice
 case object GetTransportHistory extends UserChoice
 case class AddWaste(kg: Int, typeOfWaste: TypeOfWaste) extends UserChoice
@@ -26,5 +26,6 @@ case object GetEnergyEmissions extends UserChoice
 case class SetWaterConsumption(amount: Double) extends UserChoice
 case object GetWaterEmissions extends UserChoice
 case object GetEcologicalFootPrint extends UserChoice
+case object TestFunc extends UserChoice
 
 case object Quit extends UserChoice

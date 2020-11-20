@@ -5,6 +5,7 @@ import java.io._
 
 import scala.annotation.tailrec
 import scala.io.Source
+import scala.io.StdIn.readLine
 
 object FileOperations {
   def saveStates(states: States) = {
@@ -45,4 +46,10 @@ object FileOperations {
   }
 
   def printLoadError = println("There is no saved profile. Create a new One")
+
+  def getUsername(): String ={
+    println("Please type your username")
+    val username = readLine()
+    username
+  }
 }

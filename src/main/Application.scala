@@ -4,9 +4,10 @@ import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface._
-import calorieCounter.{AddCaloricActivityToState, ImpureFunctions, CaloricInformationOps, CalorieStateOps, ChangeBody}
+import calorieCounter.{AddCaloricActivityToState, CaloricInformationOps, CalorieStateOps, ChangeBody, ImpureFunctions}
 import calorieCounter.caloricstructures.CaloricMaps
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
+import consoleinterface.footprint.FootPrintQuestions
 import main.footprint.TransportMeans._
 import main.footprint._
 import main.footprint.FootPrintOps
@@ -14,14 +15,15 @@ import main.footprint.footprintstructs.energy.{EnergyImpure, EnergySource}
 import main.footprint.footprintstructs.transport.TransportationImpure
 import main.footprint.footprintstructs.waste.WasteImpure
 import footprintstructs.waste.TypeOfWaste
+import main.fileOperations.FileOperations._
 import main.footprint.footprintstructs.{FootPrintData, FootPrintDataImpure, WaterImpure}
 
 
 object Application extends App {
 
-  val foodMap = FileOperations.loadCaloriesMap("Food.txt", s => s.toInt)
-  val drinksMap = FileOperations.loadCaloriesMap("Drinks.txt", s => s.toInt)
-  val exercisesMap = FileOperations.loadCaloriesMap("Exercises.txt", s => s.toDouble)
+  val foodMap = loadCaloriesMap("Food.txt", s => s.toInt)
+  val drinksMap = loadCaloriesMap("Drinks.txt", s => s.toInt)
+  val exercisesMap = loadCaloriesMap("Exercises.txt", s => s.toDouble)
 
   val caloricMaps = CaloricMaps(foodMap, drinksMap, exercisesMap)
 
@@ -35,7 +37,7 @@ object Application extends App {
 
       // Saves the current states to a file
       case SaveStates =>
-        FileOperations.saveStates(states)
+        saveStates(states)
         main_loop(states)
 
       // Adds a caloric activity (Food, Drink or Sport) to the calorie counter
@@ -64,12 +66,12 @@ object Application extends App {
         val newCalorieCounter = ChangeBody.changeBody(bodyParam, states.calorieCounter)
         main_loop(states.copy(calorieCounter = newCalorieCounter))
 
-      case AddTransportTrip(mean: TransportMean, km: Double) => mean match {
+      case AddTransportTrip(mean: TransportMean, km: Double, date: Date) => mean match {
         case Car(consumption, fuel) =>
-          val newFootPrint = FootPrintOps.addCarConsumption(states.footPrintState, consumption, km, fuel)
+          val newFootPrint = FootPrintOps.addCarConsumption(states.footPrintState, consumption, km, fuel, date)
           main_loop(states.copy(footPrintState = newFootPrint))
         case publicTransport =>
-          val newFootPrint = FootPrintOps.addPublicTransportEmissions(states.footPrintState, publicTransport, km)
+          val newFootPrint = FootPrintOps.addPublicTransportEmissions(states.footPrintState, publicTransport, km,date)
           main_loop(states.copy(footPrintState = newFootPrint))
       }
 
@@ -118,14 +120,17 @@ object Application extends App {
 
     //Gets the states
     val states = choice match {
-      case StartOptions.LoadState => FileOperations.loadStates("Some Profile") match {
-        //If there is no state saved loadStates returns None so it asks for a new Profile
-        case None => {
-          FileOperations.printLoadError
-          val profileData = ConsoleOps.newProfile()
-          CalorieStateOps.createStates(profileData)
+      case StartOptions.LoadState => {
+        val username = FileOperations.getUsername()
+        loadStates(username) match {
+          //If there is no state saved loadStates returns None so it asks for a new Profile
+          case None => {
+            printLoadError
+            val profileData = ConsoleOps.newProfile()
+            CalorieStateOps.createStates(profileData)
+          }
+          case Some(states) => states
         }
-        case Some(states) => states
       }
       case profileData: StartOptions.NewProfile => CalorieStateOps.createStates(profileData)
     }

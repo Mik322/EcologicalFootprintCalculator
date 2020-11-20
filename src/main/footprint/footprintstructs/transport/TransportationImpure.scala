@@ -19,11 +19,11 @@ object TransportationImpure {
         printTransportHistory(head)
         history(next)
       }
-      case Nil => println("\n")
+      case Nil => println("")
     }
   }
 
   def printTransportHistory(trip: TransportTrip) = {
-    println(s"${trip.km} km travelled by ${trip.mean} with a total emission of ${trip.emissions} g/CO2")
+    println(s"${trip.km} km travelled by ${trip.mean} with a total emission of ${trip.emissions} g/CO2 on day ${trip.date}")
   }
 }
