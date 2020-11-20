@@ -15,7 +15,6 @@ object ConsoleOps {
   def FirstPrompt(): StartOptions = {
     printWelcome()
     println("1. New Profile\n2. Load Profile")
-
     readLine() match {
       case "1" => newProfile()
       case "2" => LoadState

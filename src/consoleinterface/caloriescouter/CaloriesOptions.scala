@@ -1,5 +1,6 @@
 package consoleinterface.caloriescouter
 
+import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface.caloriescouter.CaloricInformationConsole.caloricInformationMenu
 import consoleinterface.{DateChoice, GoToMainMenu, Quit, UserChoice}
 import main.calorieCounter.caloricstructures.CaloricMaps
@@ -13,13 +14,18 @@ object CaloriesOptions {
 
     input match {
       case "1" => addMenu(caloricMaps)
-      case "2" => caloricInformationMenu()
-      case "0" => GoToMainMenu
+      case "2" => caloricInformationMenu(caloricMaps)
+      case "0" =>
+        printOptions()
+        getUserChoice(caloricMaps)
+      case _ =>
+        println("Invalid option please try again")
+        caloriesCounterOptions(caloricMaps)
     }
   }
 
   def addMenu(caloricMaps: CaloricMaps): UserChoice = {
-    println("1. Add Food\n2. Add Drink\n3. Add Exercise\n4. Set Goal\n5. Changed Body Parameters Menu\n6.Add Sleep\n0. Quit")
+    println("1. Add Food\n2. Add Drink\n3. Add Exercise\n4. Set Goal\n5. Change Body Parameters Menu\n6.Add Sleep\n0. Quit")
     val input = readLine()
 
     input match {
@@ -47,11 +53,15 @@ object CaloriesOptions {
       }
       case "4" => CaloriesConsoleOps.getUserGoal()
 
-      case "5" => BodyChangeMenu.menu()
+      case "5" => BodyChangeMenu.menu(caloricMaps)
 
       case "6" => CaloriesConsoleOps.getSleep()
+      
+      case "0" => caloriesCounterOptions(caloricMaps)
 
-      case _ => Quit
+      case _ =>
+        println("Invalid option please try again")
+        addMenu(caloricMaps)
     }
   }
 }
