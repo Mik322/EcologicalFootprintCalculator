@@ -1,21 +1,20 @@
 package main.fileOperations
 
-import main.{CalorieCounter, FootPrintState, States}
+import main.States
 import java.io._
 
 import scala.annotation.tailrec
 import scala.io.Source
 
 object FileOperations {
-  def saveStates(footPrintState: FootPrintState, calorieCounter: CalorieCounter) = {
-    val states = States(footPrintState, calorieCounter)
-    val out = new ObjectOutputStream(new FileOutputStream(new File("States")))
+  def saveStates(states: States) = {
+    val out = new ObjectOutputStream(new FileOutputStream(new File(s"${states.profileName}.prof")))
     out.writeObject(states)
   }
 
-  def loadStates(): Option[States] = {
+  def loadStates(fileName: String): Option[States] = {
     try {
-      val in = new ObjectInputStream(new FileInputStream(new File("States")))
+      val in = new ObjectInputStream(new FileInputStream(new File(s"${fileName}.prof")))
       val states = in.readObject().asInstanceOf[States]
       Some(states)
     } catch {
@@ -40,10 +39,10 @@ object FileOperations {
 
   def loadCaloriesMap[A](name: String, convert: String => A): Map[String, A] = {
     val file = Source.fromFile(name)
-    val map = processLines(file.getLines.toList, convert)
+    val map = processLines(file.getLines().toList, convert)
     file.close()
     map
   }
 
-  def printLoadError() = println("There is no saved profile. Create a new One")
+  def printLoadError = println("There is no saved profile. Create a new One")
 }

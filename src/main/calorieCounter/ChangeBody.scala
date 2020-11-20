@@ -1,7 +1,7 @@
 package main.calorieCounter
 
 import consoleinterface.caloriescouter.options.BodyChange
-import main.CalorieCounter
+import main.States.CalorieCounter
 
 object ChangeBody {
 

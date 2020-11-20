@@ -1,7 +1,7 @@
 package main.calorieCounter
 
 import consoleinterface._
-import main.CalorieCounter
+import main.States.CalorieCounter
 import CalorieCalculations.calculateExerciseCalories
 import consoleinterface.caloriescouter.options.AddCaloricActivity._
 import CalorieStateOps.addCaloricActivity
@@ -24,7 +24,7 @@ object AddCaloricActivityToState {
 
   def foodDensity(activity: AddCaloricActivity, maps: CaloricMaps): Float = {
     val density = maps.foodMap(activity.asInstanceOf[AddFood].food)
-    density.toInt/100
+    (density.toInt/100).toFloat
   }
 
   def sportDensity(activity: AddCaloricActivity, maps: CaloricMaps, body: Body): Float = {

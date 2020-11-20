@@ -1,6 +1,5 @@
 package consoleinterface
 
-import main.Date
 import main.calorieCounter.caloricstructures.Goal
 import main.footprint.TransportMeans.TransportMean
 import main.footprint.footprintstructs.energy.EnergySource

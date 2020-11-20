@@ -1,6 +1,6 @@
 package main.footprint.footprintstructs.transport
 
-import main.FootPrintState
+import main.States.FootPrintState
 
 object TransportationImpure {
   def printTransportEmissions(footPrintState: FootPrintState): Unit = {

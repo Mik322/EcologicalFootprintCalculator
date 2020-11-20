@@ -1,6 +1,7 @@
 package main.calorieCounter
 
-import main.{CalorieCounter, Date}
+import main.States.CalorieCounter
+import main.Date
 
 object Recommendations {
 

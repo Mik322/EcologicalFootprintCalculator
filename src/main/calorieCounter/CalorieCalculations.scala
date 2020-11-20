@@ -2,7 +2,8 @@ package main.calorieCounter
 
 import caloricstructures.{CaloricActivity, Drink, Food, Sport}
 import main.calorieCounter.caloricstructures.Body.{Active, ExtremelyActive, Female, Gender, Lifestyle, Male, Moderated, Sedentary, VeryActive}
-import main.{CalorieCounter, Date}
+import main.Date
+import main.States.CalorieCounter
 import main.calorieCounter.caloricstructures.Goal
 import main.calorieCounter.caloricstructures._
 

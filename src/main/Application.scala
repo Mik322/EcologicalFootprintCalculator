@@ -27,7 +27,7 @@ object Application extends App {
   val caloricMaps = CaloricMaps(foodMap, drinksMap, exercisesMap)
 
   @tailrec
-  def main_loop(footPrintState: FootPrintState, calorieCounter: CalorieCounter): Unit = {
+  def main_loop(states: States): Unit = {
     printOptions()
     val userChoice = getUserChoice(caloricMaps)
 
@@ -36,74 +36,74 @@ object Application extends App {
 
       // Saves the current states to a file
       case SaveStates =>
-        FileOperations.saveStates(footPrintState, calorieCounter)
-        main_loop(footPrintState, calorieCounter)
+        FileOperations.saveStates(states)
+        main_loop(states)
 
       // Adds a caloric activity (Food, Drink or Sport) to the calorie counter
       case activity: AddCaloricActivity =>
-        val newCalorieCounter = AddCaloricActivityToState.addCaloricActivityToState(activity, calorieCounter, caloricMaps)
-        main_loop(footPrintState, newCalorieCounter)
+        val newCalorieCounter = AddCaloricActivityToState.addCaloricActivityToState(activity, states.calorieCounter, caloricMaps)
+        main_loop(states.copy(calorieCounter = newCalorieCounter))
 
       // Sets the Weight goal
       case SetGoal(goal) =>
-        val newCalorieCounter = calorieCounter.copy(goal = goal)
-        main_loop(footPrintState, newCalorieCounter)
+        val newCalorieCounter = states.calorieCounter.copy(goal = goal)
+        main_loop(states.copy(calorieCounter = newCalorieCounter))
 
       // Handles all types of caloric Information requests
       case information: CaloricInformation =>
-        CaloricInformationOps.getCaloricInformation(information, calorieCounter)
-        main_loop(footPrintState, calorieCounter)
+        CaloricInformationOps.getCaloricInformation(information, states.calorieCounter)
+        main_loop(states)
 
       // Prints the body params
       case GetBody =>
-        ImpureFunctions.printBodyInformation(calorieCounter.body)
-        main_loop(footPrintState, calorieCounter)
+        ImpureFunctions.printBodyInformation(states.calorieCounter.body)
+        main_loop(states)
 
         //Handles all types of body change
       case bodyParam: BodyChange =>
-        val newCalorieCounter = ChangeBody.changeBody(bodyParam, calorieCounter)
-        main_loop(footPrintState, newCalorieCounter)
+        val newCalorieCounter = ChangeBody.changeBody(bodyParam, states.calorieCounter)
+        main_loop(states.copy(calorieCounter = newCalorieCounter))
 
       case AddTransportTrip(mean: TransportMean, km: Double) => mean match {
         case Car(consumption, fuel) =>
-          val newFootPrint = FootPrintOps.addCarConsumption(footPrintState, consumption, km, fuel)
-          main_loop(newFootPrint, calorieCounter)
+          val newFootPrint = FootPrintOps.addCarConsumption(states.footPrintState, consumption, km, fuel)
+          main_loop(states.copy(footPrintState = newFootPrint))
         case publicTransport =>
-          val newFootPrint = FootPrintOps.addPublicTransportEmissions(footPrintState, publicTransport, km)
-          main_loop(newFootPrint, calorieCounter)
+          val newFootPrint = FootPrintOps.addPublicTransportEmissions(states.footPrintState, publicTransport, km)
+          main_loop(states.copy(footPrintState = newFootPrint))
       }
 
       case GetTransportEmissions =>
-        TransportationImpure.printTransportEmissions(footPrintState)
-        main_loop(footPrintState, calorieCounter)
+        TransportationImpure.printTransportEmissions(states.footPrintState)
+        main_loop(states)
 
       case GetTransportHistory =>
-        TransportationImpure.history(footPrintState.transportTrips)
-        main_loop(footPrintState, calorieCounter)
+        TransportationImpure.history(states.footPrintState.transportTrips)
+        main_loop(states)
 
       case AddWaste(kg: Int, typeOfWaste: TypeOfWaste) =>
-        val newFootPrint = FootPrintOps.addWaste(footPrintState, kg, typeOfWaste)
-        main_loop(newFootPrint, calorieCounter)
+        val newFootPrint = FootPrintOps.addWaste(states.footPrintState, kg, typeOfWaste)
+        main_loop(states.copy(footPrintState = newFootPrint))
 
       case GetWasteEmissions =>
-        WasteImpure.printWasteEmissions(footPrintState)
-        main_loop(footPrintState, calorieCounter)
+        WasteImpure.printWasteEmissions(states.footPrintState)
+        main_loop(states)
 
       case SetEnergySource(source: EnergySource) =>
-        val newFootPrintState = FootPrintOps.setEnergySource(footPrintState, source)
-        main_loop(newFootPrintState, calorieCounter)
+        val newFootPrintState = FootPrintOps.setEnergySource(states.footPrintState, source)
+        main_loop(states.copy(footPrintState = newFootPrintState))
 
       case GetEnergyEmissions =>
-        EnergyImpure.getEnergyEmissions(footPrintState)
-        main_loop(footPrintState, calorieCounter)
+        EnergyImpure.getEnergyEmissions(states.footPrintState)
+        main_loop(states)
 
       case SetWaterConsumption(amount: Double) =>
-        val newFootPrintState = FootPrintOps.setWaterConsumption(footPrintState, amount)
-        main_loop(newFootPrintState, calorieCounter)
+        val newFootPrintState = FootPrintOps.setWaterConsumption(states.footPrintState, amount)
+        main_loop(states.copy(footPrintState = newFootPrintState))
 
       case GetWaterEmissions =>
-        WaterImpure.printWaterImpure(footPrintState)
-        main_loop(footPrintState,calorieCounter)
+        WaterImpure.printWaterImpure(states.footPrintState)
+        main_loop(states)
     }
   }
 
@@ -113,19 +113,19 @@ object Application extends App {
 
     //Gets the states
     val states = choice match {
-      case StartOptions.LoadState => FileOperations.loadStates() match {
+      case StartOptions.LoadState => FileOperations.loadStates("SomeProfile") match {
         //If there is no state saved loadStates returns None so it asks for a new Profile
         case None => {
-          FileOperations.printLoadError()
+          FileOperations.printLoadError
           val bodyParams = CaloriesConsoleOps.getBodyInput()
-          CalorieStateOps.createStates(bodyParams)
+          CalorieStateOps.createStates(bodyParams, "SomeProfile")
         }
         case Some(states) => states
       }
-      case bodyParams: StartOptions.SetBodyParams => CalorieStateOps.createStates(bodyParams)
+      case bodyParams: StartOptions.SetBodyParams => CalorieStateOps.createStates(bodyParams, "SomeProfile")
     }
 
-    main_loop(states.footPrintState, states.calorieCounter)
+    main_loop(states)
   }
 
   start()

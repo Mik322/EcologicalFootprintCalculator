@@ -1,6 +1,6 @@
 package main.footprint.footprintstructs.energy
 
-import main.FootPrintState
+import main.States.FootPrintState
 
 object EnergyImpure {
   def getPrint(sources: List[EnergySource]): Unit ={

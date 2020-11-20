@@ -2,7 +2,8 @@ package main.calorieCounter
 
 import consoleinterface.caloriescouter.options.CaloricInformation._
 import consoleinterface.caloriescouter.options.CaloricInformation
-import main.{CalorieCounter, Date}
+import main.Date
+import main.States.CalorieCounter
 import main.calorieCounter.CalorieCalculations.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
 import main.calorieCounter.caloricstructures.{CaloricActivity, Goal}
 import main.calorieCounter.caloricstructures.Goal
