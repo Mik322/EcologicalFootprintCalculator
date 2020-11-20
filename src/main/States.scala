@@ -12,6 +12,6 @@ case class States(profileName: String, footPrintState: FootPrintState, calorieCo
 
 object States {
   case class FootPrintState(carbonFootPrint: Double, transportTrips: List[TransportTrip], waste: Option[Waste], energySources: List[EnergySource], water: Option[Double])
-  case class CalorieCounter(body: Body, activities: List[CaloricActivity], goal: Goal.Value, weightHistoric: List[(Double, Date)])
+  case class CalorieCounter(body: Body, activities: List[CaloricActivity], goal: Goal.Value, weightHistoric: List[(Double, Date)], sleepTracker: Map[Date, Int])
 }
 

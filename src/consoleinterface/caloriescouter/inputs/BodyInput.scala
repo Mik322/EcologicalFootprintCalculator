@@ -27,4 +27,23 @@ object BodyInput {
       case 5 => ExtremelyActive
     }
   }
+
+  def ageInput(): Int = {
+    print("What is your age? ")
+    try {
+      readLine().toInt match {
+        case age if (age >=14 && age <= 100) => age
+        case age if (age < 14) =>
+          println("You're to young")
+          ageInput()
+        case _ =>
+          println("You're to old")
+          ageInput()
+      }
+    } catch {
+      case _: NumberFormatException =>
+        println("Invalid number")
+        ageInput()
+    }
+  }
 }

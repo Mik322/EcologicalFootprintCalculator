@@ -26,8 +26,7 @@ object CaloriesConsoleOps {
     val height=readLine().toInt
     print("Weight(in kg): ")
     val weight=readLine().toDouble
-    print("Age: ")
-    val age=readLine().toInt
+    val age=BodyInput.ageInput()
     val gender = BodyInput.genderInput()
     val lifestyle = BodyInput.lifestyleInput()
     SetBodyParams(height,weight,age,gender,lifestyle, Date.today())

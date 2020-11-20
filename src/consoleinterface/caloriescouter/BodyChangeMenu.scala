@@ -54,18 +54,7 @@ object BodyChangeMenu {
     }
   }
 
-  @tailrec
-  private def changeAge(): ChangeAge = {
-    print("Insert your age: ")
-    try {
-      val age = readLine().toInt
-      ChangeAge(age)
-    } catch {
-      case _: NumberFormatException =>
-        println("Invalid Format")
-        changeAge()
-    }
-  }
+  private def changeAge(): ChangeAge = ChangeAge(BodyInput.ageInput())
 
   private def changeLifestyle(): ChangeLifestyle = ChangeLifestyle(BodyInput.lifestyleInput())
 

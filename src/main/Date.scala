@@ -27,6 +27,8 @@ case class Date(localDate: LocalDate) {
   def >=(date: Date) = this > date || this == date
 
   def <=(date: Date) = this < date || this == date
+
+  override def hashCode(): Int = ((this.localDate.toEpochDay % 197) + this.getDay() * 31).toInt
 }
 
 object Date {
