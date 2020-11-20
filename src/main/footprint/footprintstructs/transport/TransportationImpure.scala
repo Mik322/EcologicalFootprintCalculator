@@ -14,7 +14,8 @@ object TransportationImpure {
   }
 
   def history(trips: List[TransportTrip]): Unit = {
-    trips match {
+    val sorted = trips.sortBy(_.date)
+    sorted match {
       case ::(head, next) => {
         printTransportHistory(head)
         history(next)
