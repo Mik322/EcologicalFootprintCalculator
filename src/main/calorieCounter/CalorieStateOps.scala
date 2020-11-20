@@ -30,7 +30,7 @@ object CalorieStateOps {
   }
 
   def createStates(bodyParams: SetBodyParams): States = {
-    val body = createBody(bodyParams.height, bodyParams.height, bodyParams.age, bodyParams.gender, bodyParams.lifestyle)
+    val body = createBody(bodyParams.height, bodyParams.height, bodyParams.age, bodyParams.biologicalSex, bodyParams.lifestyle)
     val footPrint = FootPrintState(0, List(), None, List(), None)
     val calorieCounter = CalorieCounter(body, List(), (KeepWeight,Date.today()), List((bodyParams.weight, bodyParams.date)))
     States(footPrint, calorieCounter)

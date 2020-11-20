@@ -9,7 +9,7 @@ object CalorieCounterOps {
 
   def calculateExerciseCalories(MET:Double , time:Int, weight:Double): Float=(time * (MET * 3.5 * weight) / 200).asInstanceOf[Float]
 
-  def calculateGenderBMR(body: Body, multiplier: Double):Int = body.gender match {
+  def calculateBiologicalSexBMR(body: Body, multiplier: Double):Int = body.biologicalSex match {
     case Male =>((66.47 + (13.75 * body.weight) + (5.003 * body.height) - (6.755 * body.age))*multiplier).asInstanceOf[Int]
     case Female => ((655.1 + (9.563 * body.weight) + (1.85 * body.height) - (4.676 * body.age))*multiplier).asInstanceOf[Int]
   }
@@ -22,7 +22,7 @@ object CalorieCounterOps {
       case VeryActive => 1.725
       case ExtremelyActive => 1.9
     }
-    calculateGenderBMR(body, multiplier)
+    calculateBiologicalSexBMR(body, multiplier)
   }
 
   def getSumOfCalories(list: List[CaloricActivity]): Int = list.foldLeft(0)((a, b) => a + b.caloricChange)
@@ -40,5 +40,5 @@ object CalorieCounterOps {
     goal.id + bmr
   }
 
-  def createBody(height: Int, weight: Double, age: Int, gender: Gender, lifestyle: Lifestyle): Body = Body(height, weight, age, gender, lifestyle)
+  def createBody(height: Int, weight: Double, age: Int, biologicalSex: BiologicalSex, lifestyle: Lifestyle): Body = Body(height, weight, age, biologicalSex, lifestyle)
 }

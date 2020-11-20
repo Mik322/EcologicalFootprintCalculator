@@ -5,10 +5,10 @@ import scala.io.StdIn.readLine
 import main.calorieCounter._
 
 object BodyInput {
-  def genderInput():Gender={
-    println("Gender:\n0.Male\n1.Female")
-    val genderNum=readLine().toInt
-    genderNum match{
+  def biologicalSexInput():BiologicalSex={
+    println("Biological Sex:\n0.Male\n1.Female")
+    val biologicalSexNum=readLine().toInt
+    biologicalSexNum match{
       case 0 => Male
       case 1 => Female
     }

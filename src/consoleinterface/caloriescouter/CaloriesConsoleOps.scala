@@ -26,9 +26,9 @@ object CaloriesConsoleOps {
     val weight=readLine().toDouble
     print("Age: ")
     val age=readLine().toInt
-    val gender = BodyInput.genderInput()
+    val biologicalSex = BodyInput.biologicalSexInput()
     val lifestyle = BodyInput.lifestyleInput()
-    SetBodyParams(height,weight,age,gender,lifestyle, Date.today())
+    SetBodyParams(height,weight,age,biologicalSex,lifestyle, Date.today())
   }
 
   def getActivityInput(list: List[String], choice: (String, Date)=> UserChoice, date: Date): UserChoice = {
