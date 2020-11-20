@@ -11,7 +11,7 @@ import scala.io.StdIn.readLine
 object BodyChangeMenu {
 
   def menu(): BodyChange = {
-    println("")
+    println("1.Change your height\n2.Change your weight\n3.Change your age\n4.Change your lifestyle")
 
     try {
       readLine().toInt match {
