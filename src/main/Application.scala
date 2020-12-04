@@ -15,6 +15,7 @@ import main.footprint.footprintstructs.energy.{EnergyImpure, EnergySource}
 import main.footprint.footprintstructs.transport.TransportationImpure
 import main.footprint.footprintstructs.waste.WasteImpure
 import footprintstructs.waste.TypeOfWaste
+import main.calorieCounter.sleepTracker.SleepTracker.addSleep
 import main.fileOperations.FileOperations._
 import main.footprint.footprintstructs.{FootPrintData, FootPrintDataImpure, WaterImpure}
 
@@ -34,6 +35,8 @@ object Application extends App {
 
     userChoice match {
       case Quit =>
+
+      case GoToMainMenu => main_loop(states)
 
       // Saves the current states to a file
       case SaveStates =>
@@ -67,6 +70,11 @@ object Application extends App {
       case bodyParam: BodyChange =>
         val newCalorieCounter = ChangeBody.changeBody(bodyParam, states.healthTracker)
         main_loop(states.copy(healthTracker = newCalorieCounter))
+
+      case sleep: AddSleep => {
+        val newCalorieCounter = states.calorieCounter.copy(sleepTracker = addSleep(states.calorieCounter.sleepTracker,sleep))
+        main_loop(states.copy(calorieCounter = newCalorieCounter))
+      }
 
       case AddTransportTrip(mean: TransportMean, km: Double, date: Date) => mean match {
         case Car(consumption, fuel) =>
