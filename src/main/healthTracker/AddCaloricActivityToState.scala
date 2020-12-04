@@ -1,16 +1,16 @@
-package main.calorieCounter
+package main.healthTracker
 
 import consoleinterface._
-import main.States.CalorieCounter
-import CalorieCalculations.calculateExerciseCalories
+import main.States.HealthTracker
+import HealthCalculations.calculateExerciseCalories
 import consoleinterface.caloriescouter.options.AddCaloricActivity._
 import CalorieStateOps.addCaloricActivity
 import consoleinterface.caloriescouter.options.AddCaloricActivity
-import main.calorieCounter.caloricstructures.{Body, CaloricMaps, Drink, Food, Sport, Water}
+import main.healthTracker.caloricstructures.{Body, CaloricMaps, Drink, Food, Sport, Water}
 
 object AddCaloricActivityToState {
 
-  def addCaloricActivityToState(activity: AddCaloricActivity, state: CalorieCounter, maps: CaloricMaps): CalorieCounter = activity match {
+  def addCaloricActivityToState(activity: AddCaloricActivity, state: HealthTracker, maps: CaloricMaps): HealthTracker = activity match {
     case AddDrink(_,_,_) => addCaloricActivity(state, activity , drinkDensity(activity, maps), drinkAttributes)
     case AddFood(_,_,_) => addCaloricActivity(state, activity, foodDensity(activity, maps), foodAttributes)
     case AddSport(_,_,_) => addCaloricActivity(state, activity, sportDensity(activity, maps, state.body), sportAttributes)

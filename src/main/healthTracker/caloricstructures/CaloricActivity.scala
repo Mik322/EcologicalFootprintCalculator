@@ -1,4 +1,4 @@
-package main.calorieCounter.caloricstructures
+package main.healthTracker.caloricstructures
 
 import  main.Date
 

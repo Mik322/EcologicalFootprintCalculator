@@ -1,14 +1,14 @@
-package main.calorieCounter
+package main.healthTracker
 
 import caloricstructures.{CaloricActivity, Drink, Food, Sport}
-import main.calorieCounter.caloricstructures.Body.{Active, ExtremelyActive, Female, BiologicalSex, Lifestyle, Male, Moderated, Sedentary, VeryActive}
+import main.healthTracker.caloricstructures.Body.{Active, ExtremelyActive, Female, BiologicalSex, Lifestyle, Male, Moderated, Sedentary, VeryActive}
 import main.Date
-import main.States.CalorieCounter
-import main.calorieCounter.caloricstructures.Goal
-import main.calorieCounter.caloricstructures._
+import main.States.HealthTracker
+import main.healthTracker.caloricstructures.Goal
+import main.healthTracker.caloricstructures._
 
 
-object CalorieCalculations {
+object HealthCalculations {
 
   def calculateExerciseCalories(MET: Double, time: Int, weight: Double): Float = (time * (MET * 3.5 * weight) / 200).asInstanceOf[Float]
 
@@ -61,7 +61,7 @@ object CalorieCalculations {
     activities.filter(a => a.activityType == Sport && a.date == date).foldLeft(0)((c, a) => c + a.quantity)
   }
 
-  def getRemainingWaterNeeded(counter: CalorieCounter, date: Date): Int = {
+  def getRemainingWaterNeeded(counter: HealthTracker, date: Date): Int = {
     val recommended = getTotalWaterConsumedInDay(counter.activities, date)
     val consumed = getTotalWaterConsumedInDay(counter.activities, date)
     recommended - consumed

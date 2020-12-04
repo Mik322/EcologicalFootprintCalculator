@@ -4,7 +4,7 @@ import consoleinterface.StartOptions.{LoadState, NewProfile, StartOptions}
 
 import scala.io.StdIn.readLine
 import consoleinterface.caloriescouter.{CaloriesConsoleOps, CaloriesOptions}
-import main.calorieCounter.caloricstructures.CaloricMaps
+import main.healthTracker.caloricstructures.CaloricMaps
 import consoleinterface.footprint.{FootPrintOptions, FootPrintQuestions}
 
 object ConsoleOps {

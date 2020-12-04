@@ -1,18 +1,18 @@
-package main.calorieCounter
+package main.healthTracker
 
 import main.{Date, States}
-import CalorieCalculations.createBody
+import HealthCalculations.createBody
 import consoleinterface.caloriescouter.options.AddCaloricActivity
 import consoleinterface.StartOptions.NewProfile
-import main.States.{CalorieCounter, FootPrintState}
-import main.calorieCounter.caloricstructures.Goal.KeepWeight
-import main.calorieCounter.caloricstructures.{ActivityType, CaloricActivity}
+import main.States.{HealthTracker, FootPrintState}
+import main.healthTracker.caloricstructures.Goal.KeepWeight
+import main.healthTracker.caloricstructures.{ActivityType, CaloricActivity}
 
 object CalorieStateOps {
-  def addCaloricActivity(counter: CalorieCounter,
+  def addCaloricActivity(counter: HealthTracker,
                          activity: AddCaloricActivity,
                          density: Float,
-                         activityAttributes: AddCaloricActivity => (String, Int, ActivityType, Date)): CalorieCounter =
+                         activityAttributes: AddCaloricActivity => (String, Int, ActivityType, Date)): HealthTracker =
   {
     val (name, quantity, activityType, date) = activityAttributes(activity)
     val consumedCalories = (density * quantity).toInt
@@ -20,7 +20,7 @@ object CalorieStateOps {
     counter.copy(activities = newActivities)
   }
 
-  def changeWeight(counter: CalorieCounter, weight: Double, date: Date): CalorieCounter = {
+  def changeWeight(counter: HealthTracker, weight: Double, date: Date): HealthTracker = {
     val newBody = counter.body.copy(weight = weight)
     counter.copy(body = newBody, weightHistory = counter.weightHistory.appended((weight, date)))
   }
@@ -29,7 +29,7 @@ object CalorieStateOps {
     val footPrintData = newProfile.footPrintData
     val body = createBody(bodyParams.height, bodyParams.height, bodyParams.age, bodyParams.biologicalSex, bodyParams.lifestyle)
     val footPrint = FootPrintState(0, List(), None, List(), None, footPrintData)
-    val calorieCounter = CalorieCounter(body, List(), (KeepWeight,Date.today()), List((bodyParams.weight, bodyParams.date)), Map())
+    val calorieCounter = HealthTracker(body, List(), (KeepWeight,Date.today()), List((bodyParams.weight, bodyParams.date)), Map())
     States(newProfile.profileName, footPrint, calorieCounter)
   }
 }

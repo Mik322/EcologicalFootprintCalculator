@@ -1,11 +1,11 @@
-package main.calorieCounter
+package main.healthTracker
 
 import consoleinterface.caloriescouter.options.BodyChange
-import main.States.CalorieCounter
+import main.States.HealthTracker
 
 object ChangeBody {
 
-  def changeBody(newParam: BodyChange, counter: CalorieCounter): CalorieCounter = newParam match {
+  def changeBody(newParam: BodyChange, counter: HealthTracker): HealthTracker = newParam match {
     case BodyChange.ChangeAge(age) => counter.copy(body = counter.body.copy(age = age))
 
     case BodyChange.ChangeHeight(height) => counter.copy(body = counter.body.copy(height = height))

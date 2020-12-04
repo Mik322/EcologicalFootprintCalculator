@@ -1,4 +1,4 @@
-package main.calorieCounter.caloricstructures
+package main.healthTracker.caloricstructures
 import Body._
 
 case class Body(height: Int, weight: Double, age: Int, biologicalSex: BiologicalSex, lifestyle: Lifestyle)

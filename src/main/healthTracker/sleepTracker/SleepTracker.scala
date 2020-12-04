@@ -1,4 +1,4 @@
-package main.calorieCounter.sleepTracker
+package main.healthTracker.sleepTracker
 
 import consoleinterface.AddSleep
 import main.Date

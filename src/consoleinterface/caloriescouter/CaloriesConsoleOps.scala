@@ -4,9 +4,9 @@ import consoleinterface.caloriescouter.options.AddCaloricActivity._
 import consoleinterface.StartOptions.BodyParams
 import consoleinterface.{SetGoal, UserChoice}
 import main.Date
-import main.calorieCounter.caloricstructures.Goal._
+import main.healthTracker.caloricstructures.Goal._
 import inputs.BodyInput
-import main.calorieCounter.caloricstructures.Goal
+import main.healthTracker.caloricstructures.Goal
 
 import scala.io.StdIn.readLine
 

@@ -1,4 +1,4 @@
-package main.calorieCounter.caloricstructures
+package main.healthTracker.caloricstructures
 
 object Goal extends Enumeration {
   protected case class Val(caloricChange: Int, kgChanged: Double) extends super.Val
