@@ -1,7 +1,7 @@
 package consoleinterface
 
 import main.Date
-import main.healthTracker.caloricstructures.Body.{BiologicalSex, Lifestyle}
+import main.healthTracker.Body.{BiologicalSex, Lifestyle}
 import main.footprint.footprintstructs.FootPrintData
 
 object StartOptions {

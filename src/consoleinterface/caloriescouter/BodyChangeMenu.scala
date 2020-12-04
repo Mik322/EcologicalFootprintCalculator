@@ -6,7 +6,7 @@ import consoleinterface.caloriescouter.options.BodyChange
 import consoleinterface.caloriescouter.options.BodyChange.{ChangeAge, ChangeHeight, ChangeLifestyle, ChangeWeight}
 import consoleinterface.caloriescouter.CaloriesOptions.addMenu
 import main.Date
-import main.healthTracker.caloricstructures.CaloricMaps
+import main.healthTracker.CaloricMaps
 
 import scala.annotation.tailrec
 import scala.io.StdIn.readLine

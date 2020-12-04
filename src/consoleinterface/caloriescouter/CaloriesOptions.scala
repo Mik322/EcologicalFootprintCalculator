@@ -2,13 +2,8 @@ package consoleinterface.caloriescouter
 
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface.caloriescouter.CaloricInformationConsole.caloricInformationMenu
-<<<<<<< HEAD
-import consoleinterface.{DateChoice, Quit, UserChoice}
-import main.healthTracker.caloricstructures.CaloricMaps
-=======
 import consoleinterface.{DateChoice, GoToMainMenu, Quit, UserChoice}
-import main.calorieCounter.caloricstructures.CaloricMaps
->>>>>>> d8f63bd0c53d82e4912a98ce221a44dd78a2eac2
+import main.healthTracker.CaloricMaps
 
 import scala.io.StdIn.readLine
 

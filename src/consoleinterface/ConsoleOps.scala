@@ -4,8 +4,8 @@ import consoleinterface.StartOptions.{LoadState, NewProfile, StartOptions}
 
 import scala.io.StdIn.readLine
 import consoleinterface.caloriescouter.{CaloriesConsoleOps, CaloriesOptions}
-import main.healthTracker.caloricstructures.CaloricMaps
 import consoleinterface.footprint.{FootPrintOptions, FootPrintQuestions}
+import main.healthTracker.CaloricMaps
 
 object ConsoleOps {
   def printWelcome(): Unit = {

@@ -6,7 +6,7 @@ import consoleinterface.UserChoice
 import consoleinterface.caloriescouter.options.CaloricInformation
 import consoleinterface.caloriescouter.CaloriesOptions.caloriesCounterOptions
 import main.Date
-import main.calorieCounter.caloricstructures.CaloricMaps
+import main.healthTracker.CaloricMaps
 
 import scala.io.StdIn.readLine
 

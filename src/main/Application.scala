@@ -4,18 +4,17 @@ import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface._
-import healthTracker.{AddCaloricActivityToState, CaloricInformationOps, CalorieStateOps, ChangeBody}
-import healthTracker.caloricstructures.CaloricMaps
+import healthTracker.{Body, CaloricActivity, CaloricInformationOps, CaloricMaps}
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
-import consoleinterface.footprint.FootPrintQuestions
 import main.footprint.TransportMeans._
+import main.healthTracker.CaloricInformationOps.getCaloricInformationString
 import main.footprint._
 import main.footprint.FootPrintOps
 import main.footprint.footprintstructs.energy.{EnergyImpure, EnergySource}
 import main.footprint.footprintstructs.transport.TransportationImpure
 import main.footprint.footprintstructs.waste.WasteImpure
 import footprintstructs.waste.TypeOfWaste
-import main.calorieCounter.sleepTracker.SleepTracker.addSleep
+import main.healthTracker.sleepTracker.SleepTracker.addSleep
 import main.fileOperations.FileOperations._
 import main.footprint.footprintstructs.{FootPrintData, FootPrintDataImpure, WaterImpure}
 
@@ -45,7 +44,7 @@ object Application extends App {
 
       // Adds a caloric activity (Food, Drink or Sport) to the calorie counter
       case activity: AddCaloricActivity =>
-        val newCalorieCounter = AddCaloricActivityToState.addCaloricActivityToState(activity, states.healthTracker, caloricMaps)
+        val newCalorieCounter = CaloricActivity.addCaloricActivityToState(activity, states.healthTracker, caloricMaps)
         main_loop(states.copy(healthTracker = newCalorieCounter))
 
       // Sets the Weight goal
@@ -56,8 +55,8 @@ object Application extends App {
 
       // Handles all types of caloric Information requests
       case information: CaloricInformation =>
-        val information = CaloricInformationOps.getCaloricInformation(information, states.healthTracker)
-        printString(information)
+        val infoString = getCaloricInformationString(information, states.healthTracker)
+        printString(infoString)
         main_loop(states)
 
       // Prints the body params
@@ -68,12 +67,12 @@ object Application extends App {
 
         //Handles all types of body change
       case bodyParam: BodyChange =>
-        val newCalorieCounter = ChangeBody.changeBody(bodyParam, states.healthTracker)
+        val newCalorieCounter = Body.changeBody(bodyParam, states.healthTracker)
         main_loop(states.copy(healthTracker = newCalorieCounter))
 
       case sleep: AddSleep => {
-        val newCalorieCounter = states.calorieCounter.copy(sleepTracker = addSleep(states.calorieCounter.sleepTracker,sleep))
-        main_loop(states.copy(calorieCounter = newCalorieCounter))
+        val newCalorieCounter = states.healthTracker.copy(sleepTracker = addSleep(states.healthTracker.sleepTracker,sleep))
+        main_loop(states.copy(healthTracker = newCalorieCounter))
       }
 
       case AddTransportTrip(mean: TransportMean, km: Double, date: Date) => mean match {
@@ -139,12 +138,12 @@ object Application extends App {
           case None => {
             printLoadError
             val profileData = ConsoleOps.newProfile()
-            CalorieStateOps.createStates(profileData)
+            States.createStates(profileData)
           }
           case Some(states) => states
         }
       }
-      case profileData: StartOptions.NewProfile => CalorieStateOps.createStates(profileData)
+      case profileData: StartOptions.NewProfile => States.createStates(profileData)
     }
 
     main_loop(states)

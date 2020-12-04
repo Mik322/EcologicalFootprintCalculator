@@ -5,12 +5,11 @@ import consoleinterface.caloriescouter.options.CaloricInformation
 import main.Date
 import main.States.HealthTracker
 import main.healthTracker.HealthCalculations.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
-import main.healthTracker.caloricstructures.{Body, CaloricActivity, Goal}
 
 import scala.annotation.tailrec
 
 object CaloricInformationOps {
-  def getCaloricInformation(info: CaloricInformation, counter: HealthTracker): String = {
+  def getCaloricInformationString(info: CaloricInformation, counter: HealthTracker): String = {
     info match {
       case GetListCaloricActivities => {
         getListOfActivitiesString(counter.activities, "")
@@ -39,7 +38,7 @@ object CaloricInformationOps {
       case CaloricInformation.GetWeightTrack => getWeightTrack(counter.weightHistory.sortBy(_._2), counter.goal)
 
       case GetWaterNeeds(date) =>
-        val waterNeeds = Recommendations.cupsOfWaterToDrink(counter, date)
+        val waterNeeds = CaloricActivity.cupsOfWaterToDrink(counter, date)
         getCupsOfWaterToDrinkString(waterNeeds)
     }
   }

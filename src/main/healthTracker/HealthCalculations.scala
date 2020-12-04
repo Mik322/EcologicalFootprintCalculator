@@ -1,11 +1,9 @@
 package main.healthTracker
 
-import caloricstructures.{CaloricActivity, Drink, Food, Sport}
-import main.healthTracker.caloricstructures.Body.{Active, ExtremelyActive, Female, BiologicalSex, Lifestyle, Male, Moderated, Sedentary, VeryActive}
+import main.healthTracker.Body.{Active, BiologicalSex, ExtremelyActive, Female, Lifestyle, Male, Moderated, Sedentary, VeryActive}
 import main.Date
 import main.States.HealthTracker
-import main.healthTracker.caloricstructures.Goal
-import main.healthTracker.caloricstructures._
+import main.healthTracker.CaloricActivity.{Drink, Food, Sport, Water}
 
 
 object HealthCalculations {
