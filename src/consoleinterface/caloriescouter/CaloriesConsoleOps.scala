@@ -2,11 +2,12 @@ package consoleinterface.caloriescouter
 
 import consoleinterface.caloriescouter.options.AddCaloricActivity._
 import consoleinterface.StartOptions.BodyParams
-import consoleinterface.{AddSleep, DateChoice, SetGoal, UserChoice}
+import consoleinterface.{DateChoice, UserChoice}
+import consoleinterface.UserChoice.{AddSleep, SetGoal}
 import main.Date
-import main.healthTracker.Goal._
 import inputs.BodyInput
 import main.healthTracker.Goal
+import main.healthTracker.Goal.{GainALotOfWeight, GainWeight, KeepWeight, LoseWeight, LoseALotOfWeight}
 
 import scala.io.StdIn.readLine
 
@@ -50,50 +51,50 @@ object CaloriesConsoleOps {
 
   def addFoodChoice(food: String, date: Date): AddFood = {
     print("Quantity (in grams): ")
-    try{
+    try {
       readLine().toInt match {
-        case quantity if(quantity<0) =>
+        case quantity if (quantity < 0) =>
           println("You can't eat a negative quantity, please try again")
-          addFoodChoice(food,date)
+          addFoodChoice(food, date)
         case quantity => AddFood(food, quantity, date)
       }
     } catch {
       case _: NumberFormatException =>
         println("Invalid number")
-        addFoodChoice(food,date)
+        addFoodChoice(food, date)
     }
 
   }
 
   def addDrinkChoice(drink: String, date: Date): AddDrink = {
     print("Quantity (in mL): ")
-    try{
+    try {
       readLine().toInt match {
-        case quantity if(quantity<0) =>
+        case quantity if (quantity < 0) =>
           println("You can't drink a negative quantity, please try again")
-          addDrinkChoice(drink,date)
+          addDrinkChoice(drink, date)
         case quantity => AddDrink(drink, quantity, date)
       }
     } catch {
       case _: NumberFormatException =>
         println("Invalid number")
-        addDrinkChoice(drink,date)
+        addDrinkChoice(drink, date)
     }
   }
 
   def addSportChoice(sport: String, date: Date): AddSport = {
     print("time(in minutes): ")
-    try{
+    try {
       readLine().toInt match {
-        case quantity if(quantity<0) =>
+        case quantity if (quantity < 0) =>
           println("You can't train a negative time, please try again")
-          addSportChoice(sport,date)
+          addSportChoice(sport, date)
         case quantity => AddSport(sport, quantity, date)
       }
     } catch {
       case _: NumberFormatException =>
         println("Invalid number")
-        addSportChoice(sport,date)
+        addSportChoice(sport, date)
     }
   }
 
@@ -114,13 +115,13 @@ object CaloriesConsoleOps {
   }
 
   def getSleep(): UserChoice = {
-    try{
+    try {
       println("Type in the amount of hours of your sleep:")
       val hours = readLine().toInt
       println("Please enter the date of your sleep:")
       val date = DateChoice.getUserDate()
-      AddSleep(hours,date)
-    }catch{
+      AddSleep(hours, date)
+    } catch {
       case _: NumberFormatException => {
         println("Invalid input")
         getSleep()

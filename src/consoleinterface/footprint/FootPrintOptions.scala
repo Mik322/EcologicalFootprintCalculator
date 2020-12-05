@@ -1,9 +1,8 @@
 package consoleinterface.footprint
 
-import consoleinterface.ConsoleOps.getUserChoice
+import consoleinterface.UserChoice.{GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GetWaterEmissions, GoToMainMenu}
 import consoleinterface._
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
-import main.footprint.footprintstructs.FootPrintData
 
 import scala.io.StdIn.readLine
 

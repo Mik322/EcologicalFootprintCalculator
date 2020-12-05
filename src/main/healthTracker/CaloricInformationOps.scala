@@ -43,15 +43,6 @@ object CaloricInformationOps {
     }
   }
 
-  def getBodyInformationString(body: Body): String = {
-    val s1 = s"Your height: ${body.height}cm\n"
-    val s2 = s"Your weight: ${body.weight}kg\n"
-    val s3 = s"Your age: ${body.age}\n"
-    val s4 = s"Your biological sex: ${body.biologicalSex}\n"
-    val s5 = s"Your lifestyle: ${body.lifestyle}"
-    s1 + s2 + s3 + s4 + s5
-  }
-
   def getCalories(counter: HealthTracker, activities: List[CaloricActivity]): (Int, Int, Int) = {
     val goalCalories = calculateCaloriesToGoal(counter.body, counter.goal._1)
     (calculateConsumedCalories(activities), calculateBurnedCalories(activities), goalCalories)

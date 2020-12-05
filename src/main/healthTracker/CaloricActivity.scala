@@ -16,24 +16,23 @@ object CaloricActivity {
   case object Water extends ActivityType
 
   def addCaloricActivityToState(activity: AddCaloricActivity, state: HealthTracker, maps: CaloricMaps): HealthTracker = {
-    val (density, attributeFunction) = activity match {
-      case AddDrink(drink,_,_) => (maps.drinksMap(drink).toFloat/100, drinkAttributes)
-      case AddFood(food,_,_) => (maps.foodMap(food).toFloat/100, foodAttributes)
-      case AddSport(sport, _, _) =>(-calculateExerciseCalories(maps.exercisesMap(sport), 1, state.body.weight), sportAttributes)
-      case AddWaterCup(date) => (0.toFloat, (a: AddCaloricActivity) => ("Water", 250, Water, date))
+    val (calories, attributeFunction) = activity match {
+      case AddDrink(drink,quantity,_) => ((maps.drinksMap(drink).toFloat/100 * quantity).toInt, drinkAttributes)
+      case AddFood(food,quantity,_) => ((maps.foodMap(food).toFloat/100 * quantity).toInt, foodAttributes)
+      case AddSport(sport, minutes, _) =>(-calculateExerciseCalories(maps.exercisesMap(sport), minutes, state.body.weight).toInt, sportAttributes)
+      case AddWaterCup(date) => (0, (a: AddCaloricActivity) => ("Water", 250, Water, date))
     }
 
-    addCaloricActivity(state, activity, density, attributeFunction)
+    addCaloricActivity(state, activity, calories, attributeFunction)
   }
 
   def addCaloricActivity(counter: HealthTracker,
                          activity: AddCaloricActivity,
-                         density: Float,
+                         calories: Int,
                          activityAttributes: AddCaloricActivity => (String, Int, ActivityType, Date)): HealthTracker =
   {
     val (name, quantity, activityType, date) = activityAttributes(activity)
-    val consumedCalories = (density * quantity).toInt
-    val newActivities = counter.activities.appended(CaloricActivity(activityType, name, quantity, consumedCalories, date))
+    val newActivities = counter.activities.appended(CaloricActivity(activityType, name, quantity, calories, date))
     counter.copy(activities = newActivities)
   }
 

@@ -2,8 +2,6 @@ package main
 
 import java.time.LocalDate
 
-import main.Date.subtractDates
-
 case class Date(localDate: LocalDate) {
   def getDay() = Date.getDay(this)
 

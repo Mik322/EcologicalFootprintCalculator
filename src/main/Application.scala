@@ -3,20 +3,20 @@ package main
 import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
+import consoleinterface.UserChoice.{AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GetWaterEmissions, GoToMainMenu, Quit, SaveStates, SetEnergySource, SetGoal, SetWaterConsumption}
 import consoleinterface._
-import healthTracker.{Body, CaloricActivity, CaloricInformationOps, CaloricMaps}
+import healthTracker.{Body, CaloricActivity, CaloricMaps}
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
 import main.footprint.TransportMeans._
 import main.healthTracker.CaloricInformationOps.getCaloricInformationString
-import main.footprint._
 import main.footprint.FootPrintOps
 import main.footprint.footprintstructs.energy.{EnergyImpure, EnergySource}
 import main.footprint.footprintstructs.transport.TransportationImpure
 import main.footprint.footprintstructs.waste.WasteImpure
-import footprintstructs.waste.TypeOfWaste
+import main.footprint.footprintstructs.waste.TypeOfWaste
 import main.healthTracker.sleepTracker.SleepTracker.addSleep
 import main.fileOperations.FileOperations._
-import main.footprint.footprintstructs.{FootPrintData, FootPrintDataImpure, WaterImpure}
+import main.footprint.footprintstructs.{FootPrintDataImpure, WaterImpure}
 
 
 object Application extends App {
@@ -61,7 +61,7 @@ object Application extends App {
 
       // Prints the body params
       case GetBody =>
-        val bodyString = CaloricInformationOps.getBodyInformationString(states.healthTracker.body)
+        val bodyString = Body.getBodyInformationString(states.healthTracker.body)
         printString(bodyString);
         main_loop(states)
 
@@ -123,9 +123,9 @@ object Application extends App {
     }
   }
 
-  private def printString(s: String) = println(s)
+  private def printString(s: String): Unit = println(s)
 
-  def start() = {
+  def start(): Unit = {
     //Gets the choice load or create new profile
     val choice = ConsoleOps.FirstPrompt()
 

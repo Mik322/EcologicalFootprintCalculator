@@ -6,10 +6,8 @@ import main.footprint.footprintstructs.transport.TransportTrip
 import main.footprint.footprintstructs.waste.Waste
 import States._
 import consoleinterface.StartOptions.NewProfile
-import consoleinterface.caloriescouter.options.AddCaloricActivity
-import main.healthTracker.CaloricActivity.ActivityType
 import main.healthTracker.{Body, CaloricActivity, Goal}
-import main.healthTracker.HealthCalculations.createBody
+import main.healthTracker.Body.createBody
 import main.healthTracker.Goal.KeepWeight
 
 case class States(profileName: String, footPrintState: FootPrintState, healthTracker: HealthTracker)

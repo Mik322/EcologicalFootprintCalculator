@@ -6,6 +6,7 @@ import scala.io.StdIn.readLine
 import consoleinterface.caloriescouter.{CaloriesConsoleOps, CaloriesOptions}
 import consoleinterface.footprint.{FootPrintOptions, FootPrintQuestions}
 import main.healthTracker.CaloricMaps
+import consoleinterface.UserChoice.{SaveStates, Quit}
 
 object ConsoleOps {
   def printWelcome(): Unit = {
