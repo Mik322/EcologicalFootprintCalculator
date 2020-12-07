@@ -11,6 +11,7 @@ import main.footprint.waste.TypeOfWaste.{Food, Recycled}
 import main.footprint.waste.{TypeOfWaste, Waste}
 
 object FootPrintOps {
+
   def addPublicTransportEmissions(footPrintState: FootPrintState, publicTransport: TransportMean, km: Double,date: Date): FootPrintState = {
     val emissions = calcPublicTransportEmissions(publicTransport,km)
     val totalEmissions = emissions + footPrintState.ecologicalFootPrint
@@ -29,10 +30,10 @@ object FootPrintOps {
     case Train => 28 * km
   }
 
-  def addCarConsumption(footPrintState: FootPrintState, consumption: Double, km: Double, fuel: Fuel, date: Date): FootPrintState ={
-    val emissions = calcFuelEmissions(fuel,consumption,km)
+  def addCarConsumption(footPrintState: FootPrintState, car: Car, km: Double, date: Date): FootPrintState ={
+    val emissions = calcFuelEmissions(car.fuel,car.consumption,km)
     val totalEmissions = emissions + footPrintState.ecologicalFootPrint
-    val trip = transport.TransportTrip(Car(consumption,fuel),km, emissions,date)
+    val trip = transport.TransportTrip(car,km, emissions,date)
     val trips = footPrintState.transportTrips.appended(trip)
     footPrintState.copy(ecologicalFootPrint = totalEmissions, transportTrips = trips)
   }

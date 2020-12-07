@@ -3,14 +3,14 @@ package main
 import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
-import consoleinterface.UserChoice.{AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GetWaterEmissions, GoToMainMenu, Quit, SaveStates, SetEnergySource, SetGoal, SetWaterConsumption}
+import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GetWaterEmissions, GoToMainMenu, Quit, SaveStates, SetEnergySource, SetGoal, SetWaterConsumption}
 import consoleinterface._
 import healthTracker.{Body, CaloricActivity, CaloricMaps}
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
 import main.healthTracker.CaloricInformationOps.getCaloricInformationString
 import main.footprint.{FootPrintData, FootPrintOps, Water}
 import main.footprint.energy.EnergySource
-import main.footprint.transport.{Car, TransportMean, TransportTrip}
+import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
 import main.healthTracker.sleepTracker.SleepTracker.addSleep
 import main.fileOperations.FileOperations._
 import main.footprint.waste.{TypeOfWaste, Waste}
@@ -27,7 +27,7 @@ object Application extends App {
   @tailrec
   def main_loop(states: States): Unit = {
     printOptions()
-    val userChoice = getUserChoice(caloricMaps)
+    val userChoice = getUserChoice(caloricMaps, states.footPrintState.cars)
 
     userChoice match {
       case Quit =>
@@ -72,9 +72,16 @@ object Application extends App {
         main_loop(states.copy(healthTracker = newCalorieCounter))
       }
 
+      case AddCar(name: String, consumption: Double, fuel: Fuel) => {
+        val car = Car(name, consumption, fuel)
+        val new_cars = states.footPrintState.cars.appended(car)
+        val newFootPrint = states.footPrintState.copy(cars = new_cars)
+        main_loop(states.copy(footPrintState = newFootPrint))
+      }
+
       case AddTransportTrip(mean: TransportMean, km: Double, date: Date) => mean match {
-        case Car(consumption, fuel) =>
-          val newFootPrint = FootPrintOps.addCarConsumption(states.footPrintState, consumption, km, fuel, date)
+        case car: Car =>
+          val newFootPrint = FootPrintOps.addCarConsumption(states.footPrintState, car, km, date)
           main_loop(states.copy(footPrintState = newFootPrint))
         case publicTransport =>
           val newFootPrint = FootPrintOps.addPublicTransportEmissions(states.footPrintState, publicTransport, km,date)

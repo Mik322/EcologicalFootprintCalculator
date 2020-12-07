@@ -6,7 +6,8 @@ import scala.io.StdIn.readLine
 import consoleinterface.caloriescouter.{CaloriesConsoleOps, CaloriesOptions}
 import consoleinterface.footprint.{FootPrintOptions, FootPrintQuestions}
 import main.healthTracker.CaloricMaps
-import consoleinterface.UserChoice.{SaveStates, Quit}
+import consoleinterface.UserChoice.{Quit, SaveStates}
+import main.footprint.transport.Car
 
 object ConsoleOps {
   def printWelcome(): Unit = {
@@ -32,18 +33,18 @@ object ConsoleOps {
     println("1. FootPrint Options\n2. CaloriesCounter Options\n3. Save States\n0. Quit")
   }
 
-  def getUserChoice(caloricMaps: CaloricMaps): UserChoice = {
+  def getUserChoice(caloricMaps: CaloricMaps, cars: List[Car]): UserChoice = {
     print("Insert Option Number")
     val input = readLine()
     input match {
-      case "1" => FootPrintOptions.footPrintOptions()
+      case "1" => FootPrintOptions.footPrintOptions(cars)
       case "2" => CaloriesOptions.caloriesCounterOptions(caloricMaps)
       case "3" => SaveStates
       case "0" => Quit
       case _ => {
         println("Choice not available")
         printOptions()
-        getUserChoice(caloricMaps)
+        getUserChoice(caloricMaps, cars)
       }
     }
   }

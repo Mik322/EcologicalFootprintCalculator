@@ -1,8 +1,10 @@
 package consoleinterface.caloriescouter
 
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
+import consoleinterface.UserChoice.GoToMainMenu
 import consoleinterface.caloriescouter.CaloricInformationConsole.caloricInformationMenu
 import consoleinterface.{DateChoice, UserChoice}
+import main.footprint.transport.Car
 import main.healthTracker.CaloricMaps
 
 import scala.io.StdIn.readLine
@@ -17,7 +19,7 @@ object CaloriesOptions {
       case "2" => caloricInformationMenu(caloricMaps)
       case "0" =>
         printOptions()
-        getUserChoice(caloricMaps)
+        GoToMainMenu
       case _ =>
         println("Invalid option please try again")
         caloriesCounterOptions(caloricMaps)

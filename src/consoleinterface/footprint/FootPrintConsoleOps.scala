@@ -3,7 +3,7 @@ package consoleinterface.footprint
 import consoleinterface.DateChoice.getUserDate
 import consoleinterface.footprint.inputs.TransportationInput.fuelInput
 import consoleinterface.UserChoice
-import consoleinterface.UserChoice.{AddTransportTrip, AddWaste, SetEnergySource, SetWaterConsumption}
+import consoleinterface.UserChoice.{AddCar, AddTransportTrip, AddWaste, SetEnergySource, SetWaterConsumption}
 import main.footprint.energy.TypeOfEnergySource.{Coal, Electricity, Gas, Oil, Wood}
 import main.footprint.transport.TransportMean._
 import main.footprint.energy.{EnergySource, TypeOfEnergySource}
@@ -14,10 +14,19 @@ import scala.io.StdIn.readLine
 
 object FootPrintConsoleOps{
 
-  def addTransportTrip(): UserChoice ={
+  def addCar(): UserChoice ={
+    println("Type your car name:")
+    val name = readLine()
+    println("Type your car consumption:")
+    val consumption = readLine().toDouble
+    val fuel = fuelInput()
+    AddCar(name, consumption, fuel)
+  }
+
+  def addTransportTrip(cars: List[Car]): UserChoice ={
     println("Select Mean of Transport:\n1.Car\n2.Plane\n3.Bus\n4.Subway\n5.Train")
     val input = readLine().toInt
-    val mean = getTransportMean(input)
+    val mean = getTransportMean(input, cars)
     println("Type number of Km:")
     val km = readLine().toDouble
     println("Date of the trip:")
@@ -25,12 +34,16 @@ object FootPrintConsoleOps{
     AddTransportTrip(mean,km,date)
   }
 
-  def getTransportMean(mean: Int): TransportMean = mean match{
+  def getTransportMean(mean: Int, cars: List[Car]): TransportMean = mean match{
     case 1 => {
-      println("Type consumption(l/100km):")
-      val consumption = readLine().toDouble
-      val fuel = fuelInput()
-      Car(consumption,fuel)
+      println("Enter your car:")
+      println(cars.map(c => s"${c.name}").mkString("\n"))
+      val input = readLine()
+      val car = cars.find(car => input == car.name)
+      car match {
+        case None => cars(0)
+        case Some(value) => value
+      }
     }
     case 2 => Plane
     case 3 => Bus

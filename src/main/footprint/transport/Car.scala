@@ -3,7 +3,8 @@ package main.footprint.transport
 import main.Date
 import main.States.FootPrintState
 
-case class Car(consumption: Double, fuel: Fuel) extends TransportMean
+
+case class Car(name: String, consumption: Double, fuel: Fuel) extends TransportMean
 
 object Car {
   def getCarKmInDateRange(footPrintState: FootPrintState, startDate: Date, endDate: Date): Double = {

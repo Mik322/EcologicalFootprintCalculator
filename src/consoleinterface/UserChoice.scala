@@ -1,7 +1,7 @@
 package consoleinterface
 
 import main.Date
-import main.footprint.transport.TransportMean
+import main.footprint.transport.{Fuel, TransportMean}
 import main.footprint.energy.EnergySource
 import main.footprint.waste.TypeOfWaste
 import main.healthTracker.Goal
@@ -16,7 +16,7 @@ object UserChoice {
   case object GetBody extends UserChoice
   case class AddSleep(hours: Int, date: Date) extends UserChoice
 
-
+  case class AddCar(name: String, consumption: Double, fuel: Fuel) extends UserChoice
   case class AddTransportTrip(mean: TransportMean, km: Double, date: Date) extends UserChoice
   case object GetTransportEmissions extends UserChoice
   case object GetTransportHistory extends UserChoice
