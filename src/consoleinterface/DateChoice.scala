@@ -25,7 +25,12 @@ object DateChoice {
         }
         case Some(value) => {
           val dateValues = value.split("\\/")
-          Date.createDate(dateValues(0).toInt, dateValues(1).toInt, dateValues(2).toInt)
+          val date=Date.createDate(dateValues(0).toInt, dateValues(1).toInt, dateValues(2).toInt)
+          if(date>Date.today()) {
+            println("You cannot insert a future date, please try again")
+            getSpecificDate()
+          }
+          date
         }
       }
     }

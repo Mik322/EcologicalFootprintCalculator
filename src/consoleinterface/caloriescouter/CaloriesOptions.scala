@@ -2,7 +2,7 @@ package consoleinterface.caloriescouter
 
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface.caloriescouter.CaloricInformationConsole.caloricInformationMenu
-import consoleinterface.{DateChoice, GoToMainMenu, Quit, UserChoice}
+import consoleinterface.{DateChoice, UserChoice}
 import main.healthTracker.CaloricMaps
 
 import scala.io.StdIn.readLine

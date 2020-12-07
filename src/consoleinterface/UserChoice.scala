@@ -16,6 +16,7 @@ object UserChoice {
   case object GetBody extends UserChoice
   case class AddSleep(hours: Int, date: Date) extends UserChoice
 
+
   case class AddTransportTrip(mean: TransportMean, km: Double, date: Date) extends UserChoice
   case object GetTransportEmissions extends UserChoice
   case object GetTransportHistory extends UserChoice

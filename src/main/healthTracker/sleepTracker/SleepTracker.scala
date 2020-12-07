@@ -24,7 +24,7 @@ object SleepTracker {
     case Some(value) => value
   }
 
-  def getAverageSleep(sleepHistory: Map[Date, Int], startDate: Date, endDate: Date): Int = {
+  def getAverageSleep(sleepHistory: Map[Date, Int], startDate: Date, endDate: Date): Double = {
     val dates = sleepHistory.keys.toList.filter(p => p >= startDate && p <= endDate);
     @tailrec
     def loop(dates: List[Date], totalSleep: Int, totalDays: Int): (Int, Int) = {
@@ -35,7 +35,6 @@ object SleepTracker {
         case Nil =>(totalSleep, totalDays)
       }
     }
-
     val (totalSleep, totalDates) = loop(dates, 0, 0)
     totalSleep/totalDates
   }
