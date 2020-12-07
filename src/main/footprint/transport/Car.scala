@@ -13,4 +13,14 @@ object Car {
   }
 
   def getCarConsumptionInTrip(trip: TransportTrip): Double = trip.km * (trip.mean.asInstanceOf[Car].consumption/100)
+
+  def getCarEmissionInTrip(trip: TransportTrip): Double = {
+    val car = trip.mean.asInstanceOf[Car]
+    car.fuel match {
+      case Fuel.Electric => 0
+      case Fuel.Hydrogen => 0
+        //TODO: Calculate emissions
+      case _ => getCarConsumptionInTrip(trip)
+    }
+  }
 }

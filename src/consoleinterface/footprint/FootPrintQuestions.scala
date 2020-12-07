@@ -3,6 +3,7 @@ package consoleinterface.footprint
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
 import main.footprint.FootPrintData
 
+import scala.annotation.tailrec
 import scala.io.StdIn.readLine
 
 object FootPrintQuestions {
@@ -17,12 +18,11 @@ object FootPrintQuestions {
   def distance_car(): (Int, Double, Double) = {
     println("Distance travelled monthly by private car:\n")
     val kms = readLine().toDouble
-    var points = 0
-    if (kms > 2000) points = 12
-    if (kms > 1250 && kms < 2000) points = 10
-    if (kms > 125 && kms < 1250) points = 6
-    if (kms < 125) points = 4
-    if (kms == 0) points = 0
+    val points = if (kms > 2000) 12
+    else if (kms > 1250 && kms < 2000) 10
+    else if (kms > 125 && kms < 1250) 6
+    else if (kms < 125 && kms > 0) 4
+    else 0
     println("Type your private car consumption (Liters/100kms):")
     val consumption = readLine().toDouble
     (points, kms, consumption)
@@ -81,11 +81,10 @@ object FootPrintQuestions {
     println("How much KwH do you spend on average per month on electricity?\n")
     val input = readLine().toDouble
     val euros = input * 0.15
-    var points = 0
-    if (euros > 70) points = 10
-    if (euros > 42 && euros < 70) points = 7
-    if (euros > 12 && euros < 42) points = 5
-    if (euros < 12) points = 1
+    val points = if (euros > 70) 10
+    else if (euros > 42 && euros < 70) 7
+    else if (euros > 12 && euros < 42) 5
+    else 1
     (points, input)
   }
 
@@ -272,45 +271,37 @@ object FootPrintQuestions {
 
   def recycledWaste(): Int = {
     println("Do dispose of waste, you're going to use up valuable land. So, start this section with 24 points. Do you recycle the following items?\n")
-    var points = 24
-
     println("Glass (Y or N)")
-    var input = readLine()
-    points = dealPoints(points, input)
+    val glass = readLine()
+    val glassPoints = dealPoints(glass)
 
     println("Plastic (Y or N)")
-    input = readLine()
-    points = dealPoints(points, input)
+    val plastic = readLine()
+    val plasticPoints = dealPoints(plastic)
 
     println("Paper (Y or N)")
-    input = readLine()
-    points = dealPoints(points, input)
+    val paper = readLine()
+    val paperPoints = dealPoints(paper)
 
     println("Aluminium (Y or N)")
-    input = readLine()
-    points = dealPoints(points, input)
+    val aluminium = readLine()
+    val aluminiumPoints = dealPoints(aluminium)
 
     println("Steel cans (Y or N)")
-    input = readLine()
-    points = dealPoints(points, input)
+    val steel = readLine()
+    val steelPoints = dealPoints(steel)
 
     println("Food waste (Y or N)")
-    input = readLine()
-    points = dealPoints(points, input)
+    val food = readLine()
+    val foodPoints = dealPoints(food)
 
-    points
+    24 + glassPoints + plasticPoints + paperPoints + aluminiumPoints + steelPoints + foodPoints
   }
 
-  def dealPoints(points: Int, input : String): Int ={
-    var input2 = input
-    if(input2 == "Y" || input2 == "y") points - 4
-    else {
-      if (input2 == "N" || input2 == "n") points
-      else {
-        println("Please answer yes or no")
-        input2 = readLine()
-        dealPoints(points, input2)
-      }
-    }
+  @tailrec
+  def dealPoints(input: String): Int = input.toLowerCase() match {
+    case "y" => -4
+    case "n" => 0
+    case _ => dealPoints(readLine())
   }
 }
