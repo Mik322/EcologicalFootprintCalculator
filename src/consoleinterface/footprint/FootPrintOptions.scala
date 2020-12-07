@@ -1,6 +1,6 @@
 package consoleinterface.footprint
 
-import consoleinterface.UserChoice.{GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GetWaterEmissions, GoToMainMenu}
+import consoleinterface.UserChoice.{GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu}
 import consoleinterface._
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
 
@@ -23,14 +23,13 @@ object FootPrintOptions {
   }
 
   def addMenu(): UserChoice = {
-    println("1.Transportation\n2.Waste\n3.Energy\n4.Water\n0.Go back")
+    println("1.Transportation\n2.Waste\n3.Energy\n0.Go back")
     val input = readLine()
 
     input match{
       case "1" => transportationMenu()
       case "2" => wasteMenu()
       case "3" => energyMenu()
-      case "4" => waterMenu()
       case "0" => footPrintOptions()
       case _ => {
         printTryAgain()
@@ -95,21 +94,6 @@ object FootPrintOptions {
       case _ => {
         printTryAgain()
         energyMenu()
-      }
-    }
-  }
-
-  def waterMenu(): UserChoice ={
-    println("1.Set water consumption\n2.See your total emissions from water consumption\n0.Go back")
-    val input = readLine()
-
-    input match {
-      case "1" => FootPrintConsoleOps.setWaterConsumption()
-      case "2" => GetWaterEmissions
-      case "0" => addMenu()
-      case _ => {
-        printTryAgain()
-        waterMenu()
       }
     }
   }

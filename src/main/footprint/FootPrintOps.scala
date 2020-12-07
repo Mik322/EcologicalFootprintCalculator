@@ -91,10 +91,4 @@ object FootPrintOps {
       case Coal => 414 * source.amount
     }
   }
-
-  def setWaterConsumption(footPrintState: FootPrintState, amount: Double): FootPrintState ={
-    val emissions = amount * 9
-    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
-    footPrintState.copy(ecologicalFootPrint = totalEmissions , water = Some(emissions))
-  }
 }

@@ -3,7 +3,7 @@ package consoleinterface.footprint
 import consoleinterface.DateChoice.getUserDate
 import consoleinterface.footprint.inputs.TransportationInput.fuelInput
 import consoleinterface.UserChoice
-import consoleinterface.UserChoice.{AddTransportTrip, AddWaste, SetEnergySource, SetWaterConsumption}
+import consoleinterface.UserChoice.{AddTransportTrip, AddWaste, SetEnergySource}
 import main.footprint.energy.TypeOfEnergySource.{Coal, Electricity, Gas, Oil, Wood}
 import main.footprint.transport.TransportMean._
 import main.footprint.energy.{EnergySource, TypeOfEnergySource}
@@ -66,12 +66,6 @@ object FootPrintConsoleOps{
       case 3 => Wood
       case 4 => Coal
     }
-  }
-
-  def setWaterConsumption(): UserChoice ={
-    println("How many liters do you spend on average per month")
-    val amount = readLine().toDouble
-    SetWaterConsumption(amount)
   }
 
   def printTryAgain(): Unit ={

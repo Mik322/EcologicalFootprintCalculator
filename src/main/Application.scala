@@ -3,12 +3,12 @@ package main
 import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
-import consoleinterface.UserChoice.{AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GetWaterEmissions, GoToMainMenu, Quit, SaveStates, SetEnergySource, SetGoal, SetWaterConsumption}
+import consoleinterface.UserChoice.{AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetEnergySource, SetGoal}
 import consoleinterface._
 import healthTracker.{Body, CaloricActivity, CaloricMaps}
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
 import main.healthTracker.CaloricInformationOps.getCaloricInformationString
-import main.footprint.{FootPrintOps, StaticData, Water}
+import main.footprint.{FootPrintOps, StaticData}
 import main.footprint.energy.{Electricity, EnergySource}
 import main.footprint.transport.{Car, TransportMean, TransportTrip}
 import main.healthTracker.sleepTracker.SleepTracker.addSleep
@@ -107,15 +107,6 @@ object Application extends App {
       case GetEnergyEmissions =>
         val emissions = EnergySource.getEnergyEmissionsString(states.footPrintState)
         printString(emissions)
-        main_loop(states)
-
-      case SetWaterConsumption(amount: Double) =>
-        val newFootPrintState = FootPrintOps.setWaterConsumption(states.footPrintState, amount)
-        main_loop(states.copy(footPrintState = newFootPrintState))
-
-      case GetWaterEmissions =>
-        val water = Water.getWaterString(states.footPrintState)
-        printString(water)
         main_loop(states)
 
       case GetEcologicalFootPrint => {
