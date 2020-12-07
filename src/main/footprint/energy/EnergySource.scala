@@ -11,8 +11,8 @@ object EnergySource {
 
   def getEnergyEmissionsString(footPrintState: FootPrintState): String = {
     val header = "Your consume of co2 per month by energy source:\n"
-    val sources = getSourcesString(footPrintState.energySources)
-    val total = s"\nWith a total consumption of ${EnergySource.getTotal(footPrintState.energySources)}"
+    val sources = getSourcesString(footPrintState.electricity.sources)
+    val total = s"\nWith a total consumption of ${EnergySource.getTotal(footPrintState.electricity.sources)}"
     header + sources + total
   }
 }

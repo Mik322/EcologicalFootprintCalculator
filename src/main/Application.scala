@@ -8,8 +8,8 @@ import consoleinterface._
 import healthTracker.{Body, CaloricActivity, CaloricMaps}
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
 import main.healthTracker.CaloricInformationOps.getCaloricInformationString
-import main.footprint.{FootPrintData, FootPrintOps, Water}
-import main.footprint.energy.EnergySource
+import main.footprint.{FootPrintOps, StaticData, Water}
+import main.footprint.energy.{Electricity, EnergySource}
 import main.footprint.transport.{Car, TransportMean, TransportTrip}
 import main.healthTracker.sleepTracker.SleepTracker.addSleep
 import main.fileOperations.FileOperations._
@@ -101,7 +101,7 @@ object Application extends App {
         main_loop(states)
 
       case SetEnergySource(source: EnergySource) =>
-        val newFootPrintState = FootPrintOps.setEnergySource(states.footPrintState, source)
+        val newFootPrintState = Electricity.setEnergySource(states.footPrintState, source)
         main_loop(states.copy(footPrintState = newFootPrintState))
 
       case GetEnergyEmissions =>
@@ -119,7 +119,7 @@ object Application extends App {
         main_loop(states)
 
       case GetEcologicalFootPrint => {
-        val earths = FootPrintData.getEarthsConsumedString(states.footPrintState)
+        val earths = StaticData.getEarthsConsumedString(states.footPrintState)
         printString(earths)
         main_loop(states)
       }

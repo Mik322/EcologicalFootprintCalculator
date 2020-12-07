@@ -1,6 +1,6 @@
 package consoleinterface
 
-import consoleinterface.StartOptions.{LoadState, NewProfile, StartOptions}
+import consoleinterface.StartOptions.{LoadState, NewProfile}
 
 import scala.io.StdIn.readLine
 import consoleinterface.caloriescouter.{CaloriesConsoleOps, CaloriesOptions}

@@ -50,13 +50,6 @@ object FootPrintConsoleOps{
     AddWaste(kg,Recycled)
   }
 
-  def setElectricity(): UserChoice ={
-    println("Type the amount of KhW of electricity you use on average per month")
-    val amount = readLine().toDouble
-    val energySource = EnergySource(Electricity,amount, 0)
-    SetEnergySource(energySource)
-  }
-
   def setEnergySources(): UserChoice ={
     println("Select what type of energy do you use at your household: \n1.Gas\n2.Oil\n3.Wood\n4.Coal")
     val source = readLine().toInt
