@@ -1,9 +1,9 @@
 package consoleinterface
 
 import main.Date
-import main.footprint.TransportMeans.TransportMean
-import main.footprint.footprintstructs.energy.EnergySource
-import main.footprint.footprintstructs.waste.TypeOfWaste
+import main.footprint.transport.TransportMean
+import main.footprint.energy.EnergySource
+import main.footprint.waste.TypeOfWaste
 import main.healthTracker.Goal
 
 trait UserChoice

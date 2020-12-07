@@ -1,11 +1,11 @@
 package main
 
-import main.footprint.footprintstructs.FootPrintData
-import main.footprint.footprintstructs.energy.EnergySource
-import main.footprint.footprintstructs.transport.TransportTrip
-import main.footprint.footprintstructs.waste.Waste
+import main.footprint.energy.EnergySource
+import main.footprint.transport.TransportTrip
 import States._
 import consoleinterface.StartOptions.NewProfile
+import main.footprint.FootPrintData
+import main.footprint.waste.Waste
 import main.healthTracker.{Body, CaloricActivity, Goal}
 import main.healthTracker.Body.createBody
 import main.healthTracker.Goal.KeepWeight

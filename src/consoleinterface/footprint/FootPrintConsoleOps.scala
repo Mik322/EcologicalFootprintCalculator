@@ -1,12 +1,14 @@
 package consoleinterface.footprint
 
 import consoleinterface.DateChoice.getUserDate
-import main.footprint.footprintstructs.waste.{Food, Recycled, Waste}
 import consoleinterface.footprint.inputs.TransportationInput.fuelInput
 import consoleinterface.UserChoice
 import consoleinterface.UserChoice.{AddTransportTrip, AddWaste, SetEnergySource, SetWaterConsumption}
-import main.footprint.TransportMeans._
-import main.footprint.footprintstructs.energy.{Coal, Electricity, EnergySource, Gas, Oil, TypeOfEnergySource, Wood}
+import main.footprint.energy.TypeOfEnergySource.{Coal, Electricity, Gas, Oil, Wood}
+import main.footprint.transport.TransportMean._
+import main.footprint.energy.{EnergySource, TypeOfEnergySource}
+import main.footprint.transport.{Car, TransportMean}
+import main.footprint.waste.TypeOfWaste.{Food, Recycled}
 
 import scala.io.StdIn.readLine
 

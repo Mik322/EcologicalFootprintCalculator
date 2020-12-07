@@ -1,7 +1,7 @@
 package consoleinterface.footprint
 
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
-import main.footprint.footprintstructs.FootPrintData
+import main.footprint.FootPrintData
 
 import scala.io.StdIn.readLine
 

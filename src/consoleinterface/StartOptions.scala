@@ -1,8 +1,8 @@
 package consoleinterface
 
 import main.Date
+import main.footprint.FootPrintData
 import main.healthTracker.Body.{BiologicalSex, Lifestyle}
-import main.footprint.footprintstructs.FootPrintData
 
 object StartOptions {
   trait StartOptions

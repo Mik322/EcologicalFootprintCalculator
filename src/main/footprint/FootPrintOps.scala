@@ -2,12 +2,13 @@ package main.footprint
 
 import main.Date
 import main.States.FootPrintState
-import main.footprint.TransportMeans.{Car, TransportMean}
-import main.footprint.footprintstructs.{transport, _}
-import main.footprint.TransportMeans._
-import main.footprint.footprintstructs.energy.{Coal, Electricity, EnergySource, Gas, Oil, Wood}
-import main.footprint.footprintstructs.transport.{Diesel, Fuel, Petrol, TransportTrip}
-import main.footprint.footprintstructs.waste.{Food, Recycled, TypeOfWaste, Waste}
+import main.footprint.transport.TransportMean._
+import main.footprint.energy.EnergySource
+import main.footprint.energy.TypeOfEnergySource.{Coal, Electricity, Gas, Oil, Wood}
+import main.footprint.transport.Fuel.{Diesel, Petrol}
+import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
+import main.footprint.waste.TypeOfWaste.{Food, Recycled}
+import main.footprint.waste.{TypeOfWaste, Waste}
 
 object FootPrintOps {
   def addPublicTransportEmissions(footPrintState: FootPrintState, publicTransport: TransportMean, km: Double,date: Date): FootPrintState = {
