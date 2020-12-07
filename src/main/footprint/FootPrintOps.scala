@@ -2,8 +2,8 @@ package main.footprint
 
 import main.Date
 import main.States.FootPrintState
-import main.footprint.energy.EnergySource
-import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
+import main.footprint.energy.Electricity
+import main.footprint.transport.{TransportMean, TransportTrip}
 import main.footprint.waste.TypeOfWaste.{Food, Recycled}
 import main.footprint.waste.{TypeOfWaste, Waste}
 
@@ -40,8 +40,8 @@ object FootPrintOps {
   def getTotalEmissionsString(footPrintState: FootPrintState): String = {
     val transportEmissions = TransportTrip.getTotalEmissions(footPrintState.transportTrips)
     val wasteEmissions = Waste.getTotalEmissions(footPrintState.waste)
-    val energyEmissions = EnergySource.getTotalEmissions(footPrintState.electricity.sources)
-    val totalEmissions = transportEmissions + wasteEmissions + energyEmissions
+    val electricityEmissions = Electricity.getElectricityEmissions(footPrintState.electricity)
+    val totalEmissions = transportEmissions + wasteEmissions + electricityEmissions
 
     s"Your total g of CO2 emissions are ${totalEmissions}"
   }

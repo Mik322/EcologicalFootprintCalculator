@@ -41,9 +41,9 @@ object HealthCalculations {
   }
 
   def getRemainingWaterNeeded(counter: HealthTracker, date: Date): Int = {
-    val recommended = getTotalWaterConsumedInDay(counter.activities, date)
+    val recommended = calculateDayRecommendedWater(counter.body, date, counter.activities)
     val consumed = getTotalWaterConsumedInDay(counter.activities, date)
-    recommended - consumed
+    (recommended - consumed).toInt
   }
 
   object WaterAuxiliaries {

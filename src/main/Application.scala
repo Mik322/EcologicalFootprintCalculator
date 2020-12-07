@@ -1,19 +1,21 @@
 package main
 
-import scala.annotation.tailrec
-import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
-import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTotalEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetEnergySource, SetGoal}
+import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTotalEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetGoal}
+import consoleinterface.UserChoice._
 import consoleinterface._
-import healthTracker.{Body, CaloricActivity, CaloricMaps}
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
-import main.healthTracker.CaloricInformationOps.getCaloricInformationString
-import main.footprint.{FootPrintOps, StaticData}
-import main.footprint.energy.{Electricity, EnergySource}
-import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
-import main.healthTracker.sleepTracker.SleepTracker.addSleep
+import main.fileOperations.FileOperations
 import main.fileOperations.FileOperations._
+import main.footprint.energy.Electricity
+import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
 import main.footprint.waste.{TypeOfWaste, Waste}
+import main.footprint.{FootPrintOps, StaticData}
+import main.healthTracker.CaloricInformationOps.getCaloricInformationString
+import main.healthTracker.sleepTracker.SleepTracker.addSleep
+import main.healthTracker.{Body, CaloricActivity, CaloricMaps}
+
+import scala.annotation.tailrec
 
 
 object Application extends App {
@@ -103,13 +105,14 @@ object Application extends App {
         printString(emissions)
         main_loop(states)
 
-      case SetEnergySource(source: EnergySource) =>
-       //val newFootPrintState = Electricity.setEnergySource(states.footPrintState, source)
-        //main_loop(states.copy(footPrintState = newFootPrintState))
+      case setElectricitySources: SetElectricitySources =>
+        val newElectricity = Electricity.setElectricitySources(states.footPrintState.electricity, setElectricitySources)
+        val newFootPrintState = states.footPrintState.copy(electricity = newElectricity)
+        main_loop(states.copy(footPrintState = newFootPrintState))
 
       case GetEnergyEmissions =>
-        val emissions = EnergySource.getEnergyEmissionsString(states.footPrintState)
-        printString(emissions)
+        //val emissions = ElectricitySource.getEnergyEmissionsString(states.footPrintState)
+        //printString(emissions)
         main_loop(states)
 
       case GetEcologicalFootPrint => {
