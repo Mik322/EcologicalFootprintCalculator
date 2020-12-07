@@ -1,6 +1,6 @@
 package main.healthTracker
 
-import consoleinterface.caloriescouter.options.BodyChange
+import consoleinterface.healthtracker.options.BodyChange
 import main.States.HealthTracker
 import main.healthTracker.Body.{BiologicalSex, Lifestyle}
 

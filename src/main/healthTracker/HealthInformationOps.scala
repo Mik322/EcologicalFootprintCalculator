@@ -1,15 +1,15 @@
 package main.healthTracker
 
-import consoleinterface.caloriescouter.options.CaloricInformation._
-import consoleinterface.caloriescouter.options.CaloricInformation
+import consoleinterface.healthtracker.options.HealthInformation._
+import consoleinterface.healthtracker.options.HealthInformation
 import main.Date
 import main.States.HealthTracker
 import main.healthTracker.HealthCalculations.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
 
 import scala.annotation.tailrec
 
-object CaloricInformationOps {
-  def getCaloricInformationString(info: CaloricInformation, counter: HealthTracker): String = {
+object HealthInformationOps {
+  def getHealthInformationString(info: HealthInformation, counter: HealthTracker): String = {
     info match {
       case GetListCaloricActivities => {
         getListOfActivitiesString(counter.activities, "")
@@ -38,8 +38,8 @@ object CaloricInformationOps {
       case GetWeightTrack => getWeightTrack(counter.weightHistory.sortBy(_._2), counter.goal)
 
       case GetWaterNeeds(date) =>
-        val waterNeeds = CaloricActivity.cupsOfWaterToDrink(counter, date)
-        getCupsOfWaterToDrinkString(waterNeeds)
+        val waterNeeds = CaloricActivity.cupsOfWaterToDrinkAndDrank(counter, date)
+        getCupsOfWaterToDrinkString(waterNeeds._1,waterNeeds._2)
 
       case GetNecessarySleep =>
         val necessarySleep = sleepTracker.SleepTracker.getNecessarySleep(counter.body.age)
@@ -83,9 +83,9 @@ object CaloricInformationOps {
     case _ => s"${if (goal.kgChanged > 0) "gain" else "lose"} ${goal.kgChanged.abs} per week"
   }
 
-  private def getCupsOfWaterToDrinkString(cups: Int): String = {
-    if (cups > 0) s"You still need to drink at least ${cups} cups of water"
-    else "You've drink the recommended water already"
+  private def getCupsOfWaterToDrinkString(cupsToDrink: Int, cupsDrank: Int): String = {
+    if (cupsToDrink > 0) s"You drank ${cupsDrank} cups(250ml) of water today. You still need to drink at least ${cupsToDrink} cups(250ml) of water"
+    else "You've drank the recommended water already"
   }
 
   @tailrec

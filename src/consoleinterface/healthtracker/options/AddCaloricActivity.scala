@@ -1,4 +1,4 @@
-package consoleinterface.caloriescouter.options
+package consoleinterface.healthtracker.options
 
 import consoleinterface.UserChoice
 import main.Date
