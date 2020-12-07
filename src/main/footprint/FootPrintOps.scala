@@ -12,10 +12,10 @@ import main.footprint.footprintstructs.waste.{Food, Recycled, TypeOfWaste, Waste
 object FootPrintOps {
   def addPublicTransportEmissions(footPrintState: FootPrintState, publicTransport: TransportMean, km: Double,date: Date): FootPrintState = {
     val emissions = calcPublicTransportEmissions(publicTransport,km)
-    val totalEmissions = emissions + footPrintState.carbonFootPrint
+    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
     val trip = TransportTrip(publicTransport,km, emissions,date)
     val trips = footPrintState.transportTrips.appended(trip)
-    footPrintState.copy(carbonFootPrint = totalEmissions, transportTrips = trips)
+    footPrintState.copy(ecologicalFootPrint = totalEmissions, transportTrips = trips)
   }
 
   def calcPublicTransportEmissions(publicTransport: TransportMean, km: Double): Double = publicTransport match{
@@ -30,10 +30,10 @@ object FootPrintOps {
 
   def addCarConsumption(footPrintState: FootPrintState, consumption: Double, km: Double, fuel: Fuel, date: Date): FootPrintState ={
     val emissions = calcFuelEmissions(fuel,consumption,km)
-    val totalEmissions = emissions + footPrintState.carbonFootPrint
+    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
     val trip = transport.TransportTrip(Car(consumption,fuel),km, emissions,date)
     val trips = footPrintState.transportTrips.appended(trip)
-    footPrintState.copy(carbonFootPrint = totalEmissions, transportTrips = trips)
+    footPrintState.copy(ecologicalFootPrint = totalEmissions, transportTrips = trips)
   }
 
   def calcFuelEmissions(fuel: Fuel, consumption: Double, km: Double): Double = fuel match{
@@ -46,9 +46,9 @@ object FootPrintOps {
 
   def addWaste(footPrintState: FootPrintState, kg: Int, typeOfWaste: TypeOfWaste): FootPrintState ={
     val emissions = getFoodEmissionsOfType(typeOfWaste, kg)
-    val totalEmissions = emissions + footPrintState.carbonFootPrint
+    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
     val w = getWasteObject(footPrintState,kg,typeOfWaste,emissions)
-    footPrintState.copy(carbonFootPrint = totalEmissions, waste = Some(w))
+    footPrintState.copy(ecologicalFootPrint = totalEmissions, waste = Some(w))
   }
 
   def getFoodEmissionsOfType(typeOfWaste: TypeOfWaste, kg: Double): Double ={
@@ -81,10 +81,10 @@ object FootPrintOps {
 
   def setEnergySource(footPrintState: FootPrintState, source: EnergySource): FootPrintState ={
     val emissions = getEnergyEmissionsOfType(source)
-    val totalEmissions = emissions + footPrintState.carbonFootPrint
+    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
     val newSource = source.copy(emissions = emissions)
     val energySources = footPrintState.energySources.appended(newSource)
-    footPrintState.copy(carbonFootPrint = totalEmissions,energySources = energySources)
+    footPrintState.copy(ecologicalFootPrint = totalEmissions,energySources = energySources)
   }
 
   def getEnergyEmissionsOfType(source: EnergySource): Double ={
@@ -99,7 +99,7 @@ object FootPrintOps {
 
   def setWaterConsumption(footPrintState: FootPrintState, amount: Double): FootPrintState ={
     val emissions = amount * 9
-    val totalEmissions = emissions + footPrintState.carbonFootPrint
-    footPrintState.copy(carbonFootPrint = totalEmissions , water = Some(emissions))
+    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
+    footPrintState.copy(ecologicalFootPrint = totalEmissions , water = Some(emissions))
   }
 }
