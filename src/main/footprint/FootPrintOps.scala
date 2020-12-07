@@ -3,8 +3,7 @@ package main.footprint
 import main.Date
 import main.States.FootPrintState
 import main.footprint.transport.TransportMean._
-import main.footprint.energy.EnergySource
-import main.footprint.energy.TypeOfEnergySource.{Coal, Electricity, Gas, Oil, Wood}
+import main.footprint.energy.TypeOfElectricitySource.{Coal, Gas}
 import main.footprint.transport.Fuel.{Diesel, Petrol}
 import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
 import main.footprint.waste.TypeOfWaste.{Food, Recycled}
@@ -78,18 +77,6 @@ object FootPrintOps {
     footPrintState.waste match {
       case None => Waste(0, kg, emissions)
       case Some(value) => value.copy(recycledWaste = value.recycledWaste + kg, totalEmissions = value.totalEmissions + emissions)
-    }
-  }
-
-
-
-  def getEnergyEmissionsOfType(source: EnergySource): Double ={
-    source.TypeOfSource match {
-      case Electricity => 256 * source.amount
-      case Gas => 184 * source.amount
-      case Oil => 314 * source.amount
-      case Wood => 7 * source.amount
-      case Coal => 414 * source.amount
     }
   }
 }

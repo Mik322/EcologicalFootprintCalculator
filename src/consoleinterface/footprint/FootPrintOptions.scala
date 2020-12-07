@@ -86,12 +86,13 @@ object FootPrintOptions {
   }
 
   def energyMenu(cars: List[Car]): UserChoice ={
-    println("1.Set electricity consumption\n1. Set heating sources\n2. See your total emissions from energy use\n0. Go back")
+    println("1.Set electricity consumption\n2. Set electricity sources\n3. See your total emissions from electricity use\n0. Go back")
     val input = readLine()
 
     input match {
-      case "1" => FootPrintConsoleOps.setEnergySources()
-      case "2" => GetEnergyEmissions
+      case "1" => GetEnergyEmissions
+      case "2" => FootPrintConsoleOps.setEnergySources()
+      case "3" => GetEnergyEmissions
       case "0" => addMenu(cars)
       case _ => {
         printTryAgain()

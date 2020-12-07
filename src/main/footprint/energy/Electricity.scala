@@ -1,9 +1,10 @@
 package main.footprint.energy
 
-import main.States.FootPrintState
-import main.footprint.FootPrintOps.getEnergyEmissionsOfType
+import consoleinterface.UserChoice.SetElectricitySources
 
-case class Electricity(monthlyConsumption: Double, sources: List[EnergySource])
+case class Electricity(monthlyConsumption: Double, sources: List[ElectricitySource]) {
+  def getEmissions: Double = Electricity.getElectricityEmissions(this)
+}
 
 object Electricity {
   def getElectricityBill(electricity: Electricity, electricityCost: Double): Double = electricity.monthlyConsumption * electricityCost
@@ -16,14 +17,16 @@ object Electricity {
 
   def getDailySolarPanelsProduction(power: Double, dailySunLightHours: Int, numberOfPanels: Int): Int = (power * numberOfPanels * dailySunLightHours).toInt
 
+  def getElectricityEmissions(electricity: Electricity): Double = {
+    electricity.sources
+      .map(s => ElectricitySource.getKWhAndEmission(electricity, s)._2)
+      .foldRight(0.0)(((total, emission) => total + emission))
+  }
+
   private def getKWattsPerHour(electricity: Electricity): Double = electricity.monthlyConsumption/30/24*1.25
 
-  def setEnergySource(footPrintState: FootPrintState, source: EnergySource): FootPrintState ={
-    val emissions = getEnergyEmissionsOfType(source)
-    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
-    val newSource = source.copy(emissions = emissions)
-    val energySources = footPrintState.electricity.sources.appended(newSource)
-    val electricity = footPrintState.electricity.copy(sources = energySources)
-    footPrintState.copy(ecologicalFootPrint = totalEmissions, electricity = electricity)
+  def setElectricitySources(electricity: Electricity, setElectricitySources: SetElectricitySources): Electricity = {
+    val sources = ElectricitySource.setSources(setElectricitySources.sources)
+    electricity.copy(sources = sources)
   }
 }

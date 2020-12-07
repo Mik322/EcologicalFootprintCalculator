@@ -2,7 +2,7 @@ package consoleinterface
 
 import main.Date
 import main.footprint.transport.{Fuel, TransportMean}
-import main.footprint.energy.EnergySource
+import main.footprint.energy.{ElectricitySource, TypeOfElectricitySource}
 import main.footprint.waste.TypeOfWaste
 import main.healthTracker.Goal
 
@@ -22,7 +22,7 @@ object UserChoice {
   case object GetTransportHistory extends UserChoice
   case class AddWaste(kg: Int, typeOfWaste: TypeOfWaste) extends UserChoice
   case object GetWasteEmissions extends UserChoice
-  case class SetEnergySource(source: EnergySource) extends UserChoice
+  case class SetElectricitySources(sources: List[(TypeOfElectricitySource, Double)]) extends UserChoice
   case object GetEnergyEmissions extends UserChoice
   case object GetEcologicalFootPrint extends UserChoice
   case object GoToMainMenu extends UserChoice
