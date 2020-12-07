@@ -1,7 +1,7 @@
 package main.footprint.energy
 
 import main.States.FootPrintState
-import main.footprint.FootPrintOps.getEnergyEmissionsOfType
+
 
 case class Electricity(monthlyConsumption: Double, sources: List[EnergySource])
 
@@ -18,12 +18,4 @@ object Electricity {
 
   private def getKWattsPerHour(electricity: Electricity): Double = electricity.monthlyConsumption/30/24*1.25
 
-  def setEnergySource(footPrintState: FootPrintState, source: EnergySource): FootPrintState ={
-    val emissions = getEnergyEmissionsOfType(source)
-    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
-    val newSource = source.copy(emissions = emissions)
-    val energySources = footPrintState.electricity.sources.appended(newSource)
-    val electricity = footPrintState.electricity.copy(sources = energySources)
-    footPrintState.copy(ecologicalFootPrint = totalEmissions, electricity = electricity)
-  }
 }

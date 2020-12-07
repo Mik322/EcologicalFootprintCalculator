@@ -3,7 +3,7 @@ package main
 import scala.annotation.tailrec
 import fileOperations.FileOperations
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
-import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetEnergySource, SetGoal}
+import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTotalEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetEnergySource, SetGoal}
 import consoleinterface._
 import healthTracker.{Body, CaloricActivity, CaloricMaps}
 import consoleinterface.caloriescouter.options.{AddCaloricActivity, BodyChange, CaloricInformation}
@@ -79,13 +79,9 @@ object Application extends App {
         main_loop(states.copy(footPrintState = newFootPrint))
       }
 
-      case AddTransportTrip(mean: TransportMean, km: Double, date: Date) => mean match {
-        case car: Car =>
-          val newFootPrint = FootPrintOps.addCarConsumption(states.footPrintState, car, km, date)
-          main_loop(states.copy(footPrintState = newFootPrint))
-        case publicTransport =>
-          val newFootPrint = FootPrintOps.addPublicTransportEmissions(states.footPrintState, publicTransport, km,date)
-          main_loop(states.copy(footPrintState = newFootPrint))
+      case AddTransportTrip(mean: TransportMean, km: Double, date: Date) => {
+        val newFootPrint = FootPrintOps.addTrip(states.footPrintState, mean, km, date)
+        main_loop(states.copy(footPrintState = newFootPrint))
       }
 
       case GetTransportEmissions =>
@@ -108,8 +104,8 @@ object Application extends App {
         main_loop(states)
 
       case SetEnergySource(source: EnergySource) =>
-        val newFootPrintState = Electricity.setEnergySource(states.footPrintState, source)
-        main_loop(states.copy(footPrintState = newFootPrintState))
+       //val newFootPrintState = Electricity.setEnergySource(states.footPrintState, source)
+        //main_loop(states.copy(footPrintState = newFootPrintState))
 
       case GetEnergyEmissions =>
         val emissions = EnergySource.getEnergyEmissionsString(states.footPrintState)
@@ -119,6 +115,12 @@ object Application extends App {
       case GetEcologicalFootPrint => {
         val earths = StaticData.getEarthsConsumedString(states.footPrintState)
         printString(earths)
+        main_loop(states)
+      }
+
+      case GetTotalEmissions => {
+        val emissions = FootPrintOps.getTotalEmissionsString(states.footPrintState)
+        printString(emissions)
         main_loop(states)
       }
     }

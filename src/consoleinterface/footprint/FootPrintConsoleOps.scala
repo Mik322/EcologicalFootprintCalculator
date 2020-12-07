@@ -41,7 +41,10 @@ object FootPrintConsoleOps{
       val input = readLine()
       val car = cars.find(car => input == car.name)
       car match {
-        case None => cars(0)
+        case None => {
+          println("There is no car with that name")
+          getTransportMean(mean, cars)
+        }
         case Some(value) => value
       }
     }
@@ -68,7 +71,7 @@ object FootPrintConsoleOps{
     val source = readLine().toInt
     println("Type the amount of KhW of the source you use on average per month")
     val amount = readLine().toDouble
-    val energySource = EnergySource(getEnergySourceType(source),amount, 0)
+    val energySource = EnergySource(getEnergySourceType(source),amount)
     SetEnergySource(energySource)
   }
 

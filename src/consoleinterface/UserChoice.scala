@@ -25,6 +25,8 @@ object UserChoice {
   case class SetEnergySource(source: EnergySource) extends UserChoice
   case object GetEnergyEmissions extends UserChoice
   case object GetEcologicalFootPrint extends UserChoice
+  case object GetTotalEmissions extends UserChoice
+
   case object GoToMainMenu extends UserChoice
 
   case object Quit extends UserChoice
