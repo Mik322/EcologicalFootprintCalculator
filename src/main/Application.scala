@@ -39,7 +39,7 @@ object Application extends App {
         saveStates(states)
         main_loop(states)
 
-      // Adds a caloric activity (Food, Drink or Sport) to the calorie counter
+      // Adds a caloric activity (Food, Drink or Sport) to the health tracker
       case activity: AddCaloricActivity =>
         val newHealthTracker = CaloricActivity.addCaloricActivityToState(activity, states.healthTracker, caloricMaps)
         main_loop(states.copy(healthTracker = newHealthTracker))
@@ -50,7 +50,7 @@ object Application extends App {
         main_loop(states.copy(healthTracker = newHealthTracker))
       }
 
-      // Handles all types of caloric Information requests
+      // Handles all types of  health Information requests
       case information: HealthInformation =>
         val infoString = getHealthInformationString(information, states.healthTracker)
         printString(infoString)

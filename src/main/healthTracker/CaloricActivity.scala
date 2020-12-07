@@ -26,14 +26,14 @@ object CaloricActivity {
     addCaloricActivity(state, activity, calories, attributeFunction)
   }
 
-  def addCaloricActivity(counter: HealthTracker,
+  def addCaloricActivity(tracker: HealthTracker,
                          activity: AddCaloricActivity,
                          calories: Int,
                          activityAttributes: AddCaloricActivity => (String, Int, ActivityType, Date)): HealthTracker =
   {
     val (name, quantity, activityType, date) = activityAttributes(activity)
-    val newActivities = counter.activities.appended(CaloricActivity(activityType, name, quantity, calories, date))
-    counter.copy(activities = newActivities)
+    val newActivities = tracker.activities.appended(CaloricActivity(activityType, name, quantity, calories, date))
+    tracker.copy(activities = newActivities)
   }
 
   def foodAttributes = (activity: AddCaloricActivity) => {
