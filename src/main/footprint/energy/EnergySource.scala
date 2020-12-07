@@ -7,15 +7,7 @@ case class EnergySource(TypeOfSource: TypeOfEnergySource, amount: Double, emissi
 object EnergySource {
   def getSourcesString(sources: List[EnergySource]): String = sources.map(src => s"You have a consume of ${src.emissions} g CO2 provenient of ${src.TypeOfSource}").mkString("\n")
 
-  def getTotal(sources: List[EnergySource]): Double = {
-    sources match {
-      case ::(head, next) => {
-        val emissions = head.emissions + EnergySource.getTotal(next)
-        emissions
-      }
-      case Nil => 0
-    }
-  }
+  def getTotal(sources: List[EnergySource]): Double = sources.foldRight(0.0)((source, counter) => counter + source.emissions)
 
   def getEnergyEmissionsString(footPrintState: FootPrintState): String = {
     val header = "Your consume of co2 per month by energy source:\n"

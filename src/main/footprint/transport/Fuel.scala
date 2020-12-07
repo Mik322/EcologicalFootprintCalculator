@@ -8,4 +8,8 @@ object Fuel {
 
   case object Petrol extends Fuel
 
+  case object Electric extends Fuel
+
+  case object Hydrogen extends Fuel
+
 }
