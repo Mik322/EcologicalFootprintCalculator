@@ -1,6 +1,6 @@
 package consoleinterface.footprint
 
-import consoleinterface.UserChoice.{GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GetWaterEmissions, GoToMainMenu}
+import consoleinterface.UserChoice.{GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu}
 import consoleinterface._
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
 import main.footprint.transport.Car
@@ -24,14 +24,13 @@ object FootPrintOptions {
   }
 
   def addMenu(cars: List[Car]): UserChoice = {
-    println("1.Transportation\n2.Waste\n3.Energy\n4.Water\n0.Go back")
+    println("1.Transportation\n2.Waste\n3.Energy\n0.Go back")
     val input = readLine()
 
     input match{
       case "1" => transportationMenu(cars)
       case "2" => wasteMenu(cars)
       case "3" => energyMenu(cars)
-      case "4" => waterMenu(cars)
       case "0" => footPrintOptions(cars)
       case _ => {
         printTryAgain()
@@ -87,13 +86,12 @@ object FootPrintOptions {
   }
 
   def energyMenu(cars: List[Car]): UserChoice ={
-    println("1.Set electricity consumption\n2.Set heating sources\n3.See your total emissions from energy use\n0.Go back")
+    println("1.Set electricity consumption\n1. Set heating sources\n2. See your total emissions from energy use\n0. Go back")
     val input = readLine()
 
     input match {
-      case "1" => FootPrintConsoleOps.setElectricity()
-      case "2" => FootPrintConsoleOps.setEnergySources()
-      case "3" => GetEnergyEmissions
+      case "1" => FootPrintConsoleOps.setEnergySources()
+      case "2" => GetEnergyEmissions
       case "0" => addMenu(cars)
       case _ => {
         printTryAgain()
@@ -101,20 +99,4 @@ object FootPrintOptions {
       }
     }
   }
-
-  def waterMenu(cars: List[Car]): UserChoice ={
-    println("1.Set water consumption\n2.See your total emissions from water consumption\n0.Go back")
-    val input = readLine()
-
-    input match {
-      case "1" => FootPrintConsoleOps.setWaterConsumption()
-      case "2" => GetWaterEmissions
-      case "0" => addMenu(cars)
-      case _ => {
-        printTryAgain()
-        waterMenu(cars)
-      }
-    }
-  }
-
 }

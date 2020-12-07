@@ -81,13 +81,7 @@ object FootPrintOps {
     }
   }
 
-  def setEnergySource(footPrintState: FootPrintState, source: EnergySource): FootPrintState ={
-    val emissions = getEnergyEmissionsOfType(source)
-    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
-    val newSource = source.copy(emissions = emissions)
-    val energySources = footPrintState.energySources.appended(newSource)
-    footPrintState.copy(ecologicalFootPrint = totalEmissions,energySources = energySources)
-  }
+
 
   def getEnergyEmissionsOfType(source: EnergySource): Double ={
     source.TypeOfSource match {
@@ -97,11 +91,5 @@ object FootPrintOps {
       case Wood => 7 * source.amount
       case Coal => 414 * source.amount
     }
-  }
-
-  def setWaterConsumption(footPrintState: FootPrintState, amount: Double): FootPrintState ={
-    val emissions = amount * 9
-    val totalEmissions = emissions + footPrintState.ecologicalFootPrint
-    footPrintState.copy(ecologicalFootPrint = totalEmissions , water = Some(emissions))
   }
 }

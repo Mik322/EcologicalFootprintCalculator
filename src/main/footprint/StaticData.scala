@@ -1,15 +1,13 @@
 package main.footprint
 
-import java.time.Month
-
 import main.Date
 import main.States.FootPrintState
 import main.footprint.transport.Car
 
-case class FootPrintData(points: Int, electricityPerMonth: Double, kmByCarPerMonth: Double, consumptionCar: Double)
+case class StaticData(points: Int, kmByCarPerMonth: Double, consumptionCar: Double)
 
-object FootPrintData {
-  def getElectricityBill(footPrintData: FootPrintData, electricityCost: Double): Double = footPrintData.electricityPerMonth * electricityCost
+object StaticData {
+
 
   def getMonthFuelConsumption(footPrintState: FootPrintState, month: Date) = {
     footPrintState.transportTrips
@@ -17,11 +15,10 @@ object FootPrintData {
       .foldLeft(0.0)((counter, transport) => counter + Car.getCarConsumptionInTrip(transport))
   }
 
-  def getSupposedFuelConsumption(footPrintState: FootPrintState) = footPrintState.footPrintData.consumptionCar/100 * footPrintState.footPrintData.kmByCarPerMonth
 
   def getFuelConsumedComparedAverage(footPrintState: FootPrintState, month: Date): Double = {
     val monthFuelConsumption = getMonthFuelConsumption(footPrintState, month)
-    val supposedFuelConsumption = getSupposedFuelConsumption(footPrintState)
+    val supposedFuelConsumption = footPrintState.staticData.consumptionCar/100 * footPrintState.staticData.kmByCarPerMonth
 
     monthFuelConsumption - supposedFuelConsumption
   }
@@ -31,7 +28,7 @@ object FootPrintData {
   def getPriceSavedFromAnotherCar(footPrintState: FootPrintState, month: Date, fuelPrice: Double)={}
 
   def getEarthsConsumedString(footPrintState: FootPrintState): String ={
-    val points = footPrintState.footPrintData.points
+    val points = footPrintState.staticData.points
     if(points < 60) "Congratulations"
     else if(points > 60 && points < 120) "We would need an extra planet"
     else if(points > 120 && points < 180) "We would need two extra planets"
