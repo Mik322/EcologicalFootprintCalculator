@@ -15,4 +15,6 @@ object CaloricInformation {
   case object GetWeightTrack extends CaloricInformation
   case class GetWaterNeeds(date: Date) extends CaloricInformation
   case object GetNecessarySleep extends CaloricInformation
+  case class GetSleepInDay(date: Date) extends CaloricInformation
+  case class GetAverageSleepInDays(date1: Date,date2:Date) extends CaloricInformation
 }

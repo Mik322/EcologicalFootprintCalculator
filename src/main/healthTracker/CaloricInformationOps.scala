@@ -33,14 +33,28 @@ object CaloricInformationOps {
         getListOfActivitiesString(activities, "")
       }
 
-      case CaloricInformation.GetGoalInformation => getGoalInformation(counter.goal._1, calculateCaloriesToGoal(counter.body, counter.goal._1))
-      case CaloricInformation.GetWeightHistory => getWeightHistoric(counter.weightHistory.sortBy(_._2), "")
-      case CaloricInformation.GetWeightTrack => getWeightTrack(counter.weightHistory.sortBy(_._2), counter.goal)
+      case GetGoalInformation => getGoalInformation(counter.goal._1, calculateCaloriesToGoal(counter.body, counter.goal._1))
+      case GetWeightHistory => getWeightHistoric(counter.weightHistory.sortBy(_._2), "")
+      case GetWeightTrack => getWeightTrack(counter.weightHistory.sortBy(_._2), counter.goal)
 
       case GetWaterNeeds(date) =>
         val waterNeeds = CaloricActivity.cupsOfWaterToDrink(counter, date)
         getCupsOfWaterToDrinkString(waterNeeds)
-    }
+
+      case GetNecessarySleep =>
+        val necessarySleep = sleepTracker.SleepTracker.getNecessarySleep(counter.body.age)
+        getNecessarySleepString(necessarySleep)
+
+      case GetSleepInDay(date) =>
+        val sleepInDay = sleepTracker.SleepTracker.getSleepInDay(counter.sleepTracker,date)
+        getSleepInDayString(sleepInDay,date)
+
+      case GetAverageSleepInDays(date1,date2) =>
+        val averageSleepInDays = sleepTracker.SleepTracker.getAverageSleep(counter.sleepTracker,date1,date2)
+        getAverageSleepInDaysString(averageSleepInDays,date1,date2)
+      }
+
+
   }
 
   def getCalories(counter: HealthTracker, activities: List[CaloricActivity]): (Int, Int, Int) = {
@@ -111,6 +125,20 @@ object CaloricInformationOps {
     }
     val goal_str = s"\nYour goal is to ${goalPhrase(goal._1)}"
     str.concat(goal_str)
+  }
+
+  private def getNecessarySleepString(tuple: (Int, Int)): String = {
+    s"You need to sleep ${tuple._1} to ${tuple._2} hours per day"
+  }
+
+  private def getSleepInDayString(i: Int,date: Date): String = i match {
+    case 0 => s"You don't have any sleep record on ${date}"
+    case _ => s"You slept ${i} hours on ${date}"
+  }
+
+  private def getAverageSleepInDaysString(d: Double,date1: Date,date2: Date ): String = d match {
+    case 0.0 => s"You don't have any sleep record from ${date1} to ${date2}"
+    case _ => s"You slept an average of ${d} hours from ${date1} to ${date2}(counting only days that you have a sleep record)"
   }
 
 
