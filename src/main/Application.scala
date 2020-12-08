@@ -193,28 +193,30 @@ object Application extends App {
 
   private def printString(s: String): Unit = println(s)
 
-  def start(): Unit = {
+  def start(): States = {
     //Gets the choice load or create new profile
     val choice = ConsoleOps.FirstPrompt()
 
     //Gets the states
-    val states = choice match {
+    choice match {
       case StartOptions.LoadState => {
         val username = FileOperations.getUsername()
         loadStates(username) match {
           //If there is no state saved loadStates returns None so it asks for a new Profile
           case None => {
             printLoadError
-            val profileData = ConsoleOps.newProfile()
-            States.createStates(profileData)
+            start()
           }
           case Some(states) => states
         }
       }
       case profileData: StartOptions.NewProfile => States.createStates(profileData)
     }
-
-    main_loop(states)
   }
-  start()
+
+  def startLoop()={
+    main_loop(states = start())
+  }
+
+  startLoop()
 }

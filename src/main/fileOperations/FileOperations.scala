@@ -45,7 +45,7 @@ object FileOperations {
     map
   }
 
-  def printLoadError = println("There is no saved profile. Create a new One")
+  def printLoadError = println("There is no saved profile with that username.")
 
   def getUsername(): String ={
     println("Please type your username")
