@@ -1,6 +1,6 @@
 package consoleinterface.footprint
 
-import consoleinterface.UserChoice.{GetCars, GetEcologicalFootPrint, GetEnergyEmissions, GetEnergySources, GetTotalEmissions, GetTotalEmissionsByCar, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu}
+import consoleinterface.UserChoice.{DeleteCar, GetCars, GetEcologicalFootPrint, GetEnergyEmissions, GetEnergySources, GetMonthFuelConsumption, GetTotalCarEmissions, GetTotalEmissions, GetTotalEmissionsByCar, GetTotalKmByCar, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu}
 import consoleinterface._
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
 import main.footprint.transport.Car
@@ -39,20 +39,29 @@ object FootPrintOptions {
   }
 
   def garageMenu(cars: List[Car]): UserChoice = {
-    println("1. Add Car\n2. Delete Car\n3. Edit Car\n4. See total emissions by car\n5. See your cars\n0. Go back")
+    if cars.isEmpty {
+      println("0. Go Back\n1. Add Car\n")
+    } else {
+      println("2. Delete Car\n3. Edit Car\n4. See total emissions by car\n5. See total kms by car\n6. See emissions of all cars\n7. See your cars\n8. Get fuel consumption of a month")
+    }
     val input = readLine()
 
     input match {
       case "1" => FootPrintConsoleOps.addCar()
-      case "2" => FootPrintConsoleOps.deleteCar(cars)
-      case "3" => FootPrintConsoleOps.editCar(cars)
-      case "4" => GetTotalEmissionsByCar
-      case "5" => GetCars
       case "0" => footPrintOptions(cars)
-      case _ => {
-        printTryAgain()
-        transportationMenu(cars)
+      case in if cars.nonEmpty => in match {
+        case "2" => DeleteCar(FootPrintConsoleOps.getCar(cars))
+        case "3" => FootPrintConsoleOps.editCar(cars)
+        case "4" => GetTotalEmissionsByCar(FootPrintConsoleOps.getCar(cars))
+        case "5" => GetTotalKmByCar(FootPrintConsoleOps.getCar(cars))
+        case "6" => GetTotalCarEmissions
+        case "7" => GetCars
+        case "8" => GetMonthFuelConsumption(DateChoice.getMonth)
+        case _ =>printTryAgain()
+          transportationMenu(cars)
       }
+      case _ => printTryAgain()
+        transportationMenu(cars)
     }
   }
 

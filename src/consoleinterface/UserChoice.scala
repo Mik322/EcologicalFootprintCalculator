@@ -31,7 +31,10 @@ object UserChoice {
   case object GetTotalEmissions extends UserChoice
   case class ChangeElectricityConsumption(monthlyConsumption: Double) extends UserChoice
   case object GetEnergySources extends UserChoice
-  case object GetTotalEmissionsByCar extends UserChoice
+  case class GetTotalKmByCar(car: Car) extends UserChoice
+  case class GetTotalEmissionsByCar(car: Car) extends UserChoice
+  case object GetTotalCarEmissions extends UserChoice
+  case class GetMonthFuelConsumption(month: Date) extends UserChoice
 
   case object GoToMainMenu extends UserChoice
 

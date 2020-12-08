@@ -145,11 +145,26 @@ object Application extends App {
         main_loop(states)
       }
 
-      case GetTotalEmissionsByCar => {
+      case GetTotalCarEmissions => {
         val emissions = Car.getTotalEmissions(states.footPrintState.transportTrips).toString
         printString(emissions)
         main_loop(states)
       }
+
+      case GetTotalEmissionsByCar(car: Car) =>
+        val emissions = Car.getEmissionByCar(states.footPrintState.transportTrips,car.name)
+        printString(s"${emissions}g CO2")
+        main_loop(states)
+
+      case GetTotalKmByCar(car: Car) =>
+        val km = Car.getKmByCar(states.footPrintState.transportTrips, car.name)
+        printString(s"${km}km")
+        main_loop(states)
+
+      case GetMonthFuelConsumption(month: Date) =>
+        val fuel = Car.getMonthFuelConsumption(states.footPrintState, month)
+        printString(s"${fuel} liters")
+        main_loop(states)
 
       case ChangeElectricityConsumption(monthlyConsumption: Double) => {
         val newElectricity = states.footPrintState.electricity.copy(monthlyConsumption = monthlyConsumption)

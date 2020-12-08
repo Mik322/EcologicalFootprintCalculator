@@ -2,7 +2,7 @@ package consoleinterface.footprint
 
 import consoleinterface.DateChoice.getUserDate
 import consoleinterface.UserChoice
-import consoleinterface.UserChoice.{AddCar, AddTransportTrip, AddWaste, ChangeElectricityConsumption, DeleteCar, EditCar, GetRequiredSolarPanels, SetElectricitySources}
+import consoleinterface.UserChoice.{AddCar, AddTransportTrip, AddWaste, ChangeElectricityConsumption, DeleteCar, EditCar, GetRequiredSolarPanels, GetTotalEmissionsByCar, GetTotalKmByCar, GoToMainMenu, SetElectricitySources}
 import consoleinterface.footprint.inputs.TransportationInput.fuelInput
 import main.footprint.energy.TypeOfElectricitySource
 import main.footprint.energy.TypeOfElectricitySource._
@@ -12,9 +12,9 @@ import main.footprint.waste.TypeOfWaste.{Food, Recycled}
 
 import scala.io.StdIn.readLine
 
-object FootPrintConsoleOps{
+object FootPrintConsoleOps {
 
-  def addCar(): UserChoice ={
+  def addCar(): UserChoice = {
     println("Type your car name:")
     val name = readLine()
     println("Type your car consumption:")
@@ -23,37 +23,29 @@ object FootPrintConsoleOps{
     AddCar(name, consumption, fuel)
   }
 
-  def deleteCar(cars: List[Car]): UserChoice = {
-    println("Enter the name of the car you want do delete:")
-    println(cars.map(c => s"${c.name}").mkString("\n"))
-    val car = cars.find(c => c.name == readLine())
-    car match {
-      case None => {
-        FootPrintConsoleOps.printTryAgain()
-        deleteCar(cars)
-      }
-      case Some(value) => DeleteCar(value)
-    }
-  }
-
   def editCar(cars: List[Car]): UserChoice = {
-    println("Enter the name of the car you want do edit:")
+    val car = getCar(cars)
+    val index = cars.indexOf(car)
+    EditCar(index, readLine())
+  }
+
+  @scala.annotation.tailrec
+  def getCar(cars: List[Car]): Car = {
+    println("Enter your car:")
     println(cars.map(c => s"${c.name}").mkString("\n"))
-    val car = cars.find(c => c.name == readLine())
+    println("Cancel")
+    val input = readLine()
+    val car = cars.find(car => input == car.name)
     car match {
       case None => {
-        FootPrintConsoleOps.printTryAgain()
-        editCar(cars)
+        println("There is no car with that name")
+        getCar(cars)
       }
-      case Some(value) => {
-        println("Please enter the new name for your car:")
-        val index = cars.indexOf(value)
-        EditCar(index, readLine())
-      }
+      case Some(value) => value
     }
   }
 
-  def addTransportTrip(cars: List[Car]): UserChoice ={
+  def addTransportTrip(cars: List[Car]): UserChoice = {
     println("Select Mean of Transport:\n1.Car\n2.Plane\n3.Bus\n4.Subway\n5.Train")
     val input = readLine().toInt
     val mean = getTransportMean(input, cars)
@@ -61,53 +53,42 @@ object FootPrintConsoleOps{
     val km = readLine().toDouble
     println("Date of the trip:")
     val date = getUserDate()
-    AddTransportTrip(mean,km,date)
+    AddTransportTrip(mean, km, date)
   }
 
-  def getTransportMean(mean: Int, cars: List[Car]): TransportMean = mean match{
-    case 1 => {
-      println("Enter your car:")
-      println(cars.map(c => s"${c.name}").mkString("\n"))
-      val input = readLine()
-      val car = cars.find(car => input == car.name)
-      car match {
-        case None => {
-          println("There is no car with that name")
-          getTransportMean(mean, cars)
-        }
-        case Some(value) => value
-      }
-    }
+  def getTransportMean(mean: Int, cars: List[Car]): TransportMean = mean match {
+    case 1 => getCar(cars)
     case 2 => Plane
     case 3 => Bus
     case 4 => SubWay
     case 5 => Train
   }
 
-  def addFoodWaste(): UserChoice ={
+  def addFoodWaste(): UserChoice = {
     println("How much Kg of food waste do you produce a week?")
     val kg = readLine().toInt
-    AddWaste(kg,Food)
+    AddWaste(kg, Food)
   }
 
-  def addRecycledWaste(): UserChoice ={
+  def addRecycledWaste(): UserChoice = {
     println("How much Kg of recycled waste do you produce a week?")
     val kg = readLine().toInt
-    AddWaste(kg,Recycled)
+    AddWaste(kg, Recycled)
   }
 
-  def setEnergySources(): UserChoice ={
+  def setEnergySources(): UserChoice = {
     def loop(sources: List[(TypeOfElectricitySource, Double)], totalPercentage: Double): List[(TypeOfElectricitySource, Double)] = totalPercentage match {
-      case t if t< 1.0 =>
-        println(s"You need to declare ${(1.0-t) * 100}% of your electricity sources")
+      case t if t < 1.0 =>
+        println(s"You need to declare ${(1.0 - t) * 100}% of your electricity sources")
         val (source, percentage) = getEnergySourceType(1.0 - t)
         loop(sources.appended((source, percentage)), totalPercentage + percentage)
-      case t if t >=1.0 && t <= 1.001 => sources
+      case t if t >= 1.0 && t <= 1.001 => sources
     }
+
     SetElectricitySources(loop(List(), 0.0))
   }
 
-  def getEnergySourceType(maximum: Double): (TypeOfElectricitySource, Double) ={
+  def getEnergySourceType(maximum: Double): (TypeOfElectricitySource, Double) = {
     println("Select one of the sources that appears on the electricity bill: \n1.Gas\n2.Oil\n3.Coal\n4.Biomass\n5.Hydro\n6.Solar\n7.Wind\n8.Nuclear")
     val sourceType = readLine().toInt match {
       case 1 => Gas
@@ -124,10 +105,10 @@ object FootPrintConsoleOps{
 
   @scala.annotation.tailrec
   def getPercentageSource(maximum: Double): Double = {
-    println(s"Whats the percentage from this source? Insert a number smaller or equal to ${maximum*100} or type maximum")
+    println(s"Whats the percentage from this source? Insert a number smaller or equal to ${maximum * 100} or type maximum")
     readLine() match {
       case in if in.toLowerCase == "maximum" => maximum
-      case input => input.toDouble/100 match {
+      case input => input.toDouble / 100 match {
         case p if p <= maximum + 0.0009 => p
         case _ => println("That's an invalid number, please try again")
           getPercentageSource(maximum)
@@ -149,7 +130,7 @@ object FootPrintConsoleOps{
     GetRequiredSolarPanels(power, hours)
   }
 
-  def printTryAgain(): Unit ={
+  def printTryAgain(): Unit = {
     println("Please type again one of the available options")
   }
 

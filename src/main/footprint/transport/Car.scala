@@ -11,13 +11,6 @@ case class Car(name: String, consumption: Double, fuel: Fuel) extends TransportM
 }
 
 object Car {
-  //TODO: Implement console interface
-  def getCarKmInDateRange(footPrintState: FootPrintState, startDate: Date, endDate: Date): Double = {
-    footPrintState.transportTrips
-      .filter(trip => trip.mean.isInstanceOf[Car] && trip.date>=startDate && trip.date<=endDate)
-      .foldLeft(0.0)((km, trip) => km + trip.km)
-  }
-
   def getCarConsumptionInTrip(trip: TransportTrip): Double = trip.km * (trip.mean.asInstanceOf[Car].consumption/100)
 
   def getCarEmissionInTrip(trip: TransportTrip): Double = {
@@ -33,17 +26,25 @@ object Car {
   }
 
   def getTotalEmissions(trips: List[TransportTrip]): Double = {
-    val carTrips = trips.filter(m => m.mean.isInstanceOf[Car])
-    carTrips match {
-      case ::(head, next) => getCarEmissionInTrip(head) + getTotalEmissions(next)
-      case Nil => 0
-    }
+    trips.filter(t => t.mean.isInstanceOf[Car])
+      .foldRight(0.0)((t, c) => c + getCarEmissionInTrip(t))
   }
 
-  //TODO: See what to do with this
-  def getMonthFuelConsumption(footPrintState: FootPrintState, month: Date) = {
+  def getKmByCar(trips: List[TransportTrip], carName: String): Double = {
+    filterCar(trips, carName).foldRight(0.0)((trip, totalKm) => trip.km + totalKm)
+  }
+
+  def getEmissionByCar(trips: List[TransportTrip], carName: String): Double = {
+    filterCar(trips, carName).foldRight(0.0)((trip, emissions) => emissions + getCarEmissionInTrip(trip))
+  }
+
+  private def filterCar(trips: List[TransportTrip], carName: String): List[TransportTrip] = {
+    trips.filter(t => t.mean.isInstanceOf[Car] && t.mean.asInstanceOf[Car].name == carName)
+  }
+
+  def getMonthFuelConsumption(footPrintState: FootPrintState, month: Date): Double = {
     footPrintState.transportTrips
-      .filter(t => t.mean.isInstanceOf[Car] && t.date.getMonth() == month.getMonth())
+      .filter(t => t.mean.isInstanceOf[Car] && t.date.getMonth() == month.getMonth() && t.date.getYear() == month.getYear())
       .foldLeft(0.0)((tracker, transport) => tracker + Car.getCarConsumptionInTrip(transport))
   }
 
