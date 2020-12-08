@@ -15,7 +15,7 @@ class LoadProfile {
   @FXML
   private var userName: TextField = _
 
-  def getProfile(): Unit = {
+  def loadProfile(): Unit = {
     FileOperations.loadStates(userName.getText) match {
       case None => errorLabel.setText("There is no profile with that username")
       case Some(states) => loadHomepage(states)
@@ -32,12 +32,12 @@ class LoadProfile {
     stage.setHeight(650)
   }
 
-  def goBack: Unit = {
+  def goBack(): Unit = {
     val loader = new FXMLLoader(getClass.getResource("ProfileMenu.fxml"))
     val root: Parent = loader.load()
 
     userName.getScene.setRoot(root)
   }
 
-  def enterPress(key: KeyEvent): Unit = if (key.getCode == KeyCode.ENTER) getProfile()
+  def enterPress(key: KeyEvent): Unit = if (key.getCode == KeyCode.ENTER) loadProfile()
 }

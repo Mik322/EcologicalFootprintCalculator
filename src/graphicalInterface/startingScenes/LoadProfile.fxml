@@ -14,7 +14,7 @@
         </Label>
         <TextField fx:id="userName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyPressed="#enterPress" />
         <Label fx:id="errorLabel" textFill="RED" />
-        <Button mnemonicParsing="false" onMouseClicked="#getProfile" prefWidth="100.0" text="Load Profile" />
+        <Button mnemonicParsing="false" onAction="#loadProfile" onMouseClicked="#loadProfile" prefWidth="100.0" text="Load Profile" />
     <Button mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" text="Go Back">
          <VBox.margin>
             <Insets top="10.0" />
