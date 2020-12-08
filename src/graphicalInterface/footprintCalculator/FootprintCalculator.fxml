@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.FootprintCalculator">
+   <left>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #00FFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="transportationButton" mnemonicParsing="false" onMouseClicked="#transportationMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Transportation" />
+            <Button fx:id="wasteButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#wasteMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Waste" />
+            <Button fx:id="electricityButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#electricityMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Electricity" />
+            <Button fx:id="earthsNeededButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#displayEarthsNeeded" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See how many earths would be needed if everybody lived like you" wrapText="true" />
+            <Button fx:id="totalEmissionsButton" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onMouseClicked="#displayTotalCO2Emissions" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See total CO2 emissions" wrapText="true" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="footprintDisplay" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="footprintLabel" layoutY="171.0" text="Label" />
+         </children></AnchorPane>
+   </center>
+</BorderPane>

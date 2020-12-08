@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.electricity.Electricity">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #9955bb;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="setElectricitySourcesButton" mnemonicParsing="false" onMouseClicked="#setElectricitySourcesDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Set electricity sources" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="getTotalEmissionsFromElectricityButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#getTotalEmissionsFromElectricityDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Get total emissions from electricity" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="getSolarPanelRecommendationButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getSolarPanelRecommendationDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Get solar panel recommendation" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="changeElectricityConsumptionButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#changeElectricityConsumptionDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Change electricity consumption" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="electricityLabel" layoutX="236.0" layoutY="192.0" text="Label" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

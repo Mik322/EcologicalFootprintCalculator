@@ -1,4 +1,4 @@
-package graphicalInterface
+package graphicalInterface.startingScenes
 
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.FXML

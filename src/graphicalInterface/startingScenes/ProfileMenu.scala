@@ -13,7 +13,7 @@ class ProfileMenu {
   def newProfile: Unit = {newProfileButton.getScene.getWindow.asInstanceOf[Stage].close()}
 
   def loadProfile: Unit = {
-    val fxmlLoader = new FXMLLoader(getClass.getResource("LoadProfile.fxml"))
+    val fxmlLoader = new FXMLLoader(getClass.getResource("../HomePage.fxml"))
     val root: Parent = fxmlLoader.load()
 
     loadProfileButton.getScene.setRoot(root)

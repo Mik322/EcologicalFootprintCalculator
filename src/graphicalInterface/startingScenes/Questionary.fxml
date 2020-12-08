@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="562.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.Questionary">
+<AnchorPane prefHeight="562.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.Questionary">
    <children>
       <Label layoutX="146.0" layoutY="34.0" text="Please answer this questions">
          <font>
