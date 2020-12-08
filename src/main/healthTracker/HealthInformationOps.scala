@@ -50,15 +50,9 @@ object HealthInformationOps {
         val sleepInDay = healthTracker.SleepTracker.getSleepInDay(tracker.sleepTracker,date)
         getSleepInDayString(sleepInDay,date)
 
-<<<<<<< HEAD
-      case GetAverageSleepInDays(date1,date2) =>
-        val averageSleepInDays = healthTracker.SleepTracker.getAverageSleep(tracker.sleepTracker,date1,date2)
-        getAverageSleepInDaysString(averageSleepInDays,date1,date2)
-=======
       case GetAverageSleepInDays(startDate,endDate) =>
-        val averageSleepInDays = sleepTracker.SleepTracker.getAverageSleep(tracker.sleepTracker,startDate,endDate)
+        val averageSleepInDays = SleepTracker.getAverageSleep(tracker.sleepTracker,startDate,endDate)
         getAverageSleepInDaysString(averageSleepInDays,startDate,endDate)
->>>>>>> e22d392ef6e78b6c7f639be71670c80f17260632
       }
 
 

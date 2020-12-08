@@ -11,12 +11,8 @@ import main.footprint.FootPrintOps
 import main.footprint.energy.{Electricity, ElectricitySource}
 import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
 import main.footprint.waste.{TypeOfWaste, Waste}
-<<<<<<< HEAD
 import main.healthTracker.HealthInformationOps.getHealthInformationString
 import main.healthTracker.SleepTracker.addSleep
-=======
-import main.healthTracker.sleepTracker.SleepTracker.addSleep
->>>>>>> e22d392ef6e78b6c7f639be71670c80f17260632
 import main.healthTracker.{Body, CaloricActivity, CaloricMaps}
 
 import scala.annotation.tailrec
