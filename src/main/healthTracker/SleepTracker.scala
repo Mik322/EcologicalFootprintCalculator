@@ -1,4 +1,4 @@
-package main.healthTracker.sleepTracker
+package main.healthTracker
 
 import consoleinterface.UserChoice.AddSleep
 import main.Date

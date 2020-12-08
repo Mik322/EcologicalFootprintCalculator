@@ -2,7 +2,7 @@ package main.healthTracker
 
 import consoleinterface.healthtracker.options.HealthInformation._
 import consoleinterface.healthtracker.options.HealthInformation
-import main.Date
+import main.{Date, healthTracker}
 import main.States.HealthTracker
 import main.healthTracker.HealthCalculations.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
 
@@ -34,6 +34,7 @@ object HealthInformationOps {
       }
 
       case GetGoalInformation => getGoalInformation(tracker.goal._1, calculateCaloriesToGoal(tracker.body, tracker.goal._1))
+
       case GetWeightHistory => getWeightHistoric(tracker.weightHistory.sortBy(_._2), "")
       case GetWeightTrack => getWeightTrack(tracker.weightHistory.sortBy(_._2), tracker.goal)
 
@@ -42,15 +43,15 @@ object HealthInformationOps {
         getCupsOfWaterToDrinkString(waterNeeds._1,waterNeeds._2)
 
       case GetNecessarySleep =>
-        val necessarySleep = sleepTracker.SleepTracker.getNecessarySleep(tracker.body.age)
+        val necessarySleep = SleepTracker.getNecessarySleep(tracker.body.age)
         getNecessarySleepString(necessarySleep)
 
       case GetSleepInDay(date) =>
-        val sleepInDay = sleepTracker.SleepTracker.getSleepInDay(tracker.sleepTracker,date)
+        val sleepInDay = healthTracker.SleepTracker.getSleepInDay(tracker.sleepTracker,date)
         getSleepInDayString(sleepInDay,date)
 
       case GetAverageSleepInDays(date1,date2) =>
-        val averageSleepInDays = sleepTracker.SleepTracker.getAverageSleep(tracker.sleepTracker,date1,date2)
+        val averageSleepInDays = healthTracker.SleepTracker.getAverageSleep(tracker.sleepTracker,date1,date2)
         getAverageSleepInDaysString(averageSleepInDays,date1,date2)
       }
 

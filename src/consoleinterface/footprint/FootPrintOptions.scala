@@ -39,9 +39,8 @@ object FootPrintOptions {
   }
 
   def garageMenu(cars: List[Car]): UserChoice = {
-    if (cars.isEmpty) {
-      println("0. Go Back\n1. Add Car\n")
-    } else {
+    println("0. Go Back\n1. Add Car")
+    if (cars.nonEmpty) {
       println("2. Delete Car\n3. Edit Car\n4. See total emissions by car\n5. See total kms by car\n6. See emissions of all cars\n7. See your cars\n8. Get fuel consumption of a month")
     }
     val input = readLine()

@@ -11,7 +11,7 @@ import main.footprint.energy.{Electricity, ElectricitySource}
 import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
 import main.footprint.waste.{TypeOfWaste, Waste}
 import main.healthTracker.HealthInformationOps.getHealthInformationString
-import main.healthTracker.sleepTracker.SleepTracker.addSleep
+import main.healthTracker.SleepTracker.addSleep
 import main.healthTracker.{Body, CaloricActivity, CaloricMaps}
 
 import scala.annotation.tailrec
@@ -19,8 +19,12 @@ import scala.annotation.tailrec
 
 object Application extends App {
 
-  val foodMap = loadCaloriesMap("Food.txt", s => s.toInt)
-  val drinksMap = loadCaloriesMap("Drinks.txt", s => s.toInt)
+  private def converter[A](func: String => A)(value: String): A = func(value)
+
+  val int = converter(s => s.toInt) _
+
+  val foodMap = loadCaloriesMap("Food.txt", int)
+  val drinksMap = loadCaloriesMap("Drinks.txt", int)
   val exercisesMap = loadCaloriesMap("Exercises.txt", s => s.toDouble)
 
   val caloricMaps = CaloricMaps(foodMap, drinksMap, exercisesMap)
