@@ -1,6 +1,6 @@
 package graphicalInterface
 
-import graphicalInterface.footprintCalculator.FootPrintCalculator
+import graphicalInterface.footprintCalculator.FootprintCalculator
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.{Node, Parent}
 import javafx.scene.control.Label
@@ -50,7 +50,7 @@ class HomePage {
     val healthTrackerLoader =new FXMLLoader(getClass.getResource("healthTracker/HealthTrackerInterface.fxml"))
     footPrintPane = footPrintLoader.load()
     healthTrackerPane = healthTrackerLoader.load()
-    footPrintLoader.getController[FootPrintCalculator].initialize(this)
+    footPrintLoader.getController[FootprintCalculator].initialize(this)
     healthTrackerLoader.getController[HealthTrackerInterface].initialize(this, caloricMaps)
   }
 
