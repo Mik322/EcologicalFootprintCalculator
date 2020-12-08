@@ -11,6 +11,7 @@ case class Car(name: String, consumption: Double, fuel: Fuel) extends TransportM
 }
 
 object Car {
+  //TODO: Implement console interface
   def getCarKmInDateRange(footPrintState: FootPrintState, startDate: Date, endDate: Date): Double = {
     footPrintState.transportTrips
       .filter(trip => trip.mean.isInstanceOf[Car] && trip.date>=startDate && trip.date<=endDate)
@@ -37,6 +38,13 @@ object Car {
       case ::(head, next) => getCarEmissionInTrip(head) + getTotalEmissions(next)
       case Nil => 0
     }
+  }
+
+  //TODO: See what to do with this
+  def getMonthFuelConsumption(footPrintState: FootPrintState, month: Date) = {
+    footPrintState.transportTrips
+      .filter(t => t.mean.isInstanceOf[Car] && t.date.getMonth() == month.getMonth())
+      .foldLeft(0.0)((tracker, transport) => tracker + Car.getCarConsumptionInTrip(transport))
   }
 
 }

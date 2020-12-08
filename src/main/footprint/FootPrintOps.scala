@@ -49,4 +49,12 @@ object FootPrintOps {
   def getCars(cars: List[Car]): String = {
     cars.map(c => s"${c.toString}").mkString("\n")
   }
+
+  def getEarthsConsumedString(footPrintState: FootPrintState): String ={
+    val points = footPrintState.points
+    if(points < 60) "Congratulations"
+    else if(points > 60 && points < 120) "We would need an extra planet"
+    else if(points > 120 && points < 180) "We would need two extra planets"
+    else "We would need four extra planets"
+  }
 }

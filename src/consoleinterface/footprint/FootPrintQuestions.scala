@@ -2,7 +2,6 @@ package consoleinterface.footprint
 
 import consoleinterface.StartOptions.FootPrintData
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
-import main.footprint.StaticData
 
 import scala.annotation.tailrec
 import scala.io.StdIn.readLine

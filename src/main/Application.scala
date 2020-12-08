@@ -1,22 +1,16 @@
 package main
 
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
-import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTotalEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetGoal}
-import consoleinterface.UserChoice._
+import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTotalEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetGoal, _}
 import consoleinterface._
-import healthTracker.{Body, CaloricActivity, CaloricMaps}
 import consoleinterface.healthtracker.options.{AddCaloricActivity, BodyChange, HealthInformation}
-import main.healthTracker.HealthInformationOps.getHealthInformationString
-import main.footprint.{FootPrintOps, StaticData}
-import main.footprint.energy.{Electricity, EnergySource}
-import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
-import main.healthTracker.sleepTracker.SleepTracker.addSleep
+import main.fileOperations.FileOperations
 import main.fileOperations.FileOperations._
+import main.footprint.FootPrintOps
 import main.footprint.energy.{Electricity, ElectricitySource}
 import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
 import main.footprint.waste.{TypeOfWaste, Waste}
-import main.footprint.{FootPrintOps, StaticData}
-import main.healthTracker.CaloricInformationOps.getCaloricInformationString
+import main.healthTracker.HealthInformationOps.getHealthInformationString
 import main.healthTracker.sleepTracker.SleepTracker.addSleep
 import main.healthTracker.{Body, CaloricActivity, CaloricMaps}
 
@@ -140,7 +134,7 @@ object Application extends App {
         main_loop(states)
 
       case GetEcologicalFootPrint => {
-        val earths = StaticData.getEarthsConsumedString(states.footPrintState)
+        val earths = FootPrintOps.getEarthsConsumedString(states.footPrintState)
         printString(earths)
         main_loop(states)
       }
