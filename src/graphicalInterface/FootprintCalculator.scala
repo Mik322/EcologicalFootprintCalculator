@@ -1,0 +1,5 @@
+package graphicalInterface
+
+class FootprintCalculator {
+
+}
