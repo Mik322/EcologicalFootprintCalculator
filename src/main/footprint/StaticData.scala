@@ -11,7 +11,7 @@ object StaticData {
   def getMonthFuelConsumption(footPrintState: FootPrintState, month: Date) = {
     footPrintState.transportTrips
       .filter(t => t.mean.isInstanceOf[Car] && t.date.getMonth() == month.getMonth())
-      .foldLeft(0.0)((counter, transport) => counter + Car.getCarConsumptionInTrip(transport))
+      .foldLeft(0.0)((tracker, transport) => tracker + Car.getCarConsumptionInTrip(transport))
   }
 
   def getFuelConsumedComparedAverage(footPrintState: FootPrintState, month: Date): Double = {

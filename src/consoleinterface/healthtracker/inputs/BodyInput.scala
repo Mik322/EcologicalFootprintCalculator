@@ -1,4 +1,4 @@
-package consoleinterface.caloriescouter.inputs
+package consoleinterface.healthtracker.inputs
 
 import scala.io.StdIn.readLine
 import main.healthTracker.Body.{Active, BiologicalSex, ExtremelyActive, Female, Lifestyle, Male, Moderated, Sedentary, VeryActive}

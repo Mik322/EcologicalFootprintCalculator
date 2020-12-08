@@ -1,7 +1,7 @@
 package main.healthTracker
 
-import consoleinterface.caloriescouter.options.AddCaloricActivity
-import consoleinterface.caloriescouter.options.AddCaloricActivity.{AddDrink, AddFood, AddSport, AddWaterCup}
+import consoleinterface.healthtracker.options.AddCaloricActivity
+import consoleinterface.healthtracker.options.AddCaloricActivity.{AddDrink, AddFood, AddSport, AddWaterCup}
 import main.healthTracker.HealthCalculations.calculateExerciseCalories
 import main.Date
 import main.States.HealthTracker
@@ -26,14 +26,14 @@ object CaloricActivity {
     addCaloricActivity(state, activity, calories, attributeFunction)
   }
 
-  def addCaloricActivity(counter: HealthTracker,
+  def addCaloricActivity(tracker: HealthTracker,
                          activity: AddCaloricActivity,
                          calories: Int,
                          activityAttributes: AddCaloricActivity => (String, Int, ActivityType, Date)): HealthTracker =
   {
     val (name, quantity, activityType, date) = activityAttributes(activity)
-    val newActivities = counter.activities.appended(CaloricActivity(activityType, name, quantity, calories, date))
-    counter.copy(activities = newActivities)
+    val newActivities = tracker.activities.appended(CaloricActivity(activityType, name, quantity, calories, date))
+    tracker.copy(activities = newActivities)
   }
 
   def foodAttributes = (activity: AddCaloricActivity) => {
@@ -51,5 +51,5 @@ object CaloricActivity {
     (sport.sport, sport.minutes, Sport, sport.date)
   }
 
-  def cupsOfWaterToDrink(tracker: HealthTracker, date: Date): Int = HealthCalculations.getRemainingWaterNeeded(tracker, date) / 250
+  def cupsOfWaterToDrinkAndDrank(tracker: HealthTracker, date: Date): (Int,Int) = (HealthCalculations.getRemainingWaterNeeded(tracker, date)._1/250,HealthCalculations.getRemainingWaterNeeded(tracker, date)._2 /250)
 }

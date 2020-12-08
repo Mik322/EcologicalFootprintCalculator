@@ -3,7 +3,7 @@ package consoleinterface
 import consoleinterface.StartOptions.{LoadState, NewProfile}
 
 import scala.io.StdIn.readLine
-import consoleinterface.caloriescouter.{CaloriesConsoleOps, CaloriesOptions}
+import consoleinterface.healthtracker.{HealthTrackerConsoleOps, HealthTrackerOptions}
 import consoleinterface.footprint.{FootPrintOptions, FootPrintQuestions}
 import main.healthTracker.CaloricMaps
 import consoleinterface.UserChoice.{Quit, SaveStates}
@@ -11,7 +11,7 @@ import main.footprint.transport.Car
 
 object ConsoleOps {
   def printWelcome(): Unit = {
-    println("Welcome to The Ecological Footprint Calculator and Calorie Counter")
+    println("Welcome to The Ecological Footprint Calculator and Health Tracker")
   }
 
   def FirstPrompt(): StartOptions = {
@@ -26,11 +26,11 @@ object ConsoleOps {
   def newProfile(): NewProfile = {
     println("Please enter your username:")
     val username = readLine()
-    NewProfile(username, CaloriesConsoleOps.getBodyInput(),FootPrintQuestions.setFootPrintData())
+    NewProfile(username, HealthTrackerConsoleOps.getBodyInput(),FootPrintQuestions.setFootPrintData())
   }
 
   def printOptions() = {
-    println("1. FootPrint Options\n2. CaloriesCounter Options\n3. Save States\n0. Quit")
+    println("1. FootPrint Calculator\n2. Health Tracker\n3. Save States\n0. Quit")
   }
 
   def getUserChoice(caloricMaps: CaloricMaps, cars: List[Car]): UserChoice = {
@@ -38,7 +38,7 @@ object ConsoleOps {
     val input = readLine()
     input match {
       case "1" => FootPrintOptions.footPrintOptions(cars)
-      case "2" => CaloriesOptions.caloriesCounterOptions(caloricMaps)
+      case "2" => HealthTrackerOptions.healthTrackerOptions(caloricMaps)
       case "3" => SaveStates
       case "0" => Quit
       case _ => {

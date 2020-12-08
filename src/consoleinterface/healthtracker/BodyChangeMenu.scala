@@ -1,10 +1,10 @@
-package consoleinterface.caloriescouter
+package consoleinterface.healthtracker
 
 import consoleinterface.UserChoice
-import consoleinterface.caloriescouter.inputs.BodyInput
-import consoleinterface.caloriescouter.options.BodyChange
-import consoleinterface.caloriescouter.options.BodyChange.{ChangeAge, ChangeHeight, ChangeLifestyle, ChangeWeight}
-import consoleinterface.caloriescouter.CaloriesOptions.addMenu
+import consoleinterface.healthtracker.inputs.BodyInput
+import consoleinterface.healthtracker.options.BodyChange
+import consoleinterface.healthtracker.options.BodyChange.{ChangeAge, ChangeHeight, ChangeLifestyle, ChangeWeight}
+import consoleinterface.healthtracker.HealthTrackerOptions.addMenu
 import main.Date
 import main.healthTracker.CaloricMaps
 

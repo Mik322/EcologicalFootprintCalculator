@@ -19,10 +19,10 @@ object States {
   def createStates(newProfile: NewProfile): States = {
     val bodyParams = newProfile.bodyParams
     val staticData = StaticData(newProfile.footPrintData.points, newProfile.footPrintData.kmByCarPerMonth, newProfile.footPrintData.consumptionCar)
-    val footPrint = FootPrintState(List(), List(), Waste(0,0), Electricity(newProfile.footPrintData.electricityPerMonth, List()), staticData)
     val body = createBody(bodyParams.height, bodyParams.weight, bodyParams.age, bodyParams.biologicalSex, bodyParams.lifestyle)
-    val calorieCounter = HealthTracker(body, List(), (KeepWeight,Date.today()), List((bodyParams.weight, bodyParams.date)), Map())
-    States(newProfile.profileName, footPrint, calorieCounter)
+    val footPrint = FootPrintState(List(), List(), Waste(0,0), Electricity(newProfile.footPrintData.electricityPerMonth, List()), staticData)
+    val healthTracker = HealthTracker(body, List(), (KeepWeight,Date.today()), List((bodyParams.weight, bodyParams.date)), Map())
+    States(newProfile.profileName, footPrint, healthTracker)
   }
 
 }

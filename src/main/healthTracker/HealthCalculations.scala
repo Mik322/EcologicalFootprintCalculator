@@ -40,10 +40,10 @@ object HealthCalculations {
     activities.filter(a => a.activityType == Sport && a.date == date).foldLeft(0)((c, a) => c + a.quantity)
   }
 
-  def getRemainingWaterNeeded(counter: HealthTracker, date: Date): Int = {
-    val recommended = calculateDayRecommendedWater(counter.body, date, counter.activities)
-    val consumed = getTotalWaterConsumedInDay(counter.activities, date)
-    (recommended - consumed).toInt
+  def getRemainingWaterNeeded(tracker: HealthTracker, date: Date): (Int,Int) = {
+    val recommended = calculateDayRecommendedWater(tracker.body, date,tracker.activities)
+    val consumed = getTotalWaterConsumedInDay(tracker.activities, date)
+    ((recommended-consumed).toInt, consumed)
   }
 
   object WaterAuxiliaries {

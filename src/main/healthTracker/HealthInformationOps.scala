@@ -1,64 +1,64 @@
 package main.healthTracker
 
-import consoleinterface.caloriescouter.options.CaloricInformation._
-import consoleinterface.caloriescouter.options.CaloricInformation
+import consoleinterface.healthtracker.options.HealthInformation._
+import consoleinterface.healthtracker.options.HealthInformation
 import main.Date
 import main.States.HealthTracker
 import main.healthTracker.HealthCalculations.{calculateBurnedCalories, calculateCaloriesToGoal, calculateConsumedCalories}
 
 import scala.annotation.tailrec
 
-object CaloricInformationOps {
-  def getCaloricInformationString(info: CaloricInformation, counter: HealthTracker): String = {
+object HealthInformationOps {
+  def getHealthInformationString(info: HealthInformation, tracker: HealthTracker): String = {
     info match {
       case GetListCaloricActivities => {
-        getListOfActivitiesString(counter.activities, "")
+        getListOfActivitiesString(tracker.activities, "")
       }
 
       case GetCaloriesInDay(date) => {
-        lazy val activities = counter.activities.filter(a => a.date == date)
-        val calories = getCalories(counter, activities)
+        lazy val activities = tracker.activities.filter(a => a.date == date)
+        val calories = getCalories(tracker, activities)
         caloricInformation(calories._1, calories._2, calories._3, date)
       }
 
       case GetLastDaysCalories(days) => {
         val startDate = Date.today().minusDays(days)
-        lazy val activities = counter.activities.filter(a => a.date >= startDate)
-        val calories = getCalories(counter, activities)
+        lazy val activities = tracker.activities.filter(a => a.date >= startDate)
+        val calories = getCalories(tracker, activities)
         getNDaysCaloriesString(calories._1, calories._2, calories._3, days)
       }
 
       case GetListCaloricActivitiesInDays(startDate, endDate) => {
-        lazy val activities = counter.activities.filter(a => a.date >= startDate && a.date <= endDate)
+        lazy val activities = tracker.activities.filter(a => a.date >= startDate && a.date <= endDate)
         getListOfActivitiesString(activities, "")
       }
 
-      case GetGoalInformation => getGoalInformation(counter.goal._1, calculateCaloriesToGoal(counter.body, counter.goal._1))
-      case GetWeightHistory => getWeightHistoric(counter.weightHistory.sortBy(_._2), "")
-      case GetWeightTrack => getWeightTrack(counter.weightHistory.sortBy(_._2), counter.goal)
+      case GetGoalInformation => getGoalInformation(tracker.goal._1, calculateCaloriesToGoal(tracker.body, tracker.goal._1))
+      case GetWeightHistory => getWeightHistoric(tracker.weightHistory.sortBy(_._2), "")
+      case GetWeightTrack => getWeightTrack(tracker.weightHistory.sortBy(_._2), tracker.goal)
 
       case GetWaterNeeds(date) =>
-        val waterNeeds = CaloricActivity.cupsOfWaterToDrink(counter, date)
-        getCupsOfWaterToDrinkString(waterNeeds)
+        val waterNeeds = CaloricActivity.cupsOfWaterToDrinkAndDrank(tracker, date)
+        getCupsOfWaterToDrinkString(waterNeeds._1,waterNeeds._2)
 
       case GetNecessarySleep =>
-        val necessarySleep = sleepTracker.SleepTracker.getNecessarySleep(counter.body.age)
+        val necessarySleep = sleepTracker.SleepTracker.getNecessarySleep(tracker.body.age)
         getNecessarySleepString(necessarySleep)
 
       case GetSleepInDay(date) =>
-        val sleepInDay = sleepTracker.SleepTracker.getSleepInDay(counter.sleepTracker,date)
+        val sleepInDay = sleepTracker.SleepTracker.getSleepInDay(tracker.sleepTracker,date)
         getSleepInDayString(sleepInDay,date)
 
       case GetAverageSleepInDays(date1,date2) =>
-        val averageSleepInDays = sleepTracker.SleepTracker.getAverageSleep(counter.sleepTracker,date1,date2)
+        val averageSleepInDays = sleepTracker.SleepTracker.getAverageSleep(tracker.sleepTracker,date1,date2)
         getAverageSleepInDaysString(averageSleepInDays,date1,date2)
       }
 
 
   }
 
-  def getCalories(counter: HealthTracker, activities: List[CaloricActivity]): (Int, Int, Int) = {
-    val goalCalories = calculateCaloriesToGoal(counter.body, counter.goal._1)
+  def getCalories(tracker: HealthTracker, activities: List[CaloricActivity]): (Int, Int, Int) = {
+    val goalCalories = calculateCaloriesToGoal(tracker.body, tracker.goal._1)
     (calculateConsumedCalories(activities), calculateBurnedCalories(activities), goalCalories)
   }
 
@@ -83,9 +83,9 @@ object CaloricInformationOps {
     case _ => s"${if (goal.kgChanged > 0) "gain" else "lose"} ${goal.kgChanged.abs} per week"
   }
 
-  private def getCupsOfWaterToDrinkString(cups: Int): String = {
-    if (cups > 0) s"You still need to drink at least ${cups} cups of water"
-    else "You've drink the recommended water already"
+  private def getCupsOfWaterToDrinkString(cupsToDrink: Int, cupsDrank: Int): String = {
+    if (cupsToDrink > 0) s"You drank ${cupsDrank} cups(250ml) of water today. You still need to drink at least ${cupsToDrink} cups(250ml) of water"
+    else "You've drank the recommended water already"
   }
 
   @tailrec

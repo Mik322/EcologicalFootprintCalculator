@@ -1,6 +1,6 @@
 package main.healthTracker
 
-import consoleinterface.caloriescouter.options.BodyChange
+import consoleinterface.healthtracker.options.BodyChange
 import main.States.HealthTracker
 import main.healthTracker.Body.{BiologicalSex, Lifestyle}
 
@@ -18,16 +18,16 @@ object Body {
   case object VeryActive extends Lifestyle
   case object ExtremelyActive extends Lifestyle
 
-  def changeBody(newParam: BodyChange, counter: HealthTracker): HealthTracker = newParam match {
-    case BodyChange.ChangeAge(age) => counter.copy(body = counter.body.copy(age = age))
+  def changeBody(newParam: BodyChange, tracker: HealthTracker): HealthTracker = newParam match {
+    case BodyChange.ChangeAge(age) => tracker.copy(body = tracker.body.copy(age = age))
 
-    case BodyChange.ChangeHeight(height) => counter.copy(body = counter.body.copy(height = height))
+    case BodyChange.ChangeHeight(height) => tracker.copy(body = tracker.body.copy(height = height))
 
-    case BodyChange.ChangeLifestyle(lifestyle) => counter.copy(body = counter.body.copy(lifestyle = lifestyle))
+    case BodyChange.ChangeLifestyle(lifestyle) => tracker.copy(body = tracker.body.copy(lifestyle = lifestyle))
 
     case BodyChange.ChangeWeight(weight, date) =>
-      val newBody = counter.body.copy(weight = weight)
-      counter.copy(body = newBody, weightHistory = counter.weightHistory.appended((weight, date)))
+      val newBody = tracker.body.copy(weight = weight)
+      tracker.copy(body = newBody, weightHistory = tracker.weightHistory.appended((weight, date)))
   }
 
   def createBody(height: Int, weight: Double, age: Int, biologicalSex: BiologicalSex, lifestyle: Lifestyle): Body = Body(height, weight, age, biologicalSex, lifestyle)

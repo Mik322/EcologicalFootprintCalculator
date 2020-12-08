@@ -1,6 +1,6 @@
-package consoleinterface.caloriescouter
+package consoleinterface.healthtracker
 
-import consoleinterface.caloriescouter.options.AddCaloricActivity._
+import consoleinterface.healthtracker.options.AddCaloricActivity._
 import consoleinterface.StartOptions.BodyParams
 import consoleinterface.{DateChoice, UserChoice}
 import consoleinterface.UserChoice.{AddSleep, SetGoal}
@@ -11,7 +11,7 @@ import main.healthTracker.Goal.{GainALotOfWeight, GainWeight, KeepWeight, LoseWe
 
 import scala.io.StdIn.readLine
 
-object CaloriesConsoleOps {
+object HealthTrackerConsoleOps {
   def printList(list: List[String], index: Int): Unit = {
     list match {
       case ::(head, next) => {
