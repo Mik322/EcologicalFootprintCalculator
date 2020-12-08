@@ -50,9 +50,15 @@ object HealthInformationOps {
         val sleepInDay = healthTracker.SleepTracker.getSleepInDay(tracker.sleepTracker,date)
         getSleepInDayString(sleepInDay,date)
 
+<<<<<<< HEAD
       case GetAverageSleepInDays(date1,date2) =>
         val averageSleepInDays = healthTracker.SleepTracker.getAverageSleep(tracker.sleepTracker,date1,date2)
         getAverageSleepInDaysString(averageSleepInDays,date1,date2)
+=======
+      case GetAverageSleepInDays(startDate,endDate) =>
+        val averageSleepInDays = sleepTracker.SleepTracker.getAverageSleep(tracker.sleepTracker,startDate,endDate)
+        getAverageSleepInDaysString(averageSleepInDays,startDate,endDate)
+>>>>>>> e22d392ef6e78b6c7f639be71670c80f17260632
       }
 
 
@@ -137,9 +143,9 @@ object HealthInformationOps {
     case _ => s"You slept ${i} hours on ${date}"
   }
 
-  private def getAverageSleepInDaysString(d: Double,date1: Date,date2: Date ): String = d match {
-    case 0.0 => s"You don't have any sleep record from ${date1} to ${date2}"
-    case _ => s"You slept an average of ${d} hours from ${date1} to ${date2}(counting only days that you have a sleep record)"
+  private def getAverageSleepInDaysString(d: Double, startDate: Date, endDate: Date ): String = d match {
+    case 0.0 => s"You don't have any sleep record from ${startDate} to ${endDate}"
+    case _ => s"You slept an average of ${d} hours from ${startDate} to ${endDate}(counting only days that you have a sleep record)"
   }
 
 
