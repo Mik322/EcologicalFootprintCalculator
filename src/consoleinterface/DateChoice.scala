@@ -56,7 +56,7 @@ object DateChoice {
           getMonth
       }
     } catch {
-      case NumberFormatException => println("Invalid number")
+      case _: NumberFormatException => println("Invalid number")
         getMonth
     }
   }
@@ -70,7 +70,7 @@ object DateChoice {
           getYear
       }
     } catch {
-      case NumberFormatException => println("Invalid number")
+      case _: NumberFormatException => println("Invalid number")
         getYear
     }
   }
