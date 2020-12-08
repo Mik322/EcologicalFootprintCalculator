@@ -2,6 +2,8 @@ package consoleinterface.footprint
 
 import consoleinterface.StartOptions.FootPrintData
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
+import javafx.collections.ObservableList
+import javafx.scene.control.CheckBox
 
 import scala.annotation.tailrec
 import scala.io.StdIn.readLine
@@ -28,6 +30,15 @@ object FootPrintQuestions {
     (points, kms, consumption)
   }
 
+  def distanceOfCar(kms: Int): Int = {
+    val points = if (kms > 2000) 12
+    else if (kms > 1250 && kms < 2000) 10
+    else if (kms > 125 && kms < 1250) 6
+    else if (kms < 125 && kms > 0) 4
+    else 0
+    points
+  }
+
   def distance_publicT(): Int = {
     println("Distance travelled anually by public transport:\n")
     println("1.More than 32000 km\n2.Between 25000 and 32000 km\n3.Between 15000 and 25000 km\n4.Between 1500 and 15000 km\n5.Less than 1500 km\n6.No km")
@@ -46,6 +57,23 @@ object FootPrintQuestions {
     }
   }
 
+  def distanceOfPublicT(options: ObservableList[String], option: String): Int = {
+    val op1 = options.get(0)
+    val op2 = options.get(1)
+    val op3 = options.get(2)
+    val op4 = options.get(3)
+    val op5 = options.get(4)
+    val op6 = options.get(5)
+    option match {
+      case op1 => 12
+      case op2 => 10
+      case op3 => 6
+      case op4 => 4
+      case op5 => 2
+      case op6 => 0
+    }
+  }
+
   def holidayDest(): Int = {
     println("Holiday Destination:\n")
     println("1.Close to home(Country)\n2.Short distance away(Continent)\n3.Long flight away(Rest of the world)")
@@ -58,6 +86,17 @@ object FootPrintQuestions {
         printTryAgain()
         holidayDest()
       }
+    }
+  }
+
+  def holidayDestPoints(options: ObservableList[String], option: String): Int = {
+    val op1 = options.get(0)
+    val op2 = options.get(1)
+    val op3 = options.get(2)
+    option match {
+      case op1 => 2
+      case op2 => 6
+      case op3 => 20
     }
   }
 
@@ -77,6 +116,20 @@ object FootPrintQuestions {
     }
   }
 
+  def averageGasBillPoints(options: ObservableList[String], option: String): Int = {
+    val op1 = options.get(0)
+    val op2 = options.get(1)
+    val op3 = options.get(2)
+    val op4 = options.get(3)
+    option match {
+      case op1 => 8
+      case op2 => 5
+      case op3 => 3
+      case op4 => 1
+    }
+  }
+
+
   def averageElectricBill(): (Int, Double) = {
     println("How much KwH do you spend on average per month on electricity?\n")
     val input = readLine().toDouble
@@ -86,6 +139,15 @@ object FootPrintQuestions {
     else if (euros > 12 && euros < 42) 5
     else 1
     (points, input)
+  }
+
+  def averageElectricBillPoints(option: Double): Int = {
+    val euros = option * 0.15
+    val points = if (euros > 70) 10
+    else if (euros > 42 && euros < 70) 7
+    else if (euros > 12 && euros < 42) 5
+    else 1
+    points
   }
 
   def sourceOfEnergy(): Int = {
@@ -99,6 +161,15 @@ object FootPrintQuestions {
         printTryAgain()
         sourceOfEnergy()
       }
+    }
+  }
+
+  def sourceOfEnergyPoints(options: ObservableList[String], option: String): Int = {
+    val op1 = options.get(0)
+    val op2 = options.get(1)
+    option match {
+      case op1 => 2
+      case op2 => 15
     }
   }
 
@@ -118,6 +189,19 @@ object FootPrintQuestions {
     }
   }
 
+  def typeOfEaterPoints(options: ObservableList[String], option: String): Int = {
+    val op1 = options.get(0)
+    val op2 = options.get(1)
+    val op3 = options.get(2)
+    val op4 = options.get(3)
+    option match {
+      case op1 => 2
+      case op2 => 4
+      case op3 => 8
+      case op4 => 10
+    }
+  }
+
   def typeOfFood(): Int = {
     println("The main type of food consumed is:\n")
     println("1.Mostly fresh, locally grown\n2.Mix of fresh and convenience\n3.Mostly convenience")
@@ -130,6 +214,17 @@ object FootPrintQuestions {
         printTryAgain()
         typeOfFood()
       }
+    }
+  }
+
+  def typeOfFoodPoints(options: ObservableList[String], option: String): Int = {
+    val op1 = options.get(0)
+    val op2 = options.get(1)
+    val op3 = options.get(2)
+    option match {
+      case op1 => 2
+      case op2 => 6
+      case op3 => 12
     }
   }
 
@@ -146,6 +241,19 @@ object FootPrintQuestions {
         printTryAgain()
         magazines()
       }
+    }
+  }
+
+  def magazinesPoints(options: ObservableList[String], option: String): Int = {
+    val op1 = options.get(0)
+    val op2 = options.get(1)
+    val op3 = options.get(2)
+    val op4 = options.get(3)
+    option match {
+      case op1 => 8
+      case op2 => 6
+      case op3 => 4
+      case op4 => 0
     }
   }
 
@@ -166,6 +274,21 @@ object FootPrintQuestions {
     }
   }
 
+    def purchasesPoints(options: ObservableList[String], option: String): Int = {
+      val op1 = options.get(0)
+      val op2 = options.get(1)
+      val op3 = options.get(2)
+      val op4 = options.get(3)
+      val op5 = options.get(4)
+      option match {
+        case op1 => 10
+        case op2 => 8
+        case op3 => 6
+        case op4 => 4
+        case op5 => 2
+      }
+    }
+
   def typeOfProperty(): Int = {
     println("What type of property do you live in?\n")
     println("1.Large sized house\n2.Medium size house\n3.Small size house\n4.Flat / apartment")
@@ -181,6 +304,19 @@ object FootPrintQuestions {
       }
     }
   }
+
+    def typeOfPropertyPoints(options: ObservableList[String], option: String): Int = {
+      val op1 = options.get(0)
+      val op2 = options.get(1)
+      val op3 = options.get(2)
+      val op4 = options.get(3)
+      option match {
+        case op1 => 10
+        case op2 => 7
+        case op3 => 4
+        case op4 => 2
+      }
+    }
 
   def household(): Int = {
     println("How many other people live in your household?\n")
@@ -201,6 +337,25 @@ object FootPrintQuestions {
     }
   }
 
+    def householdPoints(options: ObservableList[String], option: String): Int = {
+      val op1 = options.get(0)
+      val op2 = options.get(1)
+      val op3 = options.get(2)
+      val op4 = options.get(3)
+      val op5 = options.get(4)
+      val op6 = options.get(5)
+      val op7 = options.get(6)
+      option match {
+        case op1 => 14
+        case op2 => 12
+        case op3 => 10
+        case op4 => 8
+        case op5 => 6
+        case op6 => 4
+        case op7 => 2
+      }
+    }
+
   def childrenHousehold(): Int = {
     println("How many children do you have in this household?\n")
     println("1.No children\n2.One child\n3.Two children\n4.Three children\n5.Four children\n6.More than four children")
@@ -218,6 +373,23 @@ object FootPrintQuestions {
       }
     }
   }
+
+    def childrenHouseholdPoints(options: ObservableList[String], option: String): Int = {
+      val op1 = options.get(0)
+      val op2 = options.get(1)
+      val op3 = options.get(2)
+      val op4 = options.get(3)
+      val op5 = options.get(4)
+      val op6 = options.get(5)
+      option match {
+        case op1 => 0
+        case op2 => 3
+        case op3 => 6
+        case op4 => 8
+        case op5 => 10
+        case op6 => 12
+      }
+    }
 
   def amountOfWaste(): Int = {
     println("Amount of domestic waste produced each week(a full large bin is aprox 30 kg)\n")
@@ -237,6 +409,23 @@ object FootPrintQuestions {
     }
   }
 
+    def amountOfWastePoints(options: ObservableList[String], option: String): Int = {
+      val op1 = options.get(0)
+      val op2 = options.get(1)
+      val op3 = options.get(2)
+      val op4 = options.get(3)
+      val op5 = options.get(4)
+      val op6 = options.get(5)
+      option match {
+        case op1 => 50
+        case op2 => 40
+        case op3 => 30
+        case op4 => 20
+        case op5 => 10
+        case op6 => 5
+      }
+    }
+
   def dishwasher(): Int = {
     println("If you have a dishwasher, how many times do you run it on an average week?\n")
     println("1.More than 9 times\n2.Between 4 and 9 times\n3.Between 1 and 4 times\n4.Not applicable")
@@ -253,6 +442,19 @@ object FootPrintQuestions {
     }
   }
 
+    def dishwasherPoints(options: ObservableList[String], option: String): Int = {
+      val op1 = options.get(0)
+      val op2 = options.get(1)
+      val op3 = options.get(2)
+      val op4 = options.get(3)
+      option match {
+        case op1 => 3
+        case op2 => 2
+        case op3 => 1
+        case op4 => 0
+      }
+    }
+
   def washingMachine(): Int = {
     println("If you have a washing machine, how many times do you run it on an average week?\n")
     println("1.More than 9 times\n2.Between 4 and 9 times\n3.Between 1 and 4 times\n4.Not applicable")
@@ -268,6 +470,19 @@ object FootPrintQuestions {
       }
     }
   }
+
+    def washingMachinePoints(options: ObservableList[String], option: String): Int = {
+      val op1 = options.get(0)
+      val op2 = options.get(1)
+      val op3 = options.get(2)
+      val op4 = options.get(3)
+      option match {
+        case op1 => 3
+        case op2 => 2
+        case op3 => 1
+        case op4 => 0
+      }
+    }
 
   def recycledWaste(): Int = {
     println("Do dispose of waste, you're going to use up valuable land. So, start this section with 24 points. Do you recycle the following items?\n")
@@ -296,6 +511,10 @@ object FootPrintQuestions {
     val foodPoints = dealPoints(food)
 
     24 + glassPoints + plasticPoints + paperPoints + aluminiumPoints + steelPoints + foodPoints
+  }
+
+  def recycledWastePoints(list: List[CheckBox]): Int ={
+    list.filter(i => i.isSelected).size * -4 + 24
   }
 
   @tailrec
