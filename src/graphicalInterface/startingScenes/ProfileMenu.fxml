@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="239.0" prefWidth="277.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.ProfileMenu">
+   <children>
+      <Button fx:id="newProfileButton" layoutX="63.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#newProfile" prefHeight="26.0" prefWidth="151.0" text="New Profile" />
+      <Button fx:id="loadProfileButton" layoutX="63.0" layoutY="144.0" mnemonicParsing="false" onMouseClicked="#loadProfile" prefHeight="26.0" prefWidth="151.0" text="Load Profile" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.LoadProfile">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" text="Username:">
+            <font>
+                <Font size="26.0" />
+            </font>
+        </Label>
+        <TextField fx:id="userName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+        <Label fx:id="errorLabel" textFill="RED" />
+        <Button mnemonicParsing="false" onMouseClicked="#getProfile" prefWidth="100.0" text="Load Profile" />
+    <Button mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" text="Go Back">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Button>
+    </children>
+</VBox>
