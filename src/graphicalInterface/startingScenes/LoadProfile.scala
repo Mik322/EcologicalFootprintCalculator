@@ -4,6 +4,8 @@ import graphicalInterface.HomePage
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.Parent
 import javafx.scene.control.{Label, TextField}
+import javafx.scene.input.{KeyCode, KeyEvent}
+import javafx.stage.Stage
 import main.States
 import main.fileOperations.FileOperations
 
@@ -23,8 +25,11 @@ class LoadProfile {
   def loadHomepage(states: States): Unit = {
     val loader = new FXMLLoader(getClass.getResource("../HomePage.fxml"))
     val root: Parent = loader.load()
-    loader.getController.asInstanceOf[HomePage].setStates(states)
-    userName.getScene.setRoot(root)
+    val stage = userName.getScene.getWindow.asInstanceOf[Stage]
+    loader.getController[HomePage].initialize(states)
+    stage.getScene.setRoot(root)
+    stage.setWidth(900)
+    stage.setHeight(650)
   }
 
   def goBack: Unit = {
@@ -33,4 +38,6 @@ class LoadProfile {
 
     userName.getScene.setRoot(root)
   }
+
+  def enterPress(key: KeyEvent): Unit = if (key.getCode == KeyCode.ENTER) getProfile()
 }

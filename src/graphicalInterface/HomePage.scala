@@ -1,12 +1,16 @@
 package graphicalInterface
 
+import graphicalInterface.footprintCalculator.FootPrintCalculator
 import javafx.fxml.{FXML, FXMLLoader}
-import javafx.scene.Node
+import javafx.scene.{Node, Parent}
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
+import javafx.stage.Stage
 import main.States
-import main.fileOperations.FileOperations.loadCaloriesMap
+import main.States.{FootPrintState, HealthTracker}
+import main.fileOperations.FileOperations.{loadCaloriesMap, saveStates}
 import main.healthTracker.CaloricMaps
+import healthTracker.HealthTrackerInterface
 
 class HomePage {
   @FXML
@@ -15,29 +19,39 @@ class HomePage {
   private var homePage: Pane = _
 
   var states: States = _
-  var caloricMaps: CaloricMaps = _
 
-  def footprintCalculator() = {
-    val loader = new FXMLLoader(getClass.getResource("FootprintCalculator.fxml"))
-    setHomePane(loader.load())
+  private var footPrintPane: Parent = _
+  private var healthTrackerPane: Parent = _
+
+  def footprintCalculator(): Unit = setHomePane(footPrintPane)
+
+  def healthTracker(): Unit = setHomePane(healthTrackerPane)
+
+  def saveProfile(): Unit = {
+    saveStates(states)
   }
 
-  def healthTracker() = {
-    label.setText("HealthTracker")
+  def quit(): Unit = {
+    homePage.getScene.getWindow.asInstanceOf[Stage].close()
   }
 
-  def saveStates() = {
-    label.setText(states.profileName)
-  }
+  def updateFootPrint(footPrintState: FootPrintState): Unit = states = states.copy(footPrintState = footPrintState)
+  def updateHealthTracker(healthTracker: HealthTracker): Unit = states = states.copy(healthTracker = healthTracker)
 
-  def quit() = {
-    label.setText("Quit")
-  }
+  def getFootPrint: FootPrintState = states.footPrintState
+  def getHealthTracker: HealthTracker = states.healthTracker
 
-  def setStates(states: States) = {
+  def initialize(states: States): Unit = {
     this.states = states
     val int = converter(s => s.toInt) _
-    this.caloricMaps = CaloricMaps(loadCaloriesMap("Food.txt", int), loadCaloriesMap("Drinks.txt", int), loadCaloriesMap("Exercises.txt", s => s.toDouble))
+    val caloricMaps = CaloricMaps(loadCaloriesMap("Food.txt", int), loadCaloriesMap("Drinks.txt", int), loadCaloriesMap("Exercises.txt", s => s.toDouble))
+
+    val footPrintLoader = new FXMLLoader(getClass.getResource("footprintCalculator/FootprintCalculator.fxml"))
+    val healthTrackerLoader =new FXMLLoader(getClass.getResource("healthTracker/HealthTrackerInterface.fxml"))
+    footPrintPane = footPrintLoader.load()
+    healthTrackerPane = healthTrackerLoader.load()
+    footPrintLoader.getController[FootPrintCalculator].initialize(this)
+    healthTrackerLoader.getController[HealthTrackerInterface].initialize(this, caloricMaps)
   }
 
   private def converter[A](func: String => A)(value: String): A = func(value)

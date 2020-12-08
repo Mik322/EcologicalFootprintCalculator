@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.HomePage">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.HomePage">
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #00008B;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="footprintCalculatorButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#footprintCalculator" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #ffffff;" text="Footprint Calculator" textFill="#fffefe" />
             <Button fx:id="healthTrackerButton" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#healthTracker" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #ffffff;" text="Health Tracker" textFill="#fffefe" />
-            <Button fx:id="saveStatesButton" layoutX="10.0" layoutY="37.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#saveStates" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #ffffff;" text="Save States" textFill="#fffefe" />
+            <Button fx:id="saveStatesButton" layoutX="10.0" layoutY="37.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#saveProfile" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #ffffff;" text="Save Profile" textFill="#fffefe" />
             <Button fx:id="quitButton" layoutX="10.0" layoutY="64.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#quit" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #ffffff;" text="Quit" textFill="#fffefe" />
          </children>
       </VBox>
