@@ -1,5 +1,6 @@
 package graphicalInterface.footprintCalculator
 
+import graphicalInterface.HomePage
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
@@ -10,6 +11,8 @@ class FootprintCalculator {
 
   @FXML
   private var footprintLabel: Label = _
+
+  private var homePage: HomePage = _
 
   def transportationMenu() = {
     val loader = new FXMLLoader(getClass.getResource("transportation/Transportation.fxml"))
@@ -40,5 +43,7 @@ class FootprintCalculator {
     footprintLabel.setText("displayTotalCO2Emissions")
   }
 
+
+  def initialize(homePage: HomePage): Unit = this.homePage = homePage
 
 }
