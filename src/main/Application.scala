@@ -5,12 +5,12 @@ import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste
 import consoleinterface._
 import consoleinterface.healthtracker.options.{AddCaloricActivity, BodyChange, HealthInformation}
 import main.fileOperations.FileOperations
+import main.healthTracker.HealthInformationOps.getHealthInformationString
 import main.fileOperations.FileOperations._
 import main.footprint.FootPrintOps
 import main.footprint.energy.{Electricity, ElectricitySource}
 import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
 import main.footprint.waste.{TypeOfWaste, Waste}
-import main.healthTracker.HealthInformationOps.getHealthInformationString
 import main.healthTracker.sleepTracker.SleepTracker.addSleep
 import main.healthTracker.{Body, CaloricActivity, CaloricMaps}
 
