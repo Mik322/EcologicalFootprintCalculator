@@ -2,14 +2,13 @@ package main.footprint.waste
 
 import main.States.FootPrintState
 
-case class Waste(foodWaste: Int, recycledWaste: Int, totalEmissions: Double)
+case class Waste(foodWaste: Int, recycledWaste: Int)
 
 object Waste {
-  def printWasteEmissions(footPrintState: FootPrintState): String = {
-    footPrintState.waste match {
-      case None => "You don't have any emissions from waste"
-      case Some(value) => s"Your total emissions from Food Waste and Recycling is ${value.totalEmissions} g CO2"
-    }
+  def printWasteEmissions(footPrintState: FootPrintState): String = s"Your total emissions from Food Waste and Recycling is ${getTotalEmissions(footPrintState.waste)} g CO2"
 
+  def getTotalEmissions(waste: Waste) = {
+    //valor de recycled a alterar
+    waste.foodWaste * 1900 + waste.recycledWaste * 100
   }
 }

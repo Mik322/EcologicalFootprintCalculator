@@ -1,12 +1,12 @@
 package consoleinterface.footprint
 
 import consoleinterface.DateChoice.getUserDate
-import consoleinterface.footprint.inputs.TransportationInput.fuelInput
 import consoleinterface.UserChoice
-import consoleinterface.UserChoice.{AddCar, AddTransportTrip, AddWaste, SetEnergySource}
-import main.footprint.energy.TypeOfEnergySource.{Coal, Electricity, Gas, Oil, Wood}
+import consoleinterface.UserChoice.{AddCar, AddTransportTrip, AddWaste, SetElectricitySources}
+import consoleinterface.footprint.inputs.TransportationInput.fuelInput
+import main.footprint.energy.TypeOfElectricitySource
+import main.footprint.energy.TypeOfElectricitySource._
 import main.footprint.transport.TransportMean._
-import main.footprint.energy.{EnergySource, TypeOfEnergySource}
 import main.footprint.transport.{Car, TransportMean}
 import main.footprint.waste.TypeOfWaste.{Food, Recycled}
 
@@ -41,7 +41,10 @@ object FootPrintConsoleOps{
       val input = readLine()
       val car = cars.find(car => input == car.name)
       car match {
-        case None => cars(0)
+        case None => {
+          println("There is no car with that name")
+          getTransportMean(mean, cars)
+        }
         case Some(value) => value
       }
     }
@@ -64,20 +67,41 @@ object FootPrintConsoleOps{
   }
 
   def setEnergySources(): UserChoice ={
-    println("Select what type of energy do you use at your household: \n1.Gas\n2.Oil\n3.Wood\n4.Coal")
-    val source = readLine().toInt
-    println("Type the amount of KhW of the source you use on average per month")
-    val amount = readLine().toDouble
-    val energySource = EnergySource(getEnergySourceType(source),amount, 0)
-    SetEnergySource(energySource)
+    def loop(sources: List[(TypeOfElectricitySource, Double)], totalPercentage: Double): List[(TypeOfElectricitySource, Double)] = totalPercentage match {
+      case t if t< 1.0 =>
+        println(s"You need to declare ${(1.0-t) * 100}% of your electricity sources")
+        val (source, percentage) = getEnergySourceType(1.0 - t)
+        loop(sources.appended((source, percentage)), totalPercentage + percentage)
+      case t if t >=1.0 && t <= 1.001 => sources
+    }
+    SetElectricitySources(loop(List(), 0.0))
   }
 
-  def getEnergySourceType(source: Int): TypeOfEnergySource ={
-    source match {
+  def getEnergySourceType(maximum: Double): (TypeOfElectricitySource, Double) ={
+    println("Select one of the sources that appears on the electricity bill: \n1.Gas\n2.Oil\n3.Coal\n4.Biomass\n5.Hydro\n6.Solar\n7.Wind\n8.Nuclear")
+    val sourceType = readLine().toInt match {
       case 1 => Gas
       case 2 => Oil
-      case 3 => Wood
-      case 4 => Coal
+      case 3 => Coal
+      case 4 => Biomass
+      case 5 => Hydro
+      case 6 => Solar
+      case 7 => Wind
+      case 8 => Nuclear
+    }
+    (sourceType, getPercentageSource(maximum))
+  }
+
+  @scala.annotation.tailrec
+  def getPercentageSource(maximum: Double): Double = {
+    println(s"Whats the percentage from this source? Insert a number smaller or equal to ${maximum*100} or type maximum")
+    readLine() match {
+      case in if in.toLowerCase == "maximum" => maximum
+      case input => input.toDouble match {
+        case p if p <= maximum + 0.0009 => p
+        case _ => println("That's an invalid number, please try again")
+          getPercentageSource(maximum)
+      }
     }
   }
 

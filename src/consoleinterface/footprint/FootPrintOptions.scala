@@ -1,6 +1,6 @@
 package consoleinterface.footprint
 
-import consoleinterface.UserChoice.{GetEcologicalFootPrint, GetEnergyEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu}
+import consoleinterface.UserChoice.{GetEcologicalFootPrint, GetEnergyEmissions, GetTotalEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu}
 import consoleinterface._
 import consoleinterface.footprint.FootPrintConsoleOps.printTryAgain
 import main.footprint.transport.Car
@@ -40,10 +40,11 @@ object FootPrintOptions {
   }
 
   def visualizeMenu(cars : List[Car]): UserChoice ={
-    println("1.See how many Earths would we need if everybody lived like you\n0.Go back")
+    println("1.See how many Earths would we need if everybody lived like you\n2.See your total emissions\n0.Go back")
     val input = readLine()
     input match {
       case "1" => GetEcologicalFootPrint
+      case "2" => GetTotalEmissions
       case "0" => footPrintOptions(cars)
       case _ => {
         printTryAgain()
@@ -86,12 +87,13 @@ object FootPrintOptions {
   }
 
   def energyMenu(cars: List[Car]): UserChoice ={
-    println("1.Set electricity consumption\n1. Set heating sources\n2. See your total emissions from energy use\n0. Go back")
+    println("1.Set electricity consumption\n2. Set electricity sources\n3. See your total emissions from electricity use\n0. Go back")
     val input = readLine()
 
     input match {
-      case "1" => FootPrintConsoleOps.setEnergySources()
-      case "2" => GetEnergyEmissions
+      case "1" => GetEnergyEmissions
+      case "2" => FootPrintConsoleOps.setEnergySources()
+      case "3" => GetEnergyEmissions
       case "0" => addMenu(cars)
       case _ => {
         printTryAgain()
