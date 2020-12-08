@@ -9,9 +9,8 @@ class Main extends Application{
   override def start(stage: Stage): Unit = {
     stage.setTitle("App")
 
-    val loader = new FXMLLoader(getClass.getResource("OpeningScene.fxml"))
+    val loader = new FXMLLoader(getClass.getResource("startingScenes/ProfileMenu.fxml"))
     val root: Parent = loader.load()
-    loader.getController.asInstanceOf[OpeningScene].setStage(stage)
 
     val scene = new Scene(root)
     stage.setScene(scene)
