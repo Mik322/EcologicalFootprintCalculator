@@ -15,7 +15,7 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="homePage" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="homePage" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="label" layoutX="184.0" layoutY="192.0" text="FootprintCalculator" textAlignment="CENTER" />
          </children>

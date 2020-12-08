@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.Garage">
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #e3c7dd;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="addCarButton" mnemonicParsing="false" onMouseClicked="#addCarDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Add Car" wrapText="true" />
+            <Button fx:id="editCarButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#editCarDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Edit Car" wrapText="true" />
+            <Button fx:id="deleteCarButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#deleteCarDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Delete Car" wrapText="true" />
+            <Button fx:id="seeTotalEmissionsByCarButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#seeTotalEmissionsByCarDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See total emissions by car" wrapText="true" />
+            <Button fx:id="seeTotalKmMadeByCarButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#seeTotalKmMadeByCarDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See total km made by car" wrapText="true" />
+            <Button fx:id="seeTotalEmissionsFromCarsButton" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#seeTotalEmissionsFromCarsDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See total emissions from cars" wrapText="true" />
+            <Button fx:id="seeCarsButton" layoutX="10.0" layoutY="276.0" mnemonicParsing="false" onMouseClicked="#seeCarsDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See your cars" wrapText="true" />
+            <Button fx:id="getMonthlyFuelConsumptionButton" layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onMouseClicked="#getMonthlyFuelConsumptionDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Get fuel consumption of a month" wrapText="true" />
+            <Button fx:id="seeMonthlyCarEmissionButton" layoutX="10.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#seeMonthlyCarEmissionDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See emissions from cars in a certain month" wrapText="true" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="addCarDisplay" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="garageLabel" layoutX="236.0" layoutY="192.0" text="Label" />
+         </children></AnchorPane>
+   </center>
+</BorderPane>
