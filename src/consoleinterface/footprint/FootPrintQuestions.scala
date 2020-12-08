@@ -303,6 +303,9 @@ object FootPrintQuestions {
   def dealPoints(input: String): Int = input.toLowerCase() match {
     case "y" => -4
     case "n" => 0
-    case _ => dealPoints(readLine())
+    case _ => {
+      FootPrintConsoleOps.printTryAgain()
+      dealPoints(readLine())
+    }
   }
 }

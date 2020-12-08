@@ -4,7 +4,11 @@ import main.Date
 import main.States.FootPrintState
 import main.footprint.transport.Fuel.{Diesel, Electric, Hydrogen, Petrol}
 
-case class Car(name: String, consumption: Double, fuel: Fuel) extends TransportMean
+case class Car(name: String, consumption: Double, fuel: Fuel) extends TransportMean {
+  override def toString: String = {
+    s"You have a ${this.fuel} ${this.name} with a consumption of ${this.consumption} l/100km"
+  }
+}
 
 object Car {
   def getCarKmInDateRange(footPrintState: FootPrintState, startDate: Date, endDate: Date): Double = {
@@ -34,4 +38,5 @@ object Car {
       case Nil => 0
     }
   }
+
 }

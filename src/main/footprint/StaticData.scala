@@ -23,8 +23,6 @@ object StaticData {
 
   def getPriceSavedFromFuel(footPrintState: FootPrintState, month: Date, fuelPrice: Double): Double = getFuelConsumedComparedAverage(footPrintState, month) * fuelPrice
 
-  def getPriceSavedFromAnotherCar(footPrintState: FootPrintState, month: Date, fuelPrice: Double)={}
-
   def getEarthsConsumedString(footPrintState: FootPrintState): String ={
     val points = footPrintState.staticData.points
     if(points < 60) "Congratulations"

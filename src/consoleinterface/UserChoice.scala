@@ -1,8 +1,8 @@
 package consoleinterface
 
 import main.Date
-import main.footprint.transport.{Fuel, TransportMean}
-import main.footprint.energy.{ElectricitySource, TypeOfElectricitySource}
+import main.footprint.transport.{Car, Fuel, TransportMean}
+import main.footprint.energy.{Electricity, ElectricitySource, TypeOfElectricitySource}
 import main.footprint.waste.TypeOfWaste
 import main.healthTracker.Goal
 
@@ -17,6 +17,10 @@ object UserChoice {
   case class AddSleep(hours: Int, date: Date) extends UserChoice
 
   case class AddCar(name: String, consumption: Double, fuel: Fuel) extends UserChoice
+  case class DeleteCar(car: Car) extends UserChoice
+  case object GetCars extends UserChoice
+  case class GetRequiredSolarPanels(solarPanelPower: Double, dailySunLightHours: Int) extends UserChoice
+  case class EditCar(car: Int,name: String) extends UserChoice
   case class AddTransportTrip(mean: TransportMean, km: Double, date: Date) extends UserChoice
   case object GetTransportEmissions extends UserChoice
   case object GetTransportHistory extends UserChoice
@@ -26,6 +30,9 @@ object UserChoice {
   case object GetEnergyEmissions extends UserChoice
   case object GetEcologicalFootPrint extends UserChoice
   case object GetTotalEmissions extends UserChoice
+  case class ChangeElectricityConsumption(monthlyConsumption: Double) extends UserChoice
+  case object GetEnergySources extends UserChoice
+  case object GetTotalEmissionsByCar extends UserChoice
 
   case object GoToMainMenu extends UserChoice
 

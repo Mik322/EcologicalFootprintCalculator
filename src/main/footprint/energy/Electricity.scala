@@ -10,9 +10,12 @@ object Electricity {
   def getElectricityBill(electricity: Electricity, electricityCost: Double): Double = electricity.monthlyConsumption * electricityCost
 
   def getRequiredSolarPanels(electricity: Electricity, solarPanelPower: Double, dailySunLightHours: Int): Int = {
-    val panelPowerPerHour = solarPanelPower * 3600
-    val requiredProduction = getKWattsPerHour(electricity)*1000/dailySunLightHours
-    (requiredProduction / panelPowerPerHour).toInt
+    val requiredProduction = (electricity.monthlyConsumption * 1.25) / (30 * dailySunLightHours)
+    (requiredProduction*1000 / solarPanelPower).toInt + 1
+  }
+
+  def getSolarPanelsString(panels: Int): String = {
+    s"You would need ${panels} solar panels to sustent your needs"
   }
 
   def getDailySolarPanelsProduction(power: Double, dailySunLightHours: Int, numberOfPanels: Int): Int = (power * numberOfPanels * dailySunLightHours).toInt
@@ -23,10 +26,9 @@ object Electricity {
       .foldRight(0.0)(((total, emission) => total + emission))
   }
 
-  private def getKWattsPerHour(electricity: Electricity): Double = electricity.monthlyConsumption/30/24*1.25
-
   def setElectricitySources(electricity: Electricity, setElectricitySources: SetElectricitySources): Electricity = {
     val sources = ElectricitySource.setSources(setElectricitySources.sources)
     electricity.copy(sources = sources)
   }
+
 }

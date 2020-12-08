@@ -3,7 +3,7 @@ package main.footprint
 import main.Date
 import main.States.FootPrintState
 import main.footprint.energy.Electricity
-import main.footprint.transport.{TransportMean, TransportTrip}
+import main.footprint.transport.{Car, TransportMean, TransportTrip}
 import main.footprint.waste.TypeOfWaste.{Food, Recycled}
 import main.footprint.waste.{TypeOfWaste, Waste}
 
@@ -44,5 +44,9 @@ object FootPrintOps {
     val totalEmissions = transportEmissions + wasteEmissions + electricityEmissions
 
     s"Your total g of CO2 emissions are ${totalEmissions}"
+  }
+
+  def getCars(cars: List[Car]): String = {
+    cars.map(c => s"${c.toString}").mkString("\n")
   }
 }
