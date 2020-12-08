@@ -33,8 +33,16 @@ object ElectricitySource {
       case TypeOfElectricitySource.Solar => 58
       case TypeOfElectricitySource.Nuclear => 5
     }
-
     kwh * emissionPerKWh
+  }
+
+  def getTotalEmissions(electricity: Electricity):String = {
+    val emissions = electricity.sources.foldRight(0.0)((src, counter) => counter + getKWhAndEmission(electricity,src)._2)
+    s"Your total emissions from electricity are ${emissions} g of CO2"
+  }
+
+  def getEnergySources(electricity: Electricity): String = {
+    electricity.sources.map(src => s"${getSourceString(electricity,src)}").mkString("\n")
   }
 
 }

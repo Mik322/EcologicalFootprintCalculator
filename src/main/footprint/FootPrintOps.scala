@@ -3,7 +3,7 @@ package main.footprint
 import main.Date
 import main.States.FootPrintState
 import main.footprint.energy.Electricity
-import main.footprint.transport.{TransportMean, TransportTrip}
+import main.footprint.transport.{Car, TransportMean, TransportTrip}
 import main.footprint.waste.TypeOfWaste.{Food, Recycled}
 import main.footprint.waste.{TypeOfWaste, Waste}
 
@@ -44,5 +44,17 @@ object FootPrintOps {
     val totalEmissions = transportEmissions + wasteEmissions + electricityEmissions
 
     s"Your total g of CO2 emissions are ${totalEmissions}"
+  }
+
+  def getCars(cars: List[Car]): String = {
+    cars.map(c => s"${c.toString}").mkString("\n")
+  }
+
+  def getEarthsConsumedString(footPrintState: FootPrintState): String ={
+    val points = footPrintState.points
+    if(points < 60) "Congratulations"
+    else if(points > 60 && points < 120) "We would need an extra planet"
+    else if(points > 120 && points < 180) "We would need two extra planets"
+    else "We would need four extra planets"
   }
 }

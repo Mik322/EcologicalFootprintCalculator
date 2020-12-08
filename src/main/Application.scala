@@ -1,17 +1,16 @@
 package main
 
 import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
-import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTotalEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetGoal}
-import consoleinterface.UserChoice._
+import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTotalEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetGoal, _}
 import consoleinterface._
 import consoleinterface.healthtracker.options.{AddCaloricActivity, BodyChange, HealthInformation}
 import main.fileOperations.FileOperations
 import main.healthTracker.HealthInformationOps.getHealthInformationString
 import main.fileOperations.FileOperations._
-import main.footprint.energy.Electricity
+import main.footprint.FootPrintOps
+import main.footprint.energy.{Electricity, ElectricitySource}
 import main.footprint.transport.{Car, Fuel, TransportMean, TransportTrip}
 import main.footprint.waste.{TypeOfWaste, Waste}
-import main.footprint.{FootPrintOps, StaticData}
 import main.healthTracker.sleepTracker.SleepTracker.addSleep
 import main.healthTracker.{Body, CaloricActivity, CaloricMaps}
 
@@ -81,6 +80,25 @@ object Application extends App {
         main_loop(states.copy(footPrintState = newFootPrint))
       }
 
+      case DeleteCar(car: Car) => {
+        val new_cars = states.footPrintState.cars.filterNot(c => c == car)
+        val newFootPrint = states.footPrintState.copy(cars = new_cars)
+        main_loop(states.copy(footPrintState = newFootPrint))
+      }
+
+      case EditCar(car: Int, name: String) => {
+        val new_car = states.footPrintState.cars(car).copy(name = name)
+        val new_cars = states.footPrintState.cars.updated(car, new_car)
+        val newFootPrint = states.footPrintState.copy(cars = new_cars)
+        main_loop(states.copy(footPrintState = newFootPrint))
+      }
+
+      case GetCars => {
+        val cars = FootPrintOps.getCars(states.footPrintState.cars)
+        printString(cars)
+        main_loop(states)
+      }
+
       case AddTransportTrip(mean: TransportMean, km: Double, date: Date) => {
         val newFootPrint = FootPrintOps.addTrip(states.footPrintState, mean, km, date)
         main_loop(states.copy(footPrintState = newFootPrint))
@@ -111,12 +129,12 @@ object Application extends App {
         main_loop(states.copy(footPrintState = newFootPrintState))
 
       case GetEnergyEmissions =>
-        //val emissions = ElectricitySource.getEnergyEmissionsString(states.footPrintState)
-        //printString(emissions)
+        val emissions = ElectricitySource.getTotalEmissions(states.footPrintState.electricity)
+        printString(emissions)
         main_loop(states)
 
       case GetEcologicalFootPrint => {
-        val earths = StaticData.getEarthsConsumedString(states.footPrintState)
+        val earths = FootPrintOps.getEarthsConsumedString(states.footPrintState)
         printString(earths)
         main_loop(states)
       }
@@ -126,6 +144,30 @@ object Application extends App {
         printString(emissions)
         main_loop(states)
       }
+
+      case GetTotalEmissionsByCar => {
+        val emissions = Car.getTotalEmissions(states.footPrintState.transportTrips).toString
+        printString(emissions)
+        main_loop(states)
+      }
+
+      case ChangeElectricityConsumption(monthlyConsumption: Double) => {
+        val newElectricity = states.footPrintState.electricity.copy(monthlyConsumption = monthlyConsumption)
+        val newFootPrint = states.footPrintState.copy(electricity = newElectricity)
+        main_loop(states.copy(footPrintState = newFootPrint))
+      }
+
+      case GetEnergySources => {
+        val sources = ElectricitySource.getEnergySources(states.footPrintState.electricity)
+        printString(sources)
+        main_loop(states)
+      }
+
+      case GetRequiredSolarPanels(solarPanelPower: Double, dailySunLightHours: Int) => {
+        val solarPanels = Electricity.getRequiredSolarPanels(states.footPrintState.electricity, solarPanelPower, dailySunLightHours)
+        printString(Electricity.getSolarPanelsString(solarPanels))
+        main_loop(states)
+    }
     }
   }
 

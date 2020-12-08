@@ -4,9 +4,14 @@ import main.Date
 import main.States.FootPrintState
 import main.footprint.transport.Fuel.{Diesel, Electric, Hydrogen, Petrol}
 
-case class Car(name: String, consumption: Double, fuel: Fuel) extends TransportMean
+case class Car(name: String, consumption: Double, fuel: Fuel) extends TransportMean {
+  override def toString: String = {
+    s"You have a ${this.fuel} ${this.name} with a consumption of ${this.consumption} l/100km"
+  }
+}
 
 object Car {
+  //TODO: Implement console interface
   def getCarKmInDateRange(footPrintState: FootPrintState, startDate: Date, endDate: Date): Double = {
     footPrintState.transportTrips
       .filter(trip => trip.mean.isInstanceOf[Car] && trip.date>=startDate && trip.date<=endDate)
@@ -34,4 +39,12 @@ object Car {
       case Nil => 0
     }
   }
+
+  //TODO: See what to do with this
+  def getMonthFuelConsumption(footPrintState: FootPrintState, month: Date) = {
+    footPrintState.transportTrips
+      .filter(t => t.mean.isInstanceOf[Car] && t.date.getMonth() == month.getMonth())
+      .foldLeft(0.0)((tracker, transport) => tracker + Car.getCarConsumptionInTrip(transport))
+  }
+
 }

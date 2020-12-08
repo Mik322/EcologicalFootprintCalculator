@@ -2,7 +2,7 @@ package consoleinterface.footprint
 
 import consoleinterface.DateChoice.getUserDate
 import consoleinterface.UserChoice
-import consoleinterface.UserChoice.{AddCar, AddTransportTrip, AddWaste, SetElectricitySources}
+import consoleinterface.UserChoice.{AddCar, AddTransportTrip, AddWaste, ChangeElectricityConsumption, DeleteCar, EditCar, GetRequiredSolarPanels, SetElectricitySources}
 import consoleinterface.footprint.inputs.TransportationInput.fuelInput
 import main.footprint.energy.TypeOfElectricitySource
 import main.footprint.energy.TypeOfElectricitySource._
@@ -21,6 +21,36 @@ object FootPrintConsoleOps{
     val consumption = readLine().toDouble
     val fuel = fuelInput()
     AddCar(name, consumption, fuel)
+  }
+
+  def deleteCar(cars: List[Car]): UserChoice = {
+    println("Enter the name of the car you want do delete:")
+    println(cars.map(c => s"${c.name}").mkString("\n"))
+    val car = cars.find(c => c.name == readLine())
+    car match {
+      case None => {
+        FootPrintConsoleOps.printTryAgain()
+        deleteCar(cars)
+      }
+      case Some(value) => DeleteCar(value)
+    }
+  }
+
+  def editCar(cars: List[Car]): UserChoice = {
+    println("Enter the name of the car you want do edit:")
+    println(cars.map(c => s"${c.name}").mkString("\n"))
+    val car = cars.find(c => c.name == readLine())
+    car match {
+      case None => {
+        FootPrintConsoleOps.printTryAgain()
+        editCar(cars)
+      }
+      case Some(value) => {
+        println("Please enter the new name for your car:")
+        val index = cars.indexOf(value)
+        EditCar(index, readLine())
+      }
+    }
   }
 
   def addTransportTrip(cars: List[Car]): UserChoice ={
@@ -97,12 +127,26 @@ object FootPrintConsoleOps{
     println(s"Whats the percentage from this source? Insert a number smaller or equal to ${maximum*100} or type maximum")
     readLine() match {
       case in if in.toLowerCase == "maximum" => maximum
-      case input => input.toDouble match {
+      case input => input.toDouble/100 match {
         case p if p <= maximum + 0.0009 => p
         case _ => println("That's an invalid number, please try again")
           getPercentageSource(maximum)
       }
     }
+  }
+
+  def changeElectricityConsumption() = {
+    println("How much KwH do you spend on average per month on electricity?")
+    val consumption = readLine().toDouble
+    ChangeElectricityConsumption(consumption)
+  }
+
+  def getRequiredSolarPanels(): UserChoice = {
+    println("Please type your desired solar panels power: (Average is between 270 and 370 Watts)")
+    val power = readLine().toDouble
+    println("Please type your average daily sun light hours")
+    val hours = readLine().toInt
+    GetRequiredSolarPanels(power, hours)
   }
 
   def printTryAgain(): Unit ={
