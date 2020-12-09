@@ -1,14 +1,27 @@
-package graphicalInterface.footprintCalculator.transportation
+package graphicalInterface.footprintCalculator.transportation.garage
 
-import javafx.fxml.FXML
+import graphicalInterface.HomePage
+import graphicalInterface.footprintCalculator.transportation.garage
+import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
+import javafx.scene.layout.Pane
 
 class Garage {
   @FXML
+  var garageDisplay: Pane = _
+
+  @FXML
   var garageLabel : Label = _
 
-  def addCarDisplay() ={
-    garageLabel.setText("addCarDisplay")
+  private var homePage: HomePage = _
+
+  def initialize(homePage: HomePage) = this.homePage = homePage
+
+  def addCarDisplay()={
+    val loader = new FXMLLoader(getClass.getResource("AddCar.fxml"))
+    garageDisplay.getChildren.clear()
+    garageDisplay.getChildren.add(loader.load())
+    loader.getController[garage.AddCar].initialize(homePage)
   }
 
   def editCarDisplay() ={
