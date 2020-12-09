@@ -48,4 +48,10 @@ object Car {
       .foldLeft(0.0)((tracker, transport) => tracker + Car.getCarConsumptionInTrip(transport))
   }
 
+  def getMonthlyCarEmission(footPrintState: FootPrintState, month: Date): Double = {
+    footPrintState.transportTrips
+      .filter(t => t.mean.isInstanceOf[Car] && t.date.getMonth() == month.getMonth() && t.date.getYear() == month.getYear())
+      .foldLeft(0.0)((tracker, transport) => tracker + Car.getCarEmissionInTrip(transport))
+  }
+
 }

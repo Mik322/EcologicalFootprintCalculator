@@ -4,18 +4,14 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.AddCar">
-   <children>
-      <Label layoutX="168.0" layoutY="34.0" text="Add a car to your garage">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
-      <VBox alignment="TOP_CENTER" layoutX="160.0" layoutY="100.0" prefHeight="200.0" prefWidth="282.0" spacing="10.0">
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.AddCar">
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="354.0" prefWidth="420.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Please enter a name for your car" />
             <TextField fx:id="car_name" />
@@ -26,5 +22,12 @@
             <Button fx:id="add_car" mnemonicParsing="false" onMouseClicked="#AddCar" text="Add car" />
          </children>
       </VBox>
-   </children>
-</AnchorPane>
+   </center>
+   <top>
+      <Label prefHeight="96.0" prefWidth="265.0" text="Add a car to your garage" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+   </top>
+</BorderPane>

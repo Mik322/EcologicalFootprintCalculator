@@ -5,6 +5,7 @@ import graphicalInterface.footprintCalculator.transportation.garage
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
+import main.footprint.transport.Car
 
 class Garage {
   @FXML
@@ -24,32 +25,25 @@ class Garage {
     loader.getController[garage.AddCar].initialize(homePage)
   }
 
-  def editCarDisplay() ={
-    garageLabel.setText("editCarDisplay")
+  def editGarage() ={
+    val loader = new FXMLLoader(getClass.getResource("EditGarage.fxml"))
+    garageDisplay.getChildren.clear()
+    garageDisplay.getChildren.add(loader.load())
+    loader.getController[garage.EditGarage].initialize(homePage)
   }
 
-  def deleteCarDisplay() ={
-    garageLabel.setText("deleteCarDisplay")
+  def displayInformationByCar() ={
+    val loader = new FXMLLoader(getClass.getResource("InformationByCar.fxml"))
+    garageDisplay.getChildren.clear()
+    garageDisplay.getChildren.add(loader.load())
+    loader.getController[garage.InformationByCar].initialize(homePage)
   }
 
-  def seeTotalEmissionsByCarDisplay() ={
-    garageLabel.setText("seeTotalEmissionsByCarDisplay")
-  }
-
-  def seeTotalKmMadeByCarDisplay() ={
-    garageLabel.setText("seeTotalKmMadeByCarDisplay")
-  }
-
-  def seeTotalEmissionsFromCarsDisplay() ={
-    garageLabel.setText("seeTotalEmissionsFromCarsDisplay")
-  }
-
-  def seeCarsDisplay() ={
-    garageLabel.setText("seeCarsDisplay")
-  }
-
-  def getMonthlyFuelConsumptionDisplay() ={
-    garageLabel.setText("getMonthlyFuelConsumptionDisplay")
+  def information() ={
+    val loader = new FXMLLoader(getClass.getResource("Informations.fxml"))
+    garageDisplay.getChildren.clear()
+    garageDisplay.getChildren.add(loader.load())
+    loader.getController[garage.Informations].initialize(homePage)
   }
 
   def seeMonthlyCarEmissionDisplay() ={
