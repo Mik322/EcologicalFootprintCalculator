@@ -36,6 +36,9 @@ object SleepTracker {
       }
     }
     val (totalSleep, totalDates) = loop(dates, 0, 0)
-    totalSleep/totalDates
+    if(totalDates > 0)
+      totalSleep/totalDates
+    else
+      0.0
   }
 }

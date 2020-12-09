@@ -9,6 +9,8 @@ import main.healthTracker.HealthCalculations.{calculateBurnedCalories, calculate
 import scala.annotation.tailrec
 
 object HealthInformationOps {
+
+
   def getHealthInformationString(info: HealthInformation, tracker: HealthTracker): String = {
     info match {
       case GetListCaloricActivities => {
@@ -47,13 +49,17 @@ object HealthInformationOps {
         getNecessarySleepString(necessarySleep)
 
       case GetSleepInDay(date) =>
-        val sleepInDay = healthTracker.SleepTracker.getSleepInDay(tracker.sleepTracker,date)
+        val sleepInDay = SleepTracker.getSleepInDay(tracker.sleepTracker,date)
         getSleepInDayString(sleepInDay,date)
 
       case GetAverageSleepInDays(startDate,endDate) =>
         val averageSleepInDays = SleepTracker.getAverageSleep(tracker.sleepTracker,startDate,endDate)
         getAverageSleepInDaysString(averageSleepInDays,startDate,endDate)
+
+      case GetBodyParameters => getBodyParametersString(tracker.body)
       }
+
+
 
 
   }
@@ -64,16 +70,18 @@ object HealthInformationOps {
   }
 
 
-  private def caloricInformation(caloriesConsumed: Int, caloriesBurned: Int, goalCalories: Int, date: Date): String = {
-    val firstLine = s"In day ${date} you consumed a total of ${caloriesConsumed} calories and burned a total of ${caloriesBurned} calories.\n"
-    val secondLine = s"To reach your goal you need a daily net intake of ${goalCalories} calories and you have a net of ${caloriesConsumed - caloriesBurned}"
+  def caloricInformation(caloriesConsumed: Int, caloriesBurned: Int, goalCalories: Int, date: Date): String = {
+    val absCaloriesBurned = caloriesBurned.abs
+    val firstLine = s"In day ${date} you consumed a total of ${caloriesConsumed} calories and burned a total of ${absCaloriesBurned} calories.\n"
+    val secondLine = s"To reach your goal you need a daily net intake of ${goalCalories} calories and you have a net of ${caloriesConsumed - absCaloriesBurned}"
     firstLine.concat(secondLine)
-
   }
 
-  private def getNDaysCaloriesString(caloriesConsumed: Int, caloriesBurned: Int, goalCalories: Int, days: Int): String = {
-    val s1 = s"In the last ${days} day(s) you consumed on average ${caloriesConsumed / days} calories p/day and burned ${caloriesBurned / days} calories p/day.\n"
-    val s2 = s"To reach your goal you need a daily net intake of ${goalCalories} calories, your average net calories is ${(caloriesConsumed - caloriesBurned) / days} calories p/day."
+
+  def getNDaysCaloriesString(caloriesConsumed: Int, caloriesBurned: Int, goalCalories: Int, days: Int): String = {
+    val absCaloriesBurned = caloriesBurned.abs
+    val s1 = s"In the last ${days} day(s) you consumed on average ${caloriesConsumed / days} calories p/day and burned ${absCaloriesBurned / days} calories p/day.\n"
+    val s2 = s"To reach your goal you need a daily net intake of ${goalCalories} calories, your average net calories is ${(caloriesConsumed - absCaloriesBurned) / days} calories p/day."
     s1.concat(s2)
   }
 
@@ -84,7 +92,7 @@ object HealthInformationOps {
     case _ => s"${if (goal.kgChanged > 0) "gain" else "lose"} ${goal.kgChanged.abs} per week"
   }
 
-  private def getCupsOfWaterToDrinkString(cupsToDrink: Int, cupsDrank: Int): String = {
+  def getCupsOfWaterToDrinkString(cupsToDrink: Int, cupsDrank: Int): String = {
     if (cupsToDrink > 0) s"You drank ${cupsDrank} cups(250ml) of water today. You still need to drink at least ${cupsToDrink} cups(250ml) of water"
     else "You've drank the recommended water already"
   }
@@ -101,7 +109,7 @@ object HealthInformationOps {
   }
 
   @tailrec
-  private def getWeightHistoric(weightHistory: List[(Double, Date)], str: String): String = {
+  def getWeightHistoric(weightHistory: List[(Double, Date)], str: String): String = {
     weightHistory match {
       case ::(head, next) => {
         val weight = s"You had ${head._1}kg in ${head._2}\n"
@@ -111,7 +119,7 @@ object HealthInformationOps {
     }
   }
 
-  private def getWeightTrack(weightHistory: List[(Double, Date)], goal: (Goal.Value, Date)): String = {
+  def getWeightTrack(weightHistory: List[(Double, Date)], goal: (Goal.Value, Date)): String = {
     val (_, goalDate) = goal
     val temp = weightHistory.filter { case (_, d) => d >= goalDate }
     val avg = (temp.last._1 - temp.head._1) / (temp.last._2 - temp.head._2  + 1) * 7
@@ -128,18 +136,22 @@ object HealthInformationOps {
     str.concat(goal_str)
   }
 
-  private def getNecessarySleepString(tuple: (Int, Int)): String = {
+  def getNecessarySleepString(tuple: (Int, Int)): String = {
     s"You need to sleep ${tuple._1} to ${tuple._2} hours per day"
   }
 
-  private def getSleepInDayString(i: Int,date: Date): String = i match {
+  def getSleepInDayString(i: Int,date: Date): String = i match {
     case 0 => s"You don't have any sleep record on ${date}"
     case _ => s"You slept ${i} hours on ${date}"
   }
 
-  private def getAverageSleepInDaysString(d: Double, startDate: Date, endDate: Date ): String = d match {
+  def getAverageSleepInDaysString(d: Double, startDate: Date, endDate: Date ): String = d match {
     case 0.0 => s"You don't have any sleep record from ${startDate} to ${endDate}"
     case _ => s"You slept an average of ${d} hours from ${startDate} to ${endDate}(counting only days that you have a sleep record)"
+  }
+
+  def getBodyParametersString(body: Body):String= {
+    s"Your height is ${body.height}cm.\nYour weight is ${body.weight}kg.\nYou have ${body.age} years.\nYour lifestyle is ${body.lifestyle}."
   }
 
 

@@ -17,4 +17,5 @@ object HealthInformation {
   case object GetNecessarySleep extends HealthInformation
   case class GetSleepInDay(date: Date) extends HealthInformation
   case class GetAverageSleepInDays(date1: Date,date2:Date) extends HealthInformation
+  case object GetBodyParameters extends HealthInformation
 }
