@@ -6,6 +6,8 @@ import graphicalInterface.footprintCalculator.transportation.Transportation
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
+import graphicalInterface.FxApp.loadPage
+import graphicalInterface.footprintCalculator.waste.{AddWaste, Waste}
 
 class FootprintCalculator {
   @FXML
@@ -24,9 +26,7 @@ class FootprintCalculator {
   }
 
   def wasteMenu() = {
-    val loader = new FXMLLoader(getClass.getResource("waste/Waste.fxml"))
-    footprintDisplay.getChildren.clear()
-    footprintDisplay.getChildren.add(loader.load())
+    loadPage[AddWaste](getClass.getResource("waste/AddWaste.fxml"), footprintDisplay).setHomePage(homePage)
   }
 
   def electricityMenu()={

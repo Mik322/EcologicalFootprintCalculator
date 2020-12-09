@@ -1,7 +1,8 @@
 package graphicalInterface.footprintCalculator.electricity
 
+import graphicalInterface.FxApp.loadPage
 import graphicalInterface.HomePage
-import javafx.fxml.{FXML, FXMLLoader}
+import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
 
@@ -16,25 +17,18 @@ class Electricity {
   def setHomePage(homePage: HomePage): Unit = this.homePage = homePage
 
   def setElectricitySourcesDisplay(): Unit ={
-    loadPage[SetElectricitySources]("SetElectricitySources.fxml").setHomePage(homePage)
+    loadPage[SetElectricitySources](getClass.getResource("SetElectricitySources.fxml"), pane).setHomePage(homePage)
   }
 
   def getTotalEmissionsFromElectricityDisplay(): Unit ={
-    loadPage[SeeElectricitySources]("SeeElectricitySources.fxml").initialize(homePage)
+    loadPage[SeeElectricitySources](getClass.getResource("SeeElectricitySources.fxml"), pane).initialize(homePage)
   }
 
   def getSolarPanelRecommendationDisplay(): Unit ={
-    loadPage[SolarPanels]("SolarPanels.fxml").setHomePage(homePage)
+    loadPage[SolarPanels](getClass.getResource("SolarPanels.fxml"), pane).setHomePage(homePage)
   }
 
   def changeElectricityConsumptionDisplay(): Unit ={
-    loadPage[ChangeConsumption]("ChangeConsumption.fxml").setHomePage(homePage)
-  }
-
-  private def loadPage[A](path: String): A = {
-    val loader = new FXMLLoader(getClass.getResource(path))
-    pane.getChildren.clear()
-    pane.getChildren.add(loader.load())
-    loader.getController[A]
+    loadPage[ChangeConsumption](getClass.getResource("ChangeConsumption.fxml"), pane).setHomePage(homePage)
   }
 }
