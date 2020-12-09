@@ -15,8 +15,12 @@ object Body {
   case object Sedentary extends Lifestyle
   case object Moderated extends Lifestyle
   case object Active extends Lifestyle
-  case object VeryActive extends Lifestyle
-  case object ExtremelyActive extends Lifestyle
+  case object VeryActive extends Lifestyle {
+    override def toString: String = "Very Active"
+  }
+  case object ExtremelyActive extends Lifestyle {
+    override def toString: String = "Extremely Active"
+  }
 
   def changeBody(newParam: BodyChange, tracker: HealthTracker): HealthTracker = newParam match {
     case BodyChange.ChangeAge(age) => tracker.copy(body = tracker.body.copy(age = age))
