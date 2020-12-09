@@ -6,11 +6,13 @@ import main.footprint.transport.Fuel.{Diesel, Electric, Hydrogen, Petrol}
 
 case class Car(name: String, consumption: Double, fuel: Fuel) extends TransportMean {
   override def toString: String = {
-    s"You have a ${this.fuel} ${this.name} with a consumption of ${this.consumption} l/100km"
+    s"${this.fuel} ${this.name}"
   }
 }
 
-object Car {
+object Car extends TransportMean {
+  override def toString: String = "Car"
+
   def getCarConsumptionInTrip(trip: TransportTrip): Double = trip.km * (trip.mean.asInstanceOf[Car].consumption/100)
 
   def getCarEmissionInTrip(trip: TransportTrip): Double = {

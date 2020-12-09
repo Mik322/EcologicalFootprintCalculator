@@ -21,9 +21,9 @@
    <center>
       <AnchorPane fx:id="garageDisplay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="81.0" layoutY="265.0" text="Welcome to your garage!">
+            <Label alignment="TOP_CENTER" layoutX="4.0" layoutY="119.0" prefHeight="27.0" prefWidth="224.0" text="Welcome to your garage!" textAlignment="CENTER">
                <font>
-                  <Font size="21.0" />
+                  <Font size="19.0" />
                </font>
             </Label>
          </children></AnchorPane>

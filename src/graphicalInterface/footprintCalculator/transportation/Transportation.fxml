@@ -12,15 +12,13 @@
          <children>
             <Button fx:id="garageButton" mnemonicParsing="false" onMouseClicked="#garageMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Garage" />
             <Button fx:id="addTransportationTripButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#addTransportationTripDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Add transportation trip" wrapText="true" />
-            <Button fx:id="seeLastTransportationTripsButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#seeLastTransportationTripsDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See last transportation trips" wrapText="true" />
-            <Button fx:id="seeTotalTransportationEmissionsButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#seeTotalTransportationEmissionsDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="See total emissions from transportation " wrapText="true" />
          </children>
       </VBox>
    </left>
    <center>
       <AnchorPane fx:id="transportationDisplay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="transportationLabel" layoutX="86.0" layoutY="132.0" text="Label" />
+            <Label text="Label" />
          </children></AnchorPane>
    </center>
 </BorderPane>

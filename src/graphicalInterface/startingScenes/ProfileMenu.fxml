@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="239.0" prefWidth="277.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.ProfileMenu">
+
+<VBox alignment="CENTER" prefHeight="300.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.ProfileMenu">
    <children>
-      <Button fx:id="newProfileButton" layoutX="63.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#newProfile" prefHeight="26.0" prefWidth="151.0" text="New Profile" />
-      <Button fx:id="loadProfileButton" layoutX="63.0" layoutY="144.0" mnemonicParsing="false" onMouseClicked="#loadProfile" prefHeight="26.0" prefWidth="151.0" text="Load Profile" />
+      <Label text="Welcome to our App :)">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label />
+      <Button fx:id="newProfileButton" mnemonicParsing="false" onMouseClicked="#newProfile" prefHeight="26.0" prefWidth="151.0" text="New Profile" />
+      <Button fx:id="loadProfileButton" mnemonicParsing="false" onMouseClicked="#loadProfile" prefHeight="26.0" prefWidth="151.0" text="Load Profile" />
    </children>
-</AnchorPane>
+</VBox>
