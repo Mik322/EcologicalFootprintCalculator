@@ -8,13 +8,16 @@ import javafx.scene.layout.Pane
 
 class ElectricityMenu {
   @FXML
-  var electricityLabel : Label = _
-  @FXML
   var pane: Pane = _
+  @FXML
+  var electricityLabel: Label = _
 
   var homePage: HomePage = _
 
-  def setHomePage(homePage: HomePage): Unit = this.homePage = homePage
+  def setHomePage(homePage: HomePage): Unit = {
+    this.homePage = homePage
+    electricityLabel.setText(s"${homePage.getFootPrint.electricity.monthlyConsumption} kWh")
+  }
 
   def setElectricitySourcesDisplay(): Unit ={
     loadPage[SetElectricitySources](getClass.getResource("SetElectricitySources.fxml"), pane).setHomePage(homePage)
