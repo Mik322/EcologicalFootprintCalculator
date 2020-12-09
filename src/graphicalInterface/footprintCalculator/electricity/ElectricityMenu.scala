@@ -6,7 +6,7 @@ import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
 
-class Electricity {
+class ElectricityMenu {
   @FXML
   var electricityLabel : Label = _
   @FXML

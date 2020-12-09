@@ -38,12 +38,16 @@ object FootPrintOps {
   }
 
   def getTotalEmissionsString(footPrintState: FootPrintState): String = {
+    val totalEmissions = getTotalEmissions(footPrintState)
+
+    s"Your total g of CO2 emissions are ${totalEmissions}"
+  }
+
+  def getTotalEmissions(footPrintState: FootPrintState): Int = {
     val transportEmissions = TransportTrip.getTotalEmissions(footPrintState.transportTrips)
     val wasteEmissions = Waste.getTotalEmissions(footPrintState.waste)
     val electricityEmissions = Electricity.getElectricityEmissions(footPrintState.electricity)
-    val totalEmissions = transportEmissions + wasteEmissions + electricityEmissions
-
-    s"Your total g of CO2 emissions are ${totalEmissions}"
+    (transportEmissions + wasteEmissions + electricityEmissions).toInt
   }
 
   def getCars(cars: List[Car]): String = {
@@ -51,10 +55,19 @@ object FootPrintOps {
   }
 
   def getEarthsConsumedString(footPrintState: FootPrintState): String ={
+    getNumEarths(footPrintState) match {
+      case 1 => "Congratulations"
+      case 2 => "We would need an extra planet"
+      case 3 => "We would need two extra planets"
+      case _ => "We would need four extra planets"
+    }
+  }
+
+  def getNumEarths(footPrintState: FootPrintState): Int = {
     val points = footPrintState.points
-    if(points < 60) "Congratulations"
-    else if(points > 60 && points < 120) "We would need an extra planet"
-    else if(points > 120 && points < 180) "We would need two extra planets"
-    else "We would need four extra planets"
+    if(points < 60) 1
+    else if(points > 60 && points < 120) 2
+    else if(points > 120 && points < 180) 3
+    else 4
   }
 }

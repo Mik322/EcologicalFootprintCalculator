@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.electricity.Electricity">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.electricity.ElectricityMenu">
    <left>
       <VBox maxHeight="1.7976931348623157E308" prefHeight="500.0" prefWidth="100.0" style="-fx-background-color: #9955bb;" BorderPane.alignment="CENTER">
          <children>
