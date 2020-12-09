@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.Garage">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.Garage">
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #e3c7dd;" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +23,7 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="addCarDisplay" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="garageDisplay" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="garageLabel" layoutX="236.0" layoutY="192.0" text="Label" />
          </children></AnchorPane>
