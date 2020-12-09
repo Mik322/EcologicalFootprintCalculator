@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.Informations">
+    <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+              <VBox alignment="TOP_CENTER" prefHeight="133.0" prefWidth="420.0" spacing="10.0">
+                  <children>
+                      <Label text="Please enter a day of the month" />
+                  <DatePicker fx:id="date_picker" />
+                      <Button fx:id="calculate" mnemonicParsing="false" onMouseClicked="#calculateFunc" text="Calculate" />
+                  </children>
+              </VBox>
+            <VBox alignment="CENTER" prefHeight="93.0" prefWidth="420.0" spacing="10.0">
+               <children>
+                  <Label fx:id="consumption" text="Consumption" visible="false" />
+                  <Label fx:id="emissions" layoutX="184.0" layoutY="48.0" text="Emissions" visible="false" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+    </center>
+    <top>
+        <Label prefHeight="96.0" prefWidth="383.0" text="See fuel consumption and CO2 emissions from month" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="17.0" />
+            </font>
+        </Label>
+    </top>
+</BorderPane>
