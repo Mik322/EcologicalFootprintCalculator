@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.electricity.Electricity">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.electricity.Electricity">
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #9955bb;" BorderPane.alignment="CENTER">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #9955bb;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="setElectricitySourcesButton" mnemonicParsing="false" onMouseClicked="#setElectricitySourcesDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Set electricity sources" textAlignment="CENTER" wrapText="true" />
             <Button fx:id="getTotalEmissionsFromElectricityButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#getTotalEmissionsFromElectricityDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Get total emissions from electricity" textAlignment="CENTER" wrapText="true" />
@@ -18,7 +18,7 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="electricityLabel" layoutX="236.0" layoutY="192.0" text="Label" />
          </children>

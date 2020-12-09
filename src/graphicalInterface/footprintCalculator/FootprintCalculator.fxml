@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.FootprintCalculator">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.FootprintCalculator">
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #00FFFF;" BorderPane.alignment="CENTER">
          <children>
@@ -19,7 +19,7 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="footprintDisplay" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="footprintDisplay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="footprintLabel" layoutY="171.0" text="Label" />
          </children></AnchorPane>

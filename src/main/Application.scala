@@ -53,7 +53,8 @@ object Application extends App {
       // Sets the Weight goal
       case SetGoal(goal,date) => {
         val newHealthTracker = states.healthTracker.copy(goal = (goal,date))
-        main_loop(states.copy(healthTracker = newHealthTracker))
+        val updatedHealthTracker = Body.changeBody(BodyChange.ChangeWeight(states.healthTracker.body.weight,Date.today()),newHealthTracker)
+        main_loop(states.copy(healthTracker = updatedHealthTracker))
       }
 
       // Handles all types of  health Information requests
