@@ -45,4 +45,12 @@ object ElectricitySource {
     electricity.sources.map(src => s"${getSourceString(electricity,src)}").mkString("\n")
   }
 
+  def getEnergySourcesList(electricity: Electricity): List[(TypeOfElectricitySource, Double, Double)] = {
+    electricity.sources
+      .map(source => {
+        val KWhEmission = getKWhAndEmission(electricity, source)
+        (source.source, KWhEmission._1, KWhEmission._2)
+      })
+  }
+
 }

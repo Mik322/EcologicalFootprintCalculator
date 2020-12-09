@@ -23,7 +23,10 @@ class Electricity {
   }
 
   def getTotalEmissionsFromElectricityDisplay() ={
-    electricityLabel.setText("getTotalEmissionsFromElectricityDisplay")
+    val loader = new FXMLLoader(getClass.getResource("SeeElectricitySources.fxml"))
+    pane.getChildren.clear()
+    pane.getChildren.add(loader.load())
+    loader.getController[SeeElectricitySources].initialize(homePage)
   }
 
   def getSolarPanelRecommendationDisplay() ={
