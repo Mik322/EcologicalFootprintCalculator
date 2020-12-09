@@ -1,6 +1,7 @@
 package graphicalInterface.footprintCalculator
 
 import graphicalInterface.HomePage
+import graphicalInterface.footprintCalculator.electricity.Electricity
 import graphicalInterface.footprintCalculator.transportation.Transportation
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
@@ -32,6 +33,7 @@ class FootprintCalculator {
     val loader = new FXMLLoader(getClass.getResource("electricity/Electricity.fxml"))
     footprintDisplay.getChildren.clear()
     footprintDisplay.getChildren.add(loader.load())
+    loader.getController[Electricity].setHomePage(homePage)
   }
 
 
