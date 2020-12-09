@@ -56,7 +56,7 @@
                   <CheckBox fx:id="foodWaste" mnemonicParsing="false" text="Food Waste" />
                </children>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#submit" onMouseClicked="#submit" text="Submit" />
+            <Button mnemonicParsing="false" onAction="#submit" text="Submit" />
          </children>
       </VBox>
    </content>
