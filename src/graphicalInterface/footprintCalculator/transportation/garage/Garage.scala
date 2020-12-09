@@ -46,7 +46,4 @@ class Garage {
     loader.getController[garage.Informations].initialize(homePage)
   }
 
-  def seeMonthlyCarEmissionDisplay() ={
-    garageLabel.setText("seeMonthlyCarEmissionDisplay")
-  }
 }

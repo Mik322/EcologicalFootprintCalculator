@@ -1,7 +1,7 @@
 package graphicalInterface.footprintCalculator.transportation.garage
 
 import graphicalInterface.HomePage
-import graphicalInterface.footprintCalculator.transportation.garage
+import graphicalInterface.footprintCalculator.transportation.{Template, garage}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
 import javafx.scene.layout.{Pane, VBox}
@@ -20,7 +20,7 @@ class InformationByCar {
   def initialize(homePage: HomePage) = {
     this.homePage = homePage
     addInformation(homePage.getFootPrint)
-    total_emissions.setText(Car.getTotalEmissions(homePage.getFootPrint.transportTrips).toString)
+    total_emissions.setText(Car.getTotalEmissions(homePage.getFootPrint.transportTrips).toString + " g CO2")
   }
 
   def addInformation(footPrint: FootPrintState): Unit = {
@@ -38,8 +38,8 @@ class InformationByCar {
   def addElement(car: Car, footPrint: FootPrintState) = {
     val emissions = Car.getEmissionByCar(footPrint.transportTrips, car.name)
     val kms = Car.getKmByCar(footPrint.transportTrips, car.name)
-    val loader = new FXMLLoader(getClass.getResource("CarTemplate.fxml"))
+    val loader = new FXMLLoader(getClass.getResource("../Template.fxml"))
     elements.getChildren.add(loader.load())
-    loader.getController[garage.CarTemplate].initialize(car, emissions, kms)
+    loader.getController[Template].initialize(car.name, emissions.toString, kms.toInt.toString)
   }
 }

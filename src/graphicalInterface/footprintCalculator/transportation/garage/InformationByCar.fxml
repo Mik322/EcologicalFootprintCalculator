@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="432.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.InformationByCar">
+<BorderPane prefHeight="432.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.InformationByCar">
     <center>
-      <VBox spacing="20.0">
+      <VBox alignment="TOP_CENTER" spacing="20.0">
          <children>
             <HBox alignment="TOP_CENTER" spacing="50.0">
                <children>
@@ -19,22 +19,22 @@
                   <Label fx:id="total_emissions" layoutX="10.0" layoutY="10.0" text="0" />
                </children>
             </HBox>
-            <GridPane style="-fx-border-color: Black; -fx-padding: 10;">
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="360.0" style="-fx-border-color: Black;">
               <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="105.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="121.0" />
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" />
               </rowConstraints>
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Carro" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="9.0" text="Emission (g CO2)s" GridPane.columnIndex="1" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="9.0" text="Emission (g CO2)" GridPane.columnIndex="1" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="9.0" text="Kms" GridPane.columnIndex="2" />
                </children>
             </GridPane>
-              <VBox fx:id="elements" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="336.0" prefWidth="390.0" />
+              <VBox fx:id="elements" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="247.0" prefWidth="373.0" />
          </children>
       </VBox>
     </center>

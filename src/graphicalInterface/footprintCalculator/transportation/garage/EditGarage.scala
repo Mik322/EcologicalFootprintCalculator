@@ -4,7 +4,7 @@ import graphicalInterface.HomePage
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.FXML
 import javafx.scene.control.{Button, ChoiceBox, TextField}
-import main.footprint.transport.{Car, Fuel}
+import main.footprint.transport.{Car, Fuel, TransportTrip}
 
 class EditGarage {
 
@@ -40,7 +40,12 @@ class EditGarage {
       case Some(value) => {
         val new_car = value.copy(name = car_new_name.getText)
         val new_cars = footPrint.cars.updated(footPrint.cars.indexOf(value), new_car)
-        val new_footPrint = footPrint.copy(cars = new_cars)
+        val new_trips = footPrint.transportTrips.map(t => {
+          if(t.mean.isInstanceOf[Car] && t.mean.asInstanceOf[Car].name == value.name){
+            TransportTrip(new_car,t.km,t.date)
+          }else t
+        })
+        val new_footPrint = footPrint.copy(cars = new_cars, transportTrips = new_trips)
         homePage.updateFootPrint(new_footPrint)
       }
     }

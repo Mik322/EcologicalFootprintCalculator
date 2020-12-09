@@ -15,7 +15,13 @@ class Transportation {
 
   private var homePage: HomePage = _
 
-  def initialize(homePage: HomePage) = this.homePage = homePage
+  def initialize(homePage: HomePage) = {
+    this.homePage = homePage
+    val loader = new FXMLLoader(getClass.getResource("TransportInformations.fxml"))
+    transportationDisplay.getChildren.clear()
+    transportationDisplay.getChildren.add(loader.load())
+    loader.getController[TransportInformations].initialize(homePage)
+  }
 
   def garageMenu()={
     val loader = new FXMLLoader(getClass.getResource("garage/Garage.fxml"))
@@ -25,14 +31,9 @@ class Transportation {
   }
 
   def addTransportationTripDisplay()={
-    transportationLabel.setText("addTransportationTripDisplay")
-  }
-
-  def seeLastTransportationTripsDisplay()={
-    transportationLabel.setText("seeLastTransportationTripsDisplay")
-  }
-
-  def seeTotalTransportationEmissionsDisplay()={
-    transportationLabel.setText("seeTotalTransportationEmissionsDisplay")
+    val loader = new FXMLLoader(getClass.getResource("TransportTrip.fxml"))
+    transportationDisplay.getChildren.clear()
+    transportationDisplay.getChildren.add(loader.load())
+    loader.getController[TransportTrip].initialize(homePage)
   }
 }
