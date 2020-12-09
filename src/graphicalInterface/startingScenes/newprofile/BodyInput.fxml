@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.newprofile.BodyInput">
+   <children>
+      <Label text="Height (cm)">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="height" />
+      <Label layoutX="296.0" layoutY="201.0" text="Weight (kg)">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="weight" layoutX="10.0" layoutY="197.0" />
+      <Label layoutX="264.0" layoutY="210.0" text="Age">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="age" layoutX="10.0" layoutY="224.0" />
+      <Label layoutX="294.0" layoutY="228.0" text="Biological Sex">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" spacing="25.0">
+         <children>
+            <RadioButton fx:id="male" mnemonicParsing="false" text="Male" />
+            <RadioButton fx:id="female" mnemonicParsing="false" text="Female" />
+         </children>
+      </HBox>
+      <Label layoutX="256.0" layoutY="279.0" text="Lifestyle">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="lifestyleChoice" prefWidth="150.0" />
+      <Button mnemonicParsing="false" onAction="#createProfile" text="Create Profile" />
+   </children>
+</VBox>

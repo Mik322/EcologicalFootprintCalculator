@@ -14,7 +14,7 @@ object FootPrintQuestions {
     lazy val averageElectricity = FootPrintQuestions.averageElectricBill()
     lazy val distanceCar = distance_car()
     val points = distanceCar._1 + distance_publicT() + holidayDest() + averageGasBill() + averageElectricity._1 + sourceOfEnergy() + typeOfEater() + typeOfFood() + magazines() + purchases() + typeOfProperty() + household() + childrenHousehold() + amountOfWaste() + dishwasher() + washingMachine() + recycledWaste()
-    FootPrintData(points, averageElectricity._2, distanceCar._2, distanceCar._3)
+    FootPrintData(points, averageElectricity._2)
   }
 
   def distance_car(): (Int, Double, Double) = {
