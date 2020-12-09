@@ -1,16 +1,16 @@
 package graphicalInterface.footprintCalculator
 
+import graphicalInterface.FxApp.loadPage
 import graphicalInterface.HomePage
+import graphicalInterface.footprintCalculator.electricity.ElectricityMenu
 import graphicalInterface.footprintCalculator.transportation.Transportation
-import javafx.fxml.{FXML, FXMLLoader}
+import graphicalInterface.footprintCalculator.waste.AddWaste
+import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
-import graphicalInterface.FxApp.loadPage
-import graphicalInterface.footprintCalculator.electricity.ElectricityMenu
-import graphicalInterface.footprintCalculator.waste.AddWaste
-import main.footprint.{FootPrintOps, energy}
 import main.footprint.transport.TransportTrip
 import main.footprint.waste.Waste
+import main.footprint.{FootPrintOps, energy}
 
 class FootprintCalculator {
   @FXML
