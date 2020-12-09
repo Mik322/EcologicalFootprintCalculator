@@ -23,6 +23,7 @@ class AddCar {
   @FXML
   var add_car: Button = _
 
+  @FXML
   def initialize = {
     car_fuel.setItems(typeOfFuel)
   }

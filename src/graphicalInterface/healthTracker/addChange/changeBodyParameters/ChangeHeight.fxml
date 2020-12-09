@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.changeBodyParameters.ChangeHeight">
+   <children>
+      <Label layoutX="214.0" layoutY="33.0" text="Change Height">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="159.0" layoutY="100.0" prefHeight="200.0" prefWidth="282.0">
+         <children>
+            <Label text="Insert your new height (in cm)">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="heightInput">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="changeHeightConfirm" mnemonicParsing="false" onMouseClicked="#changeHeight" text="Change height" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
