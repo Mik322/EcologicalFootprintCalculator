@@ -2,6 +2,7 @@ package graphicalInterface.healthTracker
 
 import graphicalInterface.HomePage
 import graphicalInterface.healthTracker.addChange.AddChange
+import graphicalInterface.healthTracker.healthTrackerInformation.HealthTrackerInformation
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.layout.Pane
 import main.healthTracker.CaloricMaps
@@ -27,7 +28,7 @@ class HealthTrackerInterface {
   }
 
   def healthTrackerInformationMenu() ={
-    val loader = new FXMLLoader(getClass.getResource("HealthTrackerInformation.fxml"))
+    val loader = new FXMLLoader(getClass.getResource("healthTrackerInformation/HealthTrackerInformation.fxml"))
     healthTrackerDisplay.getChildren.clear()
     healthTrackerDisplay.getChildren.add(loader.load())
     loader.getController[HealthTrackerInformation].initialize(home,caloricMaps)
