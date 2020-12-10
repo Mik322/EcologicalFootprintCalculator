@@ -122,7 +122,12 @@ object HealthInformationOps {
   def getWeightTrack(weightHistory: List[(Double, Date)], goal: (Goal.Value, Date)): String = {
     val (_, goalDate) = goal
     val temp = weightHistory.filter { case (_, d) => d >= goalDate }
-    val avg = (temp.last._1 - temp.head._1) / (temp.last._2 - temp.head._2  + 1) * 7
+    val num = temp.last._1 - temp.head._1
+    val den = temp.last._2 - temp.head._2
+    val avg = den match {
+      case 0 => num / (den  + 1) * 7
+      case _ => num / den * 7
+    }
 
     val str = if (avg < 0.0) {
       s"You lost an average of ${avg.abs}kg per week since ${temp.head._2} until ${temp.last._2}"
