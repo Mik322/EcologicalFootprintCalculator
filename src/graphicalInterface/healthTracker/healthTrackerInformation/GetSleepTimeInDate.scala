@@ -9,11 +9,9 @@ import main.healthTracker.HealthInformationOps.{caloricInformation, getCalories,
 
 class GetSleepTimeInDate {
   private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
 
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
+  def initialize(home: HomePage): Unit = {
     this.home = home
-    this.caloricMaps = caloricMaps
   }
 
   @FXML

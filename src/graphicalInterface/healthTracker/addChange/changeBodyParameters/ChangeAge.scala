@@ -9,17 +9,15 @@ import main.healthTracker.{Body, CaloricMaps}
 
 class ChangeAge {
   private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
 
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
+  def initialize(home: HomePage): Unit = {
     this.home = home
-    this.caloricMaps = caloricMaps
   }
 
   @FXML
   var ageInput : TextField = _
 
-  def changeAge() ={
+  def changeAge(): Unit ={
     val healthTracker = home.getHealthTracker
     val newHealthTracker = Body.changeBody(BodyChange.ChangeAge(ageInput.getText.toInt),healthTracker)
     home.updateHealthTracker(newHealthTracker)

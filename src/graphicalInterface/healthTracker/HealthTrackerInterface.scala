@@ -1,36 +1,29 @@
 package graphicalInterface.healthTracker
 
+import graphicalInterface.FxApp.loadPage
 import graphicalInterface.HomePage
 import graphicalInterface.healthTracker.addChange.AddChange
 import graphicalInterface.healthTracker.healthTrackerInformation.HealthTrackerInformation
-import javafx.fxml.{FXML, FXMLLoader}
+import javafx.fxml.FXML
 import javafx.scene.layout.Pane
 import main.healthTracker.CaloricMaps
 
 class HealthTrackerInterface {
 
   private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
 
   @FXML
   private var healthTrackerDisplay: Pane = _
 
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
+  def initialize(home: HomePage): Unit = {
     this.home = home
-    this.caloricMaps = caloricMaps
   }
 
   def addChangeMenu() ={
-    val loader = new FXMLLoader(getClass.getResource("addChange/AddChange.fxml"))
-    healthTrackerDisplay.getChildren.clear()
-    healthTrackerDisplay.getChildren.add(loader.load())
-    loader.getController[AddChange].initialize(home, caloricMaps)
+    loadPage[AddChange](healthTrackerDisplay).initialize(home)
   }
 
   def healthTrackerInformationMenu() ={
-    val loader = new FXMLLoader(getClass.getResource("healthTrackerInformation/HealthTrackerInformation.fxml"))
-    healthTrackerDisplay.getChildren.clear()
-    healthTrackerDisplay.getChildren.add(loader.load())
-    loader.getController[HealthTrackerInformation].initialize(home,caloricMaps)
+    loadPage[HealthTrackerInformation](healthTrackerDisplay).initialize(home)
   }
 }

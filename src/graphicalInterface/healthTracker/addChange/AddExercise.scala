@@ -1,21 +1,18 @@
 package graphicalInterface.healthTracker.addChange
 
 import consoleinterface.healthtracker.options.AddCaloricActivity.AddSport
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import javafx.fxml.FXML
 import javafx.scene.control.{ChoiceBox, TextField}
 import main.Date
 import main.healthTracker.CaloricActivity.addCaloricActivityToState
-import main.healthTracker.CaloricMaps
 
 class AddExercise {
   private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
 
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
+  def initialize(home: HomePage): Unit = {
     this.home = home
-    this.caloricMaps = caloricMaps
-    addToExerciseList(caloricMaps.exercisesMap.keys.toList.sorted)
+    addToExerciseList(FxApp.caloricMaps.exercisesMap.keys.toList.sorted)
   }
 
   @FXML
@@ -28,7 +25,7 @@ class AddExercise {
   def addExercise() ={
     val exercise = AddSport(exerciseChoice.getValue,exerciseTime.getText().toInt,Date.today)
     val healthTracker = home.getHealthTracker
-    val newHealthTracker = addCaloricActivityToState(exercise,healthTracker,caloricMaps)
+    val newHealthTracker = addCaloricActivityToState(exercise,healthTracker,FxApp.caloricMaps)
     home.updateHealthTracker(newHealthTracker)
   }
 

@@ -29,7 +29,6 @@ class TransportInformations {
   }
 
   def NoTrips() = {
-    println("no trips")
     emissions_menu.getChildren.clear()
     emissions_menu.getChildren.add(no_emissions)
   }

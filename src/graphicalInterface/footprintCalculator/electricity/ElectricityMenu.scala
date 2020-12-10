@@ -20,18 +20,18 @@ class ElectricityMenu {
   }
 
   def setElectricitySourcesDisplay(): Unit ={
-    loadPage[SetElectricitySources](getClass.getResource("SetElectricitySources.fxml"), pane).setHomePage(homePage)
+    loadPage[SetElectricitySources](pane).setHomePage(homePage)
   }
 
   def getTotalEmissionsFromElectricityDisplay(): Unit ={
-    loadPage[SeeElectricitySources](getClass.getResource("SeeElectricitySources.fxml"), pane).initialize(homePage)
+    loadPage[SeeElectricitySources](pane).initialize(homePage)
   }
 
   def getSolarPanelRecommendationDisplay(): Unit ={
-    loadPage[SolarPanels](getClass.getResource("SolarPanels.fxml"), pane).setHomePage(homePage)
+    loadPage[SolarPanels](pane).setHomePage(homePage)
   }
 
   def changeElectricityConsumptionDisplay(): Unit ={
-    loadPage[ChangeConsumption](getClass.getResource("ChangeConsumption.fxml"), pane).setHomePage(homePage)
+    loadPage[ChangeConsumption](pane).setHomePage(homePage)
   }
 }

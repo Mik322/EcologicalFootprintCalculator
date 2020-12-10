@@ -31,15 +31,15 @@ class FootprintCalculator {
   private var homePage: HomePage = _
 
   def transportationMenu(): Unit = {
-    loadPage[Transportation](getClass.getResource("transportation/Transportation.fxml"), footprintDisplay).initialize(homePage)
+    loadPage[Transportation](footprintDisplay).initialize(homePage)
   }
 
   def wasteMenu(): Unit = {
-    loadPage[AddWaste](getClass.getResource("waste/AddWaste.fxml"), footprintDisplay).setHomePage(homePage)
+    loadPage[AddWaste](footprintDisplay).setHomePage(homePage)
   }
 
   def electricityMenu(): Unit={
-    loadPage[ElectricityMenu](getClass.getResource("electricity/ElectricityMenu.fxml"), footprintDisplay).setHomePage(homePage)
+    loadPage[ElectricityMenu](footprintDisplay).setHomePage(homePage)
   }
 
   private def setElectricityEmissions(): Unit = {
@@ -57,6 +57,7 @@ class FootprintCalculator {
     waste.setText(s"${emissions}g")
   }
 
+  //TODO: problem here
   private def setTotalEmissions(): Unit = {
     val emissions = FootPrintOps.getTotalEmissions(homePage.getFootPrint)
     total.setText(s"${emissions}g")

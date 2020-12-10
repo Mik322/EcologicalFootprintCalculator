@@ -10,11 +10,9 @@ import main.healthTracker.{Body, CaloricMaps}
 
 class ChangeLifestyle {
   private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
 
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
+  def initialize(home: HomePage): Unit = {
     this.home = home
-    this.caloricMaps = caloricMaps
     home.getHealthTracker.body.lifestyle match {
       case Sedentary => sedentary.setSelected(true)
       case Moderated => moderated.setSelected(true)

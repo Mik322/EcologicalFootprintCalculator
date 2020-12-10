@@ -5,7 +5,7 @@ import graphicalInterface.footprintCalculator.FootprintCalculator
 import graphicalInterface.healthTracker.HealthTrackerInterface
 import javafx.fxml.FXML
 import javafx.scene.control.Label
-import javafx.scene.layout.{Background, Pane, VBox}
+import javafx.scene.layout.{Pane, VBox}
 import javafx.stage.Stage
 import main.States
 import main.States.{FootPrintState, HealthTracker}
@@ -21,16 +21,15 @@ class HomePage {
   private var side_bar: VBox = _
 
   var states: States = _
-  private var caloricMaps: CaloricMaps = _
 
   def footprintCalculator(): Unit = {
     side_bar.setStyle("-fx-background-color: #07245A")
-    loadPage[FootprintCalculator](getClass.getResource("footprintCalculator/FootprintCalculator.fxml"), homePane).initialize(this)
+    loadPage[FootprintCalculator](homePane).initialize(this)
   }
 
   def healthTracker(): Unit = {
     side_bar.setStyle("-fx-background-color: #20AF00")
-    loadPage[HealthTrackerInterface](getClass.getResource("healthTracker/HealthTrackerInterface.fxml"), homePane). initialize(this, caloricMaps)
+    loadPage[HealthTrackerInterface](homePane). initialize(this)
   }
 
   def saveProfile(): Unit = {
@@ -49,10 +48,5 @@ class HomePage {
 
   def initialize(states: States): Unit = {
     this.states = states
-    val int = converter(s => s.toInt) _
-    caloricMaps = CaloricMaps(loadCaloriesMap("Food.txt", int), loadCaloriesMap("Drinks.txt", int), loadCaloriesMap("Exercises.txt", s => s.toDouble))
   }
-
-  private def converter[A](func: String => A)(value: String): A = func(value)
-
 }

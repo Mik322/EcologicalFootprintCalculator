@@ -1,6 +1,6 @@
 package graphicalInterface.healthTracker.healthTrackerInformation
 
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import graphicalInterface.footprintCalculator.transportation.garage
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.layout.VBox
@@ -11,12 +11,11 @@ import main.healthTracker.{CaloricActivity, CaloricMaps}
 
 class GetListOfCaloricActivities {
   private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
 
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
+  def initialize(home: HomePage): Unit = {
     this.home = home
-    this.caloricMaps = caloricMaps
     addInformation(home.getHealthTracker)
+    //addInformation(FxApp.getHealthTracker)
   }
 
   @FXML

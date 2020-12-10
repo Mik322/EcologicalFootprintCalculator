@@ -2,22 +2,18 @@ package graphicalInterface.healthTracker.addChange
 
 
 import consoleinterface.healthtracker.options.AddCaloricActivity.AddFood
-import graphicalInterface.HomePage
-import javafx.collections.{FXCollections, ObservableList}
+import graphicalInterface.{FxApp, HomePage}
 import javafx.fxml.FXML
 import javafx.scene.control.{ChoiceBox, TextField}
 import main.Date
 import main.healthTracker.CaloricActivity.addCaloricActivityToState
-import main.healthTracker.CaloricMaps
 
 class AddFood {
   private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
 
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
+  def initialize(home: HomePage): Unit = {
     this.home = home
-    this.caloricMaps = caloricMaps
-    addToFoodList(caloricMaps.foodMap.keys.toList.sorted)
+    addToFoodList(FxApp.caloricMaps.foodMap.keys.toList.sorted)
   }
 
   @FXML
@@ -27,10 +23,10 @@ class AddFood {
   var foodQuantity: TextField = _
 
 
-  def addFood() ={
+  def addFood(): Unit ={
     val food = AddFood(foodChoice.getValue,foodQuantity.getText().toInt,Date.today)
     val healthTracker = home.getHealthTracker
-    val newHealthTracker = addCaloricActivityToState(food,healthTracker,caloricMaps)
+    val newHealthTracker = addCaloricActivityToState(food,healthTracker,FxApp.caloricMaps)
     home.updateHealthTracker(newHealthTracker)
   }
 

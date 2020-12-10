@@ -11,11 +11,9 @@ import main.footprint.transport.Fuel.{Diesel, Electric, Hydrogen, Petrol}
 import main.healthTracker.{Body, CaloricMaps, Goal}
 class SetGoal {
   private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
 
-  def initialize(home: HomePage,caloricMaps: CaloricMaps): Unit = {
+  def initialize(home: HomePage): Unit = {
     this.home = home
-    this.caloricMaps = caloricMaps
     goalChoice.setItems(goalInput)
   }
   private var goalInput: ObservableList[String] = FXCollections.observableArrayList("Lose 1kg per week","Lose 0.5kg per week","Keep Weight","Gain 0.5kg per week","Gain 1kg per week")
