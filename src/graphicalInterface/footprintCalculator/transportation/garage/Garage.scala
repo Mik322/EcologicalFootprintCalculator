@@ -4,12 +4,12 @@ import graphicalInterface.HomePage
 import graphicalInterface.footprintCalculator.transportation.garage
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
-import javafx.scene.layout.Pane
+import javafx.scene.layout.{Pane, VBox}
 import main.footprint.transport.Car
 
 class Garage {
   @FXML
-  var garageDisplay: Pane = _
+  var garageDisplay: VBox = _
 
   @FXML
   var garageLabel : Label = _

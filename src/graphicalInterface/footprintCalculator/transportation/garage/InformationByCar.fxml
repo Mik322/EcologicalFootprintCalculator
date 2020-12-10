@@ -39,7 +39,7 @@
       </VBox>
     </center>
     <top>
-        <Label prefHeight="96.0" prefWidth="88.0" text="My cars" BorderPane.alignment="CENTER">
+        <Label prefHeight="96.0" text="My cars" BorderPane.alignment="CENTER">
             <font>
                 <Font size="26.0" />
             </font>

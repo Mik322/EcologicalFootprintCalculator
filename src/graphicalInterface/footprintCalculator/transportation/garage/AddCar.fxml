@@ -30,7 +30,7 @@
       </VBox>
    </center>
    <top>
-      <Label prefHeight="96.0" prefWidth="265.0" text="Add a car to your garage" BorderPane.alignment="CENTER">
+      <Label prefHeight="96.0" text="Add a car to your garage" BorderPane.alignment="CENTER">
          <font>
             <Font size="26.0" />
          </font>

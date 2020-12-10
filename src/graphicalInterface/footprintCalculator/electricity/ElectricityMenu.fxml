@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.electricity.ElectricityMenu">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.electricity.ElectricityMenu">
    <left>
-      <VBox maxHeight="1.7976931348623157E308" prefHeight="500.0" prefWidth="100.0" style="-fx-background-color: #9955bb;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" style="-fx-background-color: #07245A #07245A;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="setElectricitySourcesButton" mnemonicParsing="false" onMouseClicked="#setElectricitySourcesDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Set electricity sources" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="getTotalEmissionsFromElectricityButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#getTotalEmissionsFromElectricityDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Emissions and Sources" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="getSolarPanelRecommendationButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getSolarPanelRecommendationDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Solar Panels" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="changeElectricityConsumptionButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#changeElectricityConsumptionDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Change electricity consumption" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="setElectricitySourcesButton" mnemonicParsing="false" onMouseClicked="#setElectricitySourcesDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Set electricity sources" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="getTotalEmissionsFromElectricityButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#getTotalEmissionsFromElectricityDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Emissions and Sources" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="getSolarPanelRecommendationButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getSolarPanelRecommendationDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Solar Panels" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="changeElectricityConsumptionButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#changeElectricityConsumptionDisplay" prefWidth="130.0" style="-fx-background-color: transparent;" text="Change electricity consumption" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
          </children>
       </VBox>
    </left>

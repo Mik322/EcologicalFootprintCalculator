@@ -2,30 +2,42 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.Garage">
+<BorderPane VBox.vgrow="ALWAYS" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.Garage">
    <left>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #e3c7dd;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent; -fx-border-color: #07245a#07245a;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="informationByCar" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#displayInformationByCar" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="My Cars" wrapText="true" />
-            <Button fx:id="addCarButton" mnemonicParsing="false" onMouseClicked="#addCarDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Add Car" wrapText="true" />
-            <Button fx:id="editGarageButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#editGarage" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Edit Garage" wrapText="true" />
-            <Button fx:id="display_information" layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onMouseClicked="#information" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Informations" wrapText="true" />
+            <Button fx:id="informationByCar" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#displayInformationByCar" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="My Cars" textFill="#07245a" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="addCarButton" mnemonicParsing="false" onMouseClicked="#addCarDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Add Car" textFill="#07245a" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="editGarageButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#editGarage" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Edit Garage" textFill="#07245a" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="display_information" layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onMouseClicked="#information" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Informations" textFill="#07245a" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
          </children>
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="garageDisplay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+      <VBox fx:id="garageDisplay" alignment="CENTER" prefHeight="280.0" prefWidth="236.0">
          <children>
-            <Label alignment="TOP_CENTER" layoutX="4.0" layoutY="119.0" prefHeight="27.0" prefWidth="224.0" text="Welcome to your garage!" textAlignment="CENTER">
+            <Label alignment="TOP_CENTER" prefHeight="27.0" text="Welcome to your garage!" textAlignment="CENTER">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-         </children></AnchorPane>
+         </children>
+      </VBox>
    </center>
 </BorderPane>
