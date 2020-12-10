@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.GetCaloriesInDay">
    <children>
       <Label text="Get calories balance in a specific day">
@@ -25,6 +24,11 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </DatePicker>
+      <Label fx:id="dateErrorLabel" textFill="RED" visible="false" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
       <Button fx:id="getCaloriesConfirm" mnemonicParsing="false" onMouseClicked="#getCaloriesConsumed" text="Get calories consumed">
          <VBox.margin>
             <Insets bottom="10.0" />

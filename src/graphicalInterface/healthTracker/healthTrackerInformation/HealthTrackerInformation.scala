@@ -12,7 +12,7 @@ class HealthTrackerInformation {
 
   private var home: HomePage = _
   private var caloricMaps: CaloricMaps = _
-
+  //TODO fix weight historic!
   def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
     this.home = home
     this.caloricMaps = caloricMaps

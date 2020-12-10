@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-  <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.changeBodyParameters.ChangeAge">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.changeBodyParameters.ChangeAge">
       <children>
         <Label text="Change Age">
             <font>
@@ -28,6 +27,19 @@
                   <Insets bottom="10.0" />
               </VBox.margin>
           </TextField>
-          <Button fx:id="changeAgeConfirm" mnemonicParsing="false" onMouseClicked="#changeAge" text="Change age" />
+      <Label fx:id="ageErrorLabel" text="Insert a valid age! (from 14 to 100)" textFill="RED" visible="false">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+          <Button fx:id="changeAgeConfirm" mnemonicParsing="false" onMouseClicked="#changeAge" text="Change age">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></Button>
+      <Label fx:id="changedLabel" text="Changed!" visible="false">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
       </children>
   </VBox>

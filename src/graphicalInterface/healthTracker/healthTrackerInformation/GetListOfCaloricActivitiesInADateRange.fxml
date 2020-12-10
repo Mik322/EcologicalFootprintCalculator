@@ -33,6 +33,11 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </DatePicker>
+                  <Label fx:id="startErrorLabel" textFill="RED" visible="false">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
                   <Label text="End Date:">
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -43,6 +48,11 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </DatePicker>
+                  <Label fx:id="endErrorLabel" textFill="RED" visible="false">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
                   <Button fx:id="dateRangeConfirm" mnemonicParsing="false" onMouseClicked="#applyDateRange" text="Submit">
                      <VBox.margin>
                         <Insets bottom="10.0" />

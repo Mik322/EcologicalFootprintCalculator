@@ -2,7 +2,7 @@ package graphicalInterface.healthTracker.healthTrackerInformation
 
 import graphicalInterface.HomePage
 import javafx.fxml.{FXML, FXMLLoader}
-import javafx.scene.control.DatePicker
+import javafx.scene.control.{DatePicker, Label}
 import javafx.scene.layout.VBox
 import main.Date
 import main.States.HealthTracker
@@ -23,14 +23,47 @@ class GetListOfCaloricActivitiesInADateRange {
   var startDate: DatePicker = _
   @FXML
   var endDate: DatePicker = _
+  @FXML
+  var startErrorLabel: Label = _
+  @FXML
+  var endErrorLabel: Label = _
 
   def applyDateRange() ={
     elements.getChildren.clear()
-    val start = Date(startDate.getValue)
-    val end = Date(endDate.getValue)
-    lazy val newActivities = home.getHealthTracker.activities.filter(a => a.date >= start && a.date <= end)
-    val newHealthTracker = home.getHealthTracker.copy(activities = newActivities)
-    addInformation(newHealthTracker)
+    startErrorLabel.setVisible(false)
+    endErrorLabel.setVisible(false)
+    val startD=startDate.getValue
+    val endD=endDate.getValue
+    if(startD==null || endD==null){
+      if(startD==null){
+        startErrorLabel.setText("Please choose a date!")
+        startErrorLabel.setVisible(true)
+      }
+      if(endD==null){
+        endErrorLabel.setText("Please choose a date!")
+        endErrorLabel.setVisible(true)
+      }
+    }else{
+      val start = Date(startD)
+      val end = Date(endD)
+      if(start>Date.today() || end>Date.today()){
+        if(start>Date.today()){
+          startErrorLabel.setText("You can't choose a future date!")
+          startErrorLabel.setVisible(true)
+        }
+        if(end>Date.today()){
+          endErrorLabel.setText("You can't choose a future date!")
+          endErrorLabel.setVisible(true)
+        }
+      }else if(end < start){
+        endErrorLabel.setText("The end date can't be a day before the start day!")
+        endErrorLabel.setVisible(true)
+      }else {
+        lazy val newActivities = home.getHealthTracker.activities.filter(a => a.date >= start && a.date <= end)
+        val newHealthTracker = home.getHealthTracker.copy(activities = newActivities)
+        addInformation(newHealthTracker)
+      }
+    }
   }
 
   def addInformation(healthTracker: HealthTracker): Unit = {

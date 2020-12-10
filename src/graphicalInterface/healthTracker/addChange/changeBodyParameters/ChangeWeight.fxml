@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-  <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.changeBodyParameters.ChangeWeight">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.changeBodyParameters.ChangeWeight">
       <children>
         <Label text="Change Weight">
             <font>
@@ -28,6 +27,15 @@
                   <Insets bottom="10.0" />
               </VBox.margin>
           </TextField>
-          <Button fx:id="changeWeightConfirm" mnemonicParsing="false" onMouseClicked="#changeWeight" text="Change weight" />
+      <Label fx:id="weightErrorLabel" text="Insert a valid value!(positive double)" textFill="RED" visible="false" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+          <Button fx:id="changeWeightConfirm" mnemonicParsing="false" onMouseClicked="#changeWeight" text="Change weight">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></Button>
+      <Label fx:id="changedLabel" text="Changed!" visible="false" />
       </children>
   </VBox>

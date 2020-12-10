@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.GetSleepTimeInDate">
    <children>
       <Label text="See your sleep time in a specific date">
@@ -28,6 +27,11 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </DatePicker>
+      <Label fx:id="dateErrorLabel" textFill="RED">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
       <Button fx:id="sleepTimeConfirm" mnemonicParsing="false" onMouseClicked="#getSleepTime" text="See sleep time">
          <VBox.margin>
             <Insets bottom="10.0" />
@@ -35,7 +39,7 @@
       </Button>
       <Label fx:id="sleepLabel" text="Label" textAlignment="CENTER" visible="false" wrapText="true">
          <VBox.margin>
-            <Insets />
+            <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
    </children>
