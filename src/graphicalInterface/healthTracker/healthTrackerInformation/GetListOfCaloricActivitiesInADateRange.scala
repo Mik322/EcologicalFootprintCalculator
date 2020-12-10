@@ -1,22 +1,14 @@
 package graphicalInterface.healthTracker.healthTrackerInformation
 
-import graphicalInterface.HomePage
+import graphicalInterface.FxApp
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.DatePicker
 import javafx.scene.layout.VBox
 import main.Date
 import main.States.HealthTracker
-import main.healthTracker.{CaloricActivity, CaloricMaps}
+import main.healthTracker.CaloricActivity
 
 class GetListOfCaloricActivitiesInADateRange {
-  private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
-
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
-    this.home = home
-    this.caloricMaps = caloricMaps
-  }
-
   @FXML
   var elements: VBox = _
   @FXML
@@ -24,12 +16,12 @@ class GetListOfCaloricActivitiesInADateRange {
   @FXML
   var endDate: DatePicker = _
 
-  def applyDateRange() ={
+  def applyDateRange(): Unit ={
     elements.getChildren.clear()
     val start = Date(startDate.getValue)
     val end = Date(endDate.getValue)
-    lazy val newActivities = home.getHealthTracker.activities.filter(a => a.date >= start && a.date <= end)
-    val newHealthTracker = home.getHealthTracker.copy(activities = newActivities)
+    lazy val newActivities = FxApp.getHealthTracker.activities.filter(a => a.date >= start && a.date <= end)
+    val newHealthTracker = FxApp.getHealthTracker.copy(activities = newActivities)
     addInformation(newHealthTracker)
   }
 
@@ -44,7 +36,7 @@ class GetListOfCaloricActivitiesInADateRange {
     }
   }
 
-  def addElement(activity: CaloricActivity, healthTracker: HealthTracker) ={
+  def addElement(activity: CaloricActivity, healthTracker: HealthTracker): Unit ={
     val activityType = activity.activityType.toString
     val name = activity.name
     val quantityTime = activity.quantity.toString

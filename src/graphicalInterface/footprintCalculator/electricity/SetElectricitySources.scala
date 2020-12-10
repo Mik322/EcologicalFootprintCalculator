@@ -1,13 +1,15 @@
 package graphicalInterface.footprintCalculator.electricity
 
 import consoleinterface.UserChoice.SetElectricitySources
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import javafx.beans.value.{ChangeListener, ObservableValue}
 import javafx.fxml.FXML
 import javafx.scene.control.{Label, TextField}
 import javafx.scene.paint.Color
-import main.footprint.energy.{Electricity, TypeOfElectricitySource}
+import main.footprint.energy.{Electricity, ElectricitySource, TypeOfElectricitySource}
 import main.footprint.energy.TypeOfElectricitySource.{Biomass, Coal, Gas, Hydro, Nuclear, Oil, Solar, Wind}
+
+import scala.annotation.tailrec
 
 class SetElectricitySources {
 
@@ -32,24 +34,38 @@ class SetElectricitySources {
   @FXML
   private var infoLabel: Label = _
 
-  private var homePage: HomePage = _
-
   @FXML
   def initialize(): Unit = {
     val changeListener = new ChangeListener[String] {
       override def changed(observableValue: ObservableValue[_ <: String], t: String, t1: String): Unit = percentageLabel.setText(getTotalPercentage.toString)
     }
-    gas.textProperty().addListener(changeListener)
-    oil.textProperty().addListener(changeListener)
-    coal.textProperty().addListener(changeListener)
-    biomass.textProperty().addListener(changeListener)
-    hydro.textProperty().addListener(changeListener)
-    solar.textProperty().addListener(changeListener)
-    wind.textProperty().addListener(changeListener)
-    nuclear.textProperty().addListener(changeListener)
+    val labels = List(gas, oil, coal, biomass, hydro, solar, wind, nuclear)
+    setListener(labels, changeListener)
+    setCurrentSources(FxApp.getFootPrint.electricity.sources)
+  }
+  @tailrec
+  private def setListener(list: List[TextField], listener: ChangeListener[String]): Unit = list match {
+    case ::(head, next) => head.textProperty().addListener(listener)
+      setListener(next, listener)
+    case Nil =>
   }
 
-  def setHomePage(homePage: HomePage): Unit = this.homePage = homePage
+  private def setCurrentSources(sources: List[ElectricitySource]): Unit = sources match {
+    case ::(head, next) => head.source match {
+      case TypeOfElectricitySource.Gas => setFieldValue(gas, head.percentage)
+      case TypeOfElectricitySource.Oil => setFieldValue(oil, head.percentage)
+      case TypeOfElectricitySource.Coal => setFieldValue(coal, head.percentage)
+      case TypeOfElectricitySource.Wind => setFieldValue(wind, head.percentage)
+      case TypeOfElectricitySource.Hydro => setFieldValue(hydro, head.percentage)
+      case TypeOfElectricitySource.Solar => setFieldValue(solar, head.percentage)
+      case TypeOfElectricitySource.Biomass => setFieldValue(biomass, head.percentage)
+      case TypeOfElectricitySource.Nuclear => setFieldValue(nuclear, head.percentage)
+    }
+      setCurrentSources(next)
+    case Nil =>
+  }
+
+  private def setFieldValue(field: TextField, value: Double): Unit = field.setText((value * 100).toInt.toString)
 
   def getTotalPercentage: Int = {
     val list = getValuesPerSource
@@ -74,9 +90,9 @@ class SetElectricitySources {
         .filter(source => source._2 > 0)
         .map(source => (source._1, source._2.toDouble/100))
       val sources = SetElectricitySources(list)
-      val footPrint = homePage.getFootPrint
+      val footPrint = FxApp.getFootPrint
       val newElectricity = Electricity.setElectricitySources(footPrint.electricity, sources)
-      homePage.updateFootPrint(footPrint.copy(electricity = newElectricity))
+      FxApp.updateFootPrint(footPrint.copy(electricity = newElectricity))
       infoLabel.setText("Updated")
       infoLabel.setTextFill(Color.web("#000000"))
     } else {

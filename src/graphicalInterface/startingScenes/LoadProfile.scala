@@ -1,6 +1,6 @@
 package graphicalInterface.startingScenes
 
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.Parent
 import javafx.scene.control.{Label, TextField}
@@ -26,7 +26,7 @@ class LoadProfile {
     val loader = new FXMLLoader(getClass.getResource("../HomePage.fxml"))
     val root: Parent = loader.load()
     val stage = userName.getScene.getWindow.asInstanceOf[Stage]
-    loader.getController[HomePage].initialize(states)
+    FxApp.setStates(states)
     stage.getScene.setRoot(root)
     stage.setWidth(900)
     stage.setHeight(650)

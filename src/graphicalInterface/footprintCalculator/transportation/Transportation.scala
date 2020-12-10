@@ -1,8 +1,9 @@
 package graphicalInterface.footprintCalculator.transportation
 
+import graphicalInterface.FxApp.loadPage
 import graphicalInterface.HomePage
 import graphicalInterface.footprintCalculator.transportation.garage.Garage
-import javafx.fxml.{FXML, FXMLLoader}
+import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
 
@@ -13,27 +14,16 @@ class Transportation {
   @FXML
   var transportationLabel: Label = _
 
-  private var homePage: HomePage = _
-
-  def initialize(homePage: HomePage) = {
-    this.homePage = homePage
-    val loader = new FXMLLoader(getClass.getResource("TransportInformations.fxml"))
-    transportationDisplay.getChildren.clear()
-    transportationDisplay.getChildren.add(loader.load())
-    loader.getController[TransportInformations].initialize(homePage)
+  @FXML
+  def initialize(): Unit = {
+    loadPage[TransportInformations](transportationDisplay)
   }
 
-  def garageMenu()={
-    val loader = new FXMLLoader(getClass.getResource("garage/Garage.fxml"))
-    transportationDisplay.getChildren.clear()
-    transportationDisplay.getChildren.add(loader.load())
-    loader.getController[Garage].initialize(homePage)
+  def garageMenu(): Unit ={
+    loadPage[Garage](transportationDisplay)
   }
 
-  def addTransportationTripDisplay()={
-    val loader = new FXMLLoader(getClass.getResource("TransportTrip.fxml"))
-    transportationDisplay.getChildren.clear()
-    transportationDisplay.getChildren.add(loader.load())
-    loader.getController[TransportTrip].initialize(homePage)
+  def addTransportationTripDisplay(): Unit ={
+    loadPage[TransportTrip](transportationDisplay)
   }
 }

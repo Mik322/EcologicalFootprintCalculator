@@ -1,10 +1,10 @@
 package graphicalInterface.footprintCalculator.transportation.garage
 
-import graphicalInterface.HomePage
-import graphicalInterface.footprintCalculator.transportation.{Template, garage}
+import graphicalInterface.FxApp
+import graphicalInterface.footprintCalculator.transportation.Template
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
-import javafx.scene.layout.{Pane, VBox}
+import javafx.scene.layout.VBox
 import main.States.FootPrintState
 import main.footprint.transport.Car
 
@@ -15,12 +15,10 @@ class InformationByCar {
   @FXML
   var total_emissions: Label = _
 
-  private var homePage: HomePage = _
-
-  def initialize(homePage: HomePage) = {
-    this.homePage = homePage
-    addInformation(homePage.getFootPrint)
-    total_emissions.setText(Car.getTotalEmissions(homePage.getFootPrint.transportTrips).toString + " g CO2")
+  @FXML
+  def initialize(): Unit = {
+    addInformation(FxApp.getFootPrint)
+    total_emissions.setText(Car.getTotalEmissions(FxApp.getFootPrint.transportTrips).toString + " g CO2")
   }
 
   def addInformation(footPrint: FootPrintState): Unit = {

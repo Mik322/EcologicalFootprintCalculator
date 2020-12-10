@@ -1,20 +1,13 @@
 package graphicalInterface.healthTracker.healthTrackerInformation
 
-import graphicalInterface.HomePage
+import graphicalInterface.FxApp
 import javafx.fxml.FXML
 import javafx.scene.control.{DatePicker, Label}
 import main.Date
-import main.healthTracker.{CaloricMaps, SleepTracker}
 import main.healthTracker.HealthInformationOps.getAverageSleepInDaysString
+import main.healthTracker.SleepTracker
 
 class GetSleepTimeInDateRange {
-  private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
-
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
-    this.home = home
-    this.caloricMaps = caloricMaps
-  }
 
   @FXML
   var startDate: DatePicker = _
@@ -23,10 +16,10 @@ class GetSleepTimeInDateRange {
   @FXML
   var sleepTimeLabel: Label = _
 
-  def getSleepTime()  ={
+  def getSleepTime(): Unit ={
     val start = Date(startDate.getValue)
     val end = Date(endDate.getValue)
-    val healthTracker = home.getHealthTracker
+    val healthTracker = FxApp.getHealthTracker
     val averageSleepInDays = SleepTracker.getAverageSleep(healthTracker.sleepTracker,start,end)
     sleepTimeLabel.setText(getAverageSleepInDaysString(averageSleepInDays,start,end))
     sleepTimeLabel.setVisible(true)

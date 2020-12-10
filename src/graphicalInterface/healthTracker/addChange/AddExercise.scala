@@ -1,35 +1,28 @@
 package graphicalInterface.healthTracker.addChange
 
 import consoleinterface.healthtracker.options.AddCaloricActivity.AddSport
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import javafx.fxml.FXML
 import javafx.scene.control.{ChoiceBox, TextField}
 import main.Date
 import main.healthTracker.CaloricActivity.addCaloricActivityToState
-import main.healthTracker.CaloricMaps
 
 class AddExercise {
-  private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
-
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
-    this.home = home
-    this.caloricMaps = caloricMaps
-    addToExerciseList(caloricMaps.exercisesMap.keys.toList.sorted)
-  }
-
   @FXML
   var exerciseChoice: ChoiceBox[String] = new ChoiceBox[String]()
-
   @FXML
   var exerciseTime: TextField = _
+  @FXML
+  def initialize(): Unit = {
+    addToExerciseList(FxApp.caloricMaps.exercisesMap.keys.toList.sorted)
+  }
 
 
-  def addExercise() ={
+  def addExercise(): Unit ={
     val exercise = AddSport(exerciseChoice.getValue,exerciseTime.getText().toInt,Date.today)
-    val healthTracker = home.getHealthTracker
-    val newHealthTracker = addCaloricActivityToState(exercise,healthTracker,caloricMaps)
-    home.updateHealthTracker(newHealthTracker)
+    val healthTracker = FxApp.getHealthTracker
+    val newHealthTracker = addCaloricActivityToState(exercise,healthTracker,FxApp.caloricMaps)
+    FxApp.updateHealthTracker(newHealthTracker)
   }
 
   def addToExerciseList(list: List[String]):Unit  = list match {

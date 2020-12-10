@@ -1,7 +1,7 @@
 package graphicalInterface.startingScenes.newprofile
 
 import consoleinterface.StartOptions.{BodyParams, FootPrintData, NewProfile}
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.Parent
@@ -50,7 +50,7 @@ class BodyInput {
     val states = States.createStates(NewProfile(username, bodyParams, footPrintData))
     val loader = new FXMLLoader(getClass.getResource("../../HomePage.fxml"))
     val root: Parent = loader.load()
-    loader.getController[HomePage].initialize(states)
+    FxApp.setStates(states)
     lifestyleChoice.getScene.setRoot(root)
   }
 }

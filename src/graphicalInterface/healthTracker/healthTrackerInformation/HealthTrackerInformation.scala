@@ -1,23 +1,19 @@
 package graphicalInterface.healthTracker.healthTrackerInformation
 
-import graphicalInterface.HomePage
-import javafx.fxml.{FXML, FXMLLoader}
+import graphicalInterface.FxApp
+import graphicalInterface.FxApp.loadPage
+import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
 import main.Date
-import main.healthTracker.HealthInformationOps.{getBodyParametersString, getCupsOfWaterToDrinkString, getNecessarySleepString, getWeightHistoric, getWeightTrack}
-import main.healthTracker.{CaloricActivity, CaloricMaps, SleepTracker}
+import main.healthTracker.HealthInformationOps._
+import main.healthTracker.{CaloricActivity, SleepTracker}
 
 class HealthTrackerInformation {
-
-  private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
-
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
-    this.home = home
-    this.caloricMaps = caloricMaps
-    val healthTracker = home.getHealthTracker
-    val waterNeeds = CaloricActivity.cupsOfWaterToDrinkAndDrank(healthTracker, Date.today)
+  @FXML
+  def initialize(): Unit = {
+    val healthTracker = FxApp.getHealthTracker
+    val waterNeeds = CaloricActivity.cupsOfWaterToDrinkAndDrank(healthTracker, Date.today())
     waterNeedsLabel.setText(getCupsOfWaterToDrinkString(waterNeeds._1,waterNeeds._2))
     weightEvolutionLabel.setText(getWeightHistoric(healthTracker.weightHistory.sortBy(_._2), ""))
     goalTracking.setText(getWeightTrack(healthTracker.weightHistory.sortBy(_._2), healthTracker.goal))
@@ -42,45 +38,27 @@ class HealthTrackerInformation {
   var bodyParameters : Label = _
 
   def getCaloriesInDayDisplay(): Unit ={
-    val loader = new FXMLLoader(getClass.getResource("GetCaloriesInDay.fxml"))
-    healthTrackerInformationDisplay.getChildren.clear()
-    healthTrackerInformationDisplay.getChildren.add(loader.load())
-    loader.getController[GetCaloriesInDay].initialize(home,caloricMaps)
+    loadPage[GetCaloriesInDay](healthTrackerInformationDisplay)
   }
 
-  def getListOfCaloricActivitiesDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("GetListOfCaloricActivities.fxml"))
-    healthTrackerInformationDisplay.getChildren.clear()
-    healthTrackerInformationDisplay.getChildren.add(loader.load())
-    loader.getController[GetListOfCaloricActivities].initialize(home,caloricMaps)
+  def getListOfCaloricActivitiesDisplay(): Unit ={
+    loadPage[GetListOfCaloricActivities](healthTrackerInformationDisplay)
   }
 
-  def getNetCaloriesInLastDaysDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("GetCaloriesInLastDays.fxml"))
-    healthTrackerInformationDisplay.getChildren.clear()
-    healthTrackerInformationDisplay.getChildren.add(loader.load())
-    loader.getController[GetCaloriesInLastDays].initialize(home,caloricMaps)
+  def getNetCaloriesInLastDaysDisplay(): Unit ={
+    loadPage[GetCaloriesInLastDays](healthTrackerInformationDisplay)
   }
 
-  def seeListOfCaloricActivitiesInADateRangeDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("GetListOfCaloricActivitiesInADateRange.fxml"))
-    healthTrackerInformationDisplay.getChildren.clear()
-    healthTrackerInformationDisplay.getChildren.add(loader.load())
-    loader.getController[GetListOfCaloricActivitiesInADateRange].initialize(home,caloricMaps)
+  def seeListOfCaloricActivitiesInADateRangeDisplay(): Unit ={
+    loadPage[GetListOfCaloricActivitiesInADateRange](healthTrackerInformationDisplay)
   }
 
-  def getSleepTimeInDateDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("GetSleepTimeInDate.fxml"))
-    healthTrackerInformationDisplay.getChildren.clear()
-    healthTrackerInformationDisplay.getChildren.add(loader.load())
-    loader.getController[GetSleepTimeInDate].initialize(home,caloricMaps)
+  def getSleepTimeInDateDisplay(): Unit ={
+    loadPage[GetSleepTimeInDate](healthTrackerInformationDisplay)
   }
 
-  def getAverageSleepInADateRangeDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("GetSleepTimeInDateRange.fxml"))
-    healthTrackerInformationDisplay.getChildren.clear()
-    healthTrackerInformationDisplay.getChildren.add(loader.load())
-    loader.getController[GetSleepTimeInDateRange].initialize(home,caloricMaps)
+  def getAverageSleepInADateRangeDisplay(): Unit ={
+    loadPage[GetSleepTimeInDateRange](healthTrackerInformationDisplay)
   }
   
 }

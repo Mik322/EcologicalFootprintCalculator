@@ -1,28 +1,19 @@
 package graphicalInterface.healthTracker.healthTrackerInformation
 
-import graphicalInterface.HomePage
+import graphicalInterface.FxApp
 import javafx.fxml.FXML
-import javafx.scene.control.{DatePicker, Label, TextField}
+import javafx.scene.control.{Label, TextField}
 import main.Date
-import main.healthTracker.CaloricMaps
 import main.healthTracker.HealthInformationOps.{getCalories, getNDaysCaloriesString}
 
 class GetCaloriesInLastDays {
-  private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
-
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
-    this.home = home
-    this.caloricMaps = caloricMaps
-  }
-
   @FXML
   var daysInput: TextField = _
   @FXML
   var caloriesInfo: Label =_
 
-  def getCaloriesInLastDays() ={
-    val healthTracker = home.getHealthTracker
+  def getCaloriesInLastDays(): Unit ={
+    val healthTracker = FxApp.getHealthTracker
     val days = daysInput.getText().toInt
     val startDate = Date.today().minusDays(days)
     lazy val activities = healthTracker.activities.filter(a => a.date >= startDate)

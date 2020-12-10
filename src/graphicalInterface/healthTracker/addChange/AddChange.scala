@@ -1,69 +1,39 @@
 package graphicalInterface.healthTracker.addChange
 
-import graphicalInterface.HomePage
+import graphicalInterface.FxApp.loadPage
 import graphicalInterface.healthTracker.addChange.changeBodyParameters.ChangeBodyParameters
-import javafx.fxml.{FXML, FXMLLoader}
+import javafx.fxml.FXML
 import javafx.scene.layout.Pane
-import main.healthTracker.CaloricMaps
 
 class AddChange {
   @FXML
   var addChangeDisplay: Pane = _
 
-  private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
-
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
-    this.home = home
-    this.caloricMaps = caloricMaps
+  def addFoodDisplay(): Unit ={
+    loadPage[AddFood](addChangeDisplay)
   }
 
-  def addFoodDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("AddFood.fxml"))
-    addChangeDisplay.getChildren.clear()
-    addChangeDisplay.getChildren.add(loader.load())
-    loader.getController[AddFood].initialize(home,caloricMaps)
+  def addDrinkDisplay(): Unit ={
+    loadPage[AddDrink](addChangeDisplay)
   }
 
-  def addDrinkDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("AddDrink.fxml"))
-    addChangeDisplay.getChildren.clear()
-    addChangeDisplay.getChildren.add(loader.load())
-    loader.getController[AddDrink].initialize(home,caloricMaps)
+  def addExerciseDisplay(): Unit ={
+    loadPage[AddExercise](addChangeDisplay)
   }
 
-  def addExerciseDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("AddExercise.fxml"))
-    addChangeDisplay.getChildren.clear()
-    addChangeDisplay.getChildren.add(loader.load())
-    loader.getController[AddExercise].initialize(home,caloricMaps)
+  def addSleepDisplay(): Unit ={
+    loadPage[AddSleep](addChangeDisplay)
   }
 
-  def addSleepDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("AddSleep.fxml"))
-    addChangeDisplay.getChildren.clear()
-    addChangeDisplay.getChildren.add(loader.load())
-    loader.getController[AddSleep].initialize(home,caloricMaps)
+  def setGoalDisplay(): Unit ={
+    loadPage[SetGoal](addChangeDisplay)
   }
 
-  def setGoalDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("SetGoal.fxml"))
-    addChangeDisplay.getChildren.clear()
-    addChangeDisplay.getChildren.add(loader.load())
-    loader.getController[SetGoal].initialize(home,caloricMaps)
+  def addCupOfWaterDisplay(): Unit ={
+    loadPage[AddCupOfWater](addChangeDisplay)
   }
 
-  def addCupOfWaterDisplay() ={
-    val loader = new FXMLLoader(getClass.getResource("AddCupOfWater.fxml"))
-    addChangeDisplay.getChildren.clear()
-    addChangeDisplay.getChildren.add(loader.load())
-    loader.getController[AddCupOfWater].initialize(home,caloricMaps)
-  }
-
-  def changeBodyParametersMenu() ={
-    val loader = new FXMLLoader(getClass.getResource("changeBodyParameters/ChangeBodyParameters.fxml"))
-    addChangeDisplay.getChildren.clear()
-    addChangeDisplay.getChildren.add(loader.load())
-    loader.getController[ChangeBodyParameters].initialize(home,caloricMaps)
+  def changeBodyParametersMenu(): Unit ={
+    loadPage[ChangeBodyParameters](addChangeDisplay)
   }
 }

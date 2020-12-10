@@ -1,26 +1,18 @@
 package graphicalInterface.healthTracker.healthTrackerInformation
 
-import graphicalInterface.HomePage
-import graphicalInterface.footprintCalculator.transportation.garage
+import graphicalInterface.FxApp
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.layout.VBox
-import main.States
 import main.States.HealthTracker
-import main.footprint.transport.Car
-import main.healthTracker.{CaloricActivity, CaloricMaps}
+import main.healthTracker.CaloricActivity
 
 class GetListOfCaloricActivities {
-  private var home: HomePage = _
-  private var caloricMaps: CaloricMaps = _
-
-  def initialize(home: HomePage, caloricMaps: CaloricMaps): Unit = {
-    this.home = home
-    this.caloricMaps = caloricMaps
-    addInformation(home.getHealthTracker)
-  }
-
   @FXML
   var elements: VBox = _
+  @FXML
+  def initialize(): Unit = {
+    addInformation(FxApp.getHealthTracker)
+  }
 
   def addInformation(healthTracker: HealthTracker): Unit = {
     val activities = healthTracker.activities
@@ -33,7 +25,7 @@ class GetListOfCaloricActivities {
     }
   }
 
-  def addElement(activity: CaloricActivity, healthTracker: HealthTracker) ={
+  def addElement(activity: CaloricActivity, healthTracker: HealthTracker): Unit ={
     val activityType = activity.activityType.toString
     val name = activity.name
     val quantityTime = activity.quantity.toString

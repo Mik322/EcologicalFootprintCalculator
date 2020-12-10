@@ -1,11 +1,11 @@
 package graphicalInterface.footprintCalculator.transportation.garage
 
+import graphicalInterface.FxApp.loadPage
 import graphicalInterface.HomePage
 import graphicalInterface.footprintCalculator.transportation.garage
-import javafx.fxml.{FXML, FXMLLoader}
+import javafx.fxml.FXML
 import javafx.scene.control.Label
-import javafx.scene.layout.{Pane, VBox}
-import main.footprint.transport.Car
+import javafx.scene.layout.VBox
 
 class Garage {
   @FXML
@@ -14,36 +14,20 @@ class Garage {
   @FXML
   var garageLabel : Label = _
 
-  private var homePage: HomePage = _
-
-  def initialize(homePage: HomePage) = this.homePage = homePage
-
-  def addCarDisplay()={
-    val loader = new FXMLLoader(getClass.getResource("AddCar.fxml"))
-    garageDisplay.getChildren.clear()
-    garageDisplay.getChildren.add(loader.load())
-    loader.getController[garage.AddCar].initialize(homePage)
+  def addCarDisplay(): Unit={
+    loadPage[garage.AddCar](garageDisplay)
   }
 
-  def editGarage() ={
-    val loader = new FXMLLoader(getClass.getResource("EditGarage.fxml"))
-    garageDisplay.getChildren.clear()
-    garageDisplay.getChildren.add(loader.load())
-    loader.getController[garage.EditGarage].initialize(homePage)
+  def editGarage(): Unit ={
+    loadPage[garage.EditGarage](garageDisplay)
   }
 
-  def displayInformationByCar() ={
-    val loader = new FXMLLoader(getClass.getResource("InformationByCar.fxml"))
-    garageDisplay.getChildren.clear()
-    garageDisplay.getChildren.add(loader.load())
-    loader.getController[garage.InformationByCar].initialize(homePage)
+  def displayInformationByCar(): Unit ={
+    loadPage[garage.InformationByCar](garageDisplay)
   }
 
-  def information() ={
-    val loader = new FXMLLoader(getClass.getResource("Informations.fxml"))
-    garageDisplay.getChildren.clear()
-    garageDisplay.getChildren.add(loader.load())
-    loader.getController[garage.Informations].initialize(homePage)
+  def information(): Unit ={
+    loadPage[garage.Informations](garageDisplay)
   }
 
 }

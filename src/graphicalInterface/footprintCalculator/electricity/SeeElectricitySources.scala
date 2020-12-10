@@ -1,6 +1,6 @@
 package graphicalInterface.footprintCalculator.electricity
 
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.FXML
 import javafx.scene.chart.PieChart
@@ -13,9 +13,9 @@ class SeeElectricitySources {
   @FXML
   private var pane: Pane = _
 
-
-  def initialize(homePage: HomePage): Unit = {
-    val sources = ElectricitySource.getEnergySourcesList(homePage.getFootPrint.electricity)
+  @FXML
+  def initialize(): Unit = {
+    val sources = ElectricitySource.getEnergySourcesList(FxApp.getFootPrint.electricity)
     pane.getChildren.add(createChart(sources.map(source => (source._1, source._3)), "g CO2"))
     pane.getChildren.add(createChart(sources.map(source => (source._1, source._2)), "kWh"))
   }

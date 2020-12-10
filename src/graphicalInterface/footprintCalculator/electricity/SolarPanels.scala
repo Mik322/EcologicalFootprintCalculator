@@ -1,6 +1,6 @@
 package graphicalInterface.footprintCalculator.electricity
 
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import javafx.fxml.FXML
 import javafx.scene.control.{Label, TextField}
 import main.footprint.energy.Electricity
@@ -17,14 +17,10 @@ class SolarPanels {
   @FXML
   private var totalPower: Label = _
 
-  private var homePage: HomePage = _
-
-  def setHomePage(homePage: HomePage): Unit = this.homePage = homePage
-
   //TODO: Correct error handling
 
   def calcSolarPanels(): Unit = {
-    val num = Electricity.getRequiredSolarPanels(homePage.getFootPrint.electricity, getPanelPower, getSunlight)
+    val num = Electricity.getRequiredSolarPanels(FxApp.getFootPrint.electricity, getPanelPower, getSunlight)
     necessaryPanels.setText(s"${num} solar panels")
   }
 
