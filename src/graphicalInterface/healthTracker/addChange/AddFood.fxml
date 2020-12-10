@@ -5,42 +5,40 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddFood">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddFood">
    <children>
-      <Label layoutX="148.0" layoutY="33.0" text="Add a food to your tracker">
+      <Label text="Add a food to your tracker">
          <font>
             <Font size="26.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
       </Label>
-      <VBox alignment="CENTER" layoutX="159.0" layoutY="100.0" prefHeight="200.0" prefWidth="282.0">
-         <children>
-            <Label text="What did you eat?">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <ChoiceBox fx:id="foodChoice" prefWidth="150.0">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </ChoiceBox>
-            <Label text="How much did you eat? (in grams)">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="foodQuantity" />
-            <Button fx:id="addFoodConfirm" mnemonicParsing="false" onMouseClicked="#addFood" text="Add food">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
+      <Label text="What did you eat?">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+      <ChoiceBox fx:id="foodChoice" prefWidth="150.0">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </ChoiceBox>
+      <Label text="How much did you eat? (in grams)">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="foodQuantity" maxWidth="-Infinity" prefWidth="150.0" />
+      <Button fx:id="addFoodConfirm" mnemonicParsing="false" onMouseClicked="#addFood" text="Add food">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Button>
    </children>
-</AnchorPane>
+</VBox>
