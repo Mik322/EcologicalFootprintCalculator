@@ -36,13 +36,6 @@ class TransportTrip {
     means.setItems(meansOfTransport)
   }
 
-  //TODO: Ask what is this
-  //Test Func
-  def ClearHistory(): Unit = {
-    val newFoot = FxApp.getFootPrint.copy(transportTrips = Nil)
-    FxApp.updateFootPrint(newFoot)
-  }
-
   def AddTrip(): Unit = {
     means.getValue match {
       case Car => AddCarTrip()
