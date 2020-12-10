@@ -5,42 +5,40 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddSleep">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddSleep">
    <children>
-      <Label layoutX="155.0" layoutY="33.0" text="Add sleep to your tracker">
+      <Label text="Add sleep to your tracker">
          <font>
             <Font size="26.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
       </Label>
-      <VBox alignment="CENTER" layoutX="159.0" layoutY="100.0" prefHeight="200.0" prefWidth="282.0">
-         <children>
-            <Label text="How much time did you sleep? (In hours-integer)" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="sleepTime">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="When did you sleep that time?">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <DatePicker fx:id="sleepDate">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </DatePicker>
-            <Button fx:id="addSleepConfirm" mnemonicParsing="false" onMouseClicked="#addSleepTrack" text="Add sleep" />
-         </children>
-      </VBox>
+      <Label text="How much time did you sleep? (In hours-integer)" textAlignment="CENTER">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+      <TextField fx:id="sleepTime" maxWidth="-Infinity" prefWidth="150.0">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </TextField>
+      <Label text="When did you sleep that time?">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+      <DatePicker fx:id="sleepDate">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </DatePicker>
+      <Button fx:id="addSleepConfirm" mnemonicParsing="false" onMouseClicked="#addSleepTrack" text="Add sleep" />
    </children>
-</AnchorPane>
+</VBox>
