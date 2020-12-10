@@ -29,7 +29,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Carro" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Car" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="9.0" text="Emission (g CO2)" GridPane.columnIndex="1" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="9.0" text="Kms" GridPane.columnIndex="2" />
                </children>

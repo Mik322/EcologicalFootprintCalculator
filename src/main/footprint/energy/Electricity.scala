@@ -15,7 +15,7 @@ object Electricity {
   }
 
   def getSolarPanelsString(panels: Int): String = {
-    s"You would need ${panels} solar panels to sustent your needs"
+    s"You would need $panels solar panels to sustain your needs"
   }
 
   def getDailySolarPanelsProduction(power: Double, dailySunLightHours: Int, numberOfPanels: Int): Int = (power * numberOfPanels * dailySunLightHours).toInt
@@ -23,7 +23,7 @@ object Electricity {
   def getElectricityEmissions(electricity: Electricity): Double = {
     electricity.sources
       .map(s => ElectricitySource.getKWhAndEmission(electricity, s)._2)
-      .foldRight(0.0)(((total, emission) => total + emission))
+      .foldRight(0.0)((total, emission) => total + emission)
   }
 
   def setElectricitySources(electricity: Electricity, setElectricitySources: SetElectricitySources): Electricity = {

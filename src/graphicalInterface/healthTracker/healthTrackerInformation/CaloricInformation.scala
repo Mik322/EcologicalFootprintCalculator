@@ -17,7 +17,7 @@ class CaloricInformation {
   @FXML
   var date: Label = _
 
-  def initialize(activityType: String,activity: String, quantityTime: String, date: String) = {
+  def initialize(activityType: String,activity: String, quantityTime: String, date: String): Unit = {
     this.activityType.setText(activityType)
     this.activity.setText(activity)
     this.quantityTime.setText(quantityTime)

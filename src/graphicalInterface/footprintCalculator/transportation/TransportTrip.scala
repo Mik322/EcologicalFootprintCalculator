@@ -47,11 +47,10 @@ class TransportTrip {
     val find_car = FxApp.getFootPrint.cars.find(c => c.name == car.getValue)
     find_car match {
       case None =>
-      case Some(value) => {
+      case Some(value) =>
         val mean = Car(value.name, value.consumption, value.fuel)
         val newFootPrint = FootPrintOps.addTrip(FxApp.getFootPrint, mean, kms.getText.toInt, Date(date.getValue))
         FxApp.updateFootPrint(newFootPrint)
-      }
     }
   }
 
@@ -83,10 +82,9 @@ class TransportTrip {
   }
 
   def addCars(list: List[Car]): Unit = list match {
-    case ::(head, next) => {
+    case ::(head, next) =>
       car.getItems.add(head.name)
       addCars(next)
-    }
     case Nil =>
   }
 

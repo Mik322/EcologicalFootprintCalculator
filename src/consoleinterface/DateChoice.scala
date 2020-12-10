@@ -18,11 +18,10 @@ object DateChoice {
     val pattern = "^[0-3]?[0-9](\\/)[0-1]?[0-9](\\/)[1-2][0-9]{3}$".r()
     val input = readLine()
     pattern.findFirstIn(input) match {
-      case None => {
+      case None =>
         println("Not a valid format")
         getSpecificDate
-      }
-      case Some(value) => {
+      case Some(value) =>
         val dateValues = value.split("\\/")
         val date = Date.createDate(dateValues(0).toInt, dateValues(1).toInt, dateValues(2).toInt)
         if (date > Date.today()) {
@@ -30,7 +29,6 @@ object DateChoice {
           getSpecificDate
         }
         date
-      }
     }
   }
 

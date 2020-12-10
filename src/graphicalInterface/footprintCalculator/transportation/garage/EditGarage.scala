@@ -21,10 +21,9 @@ class EditGarage {
   }
 
   def addCars(list: List[Car]): Unit = list match {
-    case ::(head, next) => {
+    case ::(head, next) =>
       choose_car.getItems.add(head.name)
       addCars(next)
-    }
     case Nil =>
   }
 
@@ -33,7 +32,7 @@ class EditGarage {
     val car = footPrint.cars.find(c => c.name == choose_car.getValue)
     car match {
       case None =>
-      case Some(value) => {
+      case Some(value) =>
         val new_car = value.copy(name = car_new_name.getText)
         val new_cars = footPrint.cars.updated(footPrint.cars.indexOf(value), new_car)
         val new_trips = footPrint.transportTrips.map(t => t.mean match {
@@ -42,7 +41,6 @@ class EditGarage {
         })
         val new_footPrint = footPrint.copy(cars = new_cars, transportTrips = new_trips)
         FxApp.updateFootPrint(new_footPrint)
-      }
     }
   }
 
@@ -51,11 +49,10 @@ class EditGarage {
     val car = footPrint.cars.find(c => c.name == choose_car.getValue)
     car match {
       case None =>
-      case Some(value) => {
+      case Some(value) =>
         val new_cars = footPrint.cars.filterNot(c => c == value)
         val new_footPrint = footPrint.copy(cars = new_cars)
         FxApp.updateFootPrint(new_footPrint)
-      }
     }
   }
 }

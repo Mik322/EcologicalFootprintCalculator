@@ -50,6 +50,7 @@ class SetElectricitySources {
     case Nil =>
   }
 
+  @scala.annotation.tailrec
   private def setCurrentSources(sources: List[ElectricitySource]): Unit = sources match {
     case ::(head, next) => head.source match {
       case TypeOfElectricitySource.Gas => setFieldValue(gas, head.percentage)

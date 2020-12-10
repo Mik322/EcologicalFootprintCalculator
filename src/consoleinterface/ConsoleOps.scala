@@ -29,10 +29,11 @@ object ConsoleOps {
     NewProfile(username, HealthTrackerConsoleOps.getBodyInput(),FootPrintQuestions.setFootPrintData())
   }
 
-  def printOptions() = {
+  def printOptions(): Unit = {
     println("1. FootPrint Calculator\n2. Health Tracker\n3. Save States\n0. Quit")
   }
 
+  @scala.annotation.tailrec
   def getUserChoice(caloricMaps: CaloricMaps, cars: List[Car]): UserChoice = {
     print("Insert Option Number")
     val input = readLine()
@@ -41,11 +42,10 @@ object ConsoleOps {
       case "2" => HealthTrackerOptions.healthTrackerOptions(caloricMaps)
       case "3" => SaveStates
       case "0" => Quit
-      case _ => {
+      case _ =>
         println("Choice not available")
         printOptions()
         getUserChoice(caloricMaps, cars)
-      }
     }
   }
 }

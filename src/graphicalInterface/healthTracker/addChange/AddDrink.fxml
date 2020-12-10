@@ -29,7 +29,7 @@
                   <Insets bottom="10.0" />
               </VBox.margin>
           </ChoiceBox>
-          <Label text="How much did you drink? (in milimiters)">
+          <Label text="How much did you drink? (in millimeters)">
               <VBox.margin>
                   <Insets bottom="10.0" />
               </VBox.margin>

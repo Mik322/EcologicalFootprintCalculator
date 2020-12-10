@@ -31,6 +31,7 @@ object BodyInput {
     }
   }
 
+  @scala.annotation.tailrec
   def biologicalSexInput(): BiologicalSex = {
     println("Biological Sex:\n0.Male\n1.Female")
     try {
@@ -69,8 +70,8 @@ object BodyInput {
     print("What is your age? ")
     try {
       readLine().toInt match {
-        case age if (age >= 14 && age <= 100) => age
-        case age if (age < 14) =>
+        case age if age >= 14 && age <= 100 => age
+        case age if age < 14 =>
           println("You're to young")
           ageInput()
         case _ =>

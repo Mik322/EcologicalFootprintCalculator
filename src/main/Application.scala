@@ -50,11 +50,10 @@ object Application extends App {
         main_loop(states.copy(healthTracker = newHealthTracker))
 
       // Sets the Weight goal
-      case SetGoal(goal,date) => {
+      case SetGoal(goal,date) =>
         val newHealthTracker = states.healthTracker.copy(goal = (goal,date))
         val updatedHealthTracker = Body.changeBody(BodyChange.ChangeWeight(states.healthTracker.body.weight,Date.today()),newHealthTracker)
         main_loop(states.copy(healthTracker = updatedHealthTracker))
-      }
 
       // Handles all types of  health Information requests
       case information: HealthInformation =>
@@ -73,41 +72,35 @@ object Application extends App {
         val newHealthTracker = Body.changeBody(bodyParam, states.healthTracker)
         main_loop(states.copy(healthTracker = newHealthTracker))
 
-      case sleep: AddSleep => {
+      case sleep: AddSleep =>
         val newHealthTracker = states.healthTracker.copy(sleepTracker = addSleep(states.healthTracker.sleepTracker,sleep))
         main_loop(states.copy(healthTracker = newHealthTracker))
-      }
 
-      case AddCar(name: String, consumption: Double, fuel: Fuel) => {
+      case AddCar(name: String, consumption: Double, fuel: Fuel) =>
         val car = Car(name, consumption, fuel)
         val new_cars = states.footPrintState.cars.appended(car)
         val newFootPrint = states.footPrintState.copy(cars = new_cars)
         main_loop(states.copy(footPrintState = newFootPrint))
-      }
 
-      case DeleteCar(car: Car) => {
+      case DeleteCar(car: Car) =>
         val new_cars = states.footPrintState.cars.filterNot(c => c == car)
         val newFootPrint = states.footPrintState.copy(cars = new_cars)
         main_loop(states.copy(footPrintState = newFootPrint))
-      }
 
-      case EditCar(car: Int, name: String) => {
+      case EditCar(car: Int, name: String) =>
         val new_car = states.footPrintState.cars(car).copy(name = name)
         val new_cars = states.footPrintState.cars.updated(car, new_car)
         val newFootPrint = states.footPrintState.copy(cars = new_cars)
         main_loop(states.copy(footPrintState = newFootPrint))
-      }
 
-      case GetCars => {
+      case GetCars =>
         val cars = FootPrintOps.getCars(states.footPrintState.cars)
         printString(cars)
         main_loop(states)
-      }
 
-      case AddTransportTrip(mean: TransportMean, km: Double, date: Date) => {
+      case AddTransportTrip(mean: TransportMean, km: Double, date: Date) =>
         val newFootPrint = FootPrintOps.addTrip(states.footPrintState, mean, km, date)
         main_loop(states.copy(footPrintState = newFootPrint))
-      }
 
       case GetTransportEmissions =>
         val emissions = TransportTrip.getTransportEmissionsString(states.footPrintState)
@@ -138,23 +131,20 @@ object Application extends App {
         printString(emissions)
         main_loop(states)
 
-      case GetEcologicalFootPrint => {
+      case GetEcologicalFootPrint =>
         val earths = FootPrintOps.getEarthsConsumedString(states.footPrintState)
         printString(earths)
         main_loop(states)
-      }
 
-      case GetTotalEmissions => {
+      case GetTotalEmissions =>
         val emissions = FootPrintOps.getTotalEmissionsString(states.footPrintState)
         printString(emissions)
         main_loop(states)
-      }
 
-      case GetTotalCarEmissions => {
+      case GetTotalCarEmissions =>
         val emissions = Car.getTotalEmissions(states.footPrintState.transportTrips).toString
         printString(emissions)
         main_loop(states)
-      }
 
       case GetTotalEmissionsByCar(car: Car) =>
         val emissions = Car.getEmissionByCar(states.footPrintState.transportTrips,car.name)
@@ -171,50 +161,46 @@ object Application extends App {
         printString(s"${fuel} liters")
         main_loop(states)
 
-      case ChangeElectricityConsumption(monthlyConsumption: Double) => {
+      case ChangeElectricityConsumption(monthlyConsumption: Double) =>
         val newElectricity = states.footPrintState.electricity.copy(monthlyConsumption = monthlyConsumption)
         val newFootPrint = states.footPrintState.copy(electricity = newElectricity)
         main_loop(states.copy(footPrintState = newFootPrint))
-      }
 
-      case GetEnergySources => {
+      case GetEnergySources =>
         val sources = ElectricitySource.getEnergySources(states.footPrintState.electricity)
         printString(sources)
         main_loop(states)
-      }
 
-      case GetRequiredSolarPanels(solarPanelPower: Double, dailySunLightHours: Int) => {
+      case GetRequiredSolarPanels(solarPanelPower: Double, dailySunLightHours: Int) =>
         val solarPanels = Electricity.getRequiredSolarPanels(states.footPrintState.electricity, solarPanelPower, dailySunLightHours)
         printString(Electricity.getSolarPanelsString(solarPanels))
         main_loop(states)
-    }
     }
   }
 
   private def printString(s: String): Unit = println(s)
 
+  @scala.annotation.tailrec
   def start(): States = {
     //Gets the choice load or create new profile
     val choice = ConsoleOps.FirstPrompt()
 
     //Gets the states
     choice match {
-      case StartOptions.LoadState => {
+      case StartOptions.LoadState =>
         val username = FileOperations.getUsername()
         loadStates(username) match {
           //If there is no state saved loadStates returns None so it asks for a new Profile
-          case None => {
+          case None =>
             printLoadError
             start()
-          }
           case Some(states) => states
         }
-      }
       case profileData: StartOptions.NewProfile => States.createStates(profileData)
     }
   }
 
-  def startLoop()={
+  def startLoop(): Unit ={
     main_loop(states = start())
   }
 

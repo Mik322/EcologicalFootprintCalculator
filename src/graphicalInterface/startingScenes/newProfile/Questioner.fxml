@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<ScrollPane prefHeight="564.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.newprofile.Questionary">
+<ScrollPane prefHeight="564.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.newProfile.Questioner">
    <content>
       <VBox alignment="TOP_CENTER" prefHeight="1150.0" prefWidth="697.0" spacing="10.0">
          <children>
@@ -15,7 +15,7 @@
             </Label>
             <Label text="Distance travelled monthly by private car" />
             <TextField fx:id="distance_car" />
-            <Label text="Distance travelled anually by public transport" />
+            <Label text="Distance travelled annually by public transport" />
             <ChoiceBox fx:id="distance_publicT" layoutX="103.0" layoutY="37.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="79.0" layoutY="74.0" text="Holiday Destination" />
             <ChoiceBox fx:id="holidayDest" layoutX="103.0" layoutY="101.0" prefHeight="27.0" prefWidth="195.0" />
@@ -39,7 +39,7 @@
             <ChoiceBox fx:id="household" layoutX="155.0" layoutY="721.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="125.0" layoutY="758.0" text="How many children do you have in this household?" />
             <ChoiceBox fx:id="childrenHousehold" layoutX="155.0" layoutY="785.0" prefHeight="27.0" prefWidth="195.0" />
-            <Label layoutX="115.0" layoutY="822.0" text="Amount of domestic waste produced each week(a full large bin is aprox 30 kg)" />
+            <Label layoutX="115.0" layoutY="822.0" text="Amount of domestic waste produced each week(a full large bin is approx 30 kg)" />
             <ChoiceBox fx:id="amountOfWaste" layoutX="155.0" layoutY="849.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="41.0" layoutY="886.0" text="If you have a dishwasher, how many times do you run it on an average week?" />
             <ChoiceBox fx:id="dishWasher" layoutX="155.0" layoutY="913.0" prefHeight="27.0" prefWidth="195.0" />

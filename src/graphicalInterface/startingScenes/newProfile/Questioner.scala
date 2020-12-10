@@ -1,15 +1,15 @@
-package graphicalInterface.startingScenes.newprofile
+package graphicalInterface.startingScenes.newProfile
 
 import consoleinterface.StartOptions.FootPrintData
 import consoleinterface.footprint.FootPrintQuestions
-import graphicalInterface.startingScenes.newprofile.BodyInput
+import graphicalInterface.startingScenes.newProfile.BodyInput
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.Parent
 import javafx.scene.control.{CheckBox, ChoiceBox, ListView, TextField}
 import javafx.stage.Stage
 
-class Questionary {
+class Questioner {
 
   //private var distance_car_list: ObservableList[String] = FXCollections.observableArrayList("More than 2000", "Between 1250 and 2000", "Between 125 and 1250", "Less than 125", "0")
   private val distance_publicT_list: ObservableList[String] = FXCollections.observableArrayList("More than 32000", "Between 25000 and 32000", "Between 15000 and 25000", "Between 1500 and 15000","Less than 1500", "0")
@@ -76,10 +76,10 @@ class Questionary {
 
   private var username: String = _
 
-  def setUsername(username: String) = this.username = username
+  def setUsername(username: String): Unit = this.username = username
 
   @FXML
-  def initialize = {
+  def initialize: Unit = {
     distance_publicT.setItems(distance_publicT_list)
     holidayDest.setItems(holidayDest_list)
     averageGasBill.setItems(averageGasBill_list)
