@@ -4,6 +4,7 @@ import consoleinterface.ConsoleOps.{getUserChoice, printOptions}
 import consoleinterface.UserChoice.{AddCar, AddSleep, AddTransportTrip, AddWaste, GetBody, GetEcologicalFootPrint, GetEnergyEmissions, GetTotalEmissions, GetTransportEmissions, GetTransportHistory, GetWasteEmissions, GoToMainMenu, Quit, SaveStates, SetGoal, _}
 import consoleinterface._
 import consoleinterface.healthtracker.options.{AddCaloricActivity, BodyChange, HealthInformation}
+import graphicalInterface.FxApp
 import main.fileOperations.FileOperations
 import main.healthTracker.HealthInformationOps.getHealthInformationString
 import main.fileOperations.FileOperations._
@@ -20,13 +21,11 @@ import scala.annotation.tailrec
 
 object Application extends App {
 
-  private def converter[A](func: String => A)(value: String): A = func(value)
-
-  val int = converter(s => s.toInt) _
+  val int = FxApp.int
 
   val foodMap = loadCaloriesMap("Food.txt", int)
   val drinksMap = loadCaloriesMap("Drinks.txt", int)
-  val exercisesMap = loadCaloriesMap("Exercises.txt", s => s.toDouble)
+  val exercisesMap = loadCaloriesMap("Exercises.txt", FxApp.double)
 
   val caloricMaps = CaloricMaps(foodMap, drinksMap, exercisesMap)
 

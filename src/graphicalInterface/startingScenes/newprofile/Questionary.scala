@@ -118,12 +118,10 @@ class Questionary {
   }
 
   def submit(): Unit = {
-    //TODO: fix error here
     val loader = new FXMLLoader(getClass.getResource("BodyInput.fxml"))
     val root: Parent = loader.load()
     loader.getController[BodyInput].setData(username, FootPrintData(calcPoints, averageElectricBill.getText().toInt))
     val scene = distance_car.getScene
     scene.setRoot(root)
-    //distance_car.getScene.setRoot(root)
   }
 }

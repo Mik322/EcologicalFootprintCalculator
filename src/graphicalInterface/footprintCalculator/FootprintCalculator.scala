@@ -45,12 +45,12 @@ class FootprintCalculator {
   }
 
   private def setElectricityEmissions(): Unit = {
-    val emissions = energy.Electricity.getElectricityEmissions(FxApp.getFootPrint.electricity)
+    val emissions = energy.Electricity.getElectricityEmissions(FxApp.getFootPrint.electricity).toInt
     electricity.setText(s"${emissions}g")
   }
 
   private def setTransportEmissions(): Unit = {
-    val emissions = TransportTrip.getTotalEmissions(FxApp.getFootPrint.transportTrips)
+    val emissions = TransportTrip.getTotalEmissions(FxApp.getFootPrint.transportTrips).toInt
     transport.setText(s"${emissions}g")
   }
 
@@ -59,7 +59,6 @@ class FootprintCalculator {
     waste.setText(s"${emissions}g")
   }
 
-  //TODO: problem here
   private def setTotalEmissions(): Unit = {
     val emissions = FootPrintOps.getTotalEmissions(FxApp.getFootPrint)
     total.setText(s"${emissions}g")

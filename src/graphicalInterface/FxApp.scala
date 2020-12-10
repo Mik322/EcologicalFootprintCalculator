@@ -16,7 +16,8 @@ object FxApp {
 
 
   val int = converter(s => s.toInt) _
-  val caloricMaps = CaloricMaps(loadCaloriesMap("Food.txt", int), loadCaloriesMap("Drinks.txt", int), loadCaloriesMap("Exercises.txt", s => s.toDouble))
+  val double = converter(s => s.toDouble) _
+  val caloricMaps = CaloricMaps(loadCaloriesMap("Food.txt", int), loadCaloriesMap("Drinks.txt", int), loadCaloriesMap("Exercises.txt", double))
 
   var states: States = _
 
