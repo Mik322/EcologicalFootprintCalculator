@@ -17,6 +17,8 @@ class Informations {
   var consumption: Label = _
   @FXML
   var emissions: Label = _
+  @FXML
+  var missing_values: Label = _
 
   private var homePage: HomePage = _
 
@@ -25,12 +27,16 @@ class Informations {
   }
 
   def calculateFunc() = {
-    val fuelConsumption = Car.getMonthFuelConsumption(homePage.getFootPrint, Date(date_picker.getValue))
-    consumption.setText(s"You consumed a total of ${fuelConsumption.toInt} liters of fuel in ${date_picker.getValue.getMonth.toString.toLowerCase.capitalize} of ${date_picker.getValue.getYear}")
-    consumption.setVisible(true)
-    val gasEmissions = Car.getMonthlyCarEmission(homePage.getFootPrint, Date(date_picker.getValue))
-    emissions.setText(s"You emitted a total of ${gasEmissions} g CO2 of in ${date_picker.getValue.getMonth.toString.toLowerCase.capitalize} of ${date_picker.getValue.getYear}")
-    emissions.setVisible(true)
+    if (date_picker.getValue == null) missing_values.setText("You need to fill every parameter in order to see the information")
+    else {
+      missing_values.setText("")
+      val fuelConsumption = Car.getMonthFuelConsumption(homePage.getFootPrint, Date(date_picker.getValue))
+      consumption.setText(s"You consumed a total of ${fuelConsumption.toInt} liters of fuel in ${date_picker.getValue.getMonth.toString.toLowerCase.capitalize} of ${date_picker.getValue.getYear}")
+      consumption.setVisible(true)
+      val gasEmissions = Car.getMonthlyCarEmission(homePage.getFootPrint, Date(date_picker.getValue))
+      emissions.setText(s"You emitted a total of ${gasEmissions} g CO2 of in ${date_picker.getValue.getMonth.toString.toLowerCase.capitalize} of ${date_picker.getValue.getYear}")
+      emissions.setVisible(true)
+    }
   }
 
 }

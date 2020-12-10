@@ -10,21 +10,21 @@
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.HomePage">
 
    <left>
-      <VBox fx:id="side_bar" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="280.0" prefWidth="151.0" style="-fx-background-color: #07245A#07245A;" BorderPane.alignment="CENTER">
+      <VBox fx:id="side_bar" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="280.0" prefWidth="151.0" styleClass="home_page" stylesheets="@Style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#footprintCalculator" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Footprint Calculator" textFill="#fffefe">
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#footprintCalculator" prefHeight="70.0" prefWidth="130.0" styleClass="home_page_button" stylesheets="@Style.css" text="Footprint Calculator" textFill="WHITE">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="healthTrackerButton" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#healthTracker" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Health Tracker" textFill="#fffefe">
+            <Button fx:id="healthTrackerButton" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#healthTracker" prefHeight="70.0" prefWidth="130.0" styleClass="home_page_button" stylesheets="@Style.css" text="Health Tracker" textFill="WHITE">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="saveStatesButton" layoutX="10.0" layoutY="37.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#saveProfile" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Save Profile" textFill="#fffefe">
+            <Button fx:id="saveStatesButton" layoutX="10.0" layoutY="37.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#saveProfile" prefHeight="70.0" prefWidth="130.0" styleClass="home_page_button" stylesheets="@Style.css" text="Save Profile" textFill="WHITE">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="quitButton" layoutX="10.0" layoutY="64.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#quit" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Quit" textFill="#fffefe">
+            <Button fx:id="quitButton" layoutX="10.0" layoutY="64.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#quit" prefHeight="70.0" prefWidth="130.0" styleClass="home_page_button" stylesheets="@Style.css" text="Quit" textFill="WHITE">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>

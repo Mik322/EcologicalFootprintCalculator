@@ -1,5 +1,66 @@
-.menu_ops{
-    font-family: "Be Vietnam";
-    color: #07245a;
-    background-color: transparent;
+.white_button{
+    -fx-background-color: transparent;
+    -fx-text-fill: #07245a;
+    -fx-background-radius: 0;
 }
+
+.white_button:hover{
+    -fx-background-color: #d4d4d4;
+}
+
+.white_menu{
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #07245a;
+}
+
+.green_white_menu{
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #1a9000;
+}
+
+.green_white_button{
+    -fx-background-color: transparent;
+    -fx-text-fill: #1a9000;
+    -fx-background-radius: 0;
+}
+
+.green_white_button:hover{
+    -fx-background-color: #d4d4d4;
+}
+
+.blue_button{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-background-radius: 0;
+}
+
+.blue_button:hover{
+    -fx-background-color: white;
+    -fx-text-fill: #07245a;
+}
+
+.green_button{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-background-radius: 0;
+}
+
+.green_button:hover{
+    -fx-background-color: white;
+    -fx-text-fill: #1a9000;
+}
+
+.home_page_button{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.home_page_button:hover{
+    -fx-background-color: white;
+    -fx-text-fill: #07245a;
+}
+
+.home_page {
+    -fx-background-color: #07245a;
+}
+

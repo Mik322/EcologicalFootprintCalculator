@@ -28,6 +28,8 @@ class AddCar {
   var missing_values: Label = _
   @FXML
   var invalid_char: Label = _
+  @FXML
+  var success_label: Label = _
 
   @FXML
   def initialize = {
@@ -49,6 +51,7 @@ class AddCar {
           val new_footPrint = footPrint.copy(cars = new_cars)
           homePage.updateFootPrint(new_footPrint)
           error_message.setText("")
+          success_label.setText("Your car has been added with success!")
         }
         case Some(value) => ExistingCar()
       }
@@ -60,14 +63,17 @@ class AddCar {
 
   def InvalidChar() = {
     invalid_char.setText("Invalid Character. Please try again")
+    success_label.setText("")
   }
 
   def MissingValues() = {
     missing_values.setText("You need to fill every parameter in order to add a car")
+    success_label.setText("")
   }
 
   def ExistingCar() = {
     error_message.setText("You already have a car with that name. Please try a new one")
+    success_label.setText("")
   }
 
 }

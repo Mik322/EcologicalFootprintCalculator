@@ -42,18 +42,23 @@ class AddWaste {
   }
 
   def addWaste(): Unit = {
-    try {
-      val kg = quantity.getText.toInt
-      val waste = wasteType.getValue
-      val newFootPrint = FootPrintOps.addWaste(homePage.getFootPrint, kg, waste)
-      homePage.updateFootPrint(newFootPrint)
-      infoLabel.setText("Added")
-      infoLabel.setTextFill(Color.BLACK)
-      setTotals()
-    } catch {
-      case _: NumberFormatException =>
-        infoLabel.setText("Number not valid")
-        infoLabel.setTextFill(Color.RED)
+    if (wasteType.getValue == null || quantity.getText.isBlank) {
+      infoLabel.setText("You need to fill every parameter in order to add a waste")
+      infoLabel.setTextFill(Color.RED)
+    } else {
+      try {
+        val kg = quantity.getText.toInt
+        val waste = wasteType.getValue
+        val newFootPrint = FootPrintOps.addWaste(homePage.getFootPrint, kg, waste)
+        homePage.updateFootPrint(newFootPrint)
+        infoLabel.setText("Added")
+        infoLabel.setTextFill(Color.BLACK)
+        setTotals()
+      } catch {
+        case _: NumberFormatException =>
+          infoLabel.setText("Number not valid")
+          infoLabel.setTextFill(Color.RED)
+      }
     }
   }
 }

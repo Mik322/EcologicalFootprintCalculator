@@ -12,27 +12,27 @@
    <left>
       <VBox alignment="CENTER" style="-fx-background-color: #20AF00#20AF00;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="getCaloriesInDayButton" mnemonicParsing="false" onMouseClicked="#getCaloriesInDayDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Get calories in a day" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Button fx:id="getCaloriesInDayButton" mnemonicParsing="false" onMouseClicked="#getCaloriesInDayDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get calories in a day" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="getListOfCaloricActivitiesButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#getListOfCaloricActivitiesDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Get list of caloric activities" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Button fx:id="getListOfCaloricActivitiesButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#getListOfCaloricActivitiesDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get list of caloric activities" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="getNetCaloriesInLastDaysButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getNetCaloriesInLastDaysDisplay" prefWidth="130.0" style="-fx-background-color: transparent;" text="Get the net calories in the last number of days" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Button fx:id="getNetCaloriesInLastDaysButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getNetCaloriesInLastDaysDisplay" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get the net calories in the last number of days" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="seeListOfCaloricActivitiesInADateRangeButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#seeListOfCaloricActivitiesInADateRangeDisplay" prefWidth="130.0" style="-fx-background-color: transparent;" text="See list of caloric activities in a date range" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Button fx:id="seeListOfCaloricActivitiesInADateRangeButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#seeListOfCaloricActivitiesInADateRangeDisplay" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="See list of caloric activities in a date range" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="getSleepTimeInDateButton" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#getSleepTimeInDateDisplay" prefWidth="130.0" style="-fx-background-color: transparent;" text="Get your sleep time in a specific date" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Button fx:id="getSleepTimeInDateButton" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#getSleepTimeInDateDisplay" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get your sleep time in a specific date" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="getAverageSleepInADateRangeButton" layoutX="10.0" layoutY="365.0" mnemonicParsing="false" onMouseClicked="#getAverageSleepInADateRangeDisplay" prefWidth="130.0" style="-fx-background-color: transparent;" text="Get your average sleep time between two dates" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Button fx:id="getAverageSleepInADateRangeButton" layoutX="10.0" layoutY="365.0" mnemonicParsing="false" onMouseClicked="#getAverageSleepInADateRangeDisplay" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get your average sleep time between two dates" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
@@ -72,7 +72,7 @@
                   </Label>
                   <ScrollPane fx:id="scroll_pane">
                      <content>
-                        <VBox minWidth="${scroll_pane.viewportBounds.width}" alignment="CENTER">
+                        <VBox alignment="CENTER" minWidth="${scroll_pane.viewportBounds.width}">
                            <children>
                               <Label fx:id="weightEvolutionLabel" alignment="TOP_CENTER" text="Label" textAlignment="CENTER" wrapText="true" />
                            </children>

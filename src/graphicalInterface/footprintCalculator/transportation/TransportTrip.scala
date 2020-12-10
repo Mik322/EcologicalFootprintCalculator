@@ -1,5 +1,7 @@
 package graphicalInterface.footprintCalculator.transportation
 
+import java.lang.NumberFormatException
+
 import graphicalInterface.HomePage
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.FXML
@@ -33,6 +35,12 @@ class TransportTrip {
   var enter_car: Label = new Label("Please choose the car of your trip")
   @FXML
   var car: ChoiceBox[String] = new ChoiceBox[String]()
+  @FXML
+  var missing_values: Label = _
+  @FXML
+  var invalid_char: Label = _
+  @FXML
+  var success_label: Label = _
 
   @FXML
   def initialize(homePage: HomePage) = {
@@ -47,20 +55,32 @@ class TransportTrip {
   }
 
   def AddTrip() = {
-    means.getValue match {
-      case Car => AddCarTrip()
-      case _ => AddPublicT()
+    if (means.getValue == null || kms.getText().isBlank || date.getValue == null) MissingValues()
+    else {
+      missing_values.setText("")
+      try{
+      means.getValue match {
+        case Car => AddCarTrip()
+        case _ => AddPublicT()
+      }
+    }catch {
+        case _: NumberFormatException => InvalidChar()
+      }
     }
   }
 
   def AddCarTrip(): Unit = {
-    val find_car = homePage.getFootPrint.cars.find(c => c.name == car.getValue)
-    find_car match {
-      case None =>
-      case Some(value) => {
-        val mean = Car(value.name, value.consumption, value.fuel)
-        val newFootPrint = FootPrintOps.addTrip(homePage.getFootPrint, mean, kms.getText.toInt, Date(date.getValue))
-        homePage.updateFootPrint(footPrintState = newFootPrint)
+    if (car.getValue == null) MissingValues()
+    else {
+      val find_car = homePage.getFootPrint.cars.find(c => c.name == car.getValue)
+      find_car match {
+        case None =>
+        case Some(value) => {
+          val mean = Car(value.name, value.consumption, value.fuel)
+          val newFootPrint = FootPrintOps.addTrip(homePage.getFootPrint, mean, kms.getText.toInt, Date(date.getValue))
+          homePage.updateFootPrint(footPrintState = newFootPrint)
+          Success()
+        }
       }
     }
   }
@@ -68,6 +88,7 @@ class TransportTrip {
   def AddPublicT(): Unit = {
     val newFootPrint = FootPrintOps.addTrip(homePage.getFootPrint, means.getValue, kms.getText.toInt, Date(date.getValue))
     homePage.updateFootPrint(footPrintState = newFootPrint)
+    Success()
   }
 
   def TripsHistory = {
@@ -86,7 +107,6 @@ class TransportTrip {
       }
     } else {
       if (means.getValue != Car) {
-        println("Not a car")
         car_box.getChildren.remove(enter_car)
         car_box.getChildren.remove(car)
       }
@@ -99,6 +119,25 @@ class TransportTrip {
       addCars(next)
     }
     case Nil =>
+  }
+
+  def InvalidChar() = {
+    invalid_char.setText("Invalid Character. Please try again")
+    success_label.setText("")
+  }
+
+  def MissingValues() = {
+    missing_values.setText("You need to fill every parameter in order to add a transportation trip")
+    success_label.setText("")
+  }
+
+  def Success() = {
+    success_label.setText("Your trip has been added with success!")
+    invalid_char.setText("")
+    missing_values.setText("")
+    means.getItems.clear()
+    kms.clear()
+    date.setValue(null)
   }
 
 }
