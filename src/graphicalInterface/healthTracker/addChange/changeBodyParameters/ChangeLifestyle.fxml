@@ -46,7 +46,11 @@
             </RadioButton>
          </children>
       </VBox>
-      <Button fx:id="changeLifestyleConfirm" mnemonicParsing="false" onMouseClicked="#changeLifestyle" text="Change lifestyle" />
+      <Button fx:id="changeLifestyleConfirm" mnemonicParsing="false" onMouseClicked="#changeLifestyle" text="Change lifestyle">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></Button>
+      <Label fx:id="changedLabel" text="Changed!" visible="false" />
    </children>
    <padding>
       <Insets right="10.0" />

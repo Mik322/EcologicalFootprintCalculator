@@ -11,13 +11,29 @@ class GetSleepTimeInDate {
   @FXML
   var sleepDate: DatePicker = _
   @FXML
-  var sleepLabel: Label =_
+  var sleepLabel: Label = _
+  @FXML
+  var dateErrorLabel: Label = _
 
-  def getSleepTime(): Unit ={
-    val date = Date(sleepDate.getValue)
-    val healthTracker = FxApp.getHealthTracker
-    val sleepInDay = SleepTracker.getSleepInDay(healthTracker.sleepTracker,date)
-    sleepLabel.setText(getSleepInDayString(sleepInDay,date))
-    sleepLabel.setVisible(true)
+  def getSleepTime() = {
+    sleepLabel.setVisible(false)
+    dateErrorLabel.setVisible(false)
+    val dateValue = sleepDate.getValue
+    if (dateValue == null) {
+      dateErrorLabel.setText("Please choose a date!")
+      dateErrorLabel.setVisible(true)
+    } else {
+      val date = Date(dateValue)
+      if (date > Date.today()) {
+        dateErrorLabel.setText("You can't choose a future date!")
+        dateErrorLabel.setVisible(true)
+      }
+      else {
+        val healthTracker = FxApp.getHealthTracker
+        val sleepInDay = SleepTracker.getSleepInDay(healthTracker.sleepTracker, date)
+        sleepLabel.setText(getSleepInDayString(sleepInDay, date))
+        sleepLabel.setVisible(true)
+      }
+    }
   }
 }

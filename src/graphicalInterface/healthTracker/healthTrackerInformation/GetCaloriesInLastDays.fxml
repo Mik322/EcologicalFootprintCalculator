@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.GetCaloriesInLastDays">
    <children>
       <Label text="Get calories balance in the last days">
@@ -28,6 +27,11 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </TextField>
+      <Label fx:id="daysErrorLabel" text="Insert a valid value!(positive integer)" textFill="RED" visible="false">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
       <Button mnemonicParsing="false" onMouseClicked="#getCaloriesInLastDays" text="Get balance">
          <VBox.margin>
             <Insets bottom="10.0" />

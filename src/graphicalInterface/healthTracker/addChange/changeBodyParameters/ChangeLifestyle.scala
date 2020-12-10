@@ -3,9 +3,9 @@ package graphicalInterface.healthTracker.addChange.changeBodyParameters
 import consoleinterface.healthtracker.options.BodyChange
 import graphicalInterface.FxApp
 import javafx.fxml.FXML
-import javafx.scene.control.{RadioButton, ToggleGroup}
+import javafx.scene.control.{Label, RadioButton, ToggleGroup}
 import main.healthTracker.Body
-import main.healthTracker.Body._
+import main.healthTracker.Body.{Active, ExtremelyActive, Moderated, Sedentary, VeryActive}
 
 class ChangeLifestyle {
   @FXML
@@ -18,6 +18,8 @@ class ChangeLifestyle {
   var veryActive: RadioButton = _
   @FXML
   var extremelyActive: RadioButton = _
+  @FXML
+  var changedLabel: Label = _
 
   var lifestyleGroup = new ToggleGroup
 
@@ -49,5 +51,6 @@ class ChangeLifestyle {
     val healthTracker = FxApp.getHealthTracker
     val newHealthTracker = Body.changeBody(BodyChange.ChangeLifestyle(nLifestyle),healthTracker)
     FxApp.updateHealthTracker(newHealthTracker)
+    changedLabel.setVisible(true)
   }
 }

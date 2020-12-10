@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddCupOfWater">
    <children>
       <Label text="Add cup of water(250ml)">
@@ -24,6 +23,10 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
       </Button>
+      <Label fx:id="addedLabel" text="Added!" visible="false" />
    </children>
 </VBox>

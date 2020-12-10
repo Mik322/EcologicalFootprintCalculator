@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddFood">
    <children>
       <Label text="Add a food to your tracker">
@@ -29,16 +28,26 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </ChoiceBox>
+      <Label fx:id="foodErrorLabel" text="Choose a food!" textFill="RED" visible="false" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
       <Label text="How much did you eat? (in grams)">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
-      <TextField fx:id="foodQuantity" maxWidth="-Infinity" prefWidth="150.0" />
+      <TextField fx:id="foodQuantity" maxWidth="-Infinity" prefWidth="150.0">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></TextField>
+      <Label fx:id="weightErrorLabel" text="Insert a valid value! (positive integer)" textFill="RED" visible="false" wrapText="true" />
       <Button fx:id="addFoodConfirm" mnemonicParsing="false" onMouseClicked="#addFood" text="Add food">
          <VBox.margin>
-            <Insets top="10.0" />
+            <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </Button>
+      <Label fx:id="addedLabel" text="Added!" visible="false" wrapText="true" />
    </children>
 </VBox>

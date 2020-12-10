@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.SetGoal">
    <children>
       <Label text="Set your goal">
@@ -28,6 +27,15 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </ChoiceBox>
-      <Button fx:id="setGoalConfirm" mnemonicParsing="false" onMouseClicked="#updateGoal" text="Set goal" />
+      <Label fx:id="goalErrorLabel" text="Choose a goal!" textFill="RED" visible="false">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+      <Button fx:id="setGoalConfirm" mnemonicParsing="false" onMouseClicked="#updateGoal" text="Set goal">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></Button>
+      <Label fx:id="setLabel" text="Goal set!" visible="false" />
    </children>
 </VBox>

@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-  <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddExercise">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddExercise">
       <children>
         <Label text="Add a exercise to your tracker">
             <font>
@@ -29,16 +28,30 @@
                   <Insets bottom="10.0" />
               </VBox.margin>
           </ChoiceBox>
+      <Label fx:id="exerciseErrorLabel" text="Choose an exercise!" textFill="RED" visible="false">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
           <Label text="How much time did you train? (in minutes)">
               <VBox.margin>
                   <Insets bottom="10.0" />
               </VBox.margin>
           </Label>
-          <TextField fx:id="exerciseTime" maxWidth="-Infinity" prefWidth="150.0" />
+          <TextField fx:id="exerciseTime" maxWidth="-Infinity" prefWidth="150.0">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></TextField>
+      <Label fx:id="timeErrorLabel" text="Insert a valid value! (positive integer)" textFill="RED" visible="false">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
           <Button fx:id="addExerciseConfirm" mnemonicParsing="false" onMouseClicked="#addExercise" text="Add exercise">
               <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets bottom="10.0" top="10.0" />
               </VBox.margin>
           </Button>
+      <Label fx:id="addedLabel" text="Added!" visible="false" />
       </children>
   </VBox>

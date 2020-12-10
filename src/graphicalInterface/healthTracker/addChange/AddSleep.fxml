@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddSleep">
    <children>
       <Label text="Add sleep to your tracker">
@@ -29,6 +28,11 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </TextField>
+      <Label fx:id="timeErrorLabel" text="Insert a valid value! (positive integer)" textFill="RED" visible="false">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
       <Label text="When did you sleep that time?">
          <VBox.margin>
             <Insets bottom="10.0" />
@@ -39,6 +43,19 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </DatePicker>
-      <Button fx:id="addSleepConfirm" mnemonicParsing="false" onMouseClicked="#addSleepTrack" text="Add sleep" />
+      <Label fx:id="dateErrorLabel" textFill="RED">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
+      <Button fx:id="addSleepConfirm" mnemonicParsing="false" onMouseClicked="#addSleepTrack" text="Add sleep">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></Button>
+      <Label fx:id="addedLabel" text="Added!" visible="false">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
    </children>
 </VBox>

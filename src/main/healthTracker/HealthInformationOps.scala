@@ -89,7 +89,7 @@ object HealthInformationOps {
 
   private def goalPhrase(goal: Goal.Value): String = goal match {
     case Goal.KeepWeight => "keep weight"
-    case _ => s"${if (goal.kgChanged > 0) "gain" else "lose"} ${goal.kgChanged.abs} per week"
+    case _ => s"${if (goal.kgChanged > 0) "gain" else "lose"} ${goal.kgChanged.abs}kg per week"
   }
 
   def getCupsOfWaterToDrinkString(cupsToDrink: Int, cupsDrank: Int): String = {

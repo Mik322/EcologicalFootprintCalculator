@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-  <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddDrink">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddDrink">
       <children>
         <Label text="Add a drink to your tracker">
             <font>
@@ -29,16 +28,26 @@
                   <Insets bottom="10.0" />
               </VBox.margin>
           </ChoiceBox>
+      <Label fx:id="drinkErrorLabel" text="Choose a drink!" textFill="RED" visible="false">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
           <Label text="How much did you drink? (in milimiters)">
               <VBox.margin>
                   <Insets bottom="10.0" />
               </VBox.margin>
           </Label>
-          <TextField fx:id="drinkQuantity" maxWidth="-Infinity" prefWidth="150.0" />
+          <TextField fx:id="drinkQuantity" maxWidth="-Infinity" prefWidth="150.0">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></TextField>
+      <Label fx:id="quantityErrorLabel" text="Insert a valid value! (positive integer)" textFill="RED" visible="false" wrapText="true" />
           <Button fx:id="addDrinkConfirm" mnemonicParsing="false" onMouseClicked="#addDrink" text="Add drink">
               <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets bottom="10.0" top="10.0" />
               </VBox.margin>
           </Button>
+      <Label fx:id="addedLabel" text="Added!" visible="false" />
       </children>
   </VBox>

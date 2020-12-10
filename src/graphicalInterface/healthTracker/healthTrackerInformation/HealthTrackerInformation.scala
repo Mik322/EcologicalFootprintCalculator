@@ -21,7 +21,7 @@ class HealthTrackerInformation {
     necessarySleepLabel.setText(getNecessarySleepString(necessarySleep))
     bodyParameters.setText(getBodyParametersString(healthTracker.body))
   }
-
+  //TODO fix weight historic!
   @FXML
   var healthTrackerInformationDisplay:  Pane = _
 
