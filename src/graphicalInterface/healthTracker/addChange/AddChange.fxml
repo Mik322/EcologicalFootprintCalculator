@@ -1,25 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddChange">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddChange">
    <left>
-      <VBox maxHeight="1.7976931348623157E308" style="-fx-background-color: #67032f;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" style="-fx-background-color: #20AF00#20AF00 #20AF00#20AF00;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="addFoodButton" mnemonicParsing="false" onMouseClicked="#addFoodDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Add Food" textAlignment="CENTER" textFill="#fffdfd" wrapText="true" />
-            <Button fx:id="addDrinkButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#addDrinkDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Add Drink" textAlignment="CENTER" textFill="#fffdfd" wrapText="true" />
-            <Button fx:id="addExerciseButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#addExerciseDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Add Exercise" textAlignment="CENTER" textFill="#fffdfd" wrapText="true" />
-            <Button fx:id="addCupOfWaterButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#addSleepDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Add Sleep" textAlignment="CENTER" textFill="#fffdfd" wrapText="true" />
-            <Button fx:id="setGoalButton" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onMouseClicked="#setGoalDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Set Goal" textAlignment="CENTER" textFill="#fffdfd" wrapText="true" />
-            <Button fx:id="addCupOfWaterButton" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onMouseClicked="#addCupOfWaterDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Add Cup of Water-250ml" textAlignment="CENTER" textFill="#fffdfd" wrapText="true" />
-            <Button fx:id="changeBodyParametersButton" layoutX="10.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#changeBodyParametersMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: white;" text="Change Body Parameters" textAlignment="CENTER" textFill="#fffdfd" wrapText="true" />
+            <Button fx:id="addFoodButton" mnemonicParsing="false" onMouseClicked="#addFoodDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Add Food" textAlignment="CENTER" textFill="#fffdfd" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="addDrinkButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#addDrinkDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Add Drink" textAlignment="CENTER" textFill="#fffdfd" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="addExerciseButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#addExerciseDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Add Exercise" textAlignment="CENTER" textFill="#fffdfd" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#addSleepDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Add Sleep" textAlignment="CENTER" textFill="#fffdfd" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="setGoalButton" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onMouseClicked="#setGoalDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Set Goal" textAlignment="CENTER" textFill="#fffdfd" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="addCupOfWaterButton" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onMouseClicked="#addCupOfWaterDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Add Cup of Water-250ml" textAlignment="CENTER" textFill="#fffdfd" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="changeBodyParametersButton" layoutX="10.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#changeBodyParametersMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Change Body Parameters" textAlignment="CENTER" textFill="#fffdfd" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
          </children>
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="addChangeDisplay" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="addChangeDisplay" alignment="CENTER" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
