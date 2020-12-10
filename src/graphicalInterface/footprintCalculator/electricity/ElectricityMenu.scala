@@ -1,7 +1,7 @@
 package graphicalInterface.footprintCalculator.electricity
 
+import graphicalInterface.FxApp
 import graphicalInterface.FxApp.loadPage
-import graphicalInterface.HomePage
 import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
@@ -11,27 +11,22 @@ class ElectricityMenu {
   var pane: Pane = _
   @FXML
   var electricityLabel: Label = _
-
-  var homePage: HomePage = _
-
-  def setHomePage(homePage: HomePage): Unit = {
-    this.homePage = homePage
-    electricityLabel.setText(s"${homePage.getFootPrint.electricity.monthlyConsumption} kWh")
-  }
+  @FXML
+  def initialize(): Unit = electricityLabel.setText(s"${FxApp.getFootPrint.electricity.monthlyConsumption} kWh")
 
   def setElectricitySourcesDisplay(): Unit ={
-    loadPage[SetElectricitySources](pane).setHomePage(homePage)
+    loadPage[SetElectricitySources](pane)
   }
 
   def getTotalEmissionsFromElectricityDisplay(): Unit ={
-    loadPage[SeeElectricitySources](pane).initialize(homePage)
+    loadPage[SeeElectricitySources](pane)
   }
 
   def getSolarPanelRecommendationDisplay(): Unit ={
-    loadPage[SolarPanels](pane).setHomePage(homePage)
+    loadPage[SolarPanels](pane)
   }
 
   def changeElectricityConsumptionDisplay(): Unit ={
-    loadPage[ChangeConsumption](pane).setHomePage(homePage)
+    loadPage[ChangeConsumption](pane)
   }
 }

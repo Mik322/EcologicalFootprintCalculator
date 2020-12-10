@@ -14,24 +14,20 @@ class Garage {
   @FXML
   var garageLabel : Label = _
 
-  private var homePage: HomePage = _
-
-  def initialize(homePage: HomePage) = this.homePage = homePage
-
-  def addCarDisplay()={
-    loadPage[garage.AddCar](garageDisplay).initialize(homePage)
+  def addCarDisplay(): Unit={
+    loadPage[garage.AddCar](garageDisplay)
   }
 
-  def editGarage() ={
-    loadPage[garage.EditGarage](garageDisplay).initialize(homePage)
+  def editGarage(): Unit ={
+    loadPage[garage.EditGarage](garageDisplay)
   }
 
-  def displayInformationByCar() ={
-    loadPage[garage.InformationByCar](garageDisplay).initialize(homePage)
+  def displayInformationByCar(): Unit ={
+    loadPage[garage.InformationByCar](garageDisplay)
   }
 
-  def information() ={
-    loadPage[garage.Informations](garageDisplay).initialize(homePage)
+  def information(): Unit ={
+    loadPage[garage.Informations](garageDisplay)
   }
 
 }

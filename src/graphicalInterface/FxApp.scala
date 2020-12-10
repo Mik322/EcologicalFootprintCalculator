@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader
 import javafx.scene.layout.Pane
 import main.States
 import main.States.{FootPrintState, HealthTracker}
+import main.fileOperations.FileOperations
 import main.fileOperations.FileOperations.loadCaloriesMap
 import main.healthTracker.CaloricMaps
 
@@ -27,6 +28,8 @@ object FxApp {
 
   def getFootPrint: FootPrintState = states.footPrintState
   def getHealthTracker: HealthTracker = states.healthTracker
+
+  def saveStates(): Unit = FileOperations.saveStates(states)
 
   def main(args: Array[String]): Unit = {
     Application.launch(classOf[Main], args: _*)

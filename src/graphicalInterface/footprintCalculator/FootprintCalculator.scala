@@ -1,7 +1,7 @@
 package graphicalInterface.footprintCalculator
 
+import graphicalInterface.FxApp
 import graphicalInterface.FxApp.loadPage
-import graphicalInterface.HomePage
 import graphicalInterface.footprintCalculator.electricity.ElectricityMenu
 import graphicalInterface.footprintCalculator.transportation.Transportation
 import graphicalInterface.footprintCalculator.waste.AddWaste
@@ -15,7 +15,6 @@ import main.footprint.{FootPrintOps, energy}
 class FootprintCalculator {
   @FXML
   private var footprintDisplay: Pane = _
-
   @FXML
   private var waste: Label = _
   @FXML
@@ -27,39 +26,42 @@ class FootprintCalculator {
   @FXML
   private var earths: Label = _
 
-
-  private var homePage: HomePage = _
+  @FXML
+  def initialize(): Unit = {
+    setEmissions()
+    setEarths()
+  }
 
   def transportationMenu(): Unit = {
-    loadPage[Transportation](footprintDisplay).initialize(homePage)
+    loadPage[Transportation](footprintDisplay)
   }
 
   def wasteMenu(): Unit = {
-    loadPage[AddWaste](footprintDisplay).setHomePage(homePage)
+    loadPage[AddWaste](footprintDisplay)
   }
 
   def electricityMenu(): Unit={
-    loadPage[ElectricityMenu](footprintDisplay).setHomePage(homePage)
+    loadPage[ElectricityMenu](footprintDisplay)
   }
 
   private def setElectricityEmissions(): Unit = {
-    val emissions = energy.Electricity.getElectricityEmissions(homePage.getFootPrint.electricity)
+    val emissions = energy.Electricity.getElectricityEmissions(FxApp.getFootPrint.electricity)
     electricity.setText(s"${emissions}g")
   }
 
   private def setTransportEmissions(): Unit = {
-    val emissions = TransportTrip.getTotalEmissions(homePage.getFootPrint.transportTrips)
+    val emissions = TransportTrip.getTotalEmissions(FxApp.getFootPrint.transportTrips)
     transport.setText(s"${emissions}g")
   }
 
   private def setWasteEmissions(): Unit = {
-    val emissions = Waste.getTotalEmissions(homePage.getFootPrint.waste)
+    val emissions = Waste.getTotalEmissions(FxApp.getFootPrint.waste)
     waste.setText(s"${emissions}g")
   }
 
   //TODO: problem here
   private def setTotalEmissions(): Unit = {
-    val emissions = FootPrintOps.getTotalEmissions(homePage.getFootPrint)
+    val emissions = FootPrintOps.getTotalEmissions(FxApp.getFootPrint)
     total.setText(s"${emissions}g")
   }
 
@@ -71,14 +73,7 @@ class FootprintCalculator {
   }
 
   private def setEarths(): Unit = {
-    val numEarths = FootPrintOps.getNumEarths(homePage.getFootPrint)
+    val numEarths = FootPrintOps.getNumEarths(FxApp.getFootPrint)
     earths.setText(numEarths.toString)
   }
-
-  def initialize(homePage: HomePage): Unit = {
-    this.homePage = homePage
-    setEmissions()
-    setEarths()
-  }
-
 }

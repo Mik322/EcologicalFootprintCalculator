@@ -1,6 +1,6 @@
 package graphicalInterface.footprintCalculator.waste
 
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.FXML
 import javafx.scene.control.{ChoiceBox, Label, TextField}
@@ -25,17 +25,13 @@ class AddWaste {
   private var totalRecycled: Label = _
 
   @FXML
-  def initialize(): Unit = wasteType.getItems.addAll(Recycled, Food)
-
-  private var homePage: HomePage = _
-
-  def setHomePage(homePage: HomePage): Unit = {
-    this.homePage = homePage
+  def initialize(): Unit = {
+    wasteType.getItems.addAll(Recycled, Food)
     setTotals()
   }
 
   def setTotals(): Unit = {
-    val waste = homePage.getFootPrint.waste
+    val waste = FxApp.getFootPrint.waste
     emissions.setText(s"${Waste.getTotalEmissions(waste)}g CO2")
     totalOrganic.setText(s"${waste.foodWaste}kg")
     totalRecycled.setText(s"${waste.recycledWaste}kg")
@@ -45,8 +41,8 @@ class AddWaste {
     try {
       val kg = quantity.getText.toInt
       val waste = wasteType.getValue
-      val newFootPrint = FootPrintOps.addWaste(homePage.getFootPrint, kg, waste)
-      homePage.updateFootPrint(newFootPrint)
+      val newFootPrint = FootPrintOps.addWaste(FxApp.getFootPrint, kg, waste)
+      FxApp.updateFootPrint(newFootPrint)
       infoLabel.setText("Added")
       infoLabel.setTextFill(Color.BLACK)
       setTotals()

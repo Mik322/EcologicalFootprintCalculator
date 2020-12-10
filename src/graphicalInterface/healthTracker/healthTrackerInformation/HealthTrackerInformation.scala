@@ -1,7 +1,7 @@
 package graphicalInterface.healthTracker.healthTrackerInformation
 
+import graphicalInterface.FxApp
 import graphicalInterface.FxApp.loadPage
-import graphicalInterface.HomePage
 import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
@@ -10,13 +10,10 @@ import main.healthTracker.HealthInformationOps._
 import main.healthTracker.{CaloricActivity, SleepTracker}
 
 class HealthTrackerInformation {
-
-  private var home: HomePage = _
-
-  def initialize(home: HomePage): Unit = {
-    this.home = home
-    val healthTracker = home.getHealthTracker
-    val waterNeeds = CaloricActivity.cupsOfWaterToDrinkAndDrank(healthTracker, Date.today)
+  @FXML
+  def initialize(): Unit = {
+    val healthTracker = FxApp.getHealthTracker
+    val waterNeeds = CaloricActivity.cupsOfWaterToDrinkAndDrank(healthTracker, Date.today())
     waterNeedsLabel.setText(getCupsOfWaterToDrinkString(waterNeeds._1,waterNeeds._2))
     weightEvolutionLabel.setText(getWeightHistoric(healthTracker.weightHistory.sortBy(_._2), ""))
     goalTracking.setText(getWeightTrack(healthTracker.weightHistory.sortBy(_._2), healthTracker.goal))
@@ -41,27 +38,27 @@ class HealthTrackerInformation {
   var bodyParameters : Label = _
 
   def getCaloriesInDayDisplay(): Unit ={
-    loadPage[GetCaloriesInDay](healthTrackerInformationDisplay).initialize(home)
+    loadPage[GetCaloriesInDay](healthTrackerInformationDisplay)
   }
 
   def getListOfCaloricActivitiesDisplay(): Unit ={
-    loadPage[GetListOfCaloricActivities](healthTrackerInformationDisplay).initialize(home)
+    loadPage[GetListOfCaloricActivities](healthTrackerInformationDisplay)
   }
 
   def getNetCaloriesInLastDaysDisplay(): Unit ={
-    loadPage[GetCaloriesInLastDays](healthTrackerInformationDisplay).initialize(home)
+    loadPage[GetCaloriesInLastDays](healthTrackerInformationDisplay)
   }
 
   def seeListOfCaloricActivitiesInADateRangeDisplay(): Unit ={
-    loadPage[GetListOfCaloricActivitiesInADateRange](healthTrackerInformationDisplay).initialize(home)
+    loadPage[GetListOfCaloricActivitiesInADateRange](healthTrackerInformationDisplay)
   }
 
   def getSleepTimeInDateDisplay(): Unit ={
-    loadPage[GetSleepTimeInDate](healthTrackerInformationDisplay).initialize(home)
+    loadPage[GetSleepTimeInDate](healthTrackerInformationDisplay)
   }
 
   def getAverageSleepInADateRangeDisplay(): Unit ={
-    loadPage[GetSleepTimeInDateRange](healthTrackerInformationDisplay).initialize(home)
+    loadPage[GetSleepTimeInDateRange](healthTrackerInformationDisplay)
   }
   
 }

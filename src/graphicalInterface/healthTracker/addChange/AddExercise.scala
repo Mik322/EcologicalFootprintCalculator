@@ -8,25 +8,21 @@ import main.Date
 import main.healthTracker.CaloricActivity.addCaloricActivityToState
 
 class AddExercise {
-  private var home: HomePage = _
-
-  def initialize(home: HomePage): Unit = {
-    this.home = home
+  @FXML
+  var exerciseChoice: ChoiceBox[String] = new ChoiceBox[String]()
+  @FXML
+  var exerciseTime: TextField = _
+  @FXML
+  def initialize(): Unit = {
     addToExerciseList(FxApp.caloricMaps.exercisesMap.keys.toList.sorted)
   }
 
-  @FXML
-  var exerciseChoice: ChoiceBox[String] = new ChoiceBox[String]()
 
-  @FXML
-  var exerciseTime: TextField = _
-
-
-  def addExercise() ={
+  def addExercise(): Unit ={
     val exercise = AddSport(exerciseChoice.getValue,exerciseTime.getText().toInt,Date.today)
-    val healthTracker = home.getHealthTracker
+    val healthTracker = FxApp.getHealthTracker
     val newHealthTracker = addCaloricActivityToState(exercise,healthTracker,FxApp.caloricMaps)
-    home.updateHealthTracker(newHealthTracker)
+    FxApp.updateHealthTracker(newHealthTracker)
   }
 
   def addToExerciseList(list: List[String]):Unit  = list match {

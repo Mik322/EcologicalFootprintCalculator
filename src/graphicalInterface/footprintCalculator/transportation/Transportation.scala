@@ -14,18 +14,16 @@ class Transportation {
   @FXML
   var transportationLabel: Label = _
 
-  private var homePage: HomePage = _
-
-  def initialize(homePage: HomePage): Unit = {
-    this.homePage = homePage
-    loadPage[TransportInformations](transportationDisplay).initialize(homePage)
+  @FXML
+  def initialize(): Unit = {
+    loadPage[TransportInformations](transportationDisplay)
   }
 
   def garageMenu(): Unit ={
-    loadPage[Garage](transportationDisplay).initialize(homePage)
+    loadPage[Garage](transportationDisplay)
   }
 
   def addTransportationTripDisplay(): Unit ={
-    loadPage[TransportTrip](transportationDisplay).initialize(homePage)
+    loadPage[TransportTrip](transportationDisplay)
   }
 }

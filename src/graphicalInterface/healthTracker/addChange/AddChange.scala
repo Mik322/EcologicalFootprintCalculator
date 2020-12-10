@@ -1,7 +1,6 @@
 package graphicalInterface.healthTracker.addChange
 
 import graphicalInterface.FxApp.loadPage
-import graphicalInterface.HomePage
 import graphicalInterface.healthTracker.addChange.changeBodyParameters.ChangeBodyParameters
 import javafx.fxml.FXML
 import javafx.scene.layout.Pane
@@ -10,37 +9,31 @@ class AddChange {
   @FXML
   var addChangeDisplay: Pane = _
 
-  private var home: HomePage = _
-
-  def initialize(home: HomePage): Unit = {
-    this.home = home
+  def addFoodDisplay(): Unit ={
+    loadPage[AddFood](addChangeDisplay)
   }
 
-  def addFoodDisplay() ={
-    loadPage[AddFood](addChangeDisplay).initialize(home)
+  def addDrinkDisplay(): Unit ={
+    loadPage[AddDrink](addChangeDisplay)
   }
 
-  def addDrinkDisplay() ={
-    loadPage[AddDrink](addChangeDisplay).initialize(home)
+  def addExerciseDisplay(): Unit ={
+    loadPage[AddExercise](addChangeDisplay)
   }
 
-  def addExerciseDisplay() ={
-    loadPage[AddExercise](addChangeDisplay).initialize(home)
+  def addSleepDisplay(): Unit ={
+    loadPage[AddSleep](addChangeDisplay)
   }
 
-  def addSleepDisplay() ={
-    loadPage[AddSleep](addChangeDisplay).initialize(home)
+  def setGoalDisplay(): Unit ={
+    loadPage[SetGoal](addChangeDisplay)
   }
 
-  def setGoalDisplay() ={
-    loadPage[SetGoal](addChangeDisplay).initialize(home)
+  def addCupOfWaterDisplay(): Unit ={
+    loadPage[AddCupOfWater](addChangeDisplay)
   }
 
-  def addCupOfWaterDisplay() ={
-    loadPage[AddCupOfWater](addChangeDisplay).initialize(home)
-  }
-
-  def changeBodyParametersMenu() ={
-    loadPage[ChangeBodyParameters](addChangeDisplay).initialize(home)
+  def changeBodyParametersMenu(): Unit ={
+    loadPage[ChangeBodyParameters](addChangeDisplay)
   }
 }

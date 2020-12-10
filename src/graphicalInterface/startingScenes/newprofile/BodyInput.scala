@@ -50,7 +50,6 @@ class BodyInput {
     val states = States.createStates(NewProfile(username, bodyParams, footPrintData))
     val loader = new FXMLLoader(getClass.getResource("../../HomePage.fxml"))
     val root: Parent = loader.load()
-    loader.getController[HomePage].initialize(states)
     FxApp.setStates(states)
     lifestyleChoice.getScene.setRoot(root)
   }

@@ -1,6 +1,6 @@
 package graphicalInterface.footprintCalculator.transportation
 
-import graphicalInterface.HomePage
+import graphicalInterface.{FxApp, HomePage}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
 import javafx.scene.layout.VBox
@@ -17,14 +17,12 @@ class TransportInformations {
   @FXML
   var emissions_menu: VBox = _
 
-  private var homePage: HomePage = _
-
-  def initialize(homePage: HomePage) = {
-    this.homePage = homePage
-    if (homePage.getFootPrint.transportTrips.isEmpty) NoTrips()
+  @FXML
+  def initialize(): Unit = {
+    if (FxApp.getFootPrint.transportTrips.isEmpty) NoTrips()
     else {
-      addInformation(homePage.getFootPrint)
-      total_emissions.setText(TransportTrip.getTotalEmissions(homePage.getFootPrint.transportTrips).toString + " g CO2")
+      addInformation(FxApp.getFootPrint)
+      total_emissions.setText(TransportTrip.getTotalEmissions(FxApp.getFootPrint.transportTrips).toString + " g CO2")
     }
   }
 
