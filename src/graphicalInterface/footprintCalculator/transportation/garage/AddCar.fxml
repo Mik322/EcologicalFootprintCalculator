@@ -21,12 +21,8 @@
             <Label layoutX="25.0" layoutY="74.0" text="Type of fuel" />
             <ChoiceBox fx:id="car_fuel" prefWidth="150.0" />
             <Label fx:id="missing_values" layoutX="220.0" layoutY="165.0" textFill="RED" />
-<<<<<<< HEAD
-            <Button fx:id="add_car" mnemonicParsing="false" onAction="#addCar" text="Add car" />
-=======
-            <Button fx:id="add_car" mnemonicParsing="false" onMouseClicked="#AddCar" text="Add car" />
+            <Button fx:id="add_car" mnemonicParsing="false" onMouseClicked="#addCar" text="Add car" />
             <Label fx:id="success_label" layoutX="220.0" layoutY="256.0" />
->>>>>>> Afonso
          </children>
       </VBox>
    </center>

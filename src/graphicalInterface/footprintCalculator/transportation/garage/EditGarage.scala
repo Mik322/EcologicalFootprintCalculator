@@ -2,13 +2,8 @@ package graphicalInterface.footprintCalculator.transportation.garage
 
 import graphicalInterface.FxApp
 import javafx.fxml.FXML
-<<<<<<< HEAD
-import javafx.scene.control.{Button, ChoiceBox, TextField}
-import main.footprint.transport.{Car, TransportTrip}
-=======
 import javafx.scene.control.{Button, ChoiceBox, Label, TextField}
 import main.footprint.transport.{Car, Fuel, TransportTrip}
->>>>>>> Afonso
 
 class EditGarage {
   @FXML
@@ -38,38 +33,10 @@ class EditGarage {
     case Nil =>
   }
 
-<<<<<<< HEAD
-  def edit(): Unit = {
-    val footPrint = FxApp.getFootPrint
-    val car = footPrint.cars.find(c => c.name == choose_car.getValue)
-    car match {
-      case None =>
-      case Some(value) =>
-        val new_car = value.copy(name = car_new_name.getText)
-        val new_cars = footPrint.cars.updated(footPrint.cars.indexOf(value), new_car)
-        val new_trips = footPrint.transportTrips.map(t => t.mean match {
-          case Car(name,_,_) if name == value.name => TransportTrip(new_car, t.km, t.date)
-          case _ => t
-        })
-        val new_footPrint = footPrint.copy(cars = new_cars, transportTrips = new_trips)
-        FxApp.updateFootPrint(new_footPrint)
-    }
-  }
-
-  def delete(): Unit = {
-    val footPrint = FxApp.getFootPrint
-    val car = footPrint.cars.find(c => c.name == choose_car.getValue)
-    car match {
-      case None =>
-      case Some(value) =>
-        val new_cars = footPrint.cars.filterNot(c => c == value)
-        val new_footPrint = footPrint.copy(cars = new_cars)
-        FxApp.updateFootPrint(new_footPrint)
-=======
   def edit() = {
     if (car_new_name.getText().isBlank || choose_car.getValue == null) MissingValues()
     else {
-      val footPrint = homePage.getFootPrint
+      val footPrint = FxApp.getFootPrint
       val car = footPrint.cars.find(c => c.name == choose_car.getValue)
       car match {
         case None =>
@@ -85,7 +52,7 @@ class EditGarage {
                 } else t
               })
               val new_footPrint = footPrint.copy(cars = new_cars, transportTrips = new_trips)
-              homePage.updateFootPrint(new_footPrint)
+              FxApp.updateFootPrint(new_footPrint)
               updateCarChoice()
               success_label.setText("Your car has been edited with success!")
               missing_values.setText("")
@@ -100,27 +67,26 @@ class EditGarage {
 
   def updateCarChoice() = {
     choose_car.getItems.clear()
-    addCars(homePage.getFootPrint.cars)
+    addCars(FxApp.getFootPrint.cars)
     car_new_name.clear()
   }
 
   def delete() = {
     if (choose_car.getValue == null) MissingCar()
     else {
-      val footPrint = homePage.getFootPrint
+      val footPrint = FxApp.getFootPrint
       val car = footPrint.cars.find(c => c.name == choose_car.getValue)
       car match {
         case None =>
         case Some(value) => {
           val new_cars = footPrint.cars.filterNot(c => c == value)
           val new_footPrint = footPrint.copy(cars = new_cars)
-          homePage.updateFootPrint(new_footPrint)
+          FxApp.updateFootPrint(new_footPrint)
           delete_success_label.setText("Your car has been removed with success!")
           missing_values.setText("")
           updateCarChoice()
         }
       }
->>>>>>> Afonso
     }
   }
 

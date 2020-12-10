@@ -9,11 +9,7 @@
    <left>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="white_menu" stylesheets="@../Style.css" BorderPane.alignment="CENTER">
          <children>
-<<<<<<< HEAD
-            <Button fx:id="transportationButton" mnemonicParsing="false" onMouseClicked="#transportationMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Transportation" textFill="#07245a">
-=======
             <Button fx:id="transportationButton" mnemonicParsing="false" onMouseClicked="#transportationMenu" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../Style.css" text="Transportation" textFill="#07245a">
->>>>>>> Afonso
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>

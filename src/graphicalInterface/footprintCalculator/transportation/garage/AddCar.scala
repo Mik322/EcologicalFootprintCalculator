@@ -50,11 +50,11 @@ class AddCar {
             success_label.setText("Your car has been added with success!")
           }
         }
-      }catch
-        {
-          case _: NumberFormatException => invalidChar()
-        }
+      } catch {
+        case _: NumberFormatException => invalidChar()
+      }
     }
+  }
 
     def invalidChar(): Unit = {
       invalid_char.setText("Invalid Character. Please try again")

@@ -22,11 +22,7 @@
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-<<<<<<< HEAD
-            <Button fx:id="display_information" layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onMouseClicked="#information" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Information" textFill="#07245a" wrapText="true">
-=======
             <Button fx:id="display_information" layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onMouseClicked="#information" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../../../Style.css" text="Informations" textFill="#07245a" wrapText="true">
->>>>>>> Afonso
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
