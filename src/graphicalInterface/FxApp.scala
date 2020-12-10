@@ -34,13 +34,13 @@ object FxApp {
   def main(args: Array[String]): Unit = {
     Application.launch(classOf[Main], args: _*)
   }
+
   private def converter[A](func: String => A)(value: String): A = func(value)
 
-  def loadPage[A: TypeTag](pane: Pane): A = {
+  def loadPage[A: TypeTag](pane: Pane): Unit = {
     val loader = new FXMLLoader(getFxmlPath[A])
     pane.getChildren.clear()
     pane.getChildren.add(loader.load())
-    loader.getController[A]
   }
 
   private def getFxmlPath[A: TypeTag]: URL = {

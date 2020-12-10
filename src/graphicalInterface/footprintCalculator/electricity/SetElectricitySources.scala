@@ -6,7 +6,7 @@ import javafx.beans.value.{ChangeListener, ObservableValue}
 import javafx.fxml.FXML
 import javafx.scene.control.{Label, TextField}
 import javafx.scene.paint.Color
-import main.footprint.energy.{Electricity, TypeOfElectricitySource}
+import main.footprint.energy.{Electricity, ElectricitySource, TypeOfElectricitySource}
 import main.footprint.energy.TypeOfElectricitySource.{Biomass, Coal, Gas, Hydro, Nuclear, Oil, Solar, Wind}
 
 import scala.annotation.tailrec
@@ -41,6 +41,7 @@ class SetElectricitySources {
     }
     val labels = List(gas, oil, coal, biomass, hydro, solar, wind, nuclear)
     setListener(labels, changeListener)
+    setCurrentSources(FxApp.getFootPrint.electricity.sources)
   }
   @tailrec
   private def setListener(list: List[TextField], listener: ChangeListener[String]): Unit = list match {
@@ -48,6 +49,23 @@ class SetElectricitySources {
       setListener(next, listener)
     case Nil =>
   }
+
+  private def setCurrentSources(sources: List[ElectricitySource]): Unit = sources match {
+    case ::(head, next) => head.source match {
+      case TypeOfElectricitySource.Gas => setFieldValue(gas, head.percentage)
+      case TypeOfElectricitySource.Oil => setFieldValue(oil, head.percentage)
+      case TypeOfElectricitySource.Coal => setFieldValue(coal, head.percentage)
+      case TypeOfElectricitySource.Wind => setFieldValue(wind, head.percentage)
+      case TypeOfElectricitySource.Hydro => setFieldValue(hydro, head.percentage)
+      case TypeOfElectricitySource.Solar => setFieldValue(solar, head.percentage)
+      case TypeOfElectricitySource.Biomass => setFieldValue(biomass, head.percentage)
+      case TypeOfElectricitySource.Nuclear => setFieldValue(nuclear, head.percentage)
+    }
+      setCurrentSources(next)
+    case Nil =>
+  }
+
+  private def setFieldValue(field: TextField, value: Double): Unit = field.setText((value * 100).toInt.toString)
 
   def getTotalPercentage: Int = {
     val list = getValuesPerSource
