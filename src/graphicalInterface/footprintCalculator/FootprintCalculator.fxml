@@ -9,7 +9,7 @@
    <left>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-border-color: #07245A;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="transportationButton" mnemonicParsing="false" onMouseClicked="#transportationMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" styleClass="menu_ops" stylesheets="@../Style.css" text="Transportation" textFill="#07245a">
+            <Button fx:id="transportationButton" mnemonicParsing="false" onMouseClicked="#transportationMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" styleClass="menu_ops" text="Transportation" textFill="#07245a">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
