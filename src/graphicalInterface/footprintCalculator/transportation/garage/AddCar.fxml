@@ -10,22 +10,23 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.AddCar">
    <center>
-      <VBox alignment="TOP_CENTER" prefHeight="354.0" prefWidth="420.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Please enter a name for your car" />
             <TextField fx:id="car_name" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" />
             <Label fx:id="error_message" textFill="RED" />
             <Label text="Please type your car's consumption (L/100km)" />
             <TextField fx:id="car_consumption" alignment="CENTER" layoutX="10.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" />
-            <Label fx:id="invalid_char" layoutX="220.0" layoutY="74.0" prefHeight="5.0" prefWidth="1.0" textFill="RED">
-               <font>
-                  <Font size="8.0" />
-               </font>
-            </Label>
+            <Label fx:id="invalid_char" layoutX="220.0" layoutY="74.0" textFill="RED" />
             <Label layoutX="25.0" layoutY="74.0" text="Type of fuel" />
             <ChoiceBox fx:id="car_fuel" prefWidth="150.0" />
             <Label fx:id="missing_values" layoutX="220.0" layoutY="165.0" textFill="RED" />
+<<<<<<< HEAD
             <Button fx:id="add_car" mnemonicParsing="false" onAction="#addCar" text="Add car" />
+=======
+            <Button fx:id="add_car" mnemonicParsing="false" onMouseClicked="#AddCar" text="Add car" />
+            <Label fx:id="success_label" layoutX="220.0" layoutY="256.0" />
+>>>>>>> Afonso
          </children>
       </VBox>
    </center>

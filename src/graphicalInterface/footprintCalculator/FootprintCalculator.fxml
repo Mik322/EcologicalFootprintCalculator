@@ -7,17 +7,21 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.FootprintCalculator">
    <left>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-border-color: #07245A;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="white_menu" stylesheets="@../Style.css" BorderPane.alignment="CENTER">
          <children>
+<<<<<<< HEAD
             <Button fx:id="transportationButton" mnemonicParsing="false" onMouseClicked="#transportationMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Transportation" textFill="#07245a">
+=======
+            <Button fx:id="transportationButton" mnemonicParsing="false" onMouseClicked="#transportationMenu" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../Style.css" text="Transportation" textFill="#07245a">
+>>>>>>> Afonso
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="wasteButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#wasteMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Waste" textFill="#07245a">
+            <Button fx:id="wasteButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#wasteMenu" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../Style.css" text="Waste" textFill="#07245a">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="electricityButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#electricityMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Electricity" textFill="#07245a">
+            <Button fx:id="electricityButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#electricityMenu" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../Style.css" text="Electricity" textFill="#07245a">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
@@ -25,11 +29,11 @@
       </VBox>
    </left>
    <center>
-      <VBox fx:id="footprintDisplay" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="30.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="footprintDisplay" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <Label lineSpacing="10.0" text="Foot Print Calculator">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Be Vietnam Regular" size="24.0" />
                </font></Label>
             <Label text="In the foot print calculator you can see how many carbon (g CO2) you produce with waste, electricity and transportation">
                <VBox.margin>
@@ -38,7 +42,7 @@
             </Label>
             <Label text="Total Emissions:">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Be Vietnam Regular" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -73,7 +77,7 @@
                <children>
                   <Label text="If everyone lived like you we would need ">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Be Vietnam Regular" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="earths" layoutX="173.0" layoutY="10.0" text="1">

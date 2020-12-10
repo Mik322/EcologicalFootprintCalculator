@@ -9,18 +9,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.TransportTrip">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.TransportTrip">
    <center>
-      <VBox fx:id="elements" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="elements" alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Enter the transport mean" textAlignment="CENTER" />
             <ChoiceBox fx:id="means" onAction="#CheckCar" prefWidth="150.0" />
-            <VBox fx:id="car_box" alignment="TOP_CENTER" prefHeight="4.0" prefWidth="600.0" spacing="10.0" />
+            <VBox fx:id="car_box" alignment="TOP_CENTER" spacing="10.0" />
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="243.0" layoutY="10.0" text="Type number of kms" textAlignment="CENTER" />
-            <TextField fx:id="kms" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="194.0" />
+            <TextField fx:id="kms" maxHeight="-Infinity" maxWidth="-Infinity" />
+            <Label fx:id="invalid_char" textFill="RED" />
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="94.0" text="Select the day of the trip" textAlignment="CENTER" />
             <DatePicker fx:id="date" />
+            <Label fx:id="missing_values" textFill="RED" />
             <Button fx:id="add_trip" mnemonicParsing="false" onMouseClicked="#AddTrip" text="Add" />
+            <Label fx:id="success_label" />
          </children>
       </VBox>
    </center>

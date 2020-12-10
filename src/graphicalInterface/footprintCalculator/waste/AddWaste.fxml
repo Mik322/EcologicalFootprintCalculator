@@ -5,57 +5,57 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="30.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.waste.AddWaste">
-   <children>
-      <Label text="Add Waste">
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.waste.AddWaste">
+   <center>
+      <VBox alignment="CENTER" spacing="30.0">
+         <children>
+            <VBox alignment="TOP_CENTER" spacing="10.0">
+               <children>
+                  <Label text="Type of waste" />
+                  <ChoiceBox fx:id="wasteType" maxWidth="150.0" prefWidth="150.0" />
+                  <Label />
+                  <Label text="Quantity of waste (in kg)" />
+                  <TextField fx:id="quantity" maxWidth="150.0" prefWidth="150.0" />
+                  <Label fx:id="infoLabel" contentDisplay="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#addWaste" text="Add Waste" />
+                  <Label />
+                  <HBox alignment="TOP_CENTER" spacing="20.0">
+                     <children>
+                        <Label text="Total Organic Waste:" />
+                        <Label fx:id="totalOrganic" text="0kg" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" spacing="20.0">
+                     <children>
+                        <Label text="Total Recycled Waste:" />
+                        <Label fx:id="totalRecycled" text="0kg" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" spacing="20.0">
+                     <children>
+                        <Label text="Total Emissions:" />
+                        <Label fx:id="emissions" text="0g CO2" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <Label prefHeight="96.0" text="Add Waste" BorderPane.alignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font size="26.0" />
          </font>
          <padding>
             <Insets bottom="5.0" />
          </padding>
       </Label>
-      <GridPane hgap="10.0" vgap="10.0">
-        <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
-          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
-          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <ChoiceBox fx:id="wasteType" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
-            <TextField fx:id="quantity" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label text="Type:" />
-            <Label text="Kg:" GridPane.rowIndex="1" />
-            <Label fx:id="infoLabel" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#addWaste" text="Add Waste" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Label text="Total Organic Waste:" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Label fx:id="totalOrganic" text="0kg" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Label text="Total Recycled Waste:" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin></Label>
-            <Label fx:id="totalRecycled" text="0kg" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Label text="Total Emissions" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-            <Label fx:id="emissions" text="0g CO2" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-         </children>
-         <VBox.margin>
-            <Insets left="5.0" right="5.0" />
-         </VBox.margin>
-      </GridPane>
-   </children>
-</VBox>
+   </top>
+</BorderPane>

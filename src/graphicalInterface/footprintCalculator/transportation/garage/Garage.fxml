@@ -6,23 +6,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane VBox.vgrow="ALWAYS" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.Garage">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.Garage">
    <left>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent; -fx-border-color: #07245a#07245a;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="white_menu" stylesheets="@../../../Style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="informationByCar" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#displayInformationByCar" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="My Cars" textFill="#07245a" wrapText="true">
+            <Button fx:id="informationByCar" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#displayInformationByCar" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../../../Style.css" text="My Cars" textFill="#07245a" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="addCarButton" mnemonicParsing="false" onMouseClicked="#addCarDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Add Car" textFill="#07245a" wrapText="true">
+            <Button fx:id="addCarButton" mnemonicParsing="false" onMouseClicked="#addCarDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../../../Style.css" text="Add Car" textFill="#07245a" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="editGarageButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#editGarage" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Edit Garage" textFill="#07245a" wrapText="true">
+            <Button fx:id="editGarageButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#editGarage" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../../../Style.css" text="Edit Garage" textFill="#07245a" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
+<<<<<<< HEAD
             <Button fx:id="display_information" layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onMouseClicked="#information" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Information" textFill="#07245a" wrapText="true">
+=======
+            <Button fx:id="display_information" layoutX="10.0" layoutY="295.0" mnemonicParsing="false" onMouseClicked="#information" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../../../Style.css" text="Informations" textFill="#07245a" wrapText="true">
+>>>>>>> Afonso
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
@@ -30,11 +34,11 @@
       </VBox>
    </left>
    <center>
-      <VBox fx:id="garageDisplay" alignment="CENTER" prefHeight="280.0" prefWidth="236.0">
+      <VBox fx:id="garageDisplay" alignment="CENTER">
          <children>
             <Label alignment="TOP_CENTER" prefHeight="27.0" text="Welcome to your garage!" textAlignment="CENTER">
                <font>
-                  <Font size="19.0" />
+                  <Font name="Be Vietnam Regular" size="19.0" />
                </font>
             </Label>
          </children>

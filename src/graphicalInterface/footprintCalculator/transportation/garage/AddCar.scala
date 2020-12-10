@@ -24,6 +24,8 @@ class AddCar {
   var missing_values: Label = _
   @FXML
   var invalid_char: Label = _
+  @FXML
+  var success_label: Label = _
 
   @FXML
   def initialize: Unit = {
@@ -40,29 +42,33 @@ class AddCar {
         val footPrint = FxApp.getFootPrint
         val exists_car = footPrint.cars.find(c => c.name == car_name.getText)
         exists_car match {
-          case None =>
+          case None => {
             val new_cars = footPrint.cars.appended(car)
             val new_footPrint = footPrint.copy(cars = new_cars)
             FxApp.updateFootPrint(new_footPrint)
             error_message.setText("")
-          case Some(value) => existingCar()
+            success_label.setText("Your car has been added with success!")
+          }
         }
-      } catch {
-        case _: NumberFormatException => invalidChar()
-      }
+      }catch
+        {
+          case _: NumberFormatException => invalidChar()
+        }
     }
-  }
 
-  def invalidChar(): Unit = {
-    invalid_char.setText("Invalid Character. Please try again")
-  }
+    def invalidChar(): Unit = {
+      invalid_char.setText("Invalid Character. Please try again")
+      success_label.setText("")
+    }
 
-  def missingValues(): Unit = {
-    missing_values.setText("You need to fill every parameter in order to add a car")
-  }
+    def missingValues(): Unit = {
+      missing_values.setText("You need to fill every parameter in order to add a car")
+      success_label.setText("")
+    }
 
-  def existingCar(): Unit = {
-    error_message.setText("You already have a car with that name. Please try a new one")
-  }
+    def existingCar(): Unit = {
+      error_message.setText("You already have a car with that name. Please try a new one")
+      success_label.setText("")
+    }
 
-}
+  }
