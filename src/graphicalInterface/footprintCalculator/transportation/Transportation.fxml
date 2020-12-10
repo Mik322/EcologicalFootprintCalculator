@@ -2,23 +2,30 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.Transportation">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.Transportation">
    <left>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #4AEB26;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #07245A;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="garageButton" mnemonicParsing="false" onMouseClicked="#garageMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Garage" />
-            <Button fx:id="addTransportationTripButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#addTransportationTripDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Add transportation trip" wrapText="true" />
+            <Button fx:id="garageButton" mnemonicParsing="false" onMouseClicked="#garageMenu" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Garage" textFill="WHITE">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
+            <Button fx:id="addTransportationTripButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#addTransportationTripDisplay" prefHeight="79.0" prefWidth="143.0" style="-fx-background-color: transparent;" text="Add transportation trip" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Be Vietnam Regular" size="13.0" />
+               </font></Button>
          </children>
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="transportationDisplay" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+      <VBox fx:id="transportationDisplay" alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
             <Label text="Label" />
-         </children></AnchorPane>
+         </children>
+      </VBox>
    </center>
 </BorderPane>
