@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.garage.Garage">
    <left>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #e3c7dd;" BorderPane.alignment="CENTER">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #65FF42;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="informationByCar" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#displayInformationByCar" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="My Cars" wrapText="true" />
             <Button fx:id="addCarButton" mnemonicParsing="false" onMouseClicked="#addCarDisplay" prefHeight="70.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: black;" text="Add Car" wrapText="true" />

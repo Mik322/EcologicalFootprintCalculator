@@ -47,6 +47,7 @@ class HomePage {
     this.states = states
     val int = converter(s => s.toInt) _
     caloricMaps = CaloricMaps(loadCaloriesMap("Food.txt", int), loadCaloriesMap("Drinks.txt", int), loadCaloriesMap("Exercises.txt", s => s.toDouble))
+    label.getScene.getRoot.getStylesheets.add(getClass.getResource("Style.css").toString)
   }
 
   private def converter[A](func: String => A)(value: String): A = func(value)
