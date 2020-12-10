@@ -28,7 +28,7 @@
       </VBox>
     </center>
     <top>
-        <Label prefHeight="96.0" prefWidth="383.0" text="See fuel consumption and CO2 emissions from month" BorderPane.alignment="CENTER">
+        <Label prefHeight="96.0" text="See fuel consumption and CO2 emissions from month" BorderPane.alignment="CENTER">
             <font>
                 <Font size="17.0" />
             </font>
