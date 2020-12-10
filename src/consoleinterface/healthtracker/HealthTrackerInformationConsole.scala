@@ -12,6 +12,7 @@ import main.healthTracker.CaloricMaps
 import scala.io.StdIn.readLine
 
 object HealthTrackerInformationConsole {
+  @scala.annotation.tailrec
   def healthTrackerInformationMenu(caloricMaps : CaloricMaps): UserChoice = {
     println("1. Get total calories in a day\n2. Get list of caloric activities\n3. Get the net calories in the last number of days")
     println("4. See the list of caloric activities in a date range\n5. See your water needs\n6. See your weight evolution\n7. See how you are keeping up to your goal")
@@ -46,15 +47,15 @@ object HealthTrackerInformationConsole {
     GetListCaloricActivitiesInDays(startDate, endDate)
   }
 
+  @scala.annotation.tailrec
   def caloriesInTheLastNDays(): GetLastDaysCalories = {
     println("How many days do you want to see?")
     try {
       GetLastDaysCalories(readLine().toInt)
     } catch {
-      case e: NumberFormatException => {
+      case e: NumberFormatException =>
         println("Invalid input")
         caloriesInTheLastNDays()
-      }
     }
   }
   def getAverageSleepDateRange() : GetAverageSleepInDays = {

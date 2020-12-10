@@ -3,11 +3,11 @@ package main
 import java.time.LocalDate
 
 case class Date(localDate: LocalDate) {
-  def getDay() = Date.getDay(this)
+  def getDay(): Int = Date.getDay(this)
 
-  def getMonth() = Date.getMonth(this)
+  def getMonth(): Int = Date.getMonth(this)
 
-  def getYear() = Date.getYear(this)
+  def getYear(): Int = Date.getYear(this)
 
   override def equals(obj: Any): Boolean = {
     obj match {
@@ -24,9 +24,9 @@ case class Date(localDate: LocalDate) {
 
   override def toString: String = s"${this.getDay()}/${this.getMonth()}/${this.getYear()}"
 
-  def >=(date: Date) = this > date || this == date
+  def >=(date: Date): Boolean = this > date || this == date
 
-  def <=(date: Date) = this < date || this == date
+  def <=(date: Date): Boolean = this < date || this == date
 
   def -(date: Date): Int = Date.subtractDates(this, date)
   
@@ -45,11 +45,11 @@ object Date {
 
   def today(): Date = Date(LocalDate.now())
 
-  def getDay(date: Date) = date.localDate.getDayOfMonth
+  def getDay(date: Date): Int = date.localDate.getDayOfMonth
 
-  def getMonth(date: Date) = date.localDate.getMonthValue
+  def getMonth(date: Date): Int = date.localDate.getMonthValue
 
-  def getYear(date: Date) = date.localDate.getYear
+  def getYear(date: Date): Int = date.localDate.getYear
 
   def subtractDates(date1: Date, date2: Date): Int = (date2.localDate.toEpochDay-date1.localDate.toEpochDay).toInt
 }

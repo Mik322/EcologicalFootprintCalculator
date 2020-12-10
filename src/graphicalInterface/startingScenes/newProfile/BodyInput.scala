@@ -1,4 +1,4 @@
-package graphicalInterface.startingScenes.newprofile
+package graphicalInterface.startingScenes.newProfile
 
 import consoleinterface.StartOptions.{BodyParams, FootPrintData, NewProfile}
 import graphicalInterface.{FxApp, HomePage}

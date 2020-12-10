@@ -27,7 +27,7 @@ class Garage {
   }
 
   def information(): Unit ={
-    loadPage[garage.Informations](garageDisplay)
+    loadPage[garage.Information](garageDisplay)
   }
 
 }

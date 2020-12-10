@@ -39,8 +39,9 @@ object FootPrintQuestions {
     points
   }
 
+  @scala.annotation.tailrec
   def distance_publicT(): Int = {
-    println("Distance travelled anually by public transport:\n")
+    println("Distance travelled annually by public transport:\n")
     println("1.More than 32000 km\n2.Between 25000 and 32000 km\n3.Between 15000 and 25000 km\n4.Between 1500 and 15000 km\n5.Less than 1500 km\n6.No km")
     val input = readLine()
     input match {
@@ -50,10 +51,9 @@ object FootPrintQuestions {
       case "4" => 4
       case "5" => 2
       case "6" => 0
-      case _ => {
+      case _ =>
         printTryAgain()
         distance_publicT()
-      }
     }
   }
 
@@ -74,6 +74,7 @@ object FootPrintQuestions {
     }
   }
 
+  @scala.annotation.tailrec
   def holidayDest(): Int = {
     println("Holiday Destination:\n")
     println("1.Close to home(Country)\n2.Short distance away(Continent)\n3.Long flight away(Rest of the world)")
@@ -82,10 +83,9 @@ object FootPrintQuestions {
       case "1" => 2
       case "2" => 6
       case "3" => 20
-      case _ => {
+      case _ =>
         printTryAgain()
         holidayDest()
-      }
     }
   }
 
@@ -100,6 +100,7 @@ object FootPrintQuestions {
     }
   }
 
+  @scala.annotation.tailrec
   def averageGasBill(): Int = {
     println("What is your average quarterly gas or oil bill?\n")
     println("1.More than 280 Euros\n2.Between 170 and 280 euros\n3.Between 50 and 170 euros\n4.Less than 50 euros")
@@ -109,10 +110,9 @@ object FootPrintQuestions {
       case "2" => 5
       case "3" => 3
       case "4" => 1
-      case _ => {
+      case _ =>
         printTryAgain()
         averageGasBill()
-      }
     }
   }
 
@@ -150,6 +150,7 @@ object FootPrintQuestions {
     points
   }
 
+  @scala.annotation.tailrec
   def sourceOfEnergy(): Int = {
     println("From what source does your energy supply come from?\n")
     println("1.Renewable / Green Tariff\n2.Non renewable")
@@ -157,10 +158,9 @@ object FootPrintQuestions {
     input match {
       case "1" => 2
       case "2" => 15
-      case _ => {
+      case _ =>
         printTryAgain()
         sourceOfEnergy()
-      }
     }
   }
 
@@ -173,6 +173,7 @@ object FootPrintQuestions {
     }
   }
 
+  @scala.annotation.tailrec
   def typeOfEater(): Int = {
     println("Are you:\n")
     println("1.Vegan\n2.Vegetarian\n3.Regular meat eater\n4.Heavy Meat eater")
@@ -182,10 +183,9 @@ object FootPrintQuestions {
       case "2" => 4
       case "3" => 8
       case "4" => 10
-      case _ => {
+      case _ =>
         printTryAgain()
         typeOfEater()
-      }
     }
   }
 
@@ -202,6 +202,7 @@ object FootPrintQuestions {
     }
   }
 
+  @scala.annotation.tailrec
   def typeOfFood(): Int = {
     println("The main type of food consumed is:\n")
     println("1.Mostly fresh, locally grown\n2.Mix of fresh and convenience\n3.Mostly convenience")
@@ -210,10 +211,9 @@ object FootPrintQuestions {
       case "1" => 2
       case "2" => 6
       case "3" => 12
-      case _ => {
+      case _ =>
         printTryAgain()
         typeOfFood()
-      }
     }
   }
 
@@ -228,6 +228,7 @@ object FootPrintQuestions {
     }
   }
 
+  @scala.annotation.tailrec
   def magazines(): Int = {
     println("How many magazines or newspapers do you buy or get delivered each week?\n")
     println("1.More than 20\n2.Between 10 and 20\n3.Between 1 and 10\n4.None")
@@ -237,10 +238,9 @@ object FootPrintQuestions {
       case "2" => 6
       case "3" => 4
       case "4" => 0
-      case _ => {
+      case _ =>
         printTryAgain()
         magazines()
-      }
     }
   }
 
@@ -257,6 +257,7 @@ object FootPrintQuestions {
     }
   }
 
+  @scala.annotation.tailrec
   def purchases(): Int = {
     println("How much furniture and other commodities such as machines, gadgets do you purchase each year?\n")
     println("1.More than 7\n2.Between 5 and 7\n3.Between 3 and 5\n4.Less than 3\n5.Hardly any, or second hand")
@@ -267,10 +268,9 @@ object FootPrintQuestions {
       case "3" => 6
       case "4" => 4
       case "5" => 2
-      case _ => {
+      case _ =>
         printTryAgain()
         purchases()
-      }
     }
   }
 
@@ -289,6 +289,7 @@ object FootPrintQuestions {
       }
     }
 
+  @scala.annotation.tailrec
   def typeOfProperty(): Int = {
     println("What type of property do you live in?\n")
     println("1.Large sized house\n2.Medium size house\n3.Small size house\n4.Flat / apartment")
@@ -298,10 +299,9 @@ object FootPrintQuestions {
       case "2" => 7
       case "3" => 4
       case "4" => 2
-      case _ => {
+      case _ =>
         printTryAgain()
         typeOfProperty()
-      }
     }
   }
 
@@ -318,6 +318,7 @@ object FootPrintQuestions {
       }
     }
 
+  @scala.annotation.tailrec
   def household(): Int = {
     println("How many other people live in your household?\n")
     println("1.No other person\n2.One other person\n3.Two other person\n4.Three other person\n5.Four other person\n6.Five other person\n7.More than five people")
@@ -330,10 +331,9 @@ object FootPrintQuestions {
       case "5" => 6
       case "6" => 4
       case "7" => 2
-      case _ => {
+      case _ =>
         printTryAgain()
         household()
-      }
     }
   }
 
@@ -356,6 +356,7 @@ object FootPrintQuestions {
       }
     }
 
+  @scala.annotation.tailrec
   def childrenHousehold(): Int = {
     println("How many children do you have in this household?\n")
     println("1.No children\n2.One child\n3.Two children\n4.Three children\n5.Four children\n6.More than four children")
@@ -367,10 +368,9 @@ object FootPrintQuestions {
       case "4" => 8
       case "5" => 10
       case "6" => 12
-      case _ => {
+      case _ =>
         printTryAgain()
         childrenHousehold()
-      }
     }
   }
 
@@ -391,8 +391,9 @@ object FootPrintQuestions {
       }
     }
 
+  @scala.annotation.tailrec
   def amountOfWaste(): Int = {
-    println("Amount of domestic waste produced each week(a full large bin is aprox 30 kg)\n")
+    println("Amount of domestic waste produced each week(a full large bin is approx 30 kg)\n")
     println("1.More than 120kg\n2.Between 90 and 120kg\n3.Between 60 and 90kg\n4.Between 30 and 60kg\n5.Between 15 and 30kg\n6.Less than 15kg")
     val input = readLine()
     input match {
@@ -402,10 +403,9 @@ object FootPrintQuestions {
       case "4" => 20
       case "5" => 10
       case "6" => 5
-      case _ => {
+      case _ =>
         printTryAgain()
         amountOfWaste()
-      }
     }
   }
 
@@ -426,6 +426,7 @@ object FootPrintQuestions {
       }
     }
 
+  @scala.annotation.tailrec
   def dishwasher(): Int = {
     println("If you have a dishwasher, how many times do you run it on an average week?\n")
     println("1.More than 9 times\n2.Between 4 and 9 times\n3.Between 1 and 4 times\n4.Not applicable")
@@ -435,10 +436,9 @@ object FootPrintQuestions {
       case "2" => 2
       case "3" => 1
       case "4" => 0
-      case _ => {
+      case _ =>
         printTryAgain()
         dishwasher()
-      }
     }
   }
 
@@ -455,6 +455,7 @@ object FootPrintQuestions {
       }
     }
 
+  @scala.annotation.tailrec
   def washingMachine(): Int = {
     println("If you have a washing machine, how many times do you run it on an average week?\n")
     println("1.More than 9 times\n2.Between 4 and 9 times\n3.Between 1 and 4 times\n4.Not applicable")
@@ -464,10 +465,9 @@ object FootPrintQuestions {
       case "2" => 2
       case "3" => 1
       case "4" => 0
-      case _ => {
+      case _ =>
         printTryAgain()
         washingMachine()
-      }
     }
   }
 
@@ -514,16 +514,15 @@ object FootPrintQuestions {
   }
 
   def recycledWastePoints(list: List[CheckBox]): Int ={
-    list.filter(i => i.isSelected).size * -4 + 24
+    list.count(i => i.isSelected) * -4 + 24
   }
 
   @tailrec
   def dealPoints(input: String): Int = input.toLowerCase() match {
     case "y" => -4
     case "n" => 0
-    case _ => {
+    case _ =>
       FootPrintConsoleOps.printTryAgain()
       dealPoints(readLine())
-    }
   }
 }

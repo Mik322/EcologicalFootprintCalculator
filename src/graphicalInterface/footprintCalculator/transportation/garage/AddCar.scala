@@ -26,12 +26,12 @@ class AddCar {
   var invalid_char: Label = _
 
   @FXML
-  def initialize = {
+  def initialize: Unit = {
     car_fuel.setItems(typeOfFuel)
   }
 
-  def AddCar(): Unit = {
-    if (car_name.getText().isBlank || car_consumption.getText().isBlank || car_fuel.getValue == null) MissingValues()
+  def addCar(): Unit = {
+    if (car_name.getText().isBlank || car_consumption.getText().isBlank || car_fuel.getValue == null) missingValues()
     else {
       missing_values.setText("")
       invalid_char.setText("")
@@ -40,29 +40,28 @@ class AddCar {
         val footPrint = FxApp.getFootPrint
         val exists_car = footPrint.cars.find(c => c.name == car_name.getText)
         exists_car match {
-          case None => {
+          case None =>
             val new_cars = footPrint.cars.appended(car)
             val new_footPrint = footPrint.copy(cars = new_cars)
             FxApp.updateFootPrint(new_footPrint)
             error_message.setText("")
-          }
-          case Some(value) => ExistingCar()
+          case Some(value) => existingCar()
         }
       } catch {
-        case _: NumberFormatException => InvalidChar()
+        case _: NumberFormatException => invalidChar()
       }
     }
   }
 
-  def InvalidChar(): Unit = {
+  def invalidChar(): Unit = {
     invalid_char.setText("Invalid Character. Please try again")
   }
 
-  def MissingValues(): Unit = {
+  def missingValues(): Unit = {
     missing_values.setText("You need to fill every parameter in order to add a car")
   }
 
-  def ExistingCar(): Unit = {
+  def existingCar(): Unit = {
     error_message.setText("You already have a car with that name. Please try a new one")
   }
 

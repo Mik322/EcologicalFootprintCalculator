@@ -37,10 +37,9 @@ object FootPrintConsoleOps {
     val input = readLine()
     val car = cars.find(car => input == car.name)
     car match {
-      case None => {
+      case None =>
         println("There is no car with that name")
         getCar(cars)
-      }
       case Some(value) => value
     }
   }
@@ -77,6 +76,7 @@ object FootPrintConsoleOps {
   }
 
   def setEnergySources(): UserChoice = {
+    @scala.annotation.tailrec
     def loop(sources: List[(TypeOfElectricitySource, Double)], totalPercentage: Double): List[(TypeOfElectricitySource, Double)] = totalPercentage match {
       case t if t < 1.0 =>
         println(s"You need to declare ${(1.0 - t) * 100}% of your electricity sources")
@@ -116,7 +116,7 @@ object FootPrintConsoleOps {
     }
   }
 
-  def changeElectricityConsumption() = {
+  def changeElectricityConsumption(): ChangeElectricityConsumption = {
     println("How much KwH do you spend on average per month on electricity?")
     val consumption = readLine().toDouble
     ChangeElectricityConsumption(consumption)

@@ -38,7 +38,7 @@ object ElectricitySource {
 
   def getTotalEmissions(electricity: Electricity):String = {
     val emissions = electricity.sources.foldRight(0.0)((src, counter) => counter + getKWhAndEmission(electricity,src)._2)
-    s"Your total emissions from electricity are ${emissions} g of CO2"
+    s"Your total emissions from electricity are $emissions g of CO2"
   }
 
   def getEnergySources(electricity: Electricity): String = {

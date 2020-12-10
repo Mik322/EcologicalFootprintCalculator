@@ -6,6 +6,7 @@ import main.footprint.transport.Fuel.{Diesel, Electric, Hydrogen, Petrol}
 import scala.io.StdIn.readLine
 
 object TransportationInput {
+  @scala.annotation.tailrec
   def fuelInput(): Fuel ={
     println("Select fuel type:\n1.Diesel\n2.Petrol\n3.Electric\n4.Hydrogen")
     val fuel = readLine().toInt

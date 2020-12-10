@@ -8,6 +8,7 @@ import main.footprint.transport.Car
 import scala.io.StdIn.readLine
 
 object FootPrintOptions {
+  @scala.annotation.tailrec
   def footPrintOptions(cars: List[Car]): UserChoice = {
     println("1. Transportation\n2. Waste\n3. Electricity\n4. See how many Earths would we need if everybody lived like you\n5. See your total emissions\n0.Go back")
 
@@ -19,10 +20,9 @@ object FootPrintOptions {
       case "4" => GetEcologicalFootPrint
       case "5" => GetTotalEmissions
       case "0" => GoToMainMenu
-      case _ => {
+      case _ =>
         printTryAgain()
         footPrintOptions(cars)
-      }
     }
   }
 
@@ -64,6 +64,7 @@ object FootPrintOptions {
     }
   }
 
+  @scala.annotation.tailrec
   def wasteMenu(cars: List[Car]): UserChoice ={
     println("1.Add food waste\n2.Add recycled waste\n3.See your total emissions from waste\n0.Go back")
     val input = readLine()
@@ -73,13 +74,13 @@ object FootPrintOptions {
       case "2" => FootPrintConsoleOps.addRecycledWaste()
       case "3" => GetWasteEmissions
       case "0" => footPrintOptions(cars)
-      case _ => {
+      case _ =>
         printTryAgain()
         wasteMenu(cars)
-      }
     }
   }
 
+  @scala.annotation.tailrec
   def energyMenu(cars: List[Car]): UserChoice ={
     println("1. Change monthly electricity consumption\n2. Set electricity sources\n3. See your total emissions from electricity use\n4. See your energy sources\n5. See how many solar panels do you need\n0. Go back")
     val input = readLine()
@@ -91,10 +92,9 @@ object FootPrintOptions {
       case "4" => GetEnergySources
       case "5" => FootPrintConsoleOps.getRequiredSolarPanels()
       case "0" => footPrintOptions(cars)
-      case _ => {
+      case _ =>
         printTryAgain()
         energyMenu(cars)
-      }
     }
   }
 }

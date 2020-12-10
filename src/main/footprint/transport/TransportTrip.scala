@@ -11,7 +11,7 @@ case class TransportTrip(mean: TransportMean, km: Double, date: Date) {
 object TransportTrip {
   def getTransportEmissionsString(footPrintState: FootPrintState): String = {
     val totalEmissions = getTotalEmissions(footPrintState.transportTrips)
-    s"Your total of Transportation Emissions is ${totalEmissions}"
+    s"Your total of Transportation Emissions is $totalEmissions"
   }
 
   def calcPublicTransportEmissions(trip: TransportTrip): Double = trip.mean match{
@@ -29,7 +29,7 @@ object TransportTrip {
     case Nil => 0
   }
 
-  def getEmissionsByType(trip: TransportTrip) = trip.mean match {
+  def getEmissionsByType(trip: TransportTrip): Double = trip.mean match {
     case car: Car => Car.getCarEmissionInTrip(trip)
     case _ => calcPublicTransportEmissions(trip)
   }

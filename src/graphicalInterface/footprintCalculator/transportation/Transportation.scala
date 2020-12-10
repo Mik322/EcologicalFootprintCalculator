@@ -16,7 +16,7 @@ class Transportation {
 
   @FXML
   def initialize(): Unit = {
-    loadPage[TransportInformations](transportationDisplay)
+    loadPage[TransportInformation](transportationDisplay)
   }
 
   def garageMenu(): Unit ={

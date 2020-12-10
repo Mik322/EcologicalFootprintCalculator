@@ -24,16 +24,15 @@ class InformationByCar {
   def addInformation(footPrint: FootPrintState): Unit = {
     val cars = footPrint.cars
     cars match {
-      case ::(head, next) => {
+      case ::(head, next) =>
         addElement(head, footPrint)
         val new_cars = footPrint.copy(cars = next)
         addInformation(new_cars)
-      }
       case Nil =>
     }
   }
 
-  def addElement(car: Car, footPrint: FootPrintState) = {
+  def addElement(car: Car, footPrint: FootPrintState): Unit = {
     val emissions = Car.getEmissionByCar(footPrint.transportTrips, car.name)
     val kms = Car.getKmByCar(footPrint.transportTrips, car.name)
     val loader = new FXMLLoader(getClass.getResource("../Template.fxml"))

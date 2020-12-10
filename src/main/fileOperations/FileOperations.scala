@@ -8,14 +8,14 @@ import scala.io.Source
 import scala.io.StdIn.readLine
 
 object FileOperations {
-  def saveStates(states: States) = {
+  def saveStates(states: States): Unit = {
     val out = new ObjectOutputStream(new FileOutputStream(new File(s"${states.profileName}.prof")))
     out.writeObject(states)
   }
 
   def loadStates(fileName: String): Option[States] = {
     try {
-      val in = new ObjectInputStream(new FileInputStream(new File(s"${fileName}.prof")))
+      val in = new ObjectInputStream(new FileInputStream(new File(s"$fileName.prof")))
       val states = in.readObject().asInstanceOf[States]
       Some(states)
     } catch {
@@ -27,10 +27,9 @@ object FileOperations {
     @tailrec
     def loop(lines: List[String], map: Map[String, A]): Map[String, A] = {
       lines match {
-        case ::(head, next) => {
+        case ::(head, next) =>
           val line = head.split(":")
           loop(next, map + (line(0) -> convert(line(1))))
-        }
         case Nil => map
       }
     }
@@ -45,7 +44,7 @@ object FileOperations {
     map
   }
 
-  def printLoadError = println("There is no saved profile with that username.")
+  def printLoadError: Unit = println("There is no saved profile with that username.")
 
   def getUsername(): String ={
     println("Please type your username")

@@ -30,7 +30,7 @@ bicycling, stationary, 51-89 watts, light-to-moderate effort:4.8
 bicycling, stationary, RPM/Spin bike class:8.5
 calisthenics (e.g., push ups, sit ups, pull-ups, jumping jacks), vigorous effort:8.0
 calisthenics (e.g., push ups, sit ups, pull-ups, lunges), moderate effort:3.8
-calisthenics (e.g., situps, abdominal crunches), light effort:2.8
+calisthenics (e.g., sit-ups, abdominal crunches), light effort:2.8
 calisthenics, light or moderate effort, general (e.g., back exercises), going up & down from floor ( 150):3.5
 circuit training, moderate effort:4.3
 circuit training, including kettlebells, some aerobic movement with minimal rest, general, vigorous intensity:8.0
@@ -240,7 +240,7 @@ clearing light brush, thinning garden, moderate effort:3.5
 clearing brush/land, undergrowth, or ground, hauling branches, wheelbarrow chores, vigorous effort:6.3
 digging sandbox, shoveling sand:5.0
 digging, spading, filling garden, composting, light-to-moderate effort:3.5
-digging, spading, filling garden, compositing:5.0
+digging, spading, filling garden, composting:5.0
 digging, spading, filling garden, composting, vigorous effort:7.8
 driving tractor:2.8
 felling trees, large size:8.3

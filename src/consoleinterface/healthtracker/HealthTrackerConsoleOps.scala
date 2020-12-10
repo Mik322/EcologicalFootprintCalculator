@@ -12,13 +12,13 @@ import main.healthTracker.Goal.{GainALotOfWeight, GainWeight, KeepWeight, LoseWe
 import scala.io.StdIn.readLine
 
 object HealthTrackerConsoleOps {
+  @scala.annotation.tailrec
   def printList(list: List[String], index: Int): Unit = {
     list match {
-      case ::(head, next) => {
+      case ::(head, next) =>
         println(s"${index}.  ${head.split(':')(0)}")
         printList(next, index + 1)
-      }
-      case Nil => {}
+      case Nil =>
     }
   }
 
@@ -36,7 +36,7 @@ object HealthTrackerConsoleOps {
     print("Select number: ")
     try {
       readLine().toInt match {
-        case input if (input < 0 || input >= list.size) =>
+        case input if input < 0 || input >= list.size =>
           println("Wrong number selection, please try again")
           getActivityInput(list, choice, date)
         case input => choice(list(input), date)
@@ -53,7 +53,7 @@ object HealthTrackerConsoleOps {
     print("Quantity (in grams): ")
     try {
       readLine().toInt match {
-        case quantity if (quantity < 0) =>
+        case quantity if quantity < 0 =>
           println("You can't eat a negative quantity, please try again")
           addFoodChoice(food, date)
         case quantity => AddFood(food, quantity, date)
@@ -70,7 +70,7 @@ object HealthTrackerConsoleOps {
     print("Quantity (in mL): ")
     try {
       readLine().toInt match {
-        case quantity if (quantity < 0) =>
+        case quantity if quantity < 0 =>
           println("You can't drink a negative quantity, please try again")
           addDrinkChoice(drink, date)
         case quantity => AddDrink(drink, quantity, date)
@@ -86,7 +86,7 @@ object HealthTrackerConsoleOps {
     print("time(in minutes): ")
     try {
       readLine().toInt match {
-        case quantity if (quantity < 0) =>
+        case quantity if quantity < 0 =>
           println("You can't train a negative time, please try again")
           addSportChoice(sport, date)
         case quantity => AddSport(sport, quantity, date)
@@ -103,6 +103,7 @@ object HealthTrackerConsoleOps {
     SetGoal(getGoalInput(), Date.today())
   }
 
+  @scala.annotation.tailrec
   private def getGoalInput(): Goal.Value = readLine() match {
     case "1" => LoseALotOfWeight
     case "2" => LoseWeight
@@ -114,6 +115,7 @@ object HealthTrackerConsoleOps {
       getGoalInput()
   }
 
+  @scala.annotation.tailrec
   def getSleep(): UserChoice = {
     try {
       println("Type in the amount of hours of your sleep:")
@@ -122,10 +124,9 @@ object HealthTrackerConsoleOps {
       val date = DateChoice.getUserDate()
       AddSleep(hours, date)
     } catch {
-      case _: NumberFormatException => {
+      case _: NumberFormatException =>
         println("Invalid input")
         getSleep()
-      }
     }
   }
 }

@@ -36,17 +36,17 @@ object CaloricActivity {
     tracker.copy(activities = newActivities)
   }
 
-  def foodAttributes = (activity: AddCaloricActivity) => {
+  def foodAttributes: AddCaloricActivity => (String, Int, Food.type, Date) = (activity: AddCaloricActivity) => {
     val food = activity.asInstanceOf[AddFood]
     (food.food, food.quantity, Food, food.date)
   }
 
-  def drinkAttributes = (activity: AddCaloricActivity) => {
+  def drinkAttributes: AddCaloricActivity => (String, Int, Drink.type, Date) = (activity: AddCaloricActivity) => {
     val drink = activity.asInstanceOf[AddDrink]
     (drink.drink, drink.quantity, Drink, drink.date)
   }
 
-  def sportAttributes = (activity: AddCaloricActivity) => {
+  def sportAttributes: AddCaloricActivity => (String, Int, Sport.type, Date) = (activity: AddCaloricActivity) => {
     val sport = activity.asInstanceOf[AddSport]
     (sport.sport, sport.minutes, Sport, sport.date)
   }

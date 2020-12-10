@@ -12,10 +12,10 @@ class Template {
   @FXML
   var third: Label = _
 
-  def initialize(first_parameter: String, second_parameter: String, thirs_parameter: String) = {
-    first.setText(first_parameter)
-    second.setText(second_parameter)
-    third.setText(thirs_parameter)
+  def initialize(firstParameter: String, secondParameter: String, thirdParameter: String): Unit = {
+    first.setText(firstParameter)
+    second.setText(secondParameter)
+    third.setText(thirdParameter)
   }
 
 }

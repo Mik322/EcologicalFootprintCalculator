@@ -21,13 +21,13 @@ class SolarPanels {
 
   def calcSolarPanels(): Unit = {
     val num = Electricity.getRequiredSolarPanels(FxApp.getFootPrint.electricity, getPanelPower, getSunlight)
-    necessaryPanels.setText(s"${num} solar panels")
+    necessaryPanels.setText(s"$num solar panels")
   }
 
   def calcTotalPower(): Unit = {
     val panels =numberPanels.getText.toInt
     val power = Electricity.getDailySolarPanelsProduction(getPanelPower, getSunlight, panels)
-    totalPower.setText(s"You produce ${power} Wh per day")
+    totalPower.setText(s"You produce $power Wh per day")
   }
 
   private def getSunlight: Int = sunlight.getText.toInt

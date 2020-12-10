@@ -40,7 +40,7 @@ object FootPrintOps {
   def getTotalEmissionsString(footPrintState: FootPrintState): String = {
     val totalEmissions = getTotalEmissions(footPrintState)
 
-    s"Your total g of CO2 emissions are ${totalEmissions}"
+    s"Your total g of CO2 emissions are $totalEmissions"
   }
 
   def getTotalEmissions(footPrintState: FootPrintState): Int = {
