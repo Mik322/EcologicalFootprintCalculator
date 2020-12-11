@@ -15,16 +15,16 @@
       <VBox fx:id="elements" alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Enter the transport mean" textAlignment="CENTER" />
-            <ChoiceBox fx:id="means" onAction="#CheckCar" prefWidth="150.0" />
+            <ChoiceBox fx:id="means" onAction="#checkCar" prefWidth="150.0" />
             <VBox fx:id="car_box" alignment="TOP_CENTER" spacing="10.0" />
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="243.0" layoutY="10.0" text="Type number of kms" textAlignment="CENTER" />
             <TextField fx:id="kms" maxHeight="-Infinity" maxWidth="-Infinity" />
-            <Label fx:id="invalid_char" textFill="RED" />
+            <Label fx:id="invalid_char" text="Invalid Character. Please try again!" textFill="RED" visible="false" />
             <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="94.0" text="Select the day of the trip" textAlignment="CENTER" />
             <DatePicker fx:id="date" />
-            <Label fx:id="missing_values" textFill="RED" />
-            <Button fx:id="add_trip" mnemonicParsing="false" onMouseClicked="#AddTrip" styleClass="green_button" stylesheets="@../../Style.css" text="Add" />
-            <Label fx:id="success_label" />
+            <Label fx:id="missing_values" textFill="RED" visible="false" />
+            <Button fx:id="add_trip" mnemonicParsing="false" onMouseClicked="#addTrip" styleClass="green_button" stylesheets="@../../Style.css" text="Add" />
+            <Label fx:id="success_label" text="Your trip has been added with success!" visible="false" />
          </children>
       </VBox>
    </center>

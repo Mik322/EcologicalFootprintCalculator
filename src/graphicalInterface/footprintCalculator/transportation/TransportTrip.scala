@@ -42,32 +42,41 @@ class TransportTrip {
     means.setItems(meansOfTransport)
   }
 
-  def AddTrip() = {
-    if (means.getValue == null || kms.getText().isBlank || date.getValue == null) MissingValues()
+  def addTrip() = {
+    missing_values.setVisible(false)
+    invalid_char.setVisible(false)
+    success_label.setVisible(false)
+    if (means.getValue == null || kms.getText().isBlank || date.getValue == null){
+      missing_values.setText("You need to fill every parameter in order to add a transportation trip!")
+      missing_values.setVisible(true)
+    }
     else {
-      missing_values.setText("")
-      invalid_char.setText("")
-      if (Date(date.getValue) > Date.today()) WrongDate()
-      else {
+      if (Date(date.getValue) > Date.today()) {
+        missing_values.setText("You can't choose a future date!")
+        missing_values.setVisible(true)
+      } else {
         try {
           val km = kms.getText.toDouble
-          if (km < 0) InvalidChar()
+          if (km <= 0) invalid_char.setVisible(true)
           else {
             means.getValue match {
-              case Car => AddCarTrip()
-              case _ => AddPublicT()
+              case Car => addCarTrip()
+              case _ => addPublicT()
             }
           }
         } catch {
-          case _: NumberFormatException => InvalidChar()
+          case _: NumberFormatException => invalid_char.setVisible(true)
         }
       }
     }
   }
 
 
-  def AddCarTrip(): Unit = {
-    if (car.getValue == null) MissingValues()
+  def addCarTrip(): Unit = {
+    if (car.getValue == null) {
+      missing_values.setText("You need to fill every parameter in order to add a transportation trip!")
+      missing_values.setVisible(true)
+    }
     else {
       val find_car = FxApp.getFootPrint.cars.find(c => c.name == car.getValue)
       find_car match {
@@ -76,23 +85,23 @@ class TransportTrip {
           val mean = Car(value.name, value.consumption, value.fuel)
           val newFootPrint = FootPrintOps.addTrip(FxApp.getFootPrint, mean, kms.getText.toInt, Date(date.getValue))
           FxApp.updateFootPrint(footPrintState = newFootPrint)
-          Success()
+          success()
         }
       }
     }
   }
 
-  def AddPublicT(): Unit = {
+  def addPublicT(): Unit = {
     val newFootPrint = FootPrintOps.addTrip(FxApp.getFootPrint, means.getValue, kms.getText.toInt, Date(date.getValue))
     FxApp.updateFootPrint(footPrintState = newFootPrint)
-    Success()
+    success()
   }
 
-  def TripsHistory(): Unit = {
+  def tripsHistory(): Unit = {
     println(history(FxApp.getFootPrint.transportTrips))
   }
 
-  def CheckCar(): Unit = {
+  def checkCar(): Unit = {
     if (car_box.getChildren.isEmpty) {
       means.getValue match {
         case Car =>
@@ -116,25 +125,8 @@ class TransportTrip {
     case Nil =>
   }
 
-  def InvalidChar() = {
-    invalid_char.setText("Invalid Character. Please try again")
-    success_label.setText("")
-  }
-
-  def MissingValues() = {
-    missing_values.setText("You need to fill every parameter in order to add a transportation trip")
-    success_label.setText("")
-  }
-
-  def WrongDate() = {
-    missing_values.setText("You can't choose a future date!")
-    success_label.setText("")
-  }
-
-  def Success() = {
-    success_label.setText("Your trip has been added with success!")
-    invalid_char.setText("")
-    missing_values.setText("")
+  def success() = {
+    success_label.setVisible(true)
     means.setValue(null)
     kms.clear()
     date.setValue(null)
