@@ -46,16 +46,25 @@ class TransportTrip {
     if (means.getValue == null || kms.getText().isBlank || date.getValue == null) MissingValues()
     else {
       missing_values.setText("")
-      try{
-      means.getValue match {
-        case Car => AddCarTrip()
-        case _ => AddPublicT()
-      }
-    }catch {
-        case _: NumberFormatException => InvalidChar()
+      invalid_char.setText("")
+      if (Date(date.getValue) > Date.today()) WrongDate()
+      else {
+        try {
+          val km = kms.getText.toDouble
+          if (km < 0) InvalidChar()
+          else {
+            means.getValue match {
+              case Car => AddCarTrip()
+              case _ => AddPublicT()
+            }
+          }
+        } catch {
+          case _: NumberFormatException => InvalidChar()
+        }
       }
     }
   }
+
 
   def AddCarTrip(): Unit = {
     if (car.getValue == null) MissingValues()
@@ -117,11 +126,16 @@ class TransportTrip {
     success_label.setText("")
   }
 
+  def WrongDate() = {
+    missing_values.setText("You can't choose a future date!")
+    success_label.setText("")
+  }
+
   def Success() = {
     success_label.setText("Your trip has been added with success!")
     invalid_char.setText("")
     missing_values.setText("")
-    means.getItems.clear()
+    means.setValue(null)
     kms.clear()
     date.setValue(null)
   }

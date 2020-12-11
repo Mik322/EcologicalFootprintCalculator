@@ -25,30 +25,41 @@ class SolarPanels {
     if (sunlight.getText.isBlank || panelPower.getText.isBlank) missing_values_1.setText("You have to fill all parameters in order to calculate")
     else {
       try {
-        missing_values_1.setText("")
-        val num = Electricity.getRequiredSolarPanels(FxApp.getFootPrint.electricity, getPanelPower, getSunlight)
-        necessaryPanels.setText(s"You would need ${num} solar panels to cover your needs.")
-      }catch {
+        val validPanelPower = panelPower.getText.toInt
+        val validSunLight = sunlight.getText.toInt
+        if (validPanelPower < 0 || validSunLight < 0 || validSunLight > 24) missing_values_1.setText("You entered an invalid number")
+        else {
+          missing_values_1.setText("")
+          val num = Electricity.getRequiredSolarPanels(FxApp.getFootPrint.electricity, validPanelPower, validSunLight)
+          necessaryPanels.setText(s"You would need ${num} solar panels to cover your needs.")
+        }
+      } catch {
         case _: NumberFormatException => missing_values_1.setText("You have entered an invalid number, please try again")
       }
     }
   }
 
   def calcTotalPower(): Unit = {
-    if (numberPanels.getText.isBlank) missing_values_2.setText("You have to fill all parameters in order to calculate")
+    if (numberPanels.getText.isBlank || panelPower.getText.isBlank || sunlight.getText.isBlank) missing_values_2.setText("You have to fill all parameters in order to calculate")
     else {
       try {
-        missing_values_2.setText("")
-        val panels = numberPanels.getText.toInt
-        val power = Electricity.getDailySolarPanelsProduction(getPanelPower, getSunlight, panels)
-        totalPower.setText(s"You produce ${power} Wh per day")
-      }catch {
+        val validPanelPower = panelPower.getText.toInt
+        val validSunLight = sunlight.getText.toInt
+        val validPanels = numberPanels.getText.toInt
+        if (validPanelPower < 0 || validSunLight < 0 || validSunLight > 24) missing_values_1.setText("You entered an invalid number")
+        else {
+          if (validPanels < 0) missing_values_2.setText("You entered an invalid number")
+          else {
+            missing_values_2.setText("")
+            val power = Electricity.getDailySolarPanelsProduction(validPanelPower, validSunLight, validPanels)
+            totalPower.setText(s"You produce ${power} Wh per day")
+          }
+        }
+      } catch {
         case _: NumberFormatException => missing_values_2.setText("You have entered an invalid number, please try again")
       }
     }
   }
 
-  private def getSunlight: Int = sunlight.getText.toInt
-  private def getPanelPower: Int = panelPower.getText.toInt
 
 }
