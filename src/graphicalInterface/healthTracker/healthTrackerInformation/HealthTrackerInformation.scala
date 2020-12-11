@@ -2,45 +2,50 @@ package graphicalInterface.healthTracker.healthTrackerInformation
 
 import graphicalInterface.FxApp
 import graphicalInterface.FxApp.loadPage
-import javafx.fxml.FXML
+import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
-import javafx.scene.layout.Pane
+import javafx.scene.layout.{Pane, VBox}
 import main.Date
+import main.States.HealthTracker
 import main.healthTracker.HealthInformationOps._
 import main.healthTracker.{CaloricActivity, SleepTracker}
 
 class HealthTrackerInformation {
-  @FXML
-  def initialize(): Unit = {
-    val healthTracker = FxApp.getHealthTracker
-    val waterNeeds = CaloricActivity.cupsOfWaterToDrinkAndDrank(healthTracker, Date.today())
-    waterNeedsLabel.setText(getCupsOfWaterToDrinkString(waterNeeds._1,waterNeeds._2))
-    weightEvolutionLabel.setText(getWeightHistoric(healthTracker.weightHistory.sortBy(_._2), ""))
-    goalTracking.setText(getWeightTrack(healthTracker.weightHistory.sortBy(_._2), healthTracker.goal))
-    val necessarySleep = SleepTracker.getNecessarySleep(healthTracker.body.age)
-    necessarySleepLabel.setText(getNecessarySleepString(necessarySleep))
-    bodyParameters.setText(getBodyParametersString(healthTracker.body))
-  }
 
   @FXML
   var healthTrackerInformationDisplay:  Pane = _
-  @FXML
-  var waterNeedsLabel : Label = _
-  @FXML
-  var weightEvolutionLabel : Label = _
-  @FXML
-  var goalTracking : Label = _
-  @FXML
-  var necessarySleepLabel : Label = _
-  @FXML
-  var bodyParameters : Label = _
 
-  def getCaloriesInDayDisplay(): Unit ={
-    loadPage[GetCaloriesInDay](healthTrackerInformationDisplay)
+  @FXML
+  var elements: VBox = _
+
+  @FXML
+  def initialize(): Unit = {
+    addInformation(FxApp.getHealthTracker)
   }
 
-  def getListOfCaloricActivitiesDisplay(): Unit ={
-    loadPage[GetListOfCaloricActivities](healthTrackerInformationDisplay)
+  def addInformation(healthTracker: HealthTracker): Unit = {
+    val activities = healthTracker.activities
+    activities match {
+      case Nil =>
+      case ::(head,next) =>
+        addElement(head,healthTracker)
+        val new_activities=healthTracker.copy(activities=next)
+        addInformation(new_activities)
+    }
+  }
+
+  def addElement(activity: CaloricActivity, healthTracker: HealthTracker): Unit ={
+    val activityType = activity.activityType.toString
+    val name = activity.name
+    val quantityTime = activity.quantity.toString
+    val date = activity.date.toString
+    val loader = new FXMLLoader(getClass.getResource("CaloricInformation.fxml"))
+    elements.getChildren.add(loader.load())
+    loader.getController[CaloricInformation].initialize(activityType,name,quantityTime,date)
+  }
+
+  def getCaloriesInDayDisplay(): Unit ={
+    loadPage[HealthInfoInDay](healthTrackerInformationDisplay)
   }
 
   def getNetCaloriesInLastDaysDisplay(): Unit ={
@@ -48,15 +53,8 @@ class HealthTrackerInformation {
   }
 
   def seeListOfCaloricActivitiesInADateRangeDisplay(): Unit ={
-    loadPage[GetListOfCaloricActivitiesInADateRange](healthTrackerInformationDisplay)
+    loadPage[HealthInfoInADateRange](healthTrackerInformationDisplay)
   }
 
-  def getSleepTimeInDateDisplay(): Unit ={
-    loadPage[GetSleepTimeInDate](healthTrackerInformationDisplay)
-  }
-
-  def getAverageSleepInADateRangeDisplay(): Unit ={
-    loadPage[GetSleepTimeInDateRange](healthTrackerInformationDisplay)
-  }
   
 }

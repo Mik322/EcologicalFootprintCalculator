@@ -68,7 +68,7 @@ object HealthInformationOps {
 
   def caloricInformation(caloriesConsumed: Int, caloriesBurned: Int, goalCalories: Int, date: Date): String = {
     val absCaloriesBurned = caloriesBurned.abs
-    val firstLine = s"In day $date you consumed a total of $caloriesConsumed calories and burned a total of $absCaloriesBurned calories.\n"
+    val firstLine = s"On $date you consumed a total of $caloriesConsumed calories and burned a total of $absCaloriesBurned calories.\n"
     val secondLine = s"To reach your goal you need a daily net intake of $goalCalories calories and you have a net of ${caloriesConsumed - absCaloriesBurned}"
     firstLine.concat(secondLine)
   }

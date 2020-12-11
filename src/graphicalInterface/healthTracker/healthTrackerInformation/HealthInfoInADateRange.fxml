@@ -12,16 +12,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.GetListOfCaloricActivitiesInADateRange">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.HealthInfoInADateRange">
    <center>
-          <VBox BorderPane.alignment="CENTER">
+          <VBox alignment="CENTER" BorderPane.alignment="CENTER">
               <children>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="613.0" text="Your caloric activities in a date range">
+                  <Label alignment="CENTER" text="Your health information in a date range">
                       <font>
                           <Font size="26.0" />
                       </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                   </Label>
-            <VBox alignment="TOP_CENTER">
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
                   <Label text="Start Date:">
                      <VBox.margin>
@@ -53,17 +56,27 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="dateRangeConfirm" mnemonicParsing="false" onMouseClicked="#applyDateRange" text="Submit">
+                  <Button fx:id="dateRangeConfirm" mnemonicParsing="false" onMouseClicked="#applyDateRange" text="Get info">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label fx:id="sleepTime" text="Sleep info" textAlignment="CENTER" visible="false" wrapText="true">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="caloricInfo" text="Caloric info" textAlignment="CENTER" visible="false" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
-                  </Button>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" top="5.0" />
                </VBox.margin>
             </VBox>
-                  <GridPane gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" prefWidth="500.0">
+                  <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" prefWidth="500.0" visible="false">
                       <columnConstraints>
                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />
                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />
@@ -83,7 +96,7 @@
                   <Insets bottom="40.0" />
                </VBox.margin>
                   </GridPane>
-              <ScrollPane>
+              <ScrollPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" visible="false">
                   <padding>
                       <Insets top="20.0" />
                   </padding>

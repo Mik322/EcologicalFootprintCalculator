@@ -1,119 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.HealthTrackerInformation">
-   <left>
-      <VBox alignment="CENTER" style="-fx-background-color: #20AF00#20AF00;" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="getCaloriesInDayButton" mnemonicParsing="false" onMouseClicked="#getCaloriesInDayDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get calories in a day" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="Be Vietnam Regular" size="13.0" />
-               </font></Button>
-            <Button fx:id="getListOfCaloricActivitiesButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#getListOfCaloricActivitiesDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get list of caloric activities" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="Be Vietnam Regular" size="13.0" />
-               </font></Button>
-            <Button fx:id="getNetCaloriesInLastDaysButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getNetCaloriesInLastDaysDisplay" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get the net calories in the last number of days" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="Be Vietnam Regular" size="13.0" />
-               </font></Button>
-            <Button fx:id="seeListOfCaloricActivitiesInADateRangeButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#seeListOfCaloricActivitiesInADateRangeDisplay" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="See list of caloric activities in a date range" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="Be Vietnam Regular" size="13.0" />
-               </font></Button>
-            <Button fx:id="getSleepTimeInDateButton" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#getSleepTimeInDateDisplay" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get your sleep time in a specific date" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="Be Vietnam Regular" size="13.0" />
-               </font></Button>
-            <Button fx:id="getAverageSleepInADateRangeButton" layoutX="10.0" layoutY="365.0" mnemonicParsing="false" onMouseClicked="#getAverageSleepInADateRangeDisplay" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Get your average sleep time between two dates" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="Be Vietnam Regular" size="13.0" />
-               </font></Button>
-         </children>
-      </VBox>
-   </left>
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.HealthTrackerInformation">
+    <left>
+        <VBox alignment="CENTER" style="-fx-background-color: #20AF00#20AF00;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="getCaloriesInDayButton" mnemonicParsing="false" onMouseClicked="#getCaloriesInDayDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Daily health info" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                    <font>
+                        <Font name="Be Vietnam Regular" size="13.0" />
+                    </font>
+                </Button>
+                <Button fx:id="getNetCaloriesInLastDaysButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getNetCaloriesInLastDaysDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Latest net calories" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                    <font>
+                        <Font name="Be Vietnam Regular" size="13.0" />
+                    </font>
+                </Button>
+                <Button fx:id="seeListOfCaloricActivitiesInADateRangeButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#seeListOfCaloricActivitiesInADateRangeDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Health info in date range" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                    <font>
+                        <Font name="Be Vietnam Regular" size="13.0" />
+                    </font>
+                </Button>
+            </children>
+        </VBox>
+    </left>
    <center>
-      <VBox fx:id="healthTrackerInformationDisplay" alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Your health information">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Label>
-            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-               <children>
-                  <Label text="Your water needs for today">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="waterNeedsLabel" text="Label" textAlignment="CENTER" wrapText="true">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label layoutX="282.0" layoutY="10.0" text="Your weight evolution">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ScrollPane fx:id="scroll_pane" hbarPolicy="NEVER">
-                     <content>
-                        <VBox alignment="CENTER" minWidth="${scroll_pane.viewportBounds.width}">
+       <VBox fx:id="healthTrackerInformationDisplay" alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
+       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+           <center>
+               <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+                   <children>
+                       <Label alignment="CENTER" text="Your caloric activities">
+                           <font>
+                               <Font size="26.0" />
+                           </font>
+                       </Label>
+                       <GridPane gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" prefWidth="500.0">
+                           <columnConstraints>
+                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />
+                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />
+                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />
+                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                              <Label fx:id="weightEvolutionLabel" alignment="TOP_CENTER" text="Label" textAlignment="CENTER" wrapText="true" />
+                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="225.0" text="Activity" GridPane.columnIndex="1" />
+                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="187.0" text="Quantity/Time" GridPane.columnIndex="2" />
+                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="192.0" text="Date" textAlignment="CENTER" GridPane.columnIndex="3" />
+                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="225.0" text="Activity Type" />
                            </children>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
-                  <Label layoutX="282.0" layoutY="57.0" text="Are you keeping up to your goal?">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="goalTracking" text="Label" textAlignment="CENTER" wrapText="true">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label layoutX="282.0" layoutY="104.0" text="How much time do you need to sleep per day?">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="necessarySleepLabel" layoutX="10.0" layoutY="44.0" text="Label" textAlignment="CENTER" wrapText="true">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label layoutX="282.0" layoutY="151.0" text="Your body parameters">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="bodyParameters" layoutX="10.0" layoutY="61.0" text="Label" textAlignment="CENTER" wrapText="true" />
-               </children>
-            </VBox>
-         </children>
-      </VBox>
+                           <VBox.margin>
+                               <Insets />
+                           </VBox.margin>
+                       </GridPane>
+                       <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="600.0">
+                           <padding>
+                               <Insets top="20.0" />
+                           </padding>
+                           <content>
+                               <VBox fx:id="elements" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                           </content>
+                       </ScrollPane>
+                   </children>
+               </VBox>
+           </center>
+       </BorderPane>
+       </VBox>
    </center>
 </BorderPane>
