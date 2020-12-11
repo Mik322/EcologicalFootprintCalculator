@@ -14,14 +14,20 @@ class ChangeConsumption {
   def changeConsumption(): Unit = {
     try {
       val kWh = consumption.getText.toInt
-      val newElectricity = FxApp.getFootPrint.electricity.copy(monthlyConsumption = kWh)
-      FxApp.updateFootPrint(FxApp.getFootPrint.copy(electricity = newElectricity))
-      infoLabel.setText("Changed")
-      infoLabel.setTextFill(Color.BLACK)
+      if (kWh < 0) invalidNumber()
+      else {
+        val newElectricity = FxApp.getFootPrint.electricity.copy(monthlyConsumption = kWh)
+        FxApp.updateFootPrint(FxApp.getFootPrint.copy(electricity = newElectricity))
+        infoLabel.setText("Changed")
+        infoLabel.setTextFill(Color.BLACK)
+      }
     } catch {
-      case _: NumberFormatException =>
-        infoLabel.setText("Not a valid number")
-        infoLabel.setTextFill(Color.RED)
+      case _: NumberFormatException => invalidNumber()
     }
+  }
+
+  def invalidNumber() = {
+    infoLabel.setText("Not a valid number")
+    infoLabel.setTextFill(Color.RED)
   }
 }

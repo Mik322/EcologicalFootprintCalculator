@@ -43,17 +43,25 @@ class AddWaste {
     } else {
       try {
         val kg = quantity.getText.toInt
-        val waste = wasteType.getValue
-        val newFootPrint = FootPrintOps.addWaste(FxApp.getFootPrint, kg, waste)
-        FxApp.updateFootPrint(newFootPrint)
-        infoLabel.setText("Added")
-        infoLabel.setTextFill(Color.BLACK)
-        setTotals()
-      } catch {
-        case _: NumberFormatException =>
-          infoLabel.setText("Number not valid")
+        if (quantity.getText.toDouble < 0) {
+          infoLabel.setText("You entered a negative number!")
           infoLabel.setTextFill(Color.RED)
+        } else {
+          val waste = wasteType.getValue
+          val newFootPrint = FootPrintOps.addWaste(FxApp.getFootPrint, kg, waste)
+          FxApp.updateFootPrint(newFootPrint)
+          infoLabel.setText("Added")
+          infoLabel.setTextFill(Color.BLACK)
+          setTotals()
+        }
+      }
+        catch {
+          case _: NumberFormatException => {
+            infoLabel.setText("Number not valid")
+            infoLabel.setTextFill(Color.RED)
+          }
+        }
       }
     }
-  }
+
 }
