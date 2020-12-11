@@ -33,14 +33,17 @@ class AddCar {
   }
 
   def addCar(): Unit = {
-    if (car_name.getText().isBlank || car_consumption.getText().isBlank || car_fuel.getValue == null) missingValues()
+    error_message.setVisible(false)
+    success_label.setVisible(false)
+    missing_values.setVisible(false)
+    invalid_char.setVisible(false)
+    if (car_name.getText().isBlank || car_consumption.getText().isBlank || car_fuel.getValue == null)
+      missing_values.setVisible(true)
     else {
-      missing_values.setText("")
-      invalid_char.setText("")
       try {
-        if (car_consumption.getText.toDouble < 0) {
-          invalidChar()
-        } else {
+        if (car_consumption.getText.toDouble <= 0)
+          invalid_char.setVisible(true)
+        else {
           val car = Car(car_name.getText(), car_consumption.getText().toDouble, car_fuel.getValue)
           val footPrint = FxApp.getFootPrint
           val exists_car = footPrint.cars.find(c => c.name == car_name.getText)
@@ -49,30 +52,16 @@ class AddCar {
               val new_cars = footPrint.cars.appended(car)
               val new_footPrint = footPrint.copy(cars = new_cars)
               FxApp.updateFootPrint(new_footPrint)
-              error_message.setText("")
-              success_label.setText("Your car has been added with success!")
+              success_label.setVisible(true)
             }
+            case Some(_) => error_message.setVisible(true)
           }
         }
       } catch {
-        case _: NumberFormatException => invalidChar()
+        case _: NumberFormatException => invalid_char.setVisible(true)
       }
     }
   }
 
-  def invalidChar(): Unit = {
-    invalid_char.setText("Invalid Character. Please try again")
-    success_label.setText("")
-  }
-
-  def missingValues(): Unit = {
-    missing_values.setText("You need to fill every parameter in order to add a car")
-    success_label.setText("")
-  }
-
-  def existingCar(): Unit = {
-    error_message.setText("You already have a car with that name. Please try a new one")
-    success_label.setText("")
-  }
 
 }
