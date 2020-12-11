@@ -35,6 +35,10 @@ object FootPrintOptions {
       case "2" => FootPrintConsoleOps.addTransportTrip(cars)
       case "3" => GetTransportHistory
       case "4" => GetTransportEmissions
+      case "0" => GoToMainMenu
+      case _ =>
+        printTryAgain()
+        transportationMenu(cars)
     }
   }
 
