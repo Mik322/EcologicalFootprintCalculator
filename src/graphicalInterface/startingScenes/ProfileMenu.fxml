@@ -17,11 +17,7 @@
                   <Font name="Be Vietnam Regular" size="18.0" />
                </font>
             </Label>
-            <ImageView fitHeight="36.0" fitWidth="90.0" opacity="0.85" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:/Users/afonso/Desktop/Uni/PPM/Projeto/EcologicalFootprintCalculator/footprint.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="footprint" fitHeight="36.0" fitWidth="90.0" opacity="0.85" pickOnBounds="true" preserveRatio="true"/>
          </children>
       </HBox>
       <Label />
