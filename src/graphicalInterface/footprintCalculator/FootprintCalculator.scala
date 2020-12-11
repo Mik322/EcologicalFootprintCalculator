@@ -46,22 +46,31 @@ class FootprintCalculator {
 
   private def setElectricityEmissions(): Unit = {
     val emissions = energy.Electricity.getElectricityEmissions(FxApp.getFootPrint.electricity).toInt
-    electricity.setText(s"${emissions}g")
+    electricity.setText(gramOrKg(emissions))
   }
 
   private def setTransportEmissions(): Unit = {
     val emissions = TransportTrip.getTotalEmissions(FxApp.getFootPrint.transportTrips).toInt
-    transport.setText(s"${emissions}g")
+    transport.setText(gramOrKg(emissions))
   }
 
   private def setWasteEmissions(): Unit = {
     val emissions = Waste.getTotalEmissions(FxApp.getFootPrint.waste)
-    waste.setText(s"${emissions}g")
+    waste.setText(gramOrKg(emissions))
   }
 
   private def setTotalEmissions(): Unit = {
     val emissions = FootPrintOps.getTotalEmissions(FxApp.getFootPrint)
-    total.setText(s"${emissions}g")
+    total.setText(gramOrKg(emissions))
+  }
+
+  private def gramOrKg(num: Int): String = {
+    if (num < 1000) return s"${num}g"
+    val kg = (num.toDouble/1000).toString
+    "[0-9]*\\.?[0-9]{0,2}".r.findFirstIn(kg) match {
+      case None => s"${kg}kg"
+      case Some(value) => s"${value}kg"
+    }
   }
 
   private def setEmissions(): Unit = {
