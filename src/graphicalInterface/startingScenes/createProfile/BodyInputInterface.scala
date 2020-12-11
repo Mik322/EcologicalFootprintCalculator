@@ -5,7 +5,7 @@ import graphicalInterface.FxApp
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.Parent
-import javafx.scene.control.{ChoiceBox, RadioButton, TextField, ToggleGroup}
+import javafx.scene.control.{ChoiceBox, Label, RadioButton, TextField, ToggleGroup}
 import main.healthTracker.Body._
 import main.{Date, States}
 
@@ -23,6 +23,8 @@ class BodyInputInterface {
   var female: RadioButton = _
   @FXML
   var lifestyleChoice: ChoiceBox[Lifestyle] = new ChoiceBox[Lifestyle]()
+  @FXML
+  var heightErrorLabel, weightErrorLabel, ageErrorLabel: Label = _
 
   var sexGroup = new ToggleGroup
 
@@ -33,6 +35,7 @@ class BodyInputInterface {
     male.setToggleGroup(sexGroup)
     female.setToggleGroup(sexGroup)
     male.setSelected(true)
+    lifestyleChoice.setValue(Sedentary)
   }
 
   private var footPrintData: FootPrintData = _
@@ -45,12 +48,40 @@ class BodyInputInterface {
   }
 
   def createProfile(): Unit = {
-    val sex = if (male.isSelected) Male else Female
-    val bodyParams = BodyParams(height.getText.toInt, weight.getText.toInt, age.getText.toInt, sex, lifestyleChoice.getValue, Date.today())
-    val states = States.createStates(NewProfile(username, bodyParams, footPrintData))
-    val loader = new FXMLLoader(getClass.getResource("../../HomePage.fxml"))
-    val root: Parent = loader.load()
-    FxApp.setStates(states)
-    lifestyleChoice.getScene.setRoot(root)
+    heightErrorLabel.setVisible(false)
+    weightErrorLabel.setVisible(false)
+    ageErrorLabel.setVisible(false)
+    try {
+      val heightValue = height.getText.toInt
+      val weightValue = weight.getText.toDouble
+      val ageValue = age.getText.toInt
+      if (heightValue <= 0 || weightValue <= 0 || ageValue < 14 || ageValue > 100) {
+        if (heightValue <= 0)
+          heightErrorLabel.setVisible(true)
+        if (weightValue <= 0)
+          weightErrorLabel.setVisible(true)
+        if (ageValue < 14 || ageValue > 100)
+          ageErrorLabel.setVisible(true)
+      } else {
+        val sex = if (male.isSelected) Male else Female
+        val bodyParams = BodyParams(heightValue, weightValue, ageValue, sex, lifestyleChoice.getValue, Date.today())
+        val states = States.createStates(NewProfile(username, bodyParams, footPrintData))
+        val loader = new FXMLLoader(getClass.getResource("../../HomePage.fxml"))
+        val root: Parent = loader.load()
+        FxApp.setStates(states)
+        lifestyleChoice.getScene.setRoot(root)
+      }
+    } catch {
+      case _ : NumberFormatException =>
+        if(!isInt(height.getText))
+          heightErrorLabel.setVisible(true)
+        if(!isDouble(weight.getText))
+          weightErrorLabel.setVisible(true)
+        if(!isInt(age.getText))
+          ageErrorLabel.setVisible(true)
+    }
   }
+  private def isInt(string: String): Boolean = "^[0-9]+$".r.matches(string)
+
+  private def isDouble(string: String): Boolean = "^[0-9]+\\.?[0-9]*$".r.matches(string)
 }

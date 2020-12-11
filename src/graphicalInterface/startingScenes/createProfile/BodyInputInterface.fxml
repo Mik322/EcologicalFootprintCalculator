@@ -1,29 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.createProfile.BodyInputInterface">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.createProfile.BodyInputInterface">
    <children>
+      <Label text="Please fill your body parameters">
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
       <Label text="Height (cm)">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="height" />
+      <TextField fx:id="height" maxWidth="-Infinity" />
+      <Label fx:id="heightErrorLabel" text="Please insert a valid value!(positive integer)" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
       <Label layoutX="296.0" layoutY="201.0" text="Weight (kg)">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="weight" layoutX="10.0" layoutY="197.0" />
+      <TextField fx:id="weight" layoutX="10.0" layoutY="197.0" maxWidth="-Infinity" />
+      <Label fx:id="weightErrorLabel" text="Insert a valid value!(positive double)" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
       <Label layoutX="264.0" layoutY="210.0" text="Age">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="age" layoutX="10.0" layoutY="224.0" />
+      <TextField fx:id="age" layoutX="10.0" layoutY="224.0" maxWidth="-Infinity" />
+      <Label fx:id="ageErrorLabel" text="Insert a valid age! (from 14 to 100)" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </Label>
       <Label layoutX="294.0" layoutY="228.0" text="Biological Sex">
          <font>
             <Font size="18.0" />
@@ -40,7 +69,10 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="lifestyleChoice" prefWidth="150.0" />
+      <ChoiceBox fx:id="lifestyleChoice" prefWidth="150.0">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin></ChoiceBox>
       <Button mnemonicParsing="false" onAction="#createProfile" text="Create Profile" />
    </children>
 </VBox>
