@@ -1,3 +1,25 @@
+.new_profile_button{
+    -fx-font-family: "Be Vietnam";
+    -fx-text-fill: white;
+    -fx-background-color: #07245a;
+}
+
+.new_profile_button:hover{
+    -fx-background-color: #d4d4d4;
+    -fx-text-fill: #07245a;
+}
+
+.load_profile_button{
+    -fx-font-family: "Be Vietnam";
+    -fx-text-fill: #07245a;
+    -fx-background-color: #d4d4d4;
+}
+
+.load_profile_button:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #07245a;
+}
+
 .white_button{
     -fx-background-color: transparent;
     -fx-text-fill: #07245a;
@@ -53,6 +75,7 @@
 .home_page_button{
     -fx-background-color: transparent;
     -fx-background-radius: 0;
+    -fx-text-fill: white;
 }
 
 .home_page_button:hover{

@@ -2,16 +2,13 @@ package graphicalInterface.startingScenes.newProfile
 
 import consoleinterface.StartOptions.FootPrintData
 import consoleinterface.footprint.FootPrintQuestions
-import graphicalInterface.startingScenes.newProfile.BodyInput
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.Parent
-import javafx.scene.control.{CheckBox, ChoiceBox, ListView, TextField}
-import javafx.stage.Stage
+import javafx.scene.control.{CheckBox, ChoiceBox, TextField}
 
 class Questioner {
 
-  //private var distance_car_list: ObservableList[String] = FXCollections.observableArrayList("More than 2000", "Between 1250 and 2000", "Between 125 and 1250", "Less than 125", "0")
   private val distance_publicT_list: ObservableList[String] = FXCollections.observableArrayList("More than 32000", "Between 25000 and 32000", "Between 15000 and 25000", "Between 1500 and 15000","Less than 1500", "0")
   private val holidayDest_list: ObservableList[String] = FXCollections.observableArrayList("Close to home(Country)", "Short distance away(Continent)", "Long flight away(Rest of the world)")
   private val averageGasBill_list: ObservableList[String] = FXCollections.observableArrayList("More than 280", "Between 170 and 280", "Between 50 and 170", "Less than 50")

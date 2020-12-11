@@ -12,6 +12,8 @@ class NewProfile {
 
   def keyPressed(e: KeyEvent): Unit = if (e.getCode == KeyCode.ENTER) createProfile()
 
+  //TODO - exception for when user tries to create profile with name used before
+
   def createProfile(): Unit = {
     val loader = new FXMLLoader(getClass.getResource("Questioner.fxml"))
     val questioner: ScrollPane = loader.load()

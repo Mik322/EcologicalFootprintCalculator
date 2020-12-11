@@ -10,12 +10,12 @@
    <children>
       <Label text="Set your username">
          <font>
-            <Font size="18.0" />
+            <Font name="Be Vietnam Regular" size="18.0" />
          </font>
       </Label>
       <TextField fx:id="username" maxWidth="-Infinity" minWidth="175.0" onKeyPressed="#keyPressed" />
       <Label />
-      <Button minWidth="60.0" mnemonicParsing="false" onAction="#createProfile" text="Next" />
-      <Button mnemonicParsing="false" onAction="#goBack" text="Go back" />
+      <Button minWidth="60.0" mnemonicParsing="false" onAction="#createProfile" styleClass="new_profile_button" stylesheets="@../../Style.css" text="Next" />
+      <Button mnemonicParsing="false" onAction="#goBack" styleClass="load_profile_button" stylesheets="@../../Style.css" text="Go back" />
    </children>
 </VBox>

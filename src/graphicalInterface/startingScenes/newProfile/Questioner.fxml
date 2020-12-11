@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="564.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.newProfile.Questioner">
+<ScrollPane fx:id="scroll" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.newProfile.Questioner">
    <content>
-      <VBox alignment="TOP_CENTER" prefHeight="1150.0" prefWidth="697.0" spacing="10.0">
+      <VBox alignment="TOP_CENTER" minWidth="${scroll.viewportBounds.width}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
          <children>
             <Label prefHeight="34.0" prefWidth="341.0" text="Please answer this questions">
                <font>
@@ -14,7 +20,7 @@
                </font>
             </Label>
             <Label text="Distance travelled monthly by private car" />
-            <TextField fx:id="distance_car" />
+            <TextField fx:id="distance_car" maxHeight="-Infinity" maxWidth="-Infinity" />
             <Label text="Distance travelled annually by public transport" />
             <ChoiceBox fx:id="distance_publicT" layoutX="103.0" layoutY="37.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="79.0" layoutY="74.0" text="Holiday Destination" />
@@ -22,7 +28,7 @@
             <Label layoutX="147.0" layoutY="138.0" text="What is your average quarterly gas or oil bill?" />
             <ChoiceBox fx:id="averageGasBill" layoutX="103.0" layoutY="165.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="80.0" layoutY="202.0" text="How much KwH do you spend on average per month on electricity?" />
-            <TextField fx:id="averageElectricBill" prefHeight="27.0" prefWidth="308.0" />
+            <TextField fx:id="averageElectricBill" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="308.0" />
             <Label layoutX="132.0" layoutY="202.0" text="From what source does your energy supply come from?" />
             <ChoiceBox fx:id="sourceOfEnergy" layoutX="155.0" layoutY="229.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="102.0" layoutY="330.0" text="Are you:" />
@@ -46,7 +52,7 @@
             <Label layoutX="46.0" layoutY="950.0" text="If you have a washing machine, how many times do you run it on an average week?" />
             <ChoiceBox fx:id="washingMachine" layoutX="155.0" layoutY="977.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="30.0" layoutY="1014.0" text="Do dispose of waste, you're going to use up valuable land. Do you recycle the following items?" />
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <HBox alignment="TOP_CENTER" spacing="5.0">
                <children>
                   <CheckBox fx:id="glass" mnemonicParsing="false" text="Glass" />
                   <CheckBox fx:id="plastic" mnemonicParsing="false" text="Plastic" />
@@ -56,6 +62,7 @@
                   <CheckBox fx:id="foodWaste" mnemonicParsing="false" text="Food Waste" />
                </children>
             </HBox>
+            <Label />
             <Button mnemonicParsing="false" onAction="#submit" text="Submit" />
          </children>
       </VBox>

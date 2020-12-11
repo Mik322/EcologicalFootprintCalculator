@@ -11,13 +11,13 @@
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" text="Username:">
             <font>
-                <Font size="18.0" />
+                <Font name="Be Vietnam Regular" size="18.0" />
             </font>
         </Label>
         <TextField fx:id="userName" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" onKeyPressed="#enterPress" />
         <Label fx:id="errorLabel" textFill="RED" />
-        <Button mnemonicParsing="false" onAction="#loadProfile" prefWidth="100.0" text="Load Profile" />
-    <Button mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" text="Go Back">
+        <Button mnemonicParsing="false" onAction="#loadProfile" prefWidth="100.0" styleClass="new_profile_button" stylesheets="@../Style.css" text="Load Profile" />
+    <Button mnemonicParsing="false" onAction="#goBack" prefWidth="100.0" styleClass="load_profile_button" stylesheets="@../Style.css" text="Go Back">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
