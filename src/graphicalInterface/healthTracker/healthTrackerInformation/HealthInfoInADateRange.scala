@@ -25,6 +25,8 @@ class HealthInfoInADateRange {
   @FXML
   var caloricInfo: Label = _
   @FXML
+  var caloricActivities: Label = _
+  @FXML
   var grid: Pane = _
   @FXML
   var scrollPane: ScrollPane = _
@@ -37,6 +39,7 @@ class HealthInfoInADateRange {
     endErrorLabel.setVisible(false)
     sleepTime.setVisible(false)
     caloricInfo.setVisible(false)
+    caloricActivities.setVisible(false)
     grid.setVisible(false)
     scrollPane.setVisible(false)
     val startD=startDate.getValue
@@ -77,6 +80,8 @@ class HealthInfoInADateRange {
         }else{
           val newHealthTracker = healthTracker.copy(activities = newActivities)
           addInformation(newHealthTracker)
+          caloricActivities.setText(s"Your caloric activities from ${start} to ${end}")
+          caloricActivities.setVisible(true)
           grid.setVisible(true)
           scrollPane.setVisible(true)
         }

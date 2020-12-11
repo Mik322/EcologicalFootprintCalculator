@@ -65,17 +65,31 @@
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </Label>
                   <Label fx:id="caloricInfo" text="Caloric info" textAlignment="CENTER" visible="false" wrapText="true">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </Label>
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" top="5.0" />
                </VBox.margin>
             </VBox>
+            <Label fx:id="caloricActivities" text="caloricActivities" textAlignment="CENTER" visible="false" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
                   <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" prefWidth="500.0" visible="false">
                       <columnConstraints>
                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />

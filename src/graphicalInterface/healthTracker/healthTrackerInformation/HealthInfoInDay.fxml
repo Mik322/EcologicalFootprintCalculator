@@ -13,6 +13,9 @@
          <font>
             <Font size="26.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
       </Label>
       <Label text="Choose a day:">
          <VBox.margin>
@@ -37,11 +40,17 @@
       <Label fx:id="caloriesDisplay" text="Calories" textAlignment="CENTER" visible="false" wrapText="true">
          <VBox.margin>
             <Insets bottom="10.0" />
-         </VBox.margin></Label>
+         </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <Label fx:id="sleepDisplay" text="Sleep" textAlignment="CENTER" visible="false" wrapText="true">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
       </Label>
    </children>
 </VBox>
