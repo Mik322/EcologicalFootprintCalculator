@@ -7,12 +7,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.GetCaloriesInDay">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.HealthInfoInDay">
    <children>
-      <Label text="Get calories balance in a specific day">
+      <Label text="Get your health information in a specific day">
          <font>
             <Font size="26.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
       </Label>
       <Label text="Choose a day:">
          <VBox.margin>
@@ -34,6 +37,20 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Button>
-      <Label fx:id="caloriesDisplay" text="Calories" textAlignment="CENTER" visible="false" wrapText="true" />
+      <Label fx:id="caloriesDisplay" text="Calories" textAlignment="CENTER" visible="false" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="sleepDisplay" text="Sleep" textAlignment="CENTER" visible="false" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </VBox>

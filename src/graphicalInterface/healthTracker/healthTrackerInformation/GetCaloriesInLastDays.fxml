@@ -37,6 +37,9 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Button>
-      <Label fx:id="caloriesInfo" text="result" textAlignment="CENTER" visible="false" wrapText="true" />
+      <Label fx:id="caloriesInfo" text="result" textAlignment="CENTER" visible="false" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </VBox>

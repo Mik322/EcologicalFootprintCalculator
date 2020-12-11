@@ -2,13 +2,14 @@ package graphicalInterface.healthTracker.healthTrackerInformation
 
 import graphicalInterface.FxApp
 import javafx.fxml.{FXML, FXMLLoader}
-import javafx.scene.control.{DatePicker, Label}
-import javafx.scene.layout.VBox
+import javafx.scene.control.{DatePicker, Label, ScrollPane}
+import javafx.scene.layout.{Pane, VBox}
 import main.Date
 import main.States.HealthTracker
-import main.healthTracker.CaloricActivity
+import main.healthTracker.HealthInformationOps.getAverageSleepInDaysString
+import main.healthTracker.{CaloricActivity, SleepTracker}
 
-class GetListOfCaloricActivitiesInADateRange {
+class HealthInfoInADateRange {
   @FXML
   var elements: VBox = _
   @FXML
@@ -19,11 +20,28 @@ class GetListOfCaloricActivitiesInADateRange {
   var startErrorLabel: Label = _
   @FXML
   var endErrorLabel: Label = _
+  @FXML
+  var sleepTime: Label = _
+  @FXML
+  var caloricInfo: Label = _
+  @FXML
+  var caloricActivities: Label = _
+  @FXML
+  var grid: Pane = _
+  @FXML
+  var scrollPane: ScrollPane = _
+
+
 
   def applyDateRange(): Unit ={
     elements.getChildren.clear()
     startErrorLabel.setVisible(false)
     endErrorLabel.setVisible(false)
+    sleepTime.setVisible(false)
+    caloricInfo.setVisible(false)
+    caloricActivities.setVisible(false)
+    grid.setVisible(false)
+    scrollPane.setVisible(false)
     val startD=startDate.getValue
     val endD=endDate.getValue
     if(startD==null || endD==null){
@@ -51,9 +69,22 @@ class GetListOfCaloricActivitiesInADateRange {
         endErrorLabel.setText("The end date can't be a day before the start day!")
         endErrorLabel.setVisible(true)
       }else {
-        lazy val newActivities = FxApp.getHealthTracker.activities.filter(a => a.date >= start && a.date <= end)
-        val newHealthTracker = FxApp.getHealthTracker.copy(activities = newActivities)
-        addInformation(newHealthTracker)
+        val healthTracker = FxApp.getHealthTracker
+        val averageSleepInDays = SleepTracker.getAverageSleep(healthTracker.sleepTracker, start, end)
+        sleepTime.setText(getAverageSleepInDaysString(averageSleepInDays, start, end))
+        sleepTime.setVisible(true)
+        lazy val newActivities = healthTracker.activities.filter(a => a.date >= start && a.date <= end)
+        if(newActivities.size==0){
+          caloricInfo.setText(s"You don't have any caloric activities from ${start} to ${end}")
+          caloricInfo.setVisible(true)
+        }else{
+          val newHealthTracker = healthTracker.copy(activities = newActivities)
+          addInformation(newHealthTracker)
+          caloricActivities.setText(s"Your caloric activities from ${start} to ${end}")
+          caloricActivities.setVisible(true)
+          grid.setVisible(true)
+          scrollPane.setVisible(true)
+        }
       }
     }
   }
