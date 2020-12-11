@@ -8,15 +8,15 @@
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddCupOfWater">
    <children>
-      <Label text="Add cup of water(250ml)">
+      <Label styleClass="health_title" stylesheets="@../../Style.css" text="Add cup of water(250ml)">
          <font>
             <Font size="26.0" />
          </font>
          <padding>
-            <Insets bottom="20.0" />
+            <Insets bottom="30.0" />
          </padding>
       </Label>
-      <Button fx:id="drinkWaterConfirm" mnemonicParsing="false" onMouseClicked="#addCupOfWater" style="-fx-border-color: black; -fx-background-color: pink;" text="DRINK WATER">
+      <Button fx:id="drinkWaterConfirm" mnemonicParsing="false" onMouseClicked="#addCupOfWater" styleClass="blue_button" stylesheets="@../../Style.css" text="DRINK WATER">
          <padding>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>

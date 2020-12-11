@@ -13,19 +13,19 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.HealthTrackerInformation">
     <left>
-        <VBox alignment="CENTER" style="-fx-background-color: #20AF00#20AF00;" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" styleClass="health_blue_menu" stylesheets="@../../Style.css" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="getCaloriesInDayButton" mnemonicParsing="false" onMouseClicked="#getCaloriesInDayDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Daily health info" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                <Button fx:id="getCaloriesInDayButton" mnemonicParsing="false" onMouseClicked="#getCaloriesInDayDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="health_blue_menu_button" stylesheets="@../../Style.css" text="Daily health info" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                     <font>
                         <Font name="Be Vietnam Regular" size="13.0" />
                     </font>
                 </Button>
-                <Button fx:id="getNetCaloriesInLastDaysButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getNetCaloriesInLastDaysDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Latest net calories" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                <Button fx:id="getNetCaloriesInLastDaysButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#getNetCaloriesInLastDaysDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="health_blue_menu_button" stylesheets="@../../Style.css" text="Latest net calories" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                     <font>
                         <Font name="Be Vietnam Regular" size="13.0" />
                     </font>
                 </Button>
-                <Button fx:id="seeListOfCaloricActivitiesInADateRangeButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#seeListOfCaloricActivitiesInADateRangeDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_button" stylesheets="@../../Style.css" text="Health info in date range" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                <Button fx:id="seeListOfCaloricActivitiesInADateRangeButton" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#seeListOfCaloricActivitiesInADateRangeDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="health_blue_menu_button" stylesheets="@../../Style.css" text="Health info in date range" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                     <font>
                         <Font name="Be Vietnam Regular" size="13.0" />
                     </font>
@@ -39,12 +39,15 @@
            <center>
                <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                    <children>
-                       <Label alignment="CENTER" text="Your caloric activities">
+                       <Label alignment="CENTER" styleClass="health_title" stylesheets="@../../Style.css" text="Your caloric activities">
                            <font>
                                <Font size="26.0" />
                            </font>
+                        <VBox.margin>
+                           <Insets bottom="30.0" />
+                        </VBox.margin>
                        </Label>
-                       <GridPane gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" prefWidth="500.0">
+                       <GridPane alignment="TOP_CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="599.0">
                            <columnConstraints>
                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />
                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />
@@ -64,7 +67,7 @@
                                <Insets />
                            </VBox.margin>
                        </GridPane>
-                       <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="600.0">
+                       <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="521.0">
                            <padding>
                                <Insets top="20.0" />
                            </padding>

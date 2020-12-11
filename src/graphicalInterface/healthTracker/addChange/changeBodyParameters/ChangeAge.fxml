@@ -9,12 +9,12 @@
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.changeBodyParameters.ChangeAge">
       <children>
-        <Label text="Change Age">
+        <Label styleClass="health_title" stylesheets="@../../../Style.css" text="Change Age">
             <font>
                 <Font size="26.0" />
             </font>
          <VBox.margin>
-            <Insets bottom="20.0" />
+            <Insets bottom="30.0" />
          </VBox.margin>
         </Label>
           <Label text="Insert your new age">
@@ -32,7 +32,7 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
-          <Button fx:id="changeAgeConfirm" mnemonicParsing="false" onMouseClicked="#changeAge" text="Change age">
+          <Button fx:id="changeAgeConfirm" mnemonicParsing="false" onMouseClicked="#changeAge" styleClass="blue_button" stylesheets="@../../../Style.css" text="Change ">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin></Button>

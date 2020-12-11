@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -13,22 +14,26 @@
         <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
                 <Label text="Please choose the car you want to edit/delete" />
-            <ChoiceBox fx:id="choose_car" prefWidth="150.0" />
+            <ChoiceBox fx:id="choose_car" prefWidth="150.0" style="-fx-border-color: transparent;" />
+            <Label />
                 <Label text="Please type a new name for your car" />
                 <TextField fx:id="car_new_name" alignment="CENTER" layoutX="10.0" layoutY="37.0" maxWidth="-Infinity" />
             <Label fx:id="missing_values" textFill="RED" />
-                <Button fx:id="edit_car" mnemonicParsing="false" onMouseClicked="#edit" text="Edit car" />
+                <Button fx:id="edit_car" mnemonicParsing="false" onMouseClicked="#edit" styleClass="green_button" stylesheets="@../../../Style.css" text="Edit car" />
             <Label fx:id="success_label" />
-            <Button fx:id="delete_car" mnemonicParsing="false" onMouseClicked="#delete" text="Delete Car" />
+            <Button fx:id="delete_car" mnemonicParsing="false" onMouseClicked="#delete" styleClass="green_button" stylesheets="@../../../Style.css" text="Delete Car" />
             <Label fx:id="delete_success_label" layoutX="220.0" layoutY="202.0" />
             </children>
         </VBox>
     </center>
     <top>
-        <Label prefHeight="96.0" text="Edit garage" BorderPane.alignment="CENTER">
+        <Label styleClass="footprint_title" stylesheets="@../../../Style.css" text="Edit garage" BorderPane.alignment="CENTER">
             <font>
                 <Font size="26.0" />
             </font>
+         <BorderPane.margin>
+            <Insets bottom="30.0" />
+         </BorderPane.margin>
         </Label>
     </top>
 </BorderPane>

@@ -15,12 +15,12 @@ class HomePage {
 
 
   def footprintCalculator(): Unit = {
-    side_bar.setStyle("-fx-background-color: #07245A")
+    side_bar.setStyle("-fx-background-color: #1a9000")
     loadPage[FootprintCalculator](homePane)
   }
 
   def healthTracker(): Unit = {
-    side_bar.setStyle("-fx-background-color: #20AF00")
+    side_bar.setStyle("-fx-background-color: #07245A")
     loadPage[HealthTrackerInterface](homePane)
   }
 

@@ -16,12 +16,12 @@
    <center>
           <VBox alignment="CENTER" BorderPane.alignment="CENTER">
               <children>
-                  <Label alignment="CENTER" text="Your health information in a date range">
+                  <Label alignment="CENTER" styleClass="health_title" stylesheets="@../../Style.css" text="Your health information in a date range">
                       <font>
                           <Font size="26.0" />
                       </font>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="20.0" />
                </VBox.margin>
                   </Label>
             <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
@@ -56,7 +56,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="dateRangeConfirm" mnemonicParsing="false" onMouseClicked="#applyDateRange" text="Get info">
+                  <Button fx:id="dateRangeConfirm" mnemonicParsing="false" onMouseClicked="#applyDateRange" styleClass="blue_button" stylesheets="@../../Style.css" text="Get info">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -90,7 +90,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-                  <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" prefWidth="500.0" visible="false">
+                  <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" prefWidth="500.0" style="-fx-border-width: 0 0 1 0;" visible="false">
                       <columnConstraints>
                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />
                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="130.0" />

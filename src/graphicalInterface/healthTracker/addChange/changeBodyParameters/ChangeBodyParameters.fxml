@@ -10,21 +10,21 @@
       <VBox fx:id="changeBodyParametersDisplay" alignment="CENTER" BorderPane.alignment="CENTER" />
    </center>
    <left>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" styleClass="green_white_menu" stylesheets="@../../../Style.css" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" styleClass="health_white_menu" stylesheets="@../../../Style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="changeHeightButton" mnemonicParsing="false" onMouseClicked="#changeHeightDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_white_button" stylesheets="@../../../Style.css" text="Change Height" textAlignment="CENTER" textFill="#20af00" wrapText="true">
+            <Button fx:id="changeHeightButton" mnemonicParsing="false" onMouseClicked="#changeHeightDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="health_white_menu_button" stylesheets="@../../../Style.css" text="Change Height" textAlignment="CENTER" textFill="#20af00" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="changeWeightButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeWeightDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_white_button" stylesheets="@../../../Style.css" text="Change Weight" textAlignment="CENTER" textFill="#20af00" wrapText="true">
+            <Button fx:id="changeWeightButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeWeightDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="health_white_menu_button" stylesheets="@../../../Style.css" text="Change Weight" textAlignment="CENTER" textFill="#20af00" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="changeAgeButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeAgeDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_white_button" stylesheets="@../../../Style.css" text="Change Age" textAlignment="CENTER" textFill="#20af00" wrapText="true">
+            <Button fx:id="changeAgeButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeAgeDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="health_white_menu_button" stylesheets="@../../../Style.css" text="Change Age" textAlignment="CENTER" textFill="#20af00" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="changeLifestyleButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeLifestyleDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="green_white_button" stylesheets="@../../../Style.css" text="Change Lifestyle" textAlignment="CENTER" textFill="#20af00" wrapText="true">
+            <Button fx:id="changeLifestyleButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#changeLifestyleDisplay" prefHeight="70.0" prefWidth="130.0" styleClass="health_white_menu_button" stylesheets="@../../../Style.css" text="Change Lifestyle" textAlignment="CENTER" textFill="#20af00" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>

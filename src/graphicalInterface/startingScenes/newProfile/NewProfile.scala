@@ -1,18 +1,32 @@
 package graphicalInterface.startingScenes.newProfile
 
+import java.io.{File, FileInputStream, ObjectInputStream}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.{Parent, Scene}
-import javafx.scene.control.{ScrollPane, TextField}
+import javafx.scene.control.{Label, ScrollPane, TextField}
 import javafx.scene.input.{KeyCode, KeyEvent}
 import javafx.stage.Stage
 
 class NewProfile {
   @FXML
   var username: TextField = _
+  @FXML
+  var usedProfile: Label = _
 
-  def keyPressed(e: KeyEvent): Unit = if (e.getCode == KeyCode.ENTER) createProfile()
+  def keyPressed(e: KeyEvent): Unit = if (e.getCode == KeyCode.ENTER) checkUsers()
 
-  //TODO - exception for when user tries to create profile with name used before
+  def checkUsers() = {
+    if (!username.getText.isBlank) {
+      try {
+        val in = new ObjectInputStream(new FileInputStream(new File(s"${username.getText}.prof")))
+        usedProfile.setText("There's already a profile with that username!")
+      } catch {
+        case _: Throwable => createProfile()
+      }
+    }else{
+      usedProfile.setText("Please choose a username!")
+    }
+  }
 
   def createProfile(): Unit = {
     val loader = new FXMLLoader(getClass.getResource("Questioner.fxml"))

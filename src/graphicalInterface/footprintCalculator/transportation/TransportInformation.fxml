@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,20 +13,26 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.transportation.TransportInformation">
    <top>
-      <Label prefHeight="96.0" text="Welcome to transport menu" BorderPane.alignment="CENTER">
+      <Label styleClass="footprint_title" stylesheets="@../../Style.css" text="Welcome to transport menu" BorderPane.alignment="CENTER">
          <font>
             <Font size="23.0" />
          </font>
+         <padding>
+            <Insets bottom="40.0" />
+         </padding>
       </Label>
    </top>
    <center>
-      <VBox fx:id="emissions_menu" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="emissions_menu" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_CENTER" spacing="50.0">
                <children>
                   <Label contentDisplay="CENTER" text="Total emissions from transportation:" />
                   <Label fx:id="total_emissions" />
                </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
             </HBox>
             <GridPane>
               <columnConstraints>
@@ -37,9 +44,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Mean of transport" />
-                  <Label layoutX="112.0" layoutY="17.0" text="Emission (g CO2)" GridPane.columnIndex="1" />
-                  <Label layoutX="433.0" layoutY="17.0" text="Kms " GridPane.columnIndex="2" />
+                  <Label styleClass="text" stylesheets="@../../Style.css" text="Mean of transport" />
+                  <Label layoutX="112.0" layoutY="17.0" styleClass="text" stylesheets="@../../Style.css" text="Emission (g CO2)" GridPane.columnIndex="1" />
+                  <Label layoutX="433.0" layoutY="17.0" styleClass="text" stylesheets="@../../Style.css" text="Kms " GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <ScrollPane prefHeight="217.0" prefWidth="544.0">

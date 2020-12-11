@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.waste.AddWaste">
    <center>
       <VBox alignment="CENTER" spacing="30.0">
@@ -23,21 +22,21 @@
                   <Label text="Quantity of waste (in kg)" />
                   <TextField fx:id="quantity" maxWidth="150.0" prefWidth="150.0" />
                   <Label fx:id="infoLabel" contentDisplay="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#addWaste" text="Add Waste" />
+                  <Button mnemonicParsing="false" onAction="#addWaste" styleClass="green_button" stylesheets="@../../Style.css" text="Add Waste" />
                   <Label />
                   <HBox alignment="TOP_CENTER" spacing="20.0">
                      <children>
-                        <Label text="Total Organic Waste:" />
-                        <Label fx:id="totalOrganic" text="0kg" />
+                        <Label styleClass="text" stylesheets="@../../Style.css" text="Total Organic Waste:" />
+                        <Label fx:id="totalOrganic" stylesheets="@../../Style.css" text="0kg" />
                      </children>
                   </HBox>
-                  <HBox alignment="TOP_CENTER" spacing="20.0">
+                  <HBox alignment="TOP_CENTER" spacing="20.0" stylesheets="@../../Style.css">
                      <children>
                         <Label text="Total Recycled Waste:" />
                         <Label fx:id="totalRecycled" text="0kg" />
                      </children>
                   </HBox>
-                  <HBox alignment="TOP_CENTER" spacing="20.0">
+                  <HBox alignment="TOP_CENTER" spacing="20.0" stylesheets="@../../Style.css">
                      <children>
                         <Label text="Total Emissions:" />
                         <Label fx:id="emissions" text="0g CO2" />
@@ -49,13 +48,16 @@
       </VBox>
    </center>
    <top>
-      <Label prefHeight="96.0" text="Add Waste" BorderPane.alignment="CENTER">
+      <Label styleClass="footprint_title" stylesheets="@../../Style.css" text="Add Waste" BorderPane.alignment="CENTER">
          <font>
             <Font size="26.0" />
          </font>
          <padding>
             <Insets bottom="5.0" />
          </padding>
+         <BorderPane.margin>
+            <Insets bottom="30.0" />
+         </BorderPane.margin>
       </Label>
    </top>
 </BorderPane>

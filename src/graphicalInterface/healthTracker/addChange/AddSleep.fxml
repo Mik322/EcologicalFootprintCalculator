@@ -10,12 +10,12 @@
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddSleep">
    <children>
-      <Label text="Add sleep to your tracker">
+      <Label styleClass="health_title" stylesheets="@../../Style.css" text="Add sleep to your tracker">
          <font>
             <Font size="26.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="20.0" />
+            <Insets bottom="30.0" />
          </VBox.margin>
       </Label>
       <Label text="How much time did you sleep? (In hours-integer)" textAlignment="CENTER">
@@ -48,7 +48,7 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="addSleepConfirm" mnemonicParsing="false" onMouseClicked="#addSleepTrack" text="Add sleep">
+      <Button fx:id="addSleepConfirm" mnemonicParsing="false" onMouseClicked="#addSleepTrack" styleClass="blue_button" stylesheets="@../../Style.css" text="Add ">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin></Button>

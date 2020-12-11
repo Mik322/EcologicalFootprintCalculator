@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -12,15 +13,15 @@
 
 <ScrollPane fx:id="scroll" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.newProfile.Questioner">
    <content>
-      <VBox alignment="TOP_CENTER" minWidth="${scroll.viewportBounds.width}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="${scroll.viewportBounds.width}" spacing="10.0">
          <children>
-            <Label prefHeight="34.0" prefWidth="341.0" text="Please answer this questions">
+            <Label prefHeight="34.0" styleClass="footprint_title" stylesheets="@../../Style.css" text="Please answer this questions">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
             <Label text="Distance travelled monthly by private car" />
-            <TextField fx:id="distance_car" maxHeight="-Infinity" maxWidth="-Infinity" />
+            <TextField fx:id="distance_car" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" />
             <Label text="Distance travelled annually by public transport" />
             <ChoiceBox fx:id="distance_publicT" layoutX="103.0" layoutY="37.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="79.0" layoutY="74.0" text="Holiday Destination" />
@@ -28,7 +29,7 @@
             <Label layoutX="147.0" layoutY="138.0" text="What is your average quarterly gas or oil bill?" />
             <ChoiceBox fx:id="averageGasBill" layoutX="103.0" layoutY="165.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="80.0" layoutY="202.0" text="How much KwH do you spend on average per month on electricity?" />
-            <TextField fx:id="averageElectricBill" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="308.0" />
+            <TextField fx:id="averageElectricBill" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="308.0" />
             <Label layoutX="132.0" layoutY="202.0" text="From what source does your energy supply come from?" />
             <ChoiceBox fx:id="sourceOfEnergy" layoutX="155.0" layoutY="229.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="102.0" layoutY="330.0" text="Are you:" />
@@ -54,17 +55,22 @@
             <Label layoutX="30.0" layoutY="1014.0" text="Do dispose of waste, you're going to use up valuable land. Do you recycle the following items?" />
             <HBox alignment="TOP_CENTER" spacing="5.0">
                <children>
-                  <CheckBox fx:id="glass" mnemonicParsing="false" text="Glass" />
-                  <CheckBox fx:id="plastic" mnemonicParsing="false" text="Plastic" />
-                  <CheckBox fx:id="paper" mnemonicParsing="false" text="Paper" />
-                  <CheckBox fx:id="aluminium" mnemonicParsing="false" text="Aluminium" />
-                  <CheckBox fx:id="steelCans" mnemonicParsing="false" text="Steel Cans" />
-                  <CheckBox fx:id="foodWaste" mnemonicParsing="false" text="Food Waste" />
+                  <CheckBox fx:id="glass" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Glass" />
+                  <CheckBox fx:id="plastic" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Plastic" />
+                  <CheckBox fx:id="paper" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Paper" />
+                  <CheckBox fx:id="aluminium" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Aluminium" />
+                  <CheckBox fx:id="steelCans" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Steel Cans" />
+                  <CheckBox fx:id="foodWaste" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Food Waste" />
                </children>
             </HBox>
-            <Label />
-            <Button mnemonicParsing="false" onAction="#submit" text="Submit" />
+            <Button mnemonicParsing="false" onAction="#submit" styleClass="green_button" stylesheets="@../../Style.css" text="Submit">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin></Button>
          </children>
+         <padding>
+            <Insets bottom="50.0" top="50.0" />
+         </padding>
       </VBox>
    </content>
 </ScrollPane>

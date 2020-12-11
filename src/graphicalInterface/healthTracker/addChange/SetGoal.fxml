@@ -9,12 +9,12 @@
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.SetGoal">
    <children>
-      <Label text="Set your goal">
+      <Label styleClass="health_title" stylesheets="@../../Style.css" text="Set your goal">
          <font>
             <Font size="26.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="20.0" />
+            <Insets bottom="30.0" />
          </VBox.margin>
       </Label>
       <Label text="Do you want to?">
@@ -32,7 +32,7 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="setGoalConfirm" mnemonicParsing="false" onMouseClicked="#updateGoal" text="Set goal">
+      <Button fx:id="setGoalConfirm" mnemonicParsing="false" onMouseClicked="#updateGoal" styleClass="blue_button" stylesheets="@../../Style.css" text="Set goal">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin></Button>
