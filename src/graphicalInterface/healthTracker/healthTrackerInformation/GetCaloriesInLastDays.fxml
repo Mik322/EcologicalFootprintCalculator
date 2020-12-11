@@ -9,7 +9,7 @@
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.GetCaloriesInLastDays">
    <children>
-      <Label text="Get calories balance in the last days">
+      <Label styleClass="health_title" stylesheets="@../../Style.css" text="Get calories balance in the last days">
          <font>
             <Font size="26.0" />
          </font>
@@ -32,7 +32,7 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
-      <Button mnemonicParsing="false" onMouseClicked="#getCaloriesInLastDays" text="Get balance">
+      <Button mnemonicParsing="false" onMouseClicked="#getCaloriesInLastDays" styleClass="blue_button" stylesheets="@../../Style.css" text="Get balance">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>

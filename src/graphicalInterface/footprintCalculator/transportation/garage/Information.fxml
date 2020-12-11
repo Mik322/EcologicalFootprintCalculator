@@ -17,7 +17,7 @@
                       <Label text="Please enter a day of the month" />
                   <DatePicker fx:id="date_picker" />
                   <Label fx:id="missing_values" layoutX="135.0" layoutY="10.0" textFill="RED" />
-                      <Button fx:id="calculate" mnemonicParsing="false" onMouseClicked="#calculateFunc" text="Calculate" />
+                      <Button fx:id="calculate" mnemonicParsing="false" onMouseClicked="#calculateFunc" styleClass="green_button" stylesheets="@../../../Style.css" text="Calculate" />
                   </children>
               </VBox>
             <VBox alignment="CENTER" prefHeight="93.0" prefWidth="420.0" spacing="10.0">
@@ -30,12 +30,12 @@
       </VBox>
     </center>
     <top>
-        <Label prefHeight="96.0" prefWidth="422.0" text="See fuel consumption and CO2 emissions from month" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+        <Label maxHeight="-Infinity" maxWidth="-Infinity" styleClass="footprint_title" stylesheets="@../../../Style.css" text="See fuel consumption and CO2 emissions from month" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
             <font>
                 <Font size="26.0" />
             </font>
          <BorderPane.margin>
-            <Insets bottom="20.0" />
+            <Insets bottom="30.0" />
          </BorderPane.margin>
         </Label>
     </top>

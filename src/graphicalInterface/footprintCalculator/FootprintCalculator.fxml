@@ -13,17 +13,17 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.footprintCalculator.FootprintCalculator">
    <left>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="white_menu" stylesheets="@../Style.css" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="footprint_white_menu" stylesheets="@../Style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="transportationButton" mnemonicParsing="false" onMouseClicked="#transportationMenu" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../Style.css" text="Transportation" textFill="#07245a">
+            <Button fx:id="transportationButton" mnemonicParsing="false" onMouseClicked="#transportationMenu" prefHeight="70.0" prefWidth="130.0" styleClass="footprint_white_menu_button" stylesheets="@../Style.css" text="Transportation" textFill="#07245a">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="wasteButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#wasteMenu" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../Style.css" text="Waste" textFill="#07245a">
+            <Button fx:id="wasteButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#wasteMenu" prefHeight="70.0" prefWidth="130.0" styleClass="footprint_white_menu_button" stylesheets="@../Style.css" text="Waste" textFill="#07245a">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="electricityButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#electricityMenu" prefHeight="70.0" prefWidth="130.0" styleClass="white_button" stylesheets="@../Style.css" text="Electricity" textFill="#07245a">
+            <Button fx:id="electricityButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#electricityMenu" prefHeight="70.0" prefWidth="130.0" styleClass="footprint_white_menu_button" stylesheets="@../Style.css" text="Electricity" textFill="#07245a">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
@@ -33,7 +33,7 @@
    <center>
       <VBox fx:id="footprintDisplay" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label lineSpacing="10.0" text="Foot Print Calculator">
+            <Label lineSpacing="10.0" styleClass="footprint_title" stylesheets="@../Style.css" text="Foot Print Calculator">
                <font>
                   <Font name="Be Vietnam Regular" size="24.0" />
                </font></Label>
@@ -88,7 +88,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="496.0" layoutY="10.0" text=" earth(s)">
+                  <Label layoutX="496.0" layoutY="10.0" text=" earth(s)" textFill="#1a9000">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -1,73 +1,101 @@
-.new_profile_button{
+.blue_button{
     -fx-font-family: "Be Vietnam";
     -fx-text-fill: white;
     -fx-background-color: #07245a;
+    -fx-min-width: 107;
+    -fx-min-height: 32;
+    -fx-background-radius: 20;
 }
 
-.new_profile_button:hover{
+.blue_button:hover{
     -fx-background-color: #d4d4d4;
     -fx-text-fill: #07245a;
 }
 
-.load_profile_button{
+.green_button{
     -fx-font-family: "Be Vietnam";
-    -fx-text-fill: #07245a;
-    -fx-background-color: #d4d4d4;
-}
-
-.load_profile_button:hover{
     -fx-text-fill: white;
-    -fx-background-color: #07245a;
+    -fx-background-color: #1a9000;
+    -fx-min-width: 107;
+    -fx-min-height: 32;
+    -fx-background-radius: 20;
 }
 
-.white_button{
+.green_button:hover{
+    -fx-background-color: #d4d4d4;
+    -fx-text-fill: #1a9000;
+}
+
+.gray_button{
+    -fx-font-family: "Be Vietnam";
+    -fx-text-fill: #1a9000;
+    -fx-background-color: #d4d4d4;
+    -fx-min-width: 107;
+    -fx-min-height: 32;
+    -fx-background-radius: 20;
+}
+
+.gray_button:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #1a9000;
+}
+
+.health_white_menu{
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #07245a;
+}
+
+.footprint_white_menu{
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #1a9000;
+}
+
+.health_white_menu_button{
     -fx-background-color: transparent;
     -fx-text-fill: #07245a;
     -fx-background-radius: 0;
 }
 
-.white_button:hover{
-    -fx-background-color: #d4d4d4;
-}
-
-.white_menu{
-    -fx-border-width: 0 1 0 0;
-    -fx-border-color: #07245a;
-}
-
-.green_white_menu{
-    -fx-border-width: 0 1 0 0;
-    -fx-border-color: #1a9000;
-}
-
-.green_white_button{
+.footprint_white_menu_button{
     -fx-background-color: transparent;
     -fx-text-fill: #1a9000;
     -fx-background-radius: 0;
 }
 
-.green_white_button:hover{
+.footprint_white_menu_button:hover{
     -fx-background-color: #d4d4d4;
 }
 
-.blue_button{
+.health_white_menu_button:hover{
+    -fx-background-color: #d4d4d4;
+}
+
+.health_blue_menu{
+    -fx-background-color: #07245a;
+}
+
+.health_blue_menu_button{
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-background-radius: 0;
 }
 
-.blue_button:hover{
+.health_blue_menu_button:hover{
     -fx-background-color: white;
     -fx-text-fill: #07245a;
 }
 
-.green_button{
+.footprint_green_menu_button{
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-background-radius: 0;
 }
 
-.green_button:hover{
+.footprint_green_menu{
+    -fx-background-color: #1a9000;
+}
+
+.footprint_green_menu_button:hover{
     -fx-background-color: white;
     -fx-text-fill: #1a9000;
 }
@@ -80,10 +108,29 @@
 
 .home_page_button:hover{
     -fx-background-color: white;
-    -fx-text-fill: #07245a;
+    -fx-text-fill: black;
 }
 
 .home_page {
-    -fx-background-color: #07245a;
+    -fx-background-color: #1a9000;
 }
 
+.footprint_title{
+    -fx-font-family: "Be Vietnam";
+    -fx-font-size: 26;
+    -fx-text-fill: #1a9000;
+}
+
+.health_title{
+    -fx-font-family: "Be Vietnam";
+    -fx-font-size: 26;
+    -fx-text-fill: #07245a;
+}
+
+.text{
+    -fx-font-family: "Be Vietnam";
+}
+
+.check_box .box{
+    -fx-background-radius: 50;
+}

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -9,13 +8,13 @@
    <content>
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="${scroll.viewportBounds.width}" spacing="10.0">
          <children>
-            <Label prefHeight="34.0" prefWidth="341.0" text="Please answer this questions">
+            <Label prefHeight="34.0" styleClass="footprint_title" stylesheets="@../../Style.css" text="Please answer this questions">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
             <Label text="Distance travelled monthly by private car" />
-            <TextField fx:id="distance_car" maxHeight="-Infinity" maxWidth="-Infinity" />
+            <TextField fx:id="distance_car" maxHeight="-Infinity" maxWidth="-Infinity" alignment="CENTER"/>
             <Label fx:id="kmError" layoutX="212.0" layoutY="387.0" text="Please insert a valid number" textFill="RED" visible="false">
                <font>
                   <Font size="10.0" />
@@ -31,7 +30,7 @@
             <Label layoutX="147.0" layoutY="138.0" text="What is your average quarterly gas or oil bill?" />
             <ChoiceBox fx:id="averageGasBill" layoutX="103.0" layoutY="165.0" prefHeight="27.0" prefWidth="195.0" />
             <Label layoutX="80.0" layoutY="202.0" text="How much KWh of electricity do you spend on average per month?" />
-            <TextField fx:id="averageElectricBill" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="308.0" />
+            <TextField alignment="CENTER" fx:id="averageElectricBill" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="308.0" />
             <Label fx:id="electricityError" text="Please insert a valid number" textFill="RED" visible="false">
                <font>
                   <Font size="10.0" />
@@ -65,20 +64,23 @@
             <Label layoutX="30.0" layoutY="1014.0" text="Do dispose of waste, you're going to use up valuable land. Do you recycle the following items?" />
             <HBox alignment="TOP_CENTER" spacing="5.0">
                <children>
-                  <CheckBox fx:id="glass" mnemonicParsing="false" text="Glass" />
-                  <CheckBox fx:id="plastic" mnemonicParsing="false" text="Plastic" />
-                  <CheckBox fx:id="paper" mnemonicParsing="false" text="Paper" />
-                  <CheckBox fx:id="aluminium" mnemonicParsing="false" text="Aluminium" />
-                  <CheckBox fx:id="steelCans" mnemonicParsing="false" text="Steel Cans" />
-                  <CheckBox fx:id="foodWaste" mnemonicParsing="false" text="Food Waste" />
+                  <CheckBox fx:id="glass" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Glass" />
+                  <CheckBox fx:id="plastic" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Plastic" />
+                  <CheckBox fx:id="paper" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Paper" />
+                  <CheckBox fx:id="aluminium" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Aluminium" />
+                  <CheckBox fx:id="steelCans" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Steel Cans" />
+                  <CheckBox fx:id="foodWaste" mnemonicParsing="false" styleClass="check_box" stylesheets="@../../Style.css" text="Food Waste" />
                </children>
             </HBox>
             <Label fx:id="infoLabel" text="Please fill all choices" textFill="RED" visible="false">
                <VBox.margin>
                   <Insets bottom="-10.0" top="-10.0" />
                </VBox.margin></Label>
-            <Button mnemonicParsing="false" onAction="#submit" text="Submit" />
+            <Button mnemonicParsing="false" onAction="#submit" text="Submit" stylesheets="@../../Style.css" styleClass="green_button"/>
          </children>
+         <padding>
+            <Insets bottom="50.0" top="50.0" />
+         </padding>
       </VBox>
    </content>
 </ScrollPane>

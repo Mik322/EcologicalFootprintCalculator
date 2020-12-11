@@ -9,12 +9,12 @@
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.healthTrackerInformation.HealthInfoInDay">
    <children>
-      <Label text="Get your health information in a specific day">
+      <Label styleClass="health_title" stylesheets="@../../Style.css" text="Get your health information in a specific day">
          <font>
             <Font size="26.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="10.0" />
+            <Insets bottom="30.0" />
          </VBox.margin>
       </Label>
       <Label text="Choose a day:">
@@ -32,7 +32,7 @@
             <Insets bottom="10.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="getCaloriesConfirm" mnemonicParsing="false" onMouseClicked="#getCaloriesConsumed" text="Get calories consumed">
+      <Button fx:id="getCaloriesConfirm" mnemonicParsing="false" onMouseClicked="#getCaloriesConsumed" styleClass="blue_button" stylesheets="@../../Style.css" text="Get calories consumed">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>

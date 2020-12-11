@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -8,14 +9,17 @@
 
 <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.createProfile.NewProfile">
    <children>
-      <Label text="Set your username">
+      <Label styleClass="footprint_title" stylesheets="@../../Style.css" text="Set your username">
          <font>
-            <Font name="Be Vietnam Regular" size="18.0" />
+            <Font name="Be Vietnam Regular" size="26.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
       </Label>
-      <TextField fx:id="username" maxWidth="-Infinity" minWidth="175.0" onKeyPressed="#keyPressed" />
-      <Label />
-      <Button minWidth="60.0" mnemonicParsing="false" onAction="#createProfile" styleClass="new_profile_button" stylesheets="@../../Style.css" text="Next" />
-      <Button mnemonicParsing="false" onAction="#goBack" styleClass="load_profile_button" stylesheets="@../../Style.css" text="Go back" />
+      <TextField fx:id="username" alignment="CENTER" maxWidth="-Infinity" minWidth="175.0" onKeyPressed="#keyPressed" />
+      <Label fx:id="usedProfile" textAlignment="CENTER" textFill="RED" wrapText="true" />
+      <Button contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#checkUsers" styleClass="green_button" stylesheets="@../../Style.css" text="Next" textAlignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#goBack" styleClass="gray_button" stylesheets="@../../Style.css" text="Go back" />
    </children>
 </VBox>

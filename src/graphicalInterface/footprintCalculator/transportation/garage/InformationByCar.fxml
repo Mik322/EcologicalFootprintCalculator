@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -19,7 +20,7 @@
                   <Label fx:id="total_emissions" layoutX="10.0" layoutY="10.0" text="0" />
                </children>
             </HBox>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="360.0" style="-fx-border-color: Black;">
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="360.0" style="-fx-border-color: Black; -fx-border-width: 0 0 1 0;">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="105.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="121.0" />
@@ -29,20 +30,26 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Car" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="9.0" text="Emissions (g CO2)" GridPane.columnIndex="1" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="9.0" text="Kms" GridPane.columnIndex="2" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="tex" stylesheets="@../../../Style.css" text="Car" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="9.0" styleClass="tex" stylesheets="@../../../Style.css" text="Emissions (g CO2)" GridPane.columnIndex="1" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="9.0" styleClass="tex" stylesheets="@../../../Style.css" text="Kms" GridPane.columnIndex="2" />
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </GridPane>
-              <VBox fx:id="elements" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="247.0" prefWidth="373.0" />
+              <VBox fx:id="elements" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" />
          </children>
       </VBox>
     </center>
     <top>
-        <Label prefHeight="96.0" text="My cars" BorderPane.alignment="CENTER">
+        <Label styleClass="footprint_title" stylesheets="@../../../Style.css" text="My cars" BorderPane.alignment="CENTER">
             <font>
                 <Font size="26.0" />
             </font>
+         <BorderPane.margin>
+            <Insets bottom="30.0" />
+         </BorderPane.margin>
         </Label>
     </top>
 </BorderPane>

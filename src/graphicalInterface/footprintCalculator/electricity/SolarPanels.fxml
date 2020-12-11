@@ -10,7 +10,7 @@
    <children>
       <VBox alignment="CENTER" spacing="10.0">
          <children>
-            <Label text="Calculate number of necessary solar panels">
+            <Label styleClass="footprint_title" stylesheets="@../../Style.css" text="Calculate number of necessary solar panels">
                <font>
                   <Font size="16.0" />
                </font>
@@ -21,7 +21,7 @@
             <Label text="Solar Panel Power (in Watt)" />
             <TextField fx:id="panelPower" maxHeight="-Infinity" maxWidth="-Infinity" />
             <Label fx:id="missing_values_1" textFill="RED" />
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#calcSolarPanels" text="Calculate" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#calcSolarPanels" styleClass="green_button" stylesheets="@../../Style.css" text="Calculate" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font size="13.0" />
                </font>
@@ -35,7 +35,7 @@
       </VBox>
       <VBox alignment="CENTER" spacing="10.0">
          <children>
-            <Label alignment="CENTER" text="Calculate the panel power with a number of solar panels">
+            <Label alignment="CENTER" styleClass="footprint_title" stylesheets="@../../Style.css" text="Calculate the panel power with a number of solar panels">
                <font>
                   <Font size="16.0" />
                </font>
@@ -44,7 +44,7 @@
             <Label text="Number Of Solar Panels" />
             <TextField fx:id="numberPanels" maxHeight="-Infinity" maxWidth="-Infinity" />
             <Label fx:id="missing_values_2" textFill="RED" />
-            <Button mnemonicParsing="false" onAction="#calcTotalPower" text="Calculate" />
+            <Button mnemonicParsing="false" onAction="#calcTotalPower" styleClass="green_button" stylesheets="@../../Style.css" text="Calculate" />
             <Label fx:id="totalPower">
                <font>
                   <Font size="14.0" />

@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.HealthTrackerInterface">
    <left>
-      <VBox alignment="CENTER" styleClass="green_white_menu" stylesheets="@../Style.css" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" styleClass="health_white_menu" stylesheets="@../Style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="addChangeButton" mnemonicParsing="false" onMouseClicked="#addChangeMenu" prefHeight="70.0" prefWidth="130.0" styleClass="green_white_button" stylesheets="@../Style.css" text="Add/Change" textAlignment="CENTER" textFill="#1a9000" wrapText="true">
+            <Button fx:id="addChangeButton" mnemonicParsing="false" onMouseClicked="#addChangeMenu" prefHeight="70.0" prefWidth="130.0" styleClass="health_white_menu_button" stylesheets="@../Style.css" text="Add/Change" textAlignment="CENTER" textFill="#1a9000" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
-            <Button fx:id="healthTrackerInformationButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#healthTrackerInformationMenu" prefHeight="70.0" prefWidth="130.0" styleClass="green_white_button" stylesheets="@../Style.css" text="Health Tracker Information" textAlignment="CENTER" textFill="#20af00" wrapText="true">
+            <Button fx:id="healthTrackerInformationButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#healthTrackerInformationMenu" prefHeight="70.0" prefWidth="130.0" styleClass="health_white_menu_button" stylesheets="@../Style.css" text="Health Tracker Information" textAlignment="CENTER" textFill="#20af00" wrapText="true">
                <font>
                   <Font name="Be Vietnam Regular" size="13.0" />
                </font></Button>
@@ -23,14 +26,14 @@
    <center>
       <VBox fx:id="healthTrackerDisplay" alignment="CENTER" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Your health information">
+            <Label styleClass="health_title" stylesheets="@../Style.css" text="Your health information">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
                <children>
-                  <Label text="Your water needs for today">
+                  <Label styleClass="text" stylesheets="@../Style.css" text="Your water needs for today" textFill="#07245a">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -43,7 +46,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label layoutX="282.0" layoutY="10.0" text="Your weight evolution">
+                  <Label layoutX="282.0" layoutY="10.0" styleClass="text" stylesheets="@../Style.css" text="Your weight evolution" textFill="#07245a">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -51,7 +54,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <ScrollPane fx:id="scroll_pane" hbarPolicy="NEVER">
+                  <ScrollPane fx:id="scroll_pane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="365.0">
                      <content>
                         <VBox alignment="CENTER" minWidth="${scroll_pane.viewportBounds.width}">
                            <children>
@@ -60,7 +63,7 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <Label layoutX="282.0" layoutY="57.0" text="Are you keeping up to your goal?">
+                  <Label layoutX="282.0" layoutY="57.0" styleClass="text" stylesheets="@../Style.css" text="Are you keeping up to your goal?" textFill="#07245a">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -73,7 +76,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label layoutX="282.0" layoutY="104.0" text="How much time do you need to sleep per day?">
+                  <Label layoutX="282.0" layoutY="104.0" styleClass="text" stylesheets="@../Style.css" text="How much time do you need to sleep per day?" textFill="#07245a">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -86,7 +89,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label layoutX="282.0" layoutY="151.0" text="Your body parameters">
+                  <Label layoutX="282.0" layoutY="151.0" styleClass="text" stylesheets="@../Style.css" text="Your body parameters" textFill="#07245a">
                      <font>
                         <Font size="18.0" />
                      </font>

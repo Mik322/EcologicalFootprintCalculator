@@ -10,12 +10,12 @@
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.healthTracker.addChange.AddFood">
    <children>
-      <Label text="Add a food to your tracker">
+      <Label styleClass="health_title" stylesheets="@../../Style.css" text="Add a food to your tracker">
          <font>
             <Font size="26.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="20.0" />
+            <Insets bottom="30.0" />
          </VBox.margin>
       </Label>
       <Label text="What did you eat?">
@@ -43,7 +43,7 @@
             <Insets bottom="10.0" />
          </VBox.margin></TextField>
       <Label fx:id="weightErrorLabel" text="Insert a valid value! (positive integer)" textFill="RED" visible="false" wrapText="true" />
-      <Button fx:id="addFoodConfirm" mnemonicParsing="false" onMouseClicked="#addFood" text="Add food">
+      <Button fx:id="addFoodConfirm" mnemonicParsing="false" onMouseClicked="#addFood" styleClass="blue_button" stylesheets="@../../Style.css" text="Add ">
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>

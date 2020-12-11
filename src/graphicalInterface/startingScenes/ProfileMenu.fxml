@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="300.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.ProfileMenu">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graphicalInterface.startingScenes.ProfileMenu">
    <children>
       <HBox alignment="TOP_CENTER">
          <children>
-            <Label text="Welcome to our App ">
+            <Label styleClass="footprint_title" stylesheets="@../Style.css" text="Welcome to our App ">
                <font>
                   <Font name="Be Vietnam Regular" size="18.0" />
                </font>
+               <HBox.margin>
+                  <Insets bottom="60.0" />
+               </HBox.margin>
             </Label>
-            <ImageView fx:id="footprint" fitHeight="36.0" fitWidth="90.0" opacity="0.85" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="footprint" fitHeight="36.0" fitWidth="90.0" opacity="0.85" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
-      <Label />
-      <Button fx:id="newProfileButton" mnemonicParsing="false" onMouseClicked="#newProfile" prefHeight="26.0" prefWidth="151.0" styleClass="new_profile_button" stylesheets="@../Style.css" text="New Profile" />
-      <Button fx:id="loadProfileButton" mnemonicParsing="false" onMouseClicked="#loadProfile" prefHeight="26.0" prefWidth="151.0" styleClass="load_profile_button" stylesheets="@../Style.css" text="Load Profile" />
+      <Button fx:id="newProfileButton" mnemonicParsing="false" onMouseClicked="#newProfile" prefHeight="26.0" prefWidth="151.0" styleClass="green_button" stylesheets="@../Style.css" text="New Profile" />
+      <Button fx:id="loadProfileButton" mnemonicParsing="false" onMouseClicked="#loadProfile" prefHeight="26.0" prefWidth="151.0" styleClass="gray_button" stylesheets="@../Style.css" text="Load Profile" />
    </children>
 </VBox>
