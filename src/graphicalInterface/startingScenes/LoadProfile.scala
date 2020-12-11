@@ -28,8 +28,7 @@ class LoadProfile {
     val stage = userName.getScene.getWindow.asInstanceOf[Stage]
     FxApp.setStates(states)
     stage.getScene.setRoot(root)
-    stage.setWidth(900)
-    stage.setHeight(650)
+    stage.setMaximized(true)
   }
 
   def goBack(): Unit = {

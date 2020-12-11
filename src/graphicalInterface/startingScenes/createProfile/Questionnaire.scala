@@ -1,13 +1,15 @@
-package graphicalInterface.startingScenes.newProfile
+package graphicalInterface.startingScenes.createProfile
 
 import consoleinterface.StartOptions.FootPrintData
 import consoleinterface.footprint.FootPrintQuestions
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.Parent
-import javafx.scene.control.{CheckBox, ChoiceBox, TextField}
+import javafx.scene.control.{CheckBox, ChoiceBox, Label, TextField}
 
-class Questioner {
+import scala.annotation.tailrec
+
+class Questionnaire {
 
   private val distance_publicT_list: ObservableList[String] = FXCollections.observableArrayList("More than 32000", "Between 25000 and 32000", "Between 15000 and 25000", "Between 1500 and 15000","Less than 1500", "0")
   private val holidayDest_list: ObservableList[String] = FXCollections.observableArrayList("Close to home(Country)", "Short distance away(Continent)", "Long flight away(Rest of the world)")
@@ -27,7 +29,7 @@ class Questioner {
   @FXML
   private var distance_car: TextField = _
   @FXML
-  private var distance_publicT: ChoiceBox[String] = new ChoiceBox[String]()
+  private var distance_publicT: ChoiceBox[String] = new ChoiceBox[String](distance_publicT_list)
   @FXML
   private var holidayDest: ChoiceBox[String] = new ChoiceBox[String]()
   @FXML
@@ -57,26 +59,18 @@ class Questioner {
   @FXML
   private var washingMachine: ChoiceBox[String] = new ChoiceBox[String]()
   @FXML
-  private var glass: CheckBox = _
-  @FXML
-  private var plastic: CheckBox = _
-  @FXML
-  private var paper: CheckBox = _
-  @FXML
-  private var aluminium: CheckBox = _
-  @FXML
-  private var steelCans: CheckBox = _
-  @FXML
-  private var foodWaste: CheckBox = _
+  private var glass, plastic, paper, aluminium, steelCans, foodWaste: CheckBox = _
   @FXML
   private var recycledWasteList: List[CheckBox] = _
+  @FXML
+  private var infoLabel, electricityError, kmError: Label = _
 
   private var username: String = _
 
   def setUsername(username: String): Unit = this.username = username
 
   @FXML
-  def initialize: Unit = {
+  def initialize(): Unit = {
     distance_publicT.setItems(distance_publicT_list)
     holidayDest.setItems(holidayDest_list)
     averageGasBill.setItems(averageGasBill_list)
@@ -94,30 +88,56 @@ class Questioner {
     recycledWasteList = List(glass, plastic, paper, aluminium, steelCans, foodWaste)
   }
 
+  def getChoiceBoxes: (List[ChoiceBox[String]], List[ObservableList[String]]) = {
+    val choiceBoxes = List(distance_publicT, holidayDest, averageGasBill, sourceOfEnergy, typeOfEater, typeOfFood, magazines, purchases, typeOfProperty,
+      household, childrenHousehold, amountOfWaste, dishWasher, washingMachine)
+    val choiceValues = List(distance_publicT_list, holidayDest_list, averageGasBill_list, sourceOfEnergy_list, typeOfEater_list, typeOfFood_list, magazines_list, purchases_list,
+      typeOfProperty_list, household_list, childrenHousehold_list, amountOfWaste_list, dishWasher_list, washingMachine_list)
+    (choiceBoxes, choiceValues)
+  }
+
   def calcPoints: Int = {
-    FootPrintQuestions.distanceOfCar(distance_car.getText.toInt) +
-      FootPrintQuestions.distanceOfPublicT(distance_publicT_list,distance_publicT.getValue) +
-      FootPrintQuestions.holidayDestPoints(holidayDest_list, holidayDest.getValue) +
-      FootPrintQuestions.averageGasBillPoints(averageGasBill_list, averageGasBill.getValue) +
+    @tailrec
+    def calcChoiceBoxPoints(choiceBoxes: List[ChoiceBox[String]], values: List[ObservableList[String]], points: Int): Int = choiceBoxes match {
+      case ::(head, next) =>
+        val valuePoints = FootPrintQuestions.distanceOfPublicT(values.head, head.getValue)
+        calcChoiceBoxPoints(next, values.tail, points + valuePoints)
+      case Nil =>points
+    }
+    val (choiceBoxes, choiceValues) = getChoiceBoxes
+    val choicePoints = calcChoiceBoxPoints(choiceBoxes, choiceValues, 0)
+
+    val remainingPoints = FootPrintQuestions.distanceOfCar(distance_car.getText.toInt) +
       FootPrintQuestions.averageElectricBillPoints(averageElectricBill.getText.toDouble) +
-      FootPrintQuestions.sourceOfEnergyPoints(sourceOfEnergy_list, sourceOfEnergy.getValue) +
-      FootPrintQuestions.typeOfEaterPoints(typeOfEater_list, typeOfEater.getValue) +
-      FootPrintQuestions.typeOfFoodPoints(typeOfFood_list, typeOfFood.getValue) +
-      FootPrintQuestions.magazinesPoints(magazines_list, magazines.getValue) +
-      FootPrintQuestions.purchasesPoints(purchases_list, purchases.getValue) +
-      FootPrintQuestions.typeOfPropertyPoints(typeOfProperty_list, typeOfProperty.getValue) +
-      FootPrintQuestions.householdPoints(household_list, household.getValue) +
-      FootPrintQuestions.childrenHouseholdPoints(childrenHousehold_list, childrenHousehold.getValue) +
-      FootPrintQuestions.amountOfWastePoints(amountOfWaste_list, amountOfWaste.getValue) +
-      FootPrintQuestions.dishwasherPoints(dishWasher_list, dishWasher.getValue) +
-      FootPrintQuestions.washingMachinePoints(washingMachine_list, washingMachine.getValue) +
       FootPrintQuestions.recycledWastePoints(recycledWasteList)
+
+    choicePoints + remainingPoints
+  }
+
+  private def areChoiceBoxesValid: Boolean = getChoiceBoxes._1.count(c => c.getValue == null) == 0
+
+  private def isValidInt(string: String): Boolean = "^[0-9]+$".r.matches(string)
+
+  private def validateQuestioner: Boolean = {
+    val (choiceBoxesValid, distanceValid, electricityValid) = (areChoiceBoxesValid, isValidInt(distance_car.getText), isValidInt(averageElectricBill.getText))
+    if (!choiceBoxesValid) infoLabel.setVisible(true)
+      else infoLabel.setVisible(false)
+
+    if (!distanceValid) kmError.setVisible(true)
+    else kmError.setVisible(false)
+
+    if (!electricityValid) electricityError.setVisible(true)
+    else electricityError.setVisible(false)
+
+    choiceBoxesValid && distanceValid && electricityValid
   }
 
   def submit(): Unit = {
-    val loader = new FXMLLoader(getClass.getResource("BodyInput.fxml"))
+    if (!validateQuestioner) return
+
+    val loader = new FXMLLoader(getClass.getResource("BodyInputInterface.fxml"))
     val root: Parent = loader.load()
-    loader.getController[BodyInput].setData(username, FootPrintData(calcPoints, averageElectricBill.getText().toInt))
+    loader.getController[BodyInputInterface].setData(username, FootPrintData(calcPoints, averageElectricBill.getText().toInt))
     val scene = distance_car.getScene
     scene.setRoot(root)
   }

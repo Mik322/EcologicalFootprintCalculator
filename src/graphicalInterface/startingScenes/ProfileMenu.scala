@@ -18,7 +18,7 @@ class ProfileMenu {
   }
 
   def newProfile: Unit = {
-    val loader = new FXMLLoader(getClass.getResource("newProfile/NewProfile.fxml"))
+    val loader = new FXMLLoader(getClass.getResource("createProfile/NewProfile.fxml"))
     val root: Parent = loader.load()
 
     newProfileButton.getScene.setRoot(root)

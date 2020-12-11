@@ -1,15 +1,15 @@
-package graphicalInterface.startingScenes.newProfile
+package graphicalInterface.startingScenes.createProfile
 
 import consoleinterface.StartOptions.{BodyParams, FootPrintData, NewProfile}
-import graphicalInterface.{FxApp, HomePage}
+import graphicalInterface.FxApp
 import javafx.collections.{FXCollections, ObservableList}
 import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.Parent
 import javafx.scene.control.{ChoiceBox, RadioButton, TextField, ToggleGroup}
+import main.healthTracker.Body._
 import main.{Date, States}
-import main.healthTracker.Body.{Active, ExtremelyActive, Female, Lifestyle, Male, Moderated, Sedentary, VeryActive}
 
-class BodyInput {
+class BodyInputInterface {
 
   @FXML
   var height: TextField = _

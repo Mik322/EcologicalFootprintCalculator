@@ -57,21 +57,10 @@ object FootPrintQuestions {
     }
   }
 
-  def distanceOfPublicT(options: ObservableList[String], option: String): Int = {
-    val op1 = options.get(0)
-    val op2 = options.get(1)
-    val op3 = options.get(2)
-    val op4 = options.get(3)
-    val op5 = options.get(4)
-    val op6 = options.get(5)
-    option match {
-      case op1 => 12
-      case op2 => 10
-      case op3 => 6
-      case op4 => 4
-      case op5 => 2
-      case op6 => 0
-    }
+  def distanceOfPublicT(options: ObservableList[String], option: String): Int = options.indexOf(option) match {
+    case 0 => 12
+    case 1 => 10
+    case i => 10 - i * 2
   }
 
   @scala.annotation.tailrec
@@ -89,15 +78,10 @@ object FootPrintQuestions {
     }
   }
 
-  def holidayDestPoints(options: ObservableList[String], option: String): Int = {
-    val op1 = options.get(0)
-    val op2 = options.get(1)
-    val op3 = options.get(2)
-    option match {
-      case op1 => 2
-      case op2 => 6
-      case op3 => 20
-    }
+  def holidayDestPoints(options: ObservableList[String], option: String): Int = options.indexOf(option) match {
+    case 0 => 2
+    case 1 => 6
+    case 2 => 20
   }
 
   @scala.annotation.tailrec
@@ -116,18 +100,13 @@ object FootPrintQuestions {
     }
   }
 
-  def averageGasBillPoints(options: ObservableList[String], option: String): Int = {
-    val op1 = options.get(0)
-    val op2 = options.get(1)
-    val op3 = options.get(2)
-    val op4 = options.get(3)
-    option match {
-      case op1 => 8
-      case op2 => 5
-      case op3 => 3
-      case op4 => 1
+  def averageGasBillPoints(options: ObservableList[String], option: String): Int =
+    options.indexOf(option) match {
+      case 0 => 8
+      case 1 => 5
+      case 2 => 3
+      case 3 => 1
     }
-  }
 
 
   def averageElectricBill(): (Int, Double) = {
@@ -164,13 +143,9 @@ object FootPrintQuestions {
     }
   }
 
-  def sourceOfEnergyPoints(options: ObservableList[String], option: String): Int = {
-    val op1 = options.get(0)
-    val op2 = options.get(1)
-    option match {
-      case op1 => 2
-      case op2 => 15
-    }
+  def sourceOfEnergyPoints(options: ObservableList[String], option: String): Int = options.indexOf(option) match {
+    case 0 => 2
+    case 1 => 15
   }
 
   @scala.annotation.tailrec
@@ -189,17 +164,11 @@ object FootPrintQuestions {
     }
   }
 
-  def typeOfEaterPoints(options: ObservableList[String], option: String): Int = {
-    val op1 = options.get(0)
-    val op2 = options.get(1)
-    val op3 = options.get(2)
-    val op4 = options.get(3)
-    option match {
-      case op1 => 2
-      case op2 => 4
-      case op3 => 8
-      case op4 => 10
-    }
+  def typeOfEaterPoints(options: ObservableList[String], option: String): Int = options.indexOf(option) match {
+    case 0 => 2
+    case 1 => 4
+    case 2 => 8
+    case 3 => 10
   }
 
   @scala.annotation.tailrec
@@ -217,15 +186,9 @@ object FootPrintQuestions {
     }
   }
 
-  def typeOfFoodPoints(options: ObservableList[String], option: String): Int = {
-    val op1 = options.get(0)
-    val op2 = options.get(1)
-    val op3 = options.get(2)
-    option match {
-      case op1 => 2
-      case op2 => 6
-      case op3 => 12
-    }
+  def typeOfFoodPoints(options: ObservableList[String], option: String): Int = options.indexOf(option) match {
+    case 0 => 2
+    case i => i * 6
   }
 
   @scala.annotation.tailrec
@@ -244,17 +207,9 @@ object FootPrintQuestions {
     }
   }
 
-  def magazinesPoints(options: ObservableList[String], option: String): Int = {
-    val op1 = options.get(0)
-    val op2 = options.get(1)
-    val op3 = options.get(2)
-    val op4 = options.get(3)
-    option match {
-      case op1 => 8
-      case op2 => 6
-      case op3 => 4
-      case op4 => 0
-    }
+  def magazinesPoints(options: ObservableList[String], option: String): Int = options.indexOf(option) match {
+    case 3 => 0
+    case i => 8 - i * 2
   }
 
   @scala.annotation.tailrec
@@ -274,20 +229,10 @@ object FootPrintQuestions {
     }
   }
 
-    def purchasesPoints(options: ObservableList[String], option: String): Int = {
-      val op1 = options.get(0)
-      val op2 = options.get(1)
-      val op3 = options.get(2)
-      val op4 = options.get(3)
-      val op5 = options.get(4)
-      option match {
-        case op1 => 10
-        case op2 => 8
-        case op3 => 6
-        case op4 => 4
-        case op5 => 2
-      }
-    }
+  def purchasesPoints(options: ObservableList[String], option: String): Int = {
+    val index = options.indexOf(option)
+    10 - index * 2
+  }
 
   @scala.annotation.tailrec
   def typeOfProperty(): Int = {
@@ -305,18 +250,12 @@ object FootPrintQuestions {
     }
   }
 
-    def typeOfPropertyPoints(options: ObservableList[String], option: String): Int = {
-      val op1 = options.get(0)
-      val op2 = options.get(1)
-      val op3 = options.get(2)
-      val op4 = options.get(3)
-      option match {
-        case op1 => 10
-        case op2 => 7
-        case op3 => 4
-        case op4 => 2
-      }
-    }
+  def typeOfPropertyPoints(options: ObservableList[String], option: String): Int = options.indexOf(option) match {
+    case 0 => 10
+    case 1 => 7
+    case 2 => 4
+    case 3 => 2
+  }
 
   @scala.annotation.tailrec
   def household(): Int = {
@@ -337,24 +276,10 @@ object FootPrintQuestions {
     }
   }
 
-    def householdPoints(options: ObservableList[String], option: String): Int = {
-      val op1 = options.get(0)
-      val op2 = options.get(1)
-      val op3 = options.get(2)
-      val op4 = options.get(3)
-      val op5 = options.get(4)
-      val op6 = options.get(5)
-      val op7 = options.get(6)
-      option match {
-        case op1 => 14
-        case op2 => 12
-        case op3 => 10
-        case op4 => 8
-        case op5 => 6
-        case op6 => 4
-        case op7 => 2
-      }
-    }
+  def householdPoints(options: ObservableList[String], option: String): Int = {
+    val index = options.indexOf(option)
+    14 - index * 2
+  }
 
   @scala.annotation.tailrec
   def childrenHousehold(): Int = {
@@ -374,22 +299,10 @@ object FootPrintQuestions {
     }
   }
 
-    def childrenHouseholdPoints(options: ObservableList[String], option: String): Int = {
-      val op1 = options.get(0)
-      val op2 = options.get(1)
-      val op3 = options.get(2)
-      val op4 = options.get(3)
-      val op5 = options.get(4)
-      val op6 = options.get(5)
-      option match {
-        case op1 => 0
-        case op2 => 3
-        case op3 => 6
-        case op4 => 8
-        case op5 => 10
-        case op6 => 12
-      }
-    }
+  def childrenHouseholdPoints(options: ObservableList[String], option: String): Int = options.indexOf(option) match {
+    case i if (0 to 2).contains(i) => i * 3
+    case i => i * 2 + 2
+  }
 
   @scala.annotation.tailrec
   def amountOfWaste(): Int = {
@@ -409,21 +322,9 @@ object FootPrintQuestions {
     }
   }
 
-    def amountOfWastePoints(options: ObservableList[String], option: String): Int = {
-      val op1 = options.get(0)
-      val op2 = options.get(1)
-      val op3 = options.get(2)
-      val op4 = options.get(3)
-      val op5 = options.get(4)
-      val op6 = options.get(5)
-      option match {
-        case op1 => 50
-        case op2 => 40
-        case op3 => 30
-        case op4 => 20
-        case op5 => 10
-        case op6 => 5
-      }
+  def amountOfWastePoints(options: ObservableList[String], option: String): Int = options.indexOf(option) match {
+      case i if i < 5 => 50 - i * 10
+      case 5 => 5
     }
 
   @scala.annotation.tailrec
@@ -442,18 +343,7 @@ object FootPrintQuestions {
     }
   }
 
-    def dishwasherPoints(options: ObservableList[String], option: String): Int = {
-      val op1 = options.get(0)
-      val op2 = options.get(1)
-      val op3 = options.get(2)
-      val op4 = options.get(3)
-      option match {
-        case op1 => 3
-        case op2 => 2
-        case op3 => 1
-        case op4 => 0
-      }
-    }
+  def dishwasherPoints(options: ObservableList[String], option: String): Int = 3 - options.indexOf(option)
 
   @scala.annotation.tailrec
   def washingMachine(): Int = {
@@ -471,18 +361,7 @@ object FootPrintQuestions {
     }
   }
 
-    def washingMachinePoints(options: ObservableList[String], option: String): Int = {
-      val op1 = options.get(0)
-      val op2 = options.get(1)
-      val op3 = options.get(2)
-      val op4 = options.get(3)
-      option match {
-        case op1 => 3
-        case op2 => 2
-        case op3 => 1
-        case op4 => 0
-      }
-    }
+  def washingMachinePoints(options: ObservableList[String], option: String): Int = 3 - options.indexOf(option)
 
   def recycledWaste(): Int = {
     println("Do dispose of waste, you're going to use up valuable land. So, start this section with 24 points. Do you recycle the following items?\n")
@@ -513,8 +392,8 @@ object FootPrintQuestions {
     24 + glassPoints + plasticPoints + paperPoints + aluminiumPoints + steelPoints + foodPoints
   }
 
-  def recycledWastePoints(list: List[CheckBox]): Int ={
-    list.count(i => i.isSelected) * -4 + 24
+  def recycledWastePoints(list: List[CheckBox]): Int = {
+    list.count(i => i.isSelected) * - 4 + 24
   }
 
   @tailrec
