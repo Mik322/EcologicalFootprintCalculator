@@ -1,10 +1,11 @@
 package graphicalInterface.footprintCalculator.waste
 
-import graphicalInterface.{FxApp}
+import graphicalInterface.FxApp
 import javafx.fxml.FXML
 import javafx.scene.control.{ChoiceBox, Label, TextField}
 import javafx.scene.paint.Color
 import main.footprint.FootPrintOps
+import main.footprint.FootPrintOps.gramOrKg
 import main.footprint.waste.{TypeOfWaste, Waste}
 import main.footprint.waste.TypeOfWaste.{Food, Recycled}
 
@@ -31,7 +32,7 @@ class AddWaste {
 
   def setTotals(): Unit = {
     val waste = FxApp.getFootPrint.waste
-    emissions.setText(s"${Waste.getTotalEmissions(waste)}g CO2")
+    emissions.setText(s"${gramOrKg(Waste.getTotalEmissions(waste))}")
     totalOrganic.setText(s"${waste.foodWaste}kg")
     totalRecycled.setText(s"${waste.recycledWaste}kg")
   }
