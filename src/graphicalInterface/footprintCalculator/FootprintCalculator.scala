@@ -8,6 +8,7 @@ import graphicalInterface.footprintCalculator.waste.AddWaste
 import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.layout.Pane
+import main.footprint.FootPrintOps.gramOrKg
 import main.footprint.transport.TransportTrip
 import main.footprint.waste.Waste
 import main.footprint.{FootPrintOps, energy}
@@ -62,15 +63,6 @@ class FootprintCalculator {
   private def setTotalEmissions(): Unit = {
     val emissions = FootPrintOps.getTotalEmissions(FxApp.getFootPrint)
     total.setText(gramOrKg(emissions))
-  }
-
-  private def gramOrKg(num: Int): String = {
-    if (num < 1000) return s"${num}g"
-    val kg = (num.toDouble/1000).toString
-    "[0-9]*\\.?[0-9]{0,2}".r.findFirstIn(kg) match {
-      case None => s"${kg}kg"
-      case Some(value) => s"${value}kg"
-    }
   }
 
   private def setEmissions(): Unit = {

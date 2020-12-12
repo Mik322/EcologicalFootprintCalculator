@@ -31,7 +31,7 @@
               </rowConstraints>
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" styleClass="tex" stylesheets="@../../../Style.css" text="Car" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="9.0" styleClass="tex" stylesheets="@../../../Style.css" text="Emissions (g CO2)" GridPane.columnIndex="1" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="9.0" styleClass="tex" stylesheets="@../../../Style.css" text="Emissions" GridPane.columnIndex="1" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="9.0" styleClass="tex" stylesheets="@../../../Style.css" text="Kms" GridPane.columnIndex="2" />
                </children>
                <VBox.margin>

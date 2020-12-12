@@ -5,6 +5,7 @@ import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
 import javafx.scene.layout.VBox
 import main.States.FootPrintState
+import main.footprint.FootPrintOps.gramOrKg
 import main.footprint.transport.TransportTrip
 
 class TransportInformation {
@@ -22,7 +23,8 @@ class TransportInformation {
     if (FxApp.getFootPrint.transportTrips.isEmpty) noTrips()
     else {
       addInformation(FxApp.getFootPrint)
-      total_emissions.setText(TransportTrip.getTotalEmissions(FxApp.getFootPrint.transportTrips).toString + " g CO2")
+      val emissions = TransportTrip.getTotalEmissions(FxApp.getFootPrint.transportTrips).toInt
+      total_emissions.setText(gramOrKg(emissions))
     }
   }
 
@@ -45,10 +47,10 @@ class TransportInformation {
   def addElement(trip: TransportTrip, footPrint: FootPrintState): Unit = {
     val mean = trip.mean
     val kms = trip.km
-    val emissions = TransportTrip.getEmissionsByType(trip)
+    val emissions = TransportTrip.getEmissionsByType(trip).toInt
     val loader = new FXMLLoader(getClass.getResource("Template.fxml"))
     elements.getChildren.add(loader.load())
-    loader.getController[Template].initialize(mean.toString, emissions.toString, kms.toInt.toString)
+    loader.getController[Template].initialize(mean.toString, gramOrKg(emissions), kms.toInt.toString)
   }
 
 }

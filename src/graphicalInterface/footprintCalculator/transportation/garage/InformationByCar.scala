@@ -6,6 +6,7 @@ import javafx.fxml.{FXML, FXMLLoader}
 import javafx.scene.control.Label
 import javafx.scene.layout.VBox
 import main.States.FootPrintState
+import main.footprint.FootPrintOps.gramOrKg
 import main.footprint.transport.Car
 
 class InformationByCar {
@@ -18,7 +19,8 @@ class InformationByCar {
   @FXML
   def initialize(): Unit = {
     addInformation(FxApp.getFootPrint)
-    total_emissions.setText(Car.getTotalEmissions(FxApp.getFootPrint.transportTrips).toString + " g CO2")
+    val emissions = Car.getTotalEmissions(FxApp.getFootPrint.transportTrips).toInt
+    total_emissions.setText(gramOrKg(emissions))
   }
 
   def addInformation(footPrint: FootPrintState): Unit = {
@@ -33,10 +35,10 @@ class InformationByCar {
   }
 
   def addElement(car: Car, footPrint: FootPrintState): Unit = {
-    val emissions = Car.getEmissionByCar(footPrint.transportTrips, car.name)
+    val emissions = Car.getEmissionByCar(footPrint.transportTrips, car.name).toInt
     val kms = Car.getKmByCar(footPrint.transportTrips, car.name)
     val loader = new FXMLLoader(getClass.getResource("../Template.fxml"))
     elements.getChildren.add(loader.load())
-    loader.getController[Template].initialize(car.name, emissions.toString, kms.toInt.toString)
+    loader.getController[Template].initialize(car.name, gramOrKg(emissions), kms.toInt.toString)
   }
 }

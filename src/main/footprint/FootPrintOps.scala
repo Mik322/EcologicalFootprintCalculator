@@ -70,4 +70,13 @@ object FootPrintOps {
     else if(points > 120 && points < 180) 3
     else 4
   }
+
+  def gramOrKg(num: Int): String = {
+    if (num < 1000) return s"${num}g"
+    val kg = (num.toDouble/1000).toString
+    "[0-9]*\\.?[0-9]{0,2}".r.findFirstIn(kg) match {
+      case None => s"${kg}kg"
+      case Some(value) => s"${value}kg"
+    }
+  }
 }

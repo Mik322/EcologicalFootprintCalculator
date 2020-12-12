@@ -46,7 +46,7 @@ object Car extends TransportMean {
 
   def getMonthFuelConsumption(footPrintState: FootPrintState, month: Date): Double = {
     filterCarMonth(footPrintState.transportTrips, month)
-      .filter(t => t.asInstanceOf[Car].fuel != Electric)
+      .filter(t => t.mean.asInstanceOf[Car].fuel != Electric)
       .foldLeft(0.0)((tracker, transport) => tracker + Car.getCarConsumptionInTrip(transport))
   }
 
