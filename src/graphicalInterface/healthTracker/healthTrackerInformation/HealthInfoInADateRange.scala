@@ -20,6 +20,7 @@ class HealthInfoInADateRange {
 
 
   def applyDateRange(): Unit = {
+    dateRangeInfo.getChildren.clear()
     if (!areDatesValid) return
 
     val start = Date(startDate.getValue)
@@ -72,7 +73,8 @@ class HealthInfoInADateRange {
       endErrorLabel.setVisible(true)
       return false
     }
-
+    startErrorLabel.setVisible(false)
+    endErrorLabel.setVisible(false)
     true
   }
 }

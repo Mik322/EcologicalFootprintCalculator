@@ -25,11 +25,16 @@ class SeeElectricitySources {
 
   def createChart(sources: List[(TypeOfElectricitySource, Double)], title: String): PieChart = {
     val data: ObservableList[PieChart.Data] = FXCollections.observableArrayList()
-    sources.map(source => data.add(new PieChart.Data(s"${source._1} ${gramOrKg(source._2.toInt)} $title", source._2.toInt)))
+    sources.map(source => data.add(new PieChart.Data(s"${source._1} ${quantity(source._2.toInt,title)}", source._2.toInt)))
     val chart = new PieChart(data)
     chart.setTitle(title)
     chart.setLegendVisible(false)
     chart
+  }
+
+  private def quantity(num: Int, title: String): String = {
+    if (title != "CO2") return num.toString + title
+    s"${gramOrKg(num)} $title"
   }
 
 }
